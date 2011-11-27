@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://tempuri.org/TGRequest.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/TGRequest.xsd" xmlns:mstns="http://tempuri.org/TGRequest.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="TGRequest">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="UpdateRequestData">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="IncludeOPALData" type="xs:int" nillable="false" />
+							<xs:element name="AccountNumber" type="xs:string" nillable="true" />
+							<xs:element name="Applicant">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Name" type="xs:string" />
+										<xs:element name="Title" type="xs:string" />
+										<xs:element name="Middlename" type="xs:string" />
+										<xs:element name="Initials" type="xs:string" />
+										<xs:element name="Sex" type="xs:string" />
+										<xs:element name="Nationality" type="xs:string" />
+										<xs:element name="BirthDate" type="xs:date" />
+										<xs:element name="Identification">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="IdentificationType" type="xs:string" />
+													<xs:element name="ValidityPeriod" type="xs:date" />
+													<xs:element name="Number" type="xs:string" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="SofiNumber" type="xs:string" />
+										<xs:element name="ContactDetails">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="PhoneWork" type="xs:string" />
+													<xs:element name="PhonePrivate" type="xs:string" />
+													<xs:element name="PhoneFax" type="xs:string" />
+													<xs:element name="PhoneMobile" type="xs:string" />
+													<xs:element name="EMail" type="xs:string" />
+													<xs:element name="ResidentialAddress">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Street" type="xs:string" />
+																<xs:element name="Number" type="xs:string" />
+																<xs:element name="NumberAddition" type="xs:string" />
+																<xs:element name="PostalCode" type="xs:string" />
+															</xs:sequence>
+															<xs:attribute name="type" type="xs:string" />
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="PostAddress">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Street" type="xs:string" />
+																<xs:element name="Number" type="xs:string" />
+																<xs:element name="NumberAddition" type="xs:string" />
+																<xs:element name="PostalCode" type="xs:string" />
+															</xs:sequence>
+															<xs:attribute name="Type" type="xs:string" />
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="SecondApplicant" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Name" type="xs:string" />
+										<xs:element name="Title" type="xs:string" />
+										<xs:element name="Middlename" type="xs:string" />
+										<xs:element name="Initials" type="xs:string" />
+										<xs:element name="Sex" type="xs:string" />
+										<xs:element name="Nationality" type="xs:string" />
+										<xs:element name="BirthDate" type="xs:date" />
+										<xs:element name="Identification">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="IdentificationType" type="xs:string" />
+													<xs:element name="ValidityPeriod" type="xs:date" />
+													<xs:element name="Number" type="xs:string" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="SofiNumber" type="xs:string" />
+										<xs:element name="ContactDetails">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="PhoneWork" type="xs:string" />
+													<xs:element name="PhonePrivate" type="xs:string" />
+													<xs:element name="PhoneFax" type="xs:string" />
+													<xs:element name="PhoneMobile" type="xs:string" />
+													<xs:element name="EMail" type="xs:string" />
+													<xs:element name="Address">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Street" type="xs:string" />
+																<xs:element name="Number" type="xs:string" />
+																<xs:element name="NumberAddition" type="xs:string" />
+																<xs:element name="PostalCode" type="xs:string" />
+															</xs:sequence>
+															<xs:attribute name="type" type="xs:string" />
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="PostAddress">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Street" type="xs:string" />
+																<xs:element name="Number" type="xs:string" />
+																<xs:element name="NumberAddition" type="xs:string" />
+																<xs:element name="PostalCode" type="xs:string" />
+															</xs:sequence>
+															<xs:attribute name="Type" type="xs:string" />
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="MoneyAccountHolder" type="xs:string" />
+							<xs:element name="MoneyAccount" type="xs:string" />
+							<xs:element name="FirstDeposit" type="xs:float" />
+							<xs:element name="PeriodicWithdrawal" type="xs:boolean" />
+							<xs:element name="PeriodWithdrawal" type="xs:string" />
+							<xs:element name="PeriodicWithdrawalAmount" type="xs:float" />
+							<xs:element name="PeriodicDeposit" type="xs:boolean" />
+							<xs:element name="PeriodDeposit" type="xs:string" />
+							<xs:element name="PeriodicDepositAmount" type="xs:float" />
+							<xs:element name="Remisier" type="xs:string" />
+							<xs:element name="ContactPerson" type="xs:string" />
+							<xs:element name="ModelPortfolio" type="xs:string" />
+							<xs:element name="Questionnaire">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Questions">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Question">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="ValueQ" type="xs:string" />
+																<xs:element name="ValueA" type="xs:string" />
+																<xs:element name="PossibleAnswers">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="Answer" type="xs:string" />
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPALData">
+								<xs:complexType>
+									<xs:sequence />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="RequestAccounNumber">
+					<xs:complexType>
+						<xs:sequence />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="version" type="xs:string" />
+			<xs:attribute name="username" type="xs:string" />
+			<xs:attribute name="password" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Reports.Documents.Document, B4F.TotalGiro.Reports" table="Documents" 
+		   proxy="B4F.TotalGiro.Reports.Documents.IDocument, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="DocumentID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<discriminator column="DocumentTypeID" />
+		<property name="FileName" column="FileName" />
+		<property name="FilePath" column="FilePath" />
+		<property name="EmailNotificationHandled" column="EmailNotificationHandled" type="Boolean" />
+    <property name="SentByPost" column="SentByPost" type="Boolean" />
+		<property name="CreationDate" column="CreationDate" insert="false" update="false" type="DateTime" />
+		<subclass discriminator-value="1" name="B4F.TotalGiro.Reports.Documents.NotaDocument, B4F.TotalGiro.Reports" 
+				  proxy="B4F.TotalGiro.Reports.Documents.INotaDocument, B4F.TotalGiro.Interfaces">
+			<bag name="bagOfNotas" table="Notas" access="field" cascade="none" inverse="true" lazy="true" order-by="NotaNumber">
+				<key column="DocumentID" />
+				<one-to-many class="B4F.TotalGiro.Notas.Nota, B4F.TotalGiro.Notas" />
+			</bag>
+		</subclass>
+		<subclass discriminator-value="2" name="B4F.TotalGiro.Reports.Documents.FinancialReportDocument, B4F.TotalGiro.Reports"
+				  proxy="B4F.TotalGiro.Reports.Documents.IFinancialReportDocument, B4F.TotalGiro.Interfaces">
+			<one-to-one name="Report" property-ref="Document" class="B4F.TotalGiro.Reports.Financial.Report, B4F.TotalGiro.Reports"
+						cascade="none" fetch="join" />
+		</subclass>
+	</class>
+
+	<query name="B4F.TotalGiro.Reports.Documents.CountDocumentsSentByPost" >
+		<![CDATA[
+		SELECT COUNT(D.Key)
+		FROM Document D
+		WHERE (D.Key IN (
+			SELECT ND.Key 
+			FROM NotaDocument ND
+			INNER JOIN ND.bagOfNotas N
+			INNER JOIN N.NotaAccount.Account A
+			WHERE A.Key = :accountId
+			AND N.PrintCount != 0 )
+		OR D.Key IN (
+			SELECT FD.Key 
+			FROM FinancialReportDocument FD
+			INNER JOIN FD.Report R
+			INNER JOIN R.Account A
+			WHERE R.ReportStatusId = :reportStatusId
+			AND A.Key = :accountId 
+			AND R.Key IN (SELECT RR.Key FROM ReportQuarter RR) )
+		)
+		AND D.SentByPost = true
+		AND D.CreationDate between :startDate and :endDate
+	]]>
+	</query>
+
+
+</hibernate-mapping>

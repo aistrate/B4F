@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Notas.Nota, B4F.TotalGiro.Notas" table="Notas" 
+		   proxy="B4F.TotalGiro.Notas.INota, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="NotaID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<discriminator column="NotaTypeID" />
+		<!--1  NotaTransaction		-->
+		<!--2  NotaDeposit			-->
+		<!--4  NotaCorporateAction	-->
+		<!--8  NotaDividend			-->
+		<!--16 NotaFees				-->
+		<!--32 NotaTransfer			-->
+		<property name="NotaNumber" column="NotaNumber" />
+		<property name="CreationDate" column="CreationDate" type="DateTime" />
+		<many-to-one name="Document" column="DocumentID" class="B4F.TotalGiro.Reports.Documents.NotaDocument, B4F.TotalGiro.Reports" cascade="none"/>
+		<many-to-one name="ContactsNAW" column="NawID" class="B4F.TotalGiro.CRM.ContactsNAW, B4F.TotalGiro.CRM" cascade="none"/>
+		<many-to-one name="SecondContactsNAW" column="SecondNawID" class="B4F.TotalGiro.CRM.ContactsNAW, B4F.TotalGiro.CRM" cascade="none"/>
+		<property name="PrintCount" column="PrintCount" />
+		<property name="NotaType" column="NotaTypeID" insert="false" update="false"
+              type="B4F.TotalGiro.Notas.NotaTypes, B4F.TotalGiro.Interfaces" />
+    <one-to-one name="NotaAccount" class="B4F.TotalGiro.Notas.NotaAccount, B4F.TotalGiro.Notas" />
+    <subclass name="B4F.TotalGiro.Notas.NotaTransactionBase, B4F.TotalGiro.Notas"
+			proxy="B4F.TotalGiro.Notas.INotaTransactionBase, B4F.TotalGiro.Interfaces"
+			discriminator-value="256"
+			dynamic-update="true">
+			<one-to-one name="UnderlyingTx" property-ref="TxNota" class="B4F.TotalGiro.Orders.Transactions.Transaction, B4F.TotalGiro.Orders" cascade="all" />
+			<subclass name="B4F.TotalGiro.Notas.NotaTransaction, B4F.TotalGiro.Notas"
+				 proxy="B4F.TotalGiro.Notas.INotaTransaction, B4F.TotalGiro.Interfaces"
+				discriminator-value="1"
+				dynamic-update="true">
+			</subclass>
+			<subclass name="B4F.TotalGiro.Notas.NotaInstrumentConversion, B4F.TotalGiro.Notas"
+				 proxy="B4F.TotalGiro.Notas.INotaInstrumentConversion, B4F.TotalGiro.Interfaces"
+				discriminator-value="4"
+				dynamic-update="true">
+			</subclass>
+			<subclass name="B4F.TotalGiro.Notas.NotaTransfer, B4F.TotalGiro.Notas"
+				 proxy="B4F.TotalGiro.Notas.INotaTransfer, B4F.TotalGiro.Interfaces"
+				discriminator-value="32"
+				dynamic-update="true">
+			</subclass>
+		</subclass>
+		<subclass name="B4F.TotalGiro.Notas.NotaGeneralOperationsBooking, B4F.TotalGiro.Notas"
+			proxy="B4F.TotalGiro.Notas.INotaGeneralOperationsBooking, B4F.TotalGiro.Interfaces"
+			discriminator-value="512"
+			dynamic-update="true">
+			<one-to-one name="UnderlyingBooking" property-ref="BookNota" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBooking, B4F.TotalGiro.GeneralLedger" cascade="all" />
+			<subclass name="B4F.TotalGiro.Notas.NotaGeneralOperationsBookingTaxeable, B4F.TotalGiro.Notas"
+				proxy="B4F.TotalGiro.Notas.INotaGeneralOperationsBookingTaxeable, B4F.TotalGiro.Interfaces"
+				discriminator-value="1024"
+				dynamic-update="true">
+				<subclass name="B4F.TotalGiro.Notas.NotaDividend, B4F.TotalGiro.Notas"
+					proxy="B4F.TotalGiro.Notas.INotaDividend, B4F.TotalGiro.Interfaces"
+					discriminator-value="8"
+					dynamic-update="true">
+				</subclass>
+				<subclass name="B4F.TotalGiro.Notas.NotaFees, B4F.TotalGiro.Notas"
+					proxy="B4F.TotalGiro.Notas.INotaFees, B4F.TotalGiro.Interfaces"
+					discriminator-value="16"
+					dynamic-update="true">
+				</subclass>
+			</subclass>
+			<subclass name="B4F.TotalGiro.Notas.NotaDeposit, B4F.TotalGiro.Notas"
+				proxy="B4F.TotalGiro.Notas.INotaDeposit, B4F.TotalGiro.Interfaces"
+				discriminator-value="2"
+				dynamic-update="true">
+			</subclass>
+		</subclass>
+	</class>
+</hibernate-mapping>
+
+

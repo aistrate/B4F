@@ -1,0 +1,481 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B9559E11-23C9-4F40-84D5-346ACA9805E7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.Client.Web</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.Client.Web</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\3rdParty\Ajax\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="DundasWebChart, Version=7.1.0.1812, Culture=neutral, PublicKeyToken=90d06b0c62d592d0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\3rdParty\Dundas\Enterprise\DundasWebChart.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Charts\Charts.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authenticate\AppErrors.aspx.cs">
+      <DependentUpon>AppErrors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Authenticate\AppErrors.aspx.designer.cs">
+      <DependentUpon>AppErrors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Authenticate\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Authenticate\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Authenticate\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Authenticate\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Authenticate\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Authenticate\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\Charts.aspx.cs">
+      <DependentUpon>Charts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Charts\Charts.aspx.designer.cs">
+      <DependentUpon>Charts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\ClientPortfolios.aspx.cs">
+      <DependentUpon>ClientPortfolios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clients\ClientPortfolios.aspx.designer.cs">
+      <DependentUpon>ClientPortfolios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Disclaimer.aspx.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Disclaimer.aspx.designer.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help\ChangePasswordHelp.aspx.cs">
+      <DependentUpon>ChangePasswordHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help\ChangePasswordHelp.aspx.designer.cs">
+      <DependentUpon>ChangePasswordHelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help\ChartsHelp.aspx.cs">
+      <DependentUpon>ChartsHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help\ChartsHelp.aspx.designer.cs">
+      <DependentUpon>ChartsHelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help\FinancialReportsHelp.aspx.cs">
+      <DependentUpon>FinancialReportsHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help\FinancialReportsHelp.aspx.designer.cs">
+      <DependentUpon>FinancialReportsHelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help\Help.master.cs">
+      <DependentUpon>Help.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help\Help.master.designer.cs">
+      <DependentUpon>Help.master</DependentUpon>
+    </Compile>
+    <Compile Include="Help\HelpContents.aspx.cs">
+      <DependentUpon>HelpContents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help\HelpContents.aspx.designer.cs">
+      <DependentUpon>HelpContents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help\LoginHelp.aspx.cs">
+      <DependentUpon>LoginHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help\LoginHelp.aspx.designer.cs">
+      <DependentUpon>LoginHelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help\NotasHelp.aspx.cs">
+      <DependentUpon>NotasHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help\NotasHelp.aspx.designer.cs">
+      <DependentUpon>NotasHelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help\PortfolioHelp.aspx.cs">
+      <DependentUpon>PortfolioHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help\PortfolioHelp.aspx.designer.cs">
+      <DependentUpon>PortfolioHelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help\SettingsHelp.aspx.cs">
+      <DependentUpon>SettingsHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help\SettingsHelp.aspx.designer.cs">
+      <DependentUpon>SettingsHelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logins\ClientLogins.aspx.cs">
+      <DependentUpon>ClientLogins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logins\ClientLogins.aspx.designer.cs">
+      <DependentUpon>ClientLogins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logins\RemisierLogins.aspx.cs">
+      <DependentUpon>RemisierLogins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logins\RemisierLogins.aspx.designer.cs">
+      <DependentUpon>RemisierLogins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\FinancialPlanner.aspx.cs">
+      <DependentUpon>FinancialPlanner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Planning\FinancialPlanner.aspx.designer.cs">
+      <DependentUpon>FinancialPlanner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio\PortfolioPositions.aspx.cs">
+      <DependentUpon>PortfolioPositions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portfolio\PortfolioPositions.aspx.designer.cs">
+      <DependentUpon>PortfolioPositions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio\PositionTxsCash.aspx.cs">
+      <DependentUpon>PositionTxsCash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portfolio\PositionTxsCash.aspx.designer.cs">
+      <DependentUpon>PositionTxsCash.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio\PositionTxsSecurities.aspx.cs">
+      <DependentUpon>PositionTxsSecurities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portfolio\PositionTxsSecurities.aspx.designer.cs">
+      <DependentUpon>PositionTxsSecurities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portfolio\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privacy.aspx.cs">
+      <DependentUpon>Privacy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privacy.aspx.designer.cs">
+      <DependentUpon>Privacy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\DocViewer.aspx.cs">
+      <DependentUpon>DocViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\DocViewer.aspx.designer.cs">
+      <DependentUpon>DocViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FinancialReports.aspx.cs">
+      <DependentUpon>FinancialReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\FinancialReports.aspx.designer.cs">
+      <DependentUpon>FinancialReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Notas.aspx.cs">
+      <DependentUpon>Notas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Notas.aspx.designer.cs">
+      <DependentUpon>Notas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TotalGiroClient.master.cs">
+      <DependentUpon>TotalGiroClient.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TotalGiroClient.master.designer.cs">
+      <DependentUpon>TotalGiroClient.master</DependentUpon>
+    </Compile>
+    <Compile Include="UC\AccountFinder.ascx.cs">
+      <DependentUpon>AccountFinder.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UC\AccountFinder.ascx.designer.cs">
+      <DependentUpon>AccountFinder.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UC\PortfolioNavigationBar.ascx.cs">
+      <DependentUpon>PortfolioNavigationBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UC\PortfolioNavigationBar.ascx.designer.cs">
+      <DependentUpon>PortfolioNavigationBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\CommonLogins.cs" />
+    <Compile Include="Util\GridViewNavigationSettings.cs" />
+    <Compile Include="Util\HouseStyleColor.cs" />
+    <Compile Include="Util\QueryParameterCollection.cs" />
+    <Compile Include="Util\SafeSession.cs" />
+    <Compile Include="Util\TreeViewNode.cs" />
+    <Compile Include="Util\TreeViewNodeCollection.cs" />
+    <Compile Include="Util\UnhandledError.cs" />
+    <Compile Include="Util\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Charts\Web.config" />
+    <Content Include="Clients\ClientPortfolios.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Clients\Web.config" />
+    <Content Include="Help\ChangePasswordHelp.aspx" />
+    <Content Include="Help\ChartsHelp.aspx" />
+    <Content Include="Help\FinancialReportsHelp.aspx" />
+    <Content Include="Help\HelpContents.aspx" />
+    <Content Include="Help\LoginHelp.aspx" />
+    <Content Include="Help\NotasHelp.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Authenticate\AppErrors.aspx" />
+    <Content Include="Authenticate\ChangePassword.aspx" />
+    <Content Include="Authenticate\Login.aspx" />
+    <Content Include="Authenticate\ResetPassword.aspx" />
+    <Content Include="Help\Help.master" />
+    <Content Include="Help\Images\CashMutations.png" />
+    <Content Include="Help\Images\ChangePassword.png" />
+    <Content Include="Help\Images\ChartAllocation.png" />
+    <Content Include="Help\Images\ChartPortfolio.png" />
+    <Content Include="Help\Images\ChartPositions.png" />
+    <Content Include="Help\Images\ClosedPositions.png" />
+    <Content Include="Help\Images\FinancialReport.png" />
+    <Content Include="Help\Images\Login.png" />
+    <Content Include="Help\Images\Nota.png" />
+    <Content Include="Help\Images\PortfolioPositions.png" />
+    <Content Include="Help\Images\PositionTransactions.png" />
+    <Content Include="Help\Images\Setting.png" />
+    <Content Include="Help\PortfolioHelp.aspx" />
+    <Content Include="Help\SettingsHelp.aspx" />
+    <Content Include="Help\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Help\Help.css" />
+    <Content Include="App_Themes\Neutral\Neutral.css" />
+    <Content Include="Authenticate\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Neutral\ArrowsLinkButton.skin" />
+    <Content Include="App_Themes\Neutral\Button.skin" />
+    <Content Include="App_Themes\Neutral\CheckBox.skin" />
+    <Content Include="App_Themes\Neutral\CheckBoxList.skin" />
+    <Content Include="App_Themes\Neutral\DropDownList.skin" />
+    <Content Include="App_Themes\Neutral\GridView.skin" />
+    <Content Include="App_Themes\Neutral\Label.skin" />
+    <Content Include="App_Themes\Neutral\MultipleSelectionGridView.skin" />
+    <Content Include="App_Themes\Neutral\RadioButtonList.skin" />
+    <Content Include="App_Themes\Neutral\TextBox.skin" />
+    <Content Include="App_Themes\Print\Print.css" />
+    <Content Include="App_Themes\TextDocument\TextDocument.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Disclaimer.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Privacy.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Customer.sitemap" />
+    <Content Include="InternalEmployee.sitemap" />
+    <Content Include="Logins\ClientLogins.aspx" />
+    <Content Include="Logins\RemisierLogins.aspx" />
+    <Content Include="RemisierEmployee.sitemap" />
+    <Content Include="TotalGiroClient.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logins\Web.config" />
+    <Content Include="Planning\FinancialPlanner.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Planning\Web.config" />
+    <Content Include="Portfolio\PortfolioPositions.aspx" />
+    <Content Include="Portfolio\PositionTxsCash.aspx" />
+    <Content Include="Portfolio\PositionTxsSecurities.aspx" />
+    <Content Include="Portfolio\Test.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Portfolio\Web.config" />
+    <Content Include="Reports\DocViewer.aspx" />
+    <Content Include="Reports\FinancialReports.aspx" />
+    <Content Include="Reports\Notas.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\Web.config" />
+    <Content Include="Settings\Settings.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\PaerelLogo.gif" />
+    <Content Include="Images\Shell.png" />
+    <Content Include="Images\TrafficLight\Set1\green-light.jpg" />
+    <Content Include="Images\TrafficLight\Set1\red-light.jpg" />
+    <Content Include="Images\TrafficLight\Set1\yellow-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\green-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\red-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\Variants\113\green-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\Variants\113\red-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\Variants\113\yellow-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\Variants\136\green-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\Variants\136\red-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\Variants\136\yellow-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\Variants\340\green-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\Variants\340\red-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\Variants\340\yellow-light.jpg" />
+    <Content Include="Images\TrafficLight\Set2\yellow-light.jpg" />
+    <Content Include="Images\TrafficLight\Set3\green-light.jpg" />
+    <Content Include="Images\TrafficLight\Set3\red-light.jpg" />
+    <Content Include="Images\TrafficLight\Set3\yellow-light.jpg" />
+    <Content Include="Images\TrafficLight\Set4\green-light.png" />
+    <Content Include="Images\TrafficLight\Set4\red-light.png" />
+    <Content Include="Images\TrafficLight\Set4\yellow-light.png" />
+    <Content Include="Images\TrafficLight\Set5\green-light.png" />
+    <Content Include="Images\TrafficLight\Set5\red-light.png" />
+    <Content Include="Images\TrafficLight\Set5\yellow-light.png" />
+    <Content Include="Images\Tree\Collapse.gif" />
+    <Content Include="Images\Tree\Expand.gif" />
+    <Content Include="Images\Wheel.gif" />
+    <Content Include="Settings\Web.config" />
+    <Content Include="UC\AccountFinder.ascx" />
+    <Content Include="UC\PortfolioNavigationBar.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TotalGiro\ApplicationLayer\ApplicationLayer.csproj">
+      <Project>{485EB326-583E-4A45-8ECA-B95B50411DD0}</Project>
+      <Name>ApplicationLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TotalGiro\ClientApplicationLayer\ClientApplicationLayer.csproj">
+      <Project>{2809F04C-FC76-4769-AEF5-F6E1B8FEA2B9}</Project>
+      <Name>ClientApplicationLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebControls\WebControls.csproj">
+      <Project>{63315378-DD6C-4E99-ACE0-737B392756C6}</Project>
+      <Name>WebControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3674</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="B4F.TotalGiro.Orders.Order" Collapsed="true">
+    <Position X="2" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Order\OrderP1.cs</FileName>
+      <HashCode>Sj6nAREWQwAApDZQA+FFAdHCQAEBGAgxAXg0wlAA9kg=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.OrderAmountBased" Collapsed="true">
+    <Position X="3.25" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Order\OrderAmountBased.cs</FileName>
+      <NewMemberFileName>Order\OrderSizeBased.cs</NewMemberFileName>
+      <HashCode>AAAEAAAABAAABgEQCAIIAECgQAAAAAAAAAAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.OrderSizeBased" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <FileName>Order\OrderSizeBased.cs</FileName>
+      <HashCode>AAAGAAAAAAAAABAQAgAQAECAQAAAAgAAAAAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.AggregateSizeOrder" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>Order\AggregateSizeOrder.cs</FileName>
+      <HashCode>AAACAAAAAAAAAAAAAgAAAAAQAAAAAAAAACAAAgAAAAQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.AggregateAmtOrder" Collapsed="true">
+    <Position X="3.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Order\AggregateAmtOrder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAACAAAgAAAAQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.SecurityOrder" Collapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\SecurityOrder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAABAAE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.StgSizeOrder" Collapsed="true">
+    <Position X="0.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\StgSizeOrder.cs</FileName>
+      <HashCode>AgACAAAAAAgAAAAAAkAAAAAQAAAAAAAAAGAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.StgAmtOrder" Collapsed="true">
+    <Position X="3.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\StgAmtOrder.cs</FileName>
+      <HashCode>AgACAAAAAAgAAAAAAEAAAAAQAAAAAAAAAGAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.MonetaryOrder" Collapsed="true">
+    <Position X="6.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\MonetaryOrder.cs</FileName>
+      <HashCode>AAImAAAAAAAAAAEQAgAAAECgQAAAAAIAAAAgAgCAIAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.AggregateMonetaryOrder" Collapsed="true">
+    <Position X="6.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\AggregateMonetaryOrder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAACAAAgAAAAQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Orders.StgMonetaryOrder" Collapsed="true">
+    <Position X="6.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\StgMonetaryOrder.cs</FileName>
+      <HashCode>AgACAAAAAAgAAAAAAEAAAAAQAAAAAAAAAGAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="B4F.TotalGiro.Orders.IAggregatedOrder" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IOrder" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="B4F.TotalGiro.Orders.Side" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="B4F.TotalGiro.Orders.OrderStati" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+</ClassDiagram>

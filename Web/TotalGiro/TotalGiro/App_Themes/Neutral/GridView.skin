@@ -1,0 +1,140 @@
+<asp:GridView runat="server" 
+    Width="1000px"
+    GridLines="None"
+    BorderStyle="Solid"
+    BorderWidth="1px"
+    BorderColor="Black"
+    Font-Name="Verdana" 
+    Font-Size="11px"
+    CellSpacing="0"
+    CellPadding="4"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row" Height="17px" BackColor="#AAB9C2" Font-Bold="True" />
+    <RowStyle CssClass="gridview-row multiline" />
+    <AlternatingRowStyle BackColor="#EFF2F4" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <PagerSettings Mode="NumericFirstLast" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</asp:GridView>
+
+<asp:GridView runat="server" 
+    SkinID="custom-width" 
+    GridLines="None"
+    BorderStyle="Solid"
+    BorderWidth="1px"
+    BorderColor="Black"
+    Font-Name="Verdana" 
+    Font-Size="11px"
+    CellSpacing="0"
+    CellPadding="4"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row" Height="17px" BackColor="#AAB9C2" Font-Bold="True" />
+    <RowStyle CssClass="gridview-row multiline" />
+    <AlternatingRowStyle BackColor="#EFF2F4" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <PagerSettings Mode="NumericFirstLast" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0" border="0" width="700px">
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</asp:GridView>
+
+<asp:GridView runat="server"
+    SkinID="no-stripes"
+    GridLines="None"
+    BorderStyle="Solid"
+    BorderWidth="1px"
+    BorderColor="Black"
+    Font-Name="Verdana" 
+    Font-Size="11px"
+    CellSpacing="0"
+    CellPadding="3"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row" Height="17px" BackColor="#AAB9C2" Font-Bold="True" />
+    <RowStyle CssClass="gridview-row multiline" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <PagerSettings Mode="NumericFirstLast" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0" border="0" width="700px">
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</asp:GridView>
+
+<asp:GridView runat="server" 
+    SkinID="custom-EmptyDataTemplate" 
+    GridLines="None"
+    BorderStyle="Solid"
+    BorderWidth="1px"
+    BorderColor="Black"
+    Font-Name="Verdana" 
+    Font-Size="11px"
+    CellSpacing="0"
+    CellPadding="4"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row" Height="17px" BackColor="#AAB9C2" Font-Bold="True" />
+    <RowStyle CssClass="gridview-row multiline" />
+    <AlternatingRowStyle BackColor="#EFF2F4" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <PagerSettings Mode="NumericFirstLast" />
+</asp:GridView>
+
+<asp:GridView runat="server" 
+    SkinID="spreadsheet"
+    GridLines="Both"
+    BorderStyle="Solid"
+    BorderWidth="1px"
+    BorderColor="Black"
+    Font-Name="Verdana" 
+    Font-Size="11px"
+    CellSpacing="0"
+    CellPadding="3"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row with-border" Height="17px" BackColor="#AAB9C2" Font-Bold="True" />
+    <RowStyle CssClass="gridview-row with-border" BackColor="#EFF2F4" />
+    <AlternatingRowStyle BackColor="White" />
+    <EditRowStyle BackColor="#AAB9C2" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <PagerSettings Mode="NumericFirstLast" />
+</asp:GridView>
+
+<asp:GridView runat="server" 
+    SkinID="spreadsheet-custom-width"
+    GridLines="Both"
+    BorderStyle="Solid"
+    BorderWidth="1px"
+    BorderColor="Black"
+    Font-Name="Verdana" 
+    Font-Size="11px"
+    CellSpacing="0"
+    CellPadding="3"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row; with-border" Height="17px" BackColor="#AAB9C2" Font-Bold="True" />
+    <RowStyle CssClass="gridview-row; with-border" BackColor="#EFF2F4" />
+    <AlternatingRowStyle BackColor="White" />
+    <EditRowStyle BackColor="#AAB9C2" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <PagerSettings Mode="NumericFirstLast" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0" border="0" width="700px">
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</asp:GridView>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.DataMigration.EffectenGiro.EGAccount, B4F.DataMigration" table="tblAccounts" >
+		<id name="Nummer" column="Nummer" unsaved-value="">
+			<generator class="identity"/>
+		</id>
+		<property name="Bank" column="Bank" />
+		<property name="LoginId" column="LoginId" />
+		
+		<many-to-one name="AccountRequest" column="Aanvraagid" class="B4F.DataMigration.EffectenGiro.EGAanvraag, B4F.DataMigration"   cascade="none"   />
+		<many-to-one name="TGAccount" column="AccountID" class="B4F.TotalGiro.Accounts.Account, B4F.TotalGiro.Accounts" cascade="none"  />
+		<many-to-one name="AssetManager" column="ManagementCompanyID" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" cascade="none" update="false"/>		
+		
+	</class>
+</hibernate-mapping>
+
+
+

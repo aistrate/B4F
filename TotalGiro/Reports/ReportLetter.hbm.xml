@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Reports.ReportLetter, B4F.TotalGiro.Reports" table="ReportLetters"
+		   proxy="B4F.TotalGiro.Reports.IReportLetter, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ReportLetterId" unsaved-value="0">
+				<generator class="identity"/>
+		</id>
+		<property name="Concern" column="Concern" />
+		<property name="Letter" column="Letter" />
+		<property name="ReportLetterTypeId" column="ReportLetterTypeId" />
+		<property name="ReportLetterYear" column="ReportLetterYear" />
+		<many-to-one name="ManagementCompany" column="ManagementCompanyID"
+					 class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="CreationDate" column="CreationDate" type="Date" insert="false" update="false" />
+		<property name="EmployeeID" column="EmployeeID" />		
+	</class>
+</hibernate-mapping>

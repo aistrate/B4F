@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+	<siteMapNode title="Home" roles="*" url="Default.aspx">
+		<siteMapNode title="Administration" roles="Administration" >
+			<siteMapNode url="Admin/RoleOverview.aspx" title="Roles" roles="Administration: Roles" />
+			<siteMapNode url="Admin/UserOverview.aspx" title="Users" roles="Administration: Users" />
+		</siteMapNode>
+		<siteMapNode title="Orders" roles="Asset Manager,Stichting" >
+			<siteMapNode url="Orders/AssetManager/SingleOrder.aspx" title="Manual Order" roles="Asset Manager: Manual Order" />
+			<siteMapNode url="Orders/AssetManager/NewPortfolios.aspx" title="Manage Cash Deposits" roles="Asset Manager: Create New Portfolios"  />
+			<siteMapNode url="Orders/AssetManager/ApproveOrders.aspx" title="Approve Orders" roles="Asset Manager: Approve Orders"  />
+			<siteMapNode url="Orders/AssetManager/AggregateSend.aspx" title="Aggregate/Send Orders" roles="Asset Manager: Aggregate/Send Orders"/>
+			<siteMapNode url="Orders/AssetManager/OrderBook.aspx" title="Order Book" roles="Asset Manager: Order Book" />
+
+			<siteMapNode url="Orders/Stichting/AggregateSend.aspx" title="Aggregate/Send Orders" roles="Stichting: Aggregate/Send Orders"  />
+			<siteMapNode url="Orders/Stichting/ManualDesk.aspx" title="Manual Order Desk" roles="Manual Desk"  />
+			<siteMapNode url="Orders/Stichting/FSDesk.aspx" title="FundSettle Desk" roles="Stichting: FundSettle Desk"  />
+			<siteMapNode url="Orders/Stichting/MidOffice.aspx" title="Mid Office" roles="Stichting: Mid Office"  />
+			<siteMapNode url="Orders/Stichting/FSFileOverview.aspx" title="FundSettle Exports" roles="Stichting: FundSettle Desk"  />
+			<siteMapNode url="Orders/Stichting/OrderBook.aspx" title="Order Book" roles="Stichting: Order Book" />
+			<siteMapNode url="Orders/Stichting/POSSingleOrder.aspx" title="Single Orders for POS Account" roles="Stichting: Order Book" />
+		</siteMapNode>
+		<!--<siteMapNode title="Cash" roles="Asset Manager: Cash Management" >
+			<siteMapNode url="Orders/AssetManager/CashPositionOverview.aspx" title="Foreign Cash Position Overview" roles="Asset Manager: Cash Management" />
+			<siteMapNode url="Orders/AssetManager/ApproveMoneyOrders.aspx" title="Approve Money Orders" roles="Asset Manager: Cash Management" />
+			<siteMapNode url="Orders/AssetManager/AggregateSendMoneyOrders.aspx" title="Aggregate/Send Money Orders" roles="Asset Manager: Cash Management" />
+		</siteMapNode>-->
+		<siteMapNode title="Instructions" roles="Asset Manager, Service Desk" >
+			<siteMapNode url="Instructions/InstructionEntry.aspx" title="Instruction Entry" roles="Asset Manager: Instruction Management, Service Desk: Instruction Management" />
+			<siteMapNode url="Instructions/CreatePeriodicWithdrawalInstructions.aspx" title="Create Periodic Withdrawals" roles="Asset Manager: Instruction Management" />
+			<!--<siteMapNode url="Instructions/WithdrawalsTriggeringRebalanceInstructions.aspx" title="Withdrawals Triggering Rebalance Instructions" roles="Asset Manager: Instruction Management" />-->
+			<siteMapNode url="Instructions/WithdrawalInstructionManagement.aspx" title="Withdrawal Instruction Management" roles="Asset Manager: Instruction Management" />
+			<siteMapNode url="Instructions/InstructionManagement.aspx" title="Rebalance Instruction Management" roles="Asset Manager: Instruction Management" />
+			<siteMapNode url="Instructions/ServiceDeskAdHocWithdrawalManagement.aspx" title="Ad-Hoc Withdrawal Management" roles="Service Desk: Instruction Management" />
+		</siteMapNode>
+		<siteMapNode title="Reconciliation" roles="Reconciliation" >
+			<siteMapNode url="Reconciliation/Reconcurrent.aspx" title="Current Reconciliation" roles="Reconciliation: Internal" />
+			<siteMapNode url="Reconciliation/ReconExternal.aspx" title="External Reconciliation" roles="Reconciliation: External" />
+			<siteMapNode url="Reconciliation/ReconInvestigate.aspx" title="Investigate External Reconciliation" roles="Reconciliation: External" />
+			<siteMapNode url="Reconciliation/ExternalCastodianPositionEntry.aspx" title="External Custodian Position Entry" roles="Reconciliation: Internal" />
+		</siteMapNode>
+		<!--<siteMapNode title="Money Orders" roles="Stichting" >
+            <siteMapNode url="Orders/Stichting/MoneyOrderOverview.aspx" title="Money Overview" roles="Stichting: Money Orders"  />
+            <siteMapNode url="Orders/Stichting/ConvertMonetaryOrders.aspx" title="Convert" roles="Stichting: Money Orders"  />
+            <siteMapNode url="Orders/Stichting/MoneyDesk.aspx" title="Money Order Desk" roles="Stichting: Money Orders"  />
+        </siteMapNode>-->
+		<siteMapNode title="Portfolio" roles="Portfolio">
+			<siteMapNode url="Portfolio/ClientPortfolio.aspx" title="Client Portfolio" roles="Portfolio: Client Portfolio" />
+			<siteMapNode url="Portfolio/ClientsCashNoOrders.aspx" title="Client Portfolios with Cash No Orders" roles="Portfolio: Clients Cash No Orders" />
+			<siteMapNode url="Portfolio/AccountsByInstrument.aspx" title="Accounts by Instrument" roles="Portfolio: Accounts by Instrument" />
+			<siteMapNode url="Portfolio/AccountValues.aspx" title="Account Values" roles="Portfolio: Account Values" />
+			<siteMapNode url="Portfolio/Transfer.aspx" title="Transfer Positions" roles="Portfolio: Transfer Positions" />
+		</siteMapNode>
+		<siteMapNode title="Data Maintenance" roles="Data Maintenance">
+			<siteMapNode url="DataMaintenance/Accounts/AccountOverview.aspx" title="Accounts" roles="Data Mtce: Accounts" />
+			<siteMapNode url="DataMaintenance/Contacts/ContactOverview.aspx" title="Contacts" roles="Data Mtce: Contacts" />
+			<siteMapNode title="Instruments" roles="Instruments">
+				<siteMapNode url="DataMaintenance/Instruments/SecurityOverview.aspx" title="Securities" roles="Data Mtce: Instruments" />
+				<siteMapNode url="DataMaintenance/Instruments/DerivativeOverview.aspx" title="Derivatives" roles="Data Mtce: Instruments" />
+				<siteMapNode url="DataMaintenance/Instruments/BondCouponAccrual.aspx" title="Bond Coupon Accrual" roles="Data Mtce: Instruments" />
+				<siteMapNode url="DataMaintenance/Instruments/BondTest.aspx" title="Test Bonds" roles="Data Mtce: Instruments" />
+				<siteMapNode url="DataMaintenance/Instruments/AssetManagerInstrumentSelection.aspx" title="Instrument Selection" roles="Data Mtce: Instrument Selection" />
+			</siteMapNode>
+			<siteMapNode title="Prices" roles="Instruments">
+				<siteMapNode url="DataMaintenance/Prices/InstrumentCurrentPrices.aspx" title="Instrument Current Prices" roles="Data Mtce: Instrument Current Prices" />
+				<siteMapNode url="DataMaintenance/Prices/InstrumentHistoricalPrices.aspx" title="Instrument Historical Prices" roles="Data Mtce: Instrument Historical Prices" />
+				<siteMapNode url="DataMaintenance/Prices/InstrumentPriceUpdate.aspx" title="Instrument Price Update" roles="Data Mtce: Instrument Historical Prices" />
+				<siteMapNode url="DataMaintenance/Prices/ImportFundPrices.aspx" title="Import Fund Prices" roles="Data Mtce: Import Files" />
+				<siteMapNode url="DataMaintenance/Prices/XEConverter.aspx" title="XE Converter" roles="Data Mtce: Instrument Historical Prices" />
+			</siteMapNode>
+		<siteMapNode title="Initial Settings" roles="Data Mtce: InitialSettings">
+	        <siteMapNode url="DataMaintenance/InitialSettings/AssetManagerOverview.aspx" title="Asset Manager Overview" roles="Data Mtce: InitialSettings.AssetManager Overview" />
+		</siteMapNode>
+        <siteMapNode title="General Ledger" roles="Data Mtce: GeneralLedger">
+        <siteMapNode url="DataMaintenance/GeneralLedger/ExactJournalOverview.aspx" title="Exact Journals" roles="Data Mtce: GeneralLedger.Exact Journal Overview" />
+        <siteMapNode url="DataMaintenance/GeneralLedger/JournalOverview.aspx" title="Ledger Overview" roles="Data Mtce: GeneralLedger.Journal Overview" />
+      </siteMapNode>      
+			<siteMapNode url="DataMaintenance/Remisier/RemisierOverview.aspx" title="Remisier Maintenance" roles="Data Mtce: Remisier Maintenance" />
+			<siteMapNode url="DataMaintenance/ImportFiles.aspx" title="Import BackOffice Files" roles="Data Mtce: Import Files" />
+			<siteMapNode url="DataMaintenance/JobConsole.aspx" title="Job Management Console" roles="Data Mtce: Job Console" />
+			<siteMapNode url="DataMaintenance/JobHistory.aspx" title="Job History Details" roles="Data Mtce: Job History" />
+			<siteMapNode url="DataMaintenance/Models/ModelMaintenance.aspx" title="Model Maintenance" roles="Data Mtce: Model Maintenance" />
+			<siteMapNode url="DataMaintenance/Lifecycles/LifecycleMaintenance.aspx" title="Lifecycle Maintenance" roles="Data Mtce: Lifecycle Maintenance" checkManagementCompany="SupportLifecycles" />
+      <siteMapNode url="DataMaintenance/Notifications/NotificationMaintenance.aspx" title="Notification Maintenance" roles="Data Mtce: Notifications" />
+      <siteMapNode title="Commission" roles="Commission">
+				<siteMapNode url="DataMaintenance/Commission/CalculationsOverview.aspx" title="Calculations Overview" roles="Calculations Mtce" />
+				<siteMapNode url="DataMaintenance/Commission/RuleOverview.aspx" title="Rule Overview" roles="Calculation Rules Mtce" />
+				<siteMapNode url="DataMaintenance/Commission/TestCommissionRules.aspx" title="Test commission rules" roles="Calculation Rules Mtce" />
+			</siteMapNode>
+			<siteMapNode title="Fee" roles="Data Mtce: Fee">
+				<siteMapNode url="DataMaintenance/Fee/FeeCalculationsOverview.aspx" title="Fee Calculations" roles="Data Mtce: Fee" />
+				<siteMapNode url="DataMaintenance/Fee/FeeRuleOverview.aspx" title="Fee Rules" roles="Data Mtce: Fee" />
+			</siteMapNode>
+  </siteMapNode>
+    <siteMapNode title="Tools" roles="Tools">
+      <siteMapNode url="Tools/RebalanceIndicator.aspx" title="Rebalance Indicator" roles="Tools: Rebalance Indicator" />
+    </siteMapNode>
+    <siteMapNode title="Back Office" roles="Back Office">
+			<siteMapNode title="Exact Interface" roles="Back Office: Exact Interface">
+				<siteMapNode url="BackOffice/ExactInterface/ExportExact.aspx" title="Export to Exact" roles="Back Office: Exact Interface.Export to Exact" />
+			</siteMapNode>
+			<siteMapNode title="General Ledger" roles="Back Office: General Ledger">
+				<siteMapNode url="BackOffice/GeneralLedger/BankStatementJournals.aspx" title="Bank Statements" roles="Back Office: General Ledger.Bank Statements" />
+				<siteMapNode url="BackOffice/GeneralLedger/MemorialJournals.aspx" title="Memorial Bookings" roles="Back Office: General Ledger.Memorial Bookings" />
+				<siteMapNode url="BackOffice/GeneralLedger/TradingJournals.aspx" title="Trade Bookings" roles="Back Office: General Ledger.Trade Bookings" />
+				<siteMapNode url="BackOffice/GeneralLedger/ManualSettlementMatching.aspx" title="Manual Settlement Matching" roles="Back Office: General Ledger.Manual Settlement Matching" />
+				<siteMapNode url="BackOffice/GeneralLedger/TrialBalance.aspx" title="View Trial Balance" roles="Back Office: General Ledger.View Trial Balance" />
+				<siteMapNode url="BackOffice/GeneralLedger/EndYearManagement.aspx" title="End Year Management" roles="Back Office: General Ledger.End Year Management" />
+				<siteMapNode title="Reporting" roles="Back Office: General Ledger.Reporting">
+					<siteMapNode url="BackOffice/GeneralLedger/Reporting/ClientCashBalance.aspx" title="Client Cash Balance" roles="Back Office: General Ledger.Reporting.Client Cash Balance" />
+					<siteMapNode url="BackOffice/GeneralLedger/Reporting/BelastingDienst.aspx" title="BelastingDienst Reporting" roles="Back Office: General Ledger.Reporting.BelastingDienst Reporting" />
+				</siteMapNode>
+			</siteMapNode>
+			<siteMapNode title="Money Transfer" roles="Back Office: Money Transfer">
+				<siteMapNode url="BackOffice/MoneyTransfer/PredefinedBeneficiaries.aspx" title="Predefined Beneficiaries" roles="Back Office: Money Transfer.Maintain Predefined Beneficiaries" />
+				<siteMapNode url="BackOffice/MoneyTransfer/MoneyTransferOrder.aspx" title="External Money Transfer Order" roles="Back Office: Money Transfer.Money Transfer Order" />
+				<siteMapNode url="BackOffice/MoneyTransfer/ApproveMoneyTransfers.aspx" title="Approve Money Transfer Orders" roles="Back Office: Money Transfer.Money Transfer Order" />
+				<siteMapNode url="BackOffice/MoneyTransfer/MoneyTransferOverview.aspx" title="External Money Transfer Order Overview" roles="Back Office: Money Transfer.Money Transfer Overview" />
+				<siteMapNode url="BackOffice/MoneyTransfer/GLDSTDOverview.aspx" title="GLDSTD Export Overview" roles="Back Office: Money Transfer.GLDSTD Export Overview" />
+			</siteMapNode>
+			<siteMapNode title="Corporate Actions" roles="Back Office: Corporate Actions">
+				<siteMapNode url="BackOffice/CorporateActions/BonusDistributionOverview.aspx" title="Bonus Distribution" roles="Back Office: Corporate Actions.Bonus Distribution Overview" />
+				<siteMapNode url="BackOffice/CorporateActions/DividendOverview.aspx" title="Dividends" roles="Back Office: Corporate Actions.Dividend Overview" />
+				<siteMapNode url="BackOffice/CorporateActions/InstrumentConversionOverview.aspx" title="Instrument Conversions" roles="Back Office: Corporate Actions.Instrument Conversion Overview" />
+			</siteMapNode>
+			<siteMapNode title="Non-Trade Movements" roles="Back Office: NonTradeMovements">
+				<siteMapNode url="BackOffice/NonTradeMovements/NTMOverview.aspx" title="NTM Transfers" roles="Back Office: NonTradeMovements.Non Trade Movement Overview" />
+			</siteMapNode>
+		</siteMapNode>
+		<siteMapNode title="Fee" roles="Asset Manager: Management Fee">
+			<siteMapNode url="Fee/ManagementFeeOverview.aspx" title="Management Fee Overview" roles="Asset Manager: Management Fee" />
+			<siteMapNode url="Fee/ManagementFeeCorrections.aspx" title="Management Fee Corrections" roles="Asset Manager: Management Fee Corrections" />
+			<siteMapNode url="Fee/KickbackOverview.aspx" title="Kickback Fee Overview" roles="Asset Manager: Kickback" />
+		</siteMapNode>
+		<siteMapNode title="Reports" roles="Reports">
+			<siteMapNode url="Reports/PrintNotas.aspx" title="Nota's" roles="Reports: Notas" />
+			<siteMapNode url="Reports/FinancialReports.aspx" title="Financial Reports" roles="Reports: Financial Reports" />
+			<siteMapNode url="Reports/ReportLetter.aspx" title="Add reports letter" roles="Reports: Financial Reports" />
+		</siteMapNode>
+		<siteMapNode title="VirtualFund" roles="VirtualFund">
+      <siteMapNode url="VirtualFund/VirtualFundOverview.aspx" title="Virtual Fund Overview" roles="VirtualFund: Fund Overview" />
+			<siteMapNode url="VirtualFund/VirtualFundTestPage.aspx" title="Test Page" roles="VirtualFund: Test Page" />
+			<siteMapNode url="VirtualFund/VirtualFundNavOverview.aspx" title="Nav Calculations" roles="VirtualFund: Nav Calculations" />
+		</siteMapNode>
+		<siteMapNode title="Compliance" roles="Compliance">
+			<siteMapNode url="Compliance/ApproveStornos.aspx" title="Approve Stornos" roles="Compliance: Approve Stornos" />
+		</siteMapNode>
+		<siteMapNode title="Auditing" roles="Auditing">
+			<siteMapNode url="Auditing/AuditLog.aspx" title="Audit Log" roles="Auditing: Audit Log" />
+		</siteMapNode>
+		<siteMapNode title="Test" roles="Tests">
+			<siteMapNode url="Test/TestHQL.aspx" title="Test HQL" roles="Tests"  />
+			<siteMapNode url="Test/CashTransactionPage.aspx" title="Add Cash" roles="Tests"  />
+			<siteMapNode url="Test/DumpDataSets.aspx" title="DumpDataSet" roles="Tests"  />
+		</siteMapNode>
+		<siteMapNode title="Security" roles="Security">
+			<siteMapNode url="Security/ChangePassword.aspx" title="Change Password" roles="Security: Change Password" />
+		</siteMapNode>
+	</siteMapNode>
+</siteMap>

@@ -1,0 +1,101 @@
+<%@ Page Language="C#" MasterPageFile="~/EG.master" AutoEventWireup="true" CodeFile="ReportSettings.aspx.cs" Theme="Neutral" Inherits="Reports_ReportSettings" Title="ReportSetting" %>
+
+<%@ Register Assembly="B4F.Web.WebControls" Namespace="B4F.Web.WebControls" TagPrefix="cc1" %>
+<%@ Register Src="../UC/AccountFinder.ascx" TagName="AccountFinder" TagPrefix="uc1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" Runat="Server">
+  <atlas:ScriptManager id="sm" runat="Server" EnablePartialRendering="true" EnableScriptGlobalization="false"></atlas:ScriptManager>
+  
+   <uc1:accountfinder id="ctlAccountFinder" runat="server" showmodelportfolio="true" ShowYear="true" ShowAccountName="false"></uc1:accountfinder>
+     <atlas:UpdatePanel ID="upLastReportLetter" runat="server"> 
+       <ContentTemplate>
+         <table cellpadding="0" cellspacing="0" border="b1"  style="border-color:Gray" width="100%">
+           <tr style="height: 30px"></tr>      
+           <tr>
+             <td>
+              <cc1:MultipleSelectionGridView 
+                    ID="gvAccounts" 
+                    runat="server" 
+                    AllowPaging="True" 
+                    AllowSorting="True"
+                    AutoGenerateColumns="False" 
+                    Caption="Accounts overview report settings" 
+                    CaptionAlign="Left" 
+                    DataKeyNames="Key"
+                    DataSourceID="odsAccounts" >
+                    <Columns><asp:BoundField DataField="Account" HeaderText="Account Number" ReadOnly="True" SortExpression="Number">
+                               <itemstyle wrap="False" />
+                               <headerstyle wrap="False" />
+                             </asp:BoundField>  
+                             <asp:BoundField DataField="Account_DisplayNumberWithName" HeaderText="DisplayNumberWithName" ReadOnly="True" visible="false" SortExpression="DisplayNumberWithName">
+                               <itemstyle wrap="False" />
+                               <headerstyle wrap="False" />
+                             </asp:BoundField>     
+                             <asp:BoundField DataField="Account_ShortName" HeaderText="ShortName" ReadOnly="True" SortExpression="ShortName">
+                               <itemstyle wrap="False" />
+                               <headerstyle wrap="False" />
+                             </asp:BoundField>                                                      
+                             <asp:CheckBoxField DataField="IsEoy" HeaderText="EOY">
+                               <itemstyle wrap="False" />
+                               <headerstyle wrap="False" />
+                             </asp:CheckBoxField>
+                             <asp:CheckBoxField DataField="IsQuarter" HeaderText="Quarter">
+                               <itemstyle wrap="False" />
+                               <headerstyle wrap="False" />
+                             </asp:CheckBoxField>
+                              <asp:CheckBoxField DataField="IsDeposit" HeaderText="Deposit">
+                               <itemstyle wrap="False" />
+                               <headerstyle wrap="False" />
+                             </asp:CheckBoxField>       
+                    </Columns>
+                </cc1:MultipleSelectionGridView>
+             </td>
+           </tr>
+           <tr style="height: 100px"></tr>
+           <tr>
+             <table cellpadding="1" cellspacing="1" border="1" style="border-color:red" width="100%">
+               <tr>
+                 <td colspan="5"><asp:Label ID="lblHeader" runat="server" Text="Give accounts the permission on the reports." width="300px"/></td>
+               </tr>
+               <tr>
+                 <td style="width: 200px">Deposit:</td>
+                 <td><asp:CheckBox ID="chkDeposit" runat="server"  Width="300px"/></td>
+                 <td style="width: 20px">&nbsp</td>
+                 <td style="width: 200px">EOY:</td>
+                 <td><asp:CheckBox ID="chkEOY" runat="server"  Width="300px"/></td>                 
+               </tr>
+               <tr>
+                 <td style="width: 200px">Fees:</td>
+                 <td><asp:CheckBox ID="chkFees" runat="server"  Width="300px"/></td>
+                 <td style="width: 20px">&nbsp</td>
+                 <td style="width: 200px">Quarter:</td>
+                 <td><asp:CheckBox ID="chkQuarter" runat="server" Width="300px" /></td>
+               </tr>               
+               <tr>
+                 <td style="width: 200px">Transfer:</td>
+                 <td><asp:CheckBox ID="chkTransfer" runat="server"  Width="300px"/></td>
+                 <td colspan="3">&nbsp</td>
+                <tr>
+                <tr style="height: 30px"></tr>
+                <tr>
+                  <td style="width: 200px"><asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" Width="160px" /></td>
+                 <td colspan="4">&nbsp</td>                  
+                </tr>
+             </table>
+           </tr>
+         </table>
+       </ContentTemplate>
+     </atlas:UpdatePanel>
+
+  <asp:ObjectDataSource ID="odsAccounts" runat="server"
+    SelectMethod="GetCustomerAccounts" TypeName="B4F.TotalGiro.ApplicationLayer.Reports.ReportSettingAdapter">
+    <SelectParameters>
+      <asp:ControlParameter ControlID="ctlAccountFinder" Name="assetManagerId" PropertyName="AssetManagerId" Type="Int32" />
+      <asp:ControlParameter ControlID="ctlAccountFinder" Name="modelPortfolioId" PropertyName="ModelPortfolioId" Type="Int32" />
+      <asp:ControlParameter ControlID="ctlAccountFinder" Name="accountNumber" PropertyName="AccountNumber" Type="String" />
+      <asp:ControlParameter ControlID="ctlAccountFinder" Name="accountName" PropertyName="AccountName" Type="String" />
+      <asp:Parameter Name="propertyList" DefaultValue="Key, Account, Account.DisplayNumberWithName, Account.ShortName, IsEoy, IsQuarter, IsDeposit"  Type="String" />
+    </SelectParameters>
+ </asp:ObjectDataSource>
+     
+</asp:Content>
+

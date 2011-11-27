@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.Exact.LedgerEntry, B4F.TotalGiro.Communicator" table="Ledger" lazy="true"
+		   proxy="B4F.TotalGiro.Communicator.Exact.ILedgerEntry, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="LedgerID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="LedgerType" column="LedgerTypeID" class="B4F.TotalGiro.Communicator.Exact.LedgerType, B4F.TotalGiro.Communicator" 
+			         cascade="all" />
+		<property name="Journal" column="Journal" />
+		<property name="BookingNumber" column="BookingNumber" />
+		<property name="Description" column="Description" />
+		<property name="ValueDate" column="ValueDate" type="Date" />
+		<property name="Debitor" column="Debitor" />
+		<property name="Creditor" column="Creditor" />
+		<property name="Amount" column="Amount" />
+		<!--<property name="Currency" column="Currency" />-->
+		<!--<property name="ExRate" column="ExRate" />-->
+		<!--<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Amount" />
+			<many-to-one name="Underlying" column="AmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			--><!--<many-to-one name="XRateCurrency" column="AmountXRateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<property name="Xrate" column="AmountXRate" />--><!--
+		</component>-->
+		<property name="Kredietbeperking" column="Kredietbeperking" />
+		<property name="KredietbeperkingAmount" column="KredietbeperkingAmount" />
+		<!--<component name="KredietbeperkingAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="KredietbeperkingAmount" />
+			<many-to-one name="Underlying" column="KredietbeperkingAmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			--><!--<many-to-one name="XRateCurrency" column="KredietbeperkingAmountXRateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<property name="Xrate" column="KredietbeperkingAmountXRate" />--><!--
+		</component>-->
+		<property name="InvoiceDate" column="InvoiceDate" type="Date" not-null="false" />
+		<property name="KredietbeperkingDate" column="KredietbeperkingDate" type="Date" not-null="false" />
+		<property name="PaymentRef" column="PaymentRef" />
+		<property name="PaymentType" column="PaymentType" />
+		<property name="StornoBooking" column="StornoBooking" />
+		<property name="CreationDate" column="CreationDate" type="DateTime" insert="false" update="false"/>
+		<many-to-one name="ExportedLedgerFile" column="ExportedLedgerFileID" 
+					 class="B4F.TotalGiro.Communicator.Exact.ExportedLedgerFile, B4F.TotalGiro.Communicator" cascade="none" />
+		<bag name="subLedgerEntries" access="field" generic="true" lazy="true" cascade="all"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Communicator.Exact.ISubledgerEntry, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Communicator.Exact.SubledgerEntryCollection, B4F.TotalGiro.Communicator]], B4F.TotalGiro.Interfaces">
+			<key column="LedgerID" foreign-key="LedgerID" />
+			<one-to-many class="B4F.TotalGiro.Communicator.Exact.SubledgerEntry, B4F.TotalGiro.Communicator" />
+		</bag>
+	</class>
+	<query name="B4F.TotalGiro.Communicator.Exact.LedgerEntry.GetLedgerEntryGroupings" >
+		<![CDATA[
+			SELECT DISTINCT L.LedgerType
+			FROM SubledgerEntry SL 
+			Join SL.Parent L
+			WHERE L.ExportedLedgerFile IS NULL
+			AND L.ValueDate <= :dateUntil
+			AND SL.LineNumber > 0
+			ORDER BY LedgerType
+		]]>
+	</query>
+	<query name="B4F.TotalGiro.Communicator.Exact.LedgerEntry.GetLedgerEntries" >
+		<![CDATA[
+			FROM LedgerEntry L
+			WHERE L.ExportedLedgerFile IS NULL
+			AND L.LedgerType = :LedgerType
+			AND L.ValueDate <= :DateUntil
+			and L.Key IN (
+							Select Distinct L1.Key
+							from SubledgerEntry LS
+							join LS.Parent L1
+							where LS.Amount <> 0.00)
+			Order by L.Key
+		]]>
+	</query>
+
+
+
+</hibernate-mapping>

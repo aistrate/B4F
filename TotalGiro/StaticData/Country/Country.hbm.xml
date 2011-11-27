@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" lazy="true" table="Countries" mutable="false"
+		proxy="B4F.TotalGiro.StaticData.ICountry, B4F.TotalGiro.Interfaces">
+		<cache usage="read-only" />
+		<id name="Key" column="CountryID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<property name="CountryName" column="CountryName" />
+		<property name="Iso2" column="ISO2" />
+		<property name="Iso3" column="ISO3" />
+		<property name="Iso3NumCode" column="ISO3NumCode" />
+		<property name="InternationalName" column="CountryNameInternational" />
+		<bag name="bagOfHolidays" table="CountryHolidays" access="field" cascade="none" lazy="true">
+			<key column="CountryID" />
+			<element column="Holiday" type="Date" />
+		</bag>
+	</class>
+</hibernate-mapping>

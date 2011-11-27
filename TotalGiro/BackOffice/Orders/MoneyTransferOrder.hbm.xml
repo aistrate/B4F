@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.BackOffice.Orders.MoneyTransferOrder, B4F.TotalGiro.BackOffice" table="MoneyOrders"
+		   proxy ="B4F.TotalGiro.BackOffice.Orders.IMoneyTransferOrder, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="MoneyOrderID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="Reference" column="Reference" />
+		<many-to-one name="TransferorJournal" column="FromJournalID" class="B4F.TotalGiro.GeneralLedger.Static.Journal, B4F.TotalGiro.GeneralLedger" cascade="none" />
+		<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Amount" />
+			<many-to-one name="Underlying" column="AmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<many-to-one name="TransfereeAccount" column="NarAccountID" class="B4F.TotalGiro.Accounts.CustomerAccount, B4F.TotalGiro.Accounts" />
+		<many-to-one name="TransfereeCounterAccount" column="NarCounterAccountID" class="B4F.TotalGiro.Accounts.CounterAccount, B4F.TotalGiro.Accounts" cascade="save-update" />
+		<property name="BenefBankAcctNr" column="BenefBankAcctNr" length="50" />
+		<property name="NarBenef1" column="NarBenef1" length="35" />
+		<property name="NarBenef2" column="NarBenef2" length="35" />
+		<property name="NarBenef3" column="NarBenef3" length="35" />
+		<property name="NarBenef4" column="NarBenef4" length="35" />
+		<property name="NarDebet1" column="NarDebet1" length="35" />
+		<property name="NarDebet2" column="NarDebet2" length="35" />
+		<property name="NarDebet3" column="NarDebet3" length="35" />
+		<property name="NarDebet4" column="NarDebet4" length="35" />
+		<property name="SwiftAddress" column="SwiftAddress" length="35" />
+		<property name="TransferDescription1" column="TransferDescription1" length="35" />
+		<property name="TransferDescription2" column="TransferDescription2" length="35" />
+		<property name="TransferDescription3" column="TransferDescription3" length="35" />
+		<property name="TransferDescription4" column="TransferDescription4" length="35" />
+		<property name="ProcessDate" column="ProcessDate" type="Date"/>
+		<property name="status" column="Status" access="field" type="B4F.TotalGiro.BackOffice.Orders.MoneyTransferOrderStati, B4F.TotalGiro.Interfaces"/>
+		<many-to-one name="GLDSTDRecord" column="GLDSTDRecordID" class="B4F.TotalGiro.Communicator.KasBank.GLDSTD, B4F.TotalGiro.Communicator" cascade="all" />
+		<property name="CreatedBy" column="CreatedBy" />
+		<property name="CostIndication" column="CostIndicationID"  type="B4F.TotalGiro.BackOffice.Orders.IndicationOfCosts, B4F.TotalGiro.Interfaces"/>
+		<property name="Approved" column="Approved" />
+		<property name="ApprovedBy" column="ApprovedBy" />
+		<property name="ApprovalDate" column="ApprovalDate" type="Date" />
+		<property name="creationDate" column="CreationDate" access="field"  type="Date" insert="false" update="false" />
+	</class>
+
+	<query name="B4F.TotalGiro.BackOffice.Orders.GetMoneyTransferOrders" >
+		<![CDATA[
+		from MoneyTransferOrder M
+		where 1=1
+		and M.Approved = :approved
+		and M.status = :statusId
+		and M.ProcessDate >= :fromDate
+		and M.ProcessDate <= :toDate
+		and Abs(M.Amount.Quantity) >= :minAmountQty
+		and Abs(M.Amount.Quantity) <= :maxAmountQty
+		and M.TransfereeAccount.Number like :accountNumber
+		and M.BenefBankAcctNr like :beneficiary
+		and (M.TransferDescription1 like :description or M.TransferDescription2 like :description or M.TransferDescription3 like :description or M.TransferDescription4 like :description)
+    ]]>
+	</query>
+
+</hibernate-mapping>

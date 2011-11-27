@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Stichting</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.Stichting.Login.Login">
+            <summary>
+            This class holds login information
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.Login.Login.Key">
+            <summary>
+            Unique identifier of login
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.Login.Login.UserName">
+            <summary>
+            Get/set username
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.Login.Login.CreationDate">
+            <summary>
+            Get/set time login was created
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.Login.Login.LastUpdated">
+            <summary>
+            Get/set time when login was last changed
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.Login.Employee">
+            <summary>
+            This class holds an employee
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.Login.Employee.VerifyStornoLimit(B4F.TotalGiro.Instruments.Money,System.Boolean)">
+            <summary>
+            Checks whether amount is below (or equal to) Storno Limit.
+            </summary>
+            <param name="amount">The amount to check against Storno Limit.</param>
+            <param name="raiseException">If True, an exception will be thrown in case the amount doesn't verify the storno limit; if False, only the return value will be affected.</param>
+            <returns>True if amount below or equal to Storno Limit, False if not.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.Login.Employee.Employer">
+            <summary>
+            Get/set employer
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.Login.Employee.StornoLimit">
+            <summary>
+            The upper limit of how much (in base currency) can be stornoed by this Employee, per transaction.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.AssetManager">
+            <summary>
+            Class holds object of Asset Manager
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.ManagementCompany">
+            <summary>
+            Class representing a company involved in Asset Management
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.ManagementCompany.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode.
+            </summary>
+            <returns>Unique number</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.ManagementCompany.ToString">
+            <summary>
+            Overridden composition of a name for an objkect of this class
+            </summary>
+            <returns>Name</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.ManagementCompany.Key">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.ManagementCompany.CompanyName">
+            <summary>
+            Name of management company
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.ManagementCompany.TradingAccount">
+            <summary>
+            Get/set an account with trading purposes
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.ManagementCompany.CommissionAccount">
+            <summary>
+            Get/set an account for commission
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.ManagementCompany.OwnAccount">
+            <summary>
+            Get/set account with no relation to clients
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.ManagementCompany.BaseCurrency">
+            <summary>
+            Get/set most important currency
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.ManagementCompany.StichtingDetails">
+            <summary>
+            Get/set helper method for EffectenGiro details
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.ManagementCompany.IsStichting">
+            <summary>
+            Flag for ManagementCompany
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.AssetManager.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+            <returns>name</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.AssetManager.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.AssetManager.Equals(System.Object)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="obj">object to compare to</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.AssetManager.Name">
+            <summary>
+            Get/set name of Asset Manager
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.AssetManager.BoSymbol">
+            <summary>
+            Get/set unique identifier of Backoffice
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.AssetManager.Key">
+            <summary>
+            Get/set unique identifier of Database
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.AssetManager.CompanyType">
+            <summary>
+            Get CompanyType 
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.AssetManager.Remisiers">
+            <summary>
+            Get/set collection of Remisiers belonging to an Asset Manager
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.RemisierCollection">
+            <summary>
+            Class holds collection of Remisiers
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.RemisierCollection.#ctor(System.Collections.IList,B4F.TotalGiro.Stichting.IAssetManager)">
+            <summary>
+            Initializes collection of Remisiers
+            </summary>
+            <param name="BagOfRemisiers">Data Access object</param>
+            <param name="Parent">Associated Asset Manager</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.RemisierCollection.Parent">
+            <summary>
+            Get/set associated Asset Manager
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.InstrumentCollection">
+            <summary>
+            This class holds collection of instruments that a AssetManager is interested in.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.InstrumentCollection.#ctor(System.Collections.IList,B4F.TotalGiro.Stichting.IAssetManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Stichting.InstrumentCollection">InstrumentCollection</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.InstrumentCollection.Parent">
+            <summary>
+            Get/set associated Asset Manager
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.Remisier">
+            <summary>
+            Class holds Remisier object
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.Remisier.Key">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.Remisier.Name">
+            <summary>
+            Get/set Remisier name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.Remisier.AssetManagers">
+            <summary>
+            Get/set collection of Asset Managers
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.AssetManagerCollection">
+            <summary>
+            Class holds collection of asset managers
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.AssetManagerCollection.#ctor(System.Collections.IList,B4F.TotalGiro.Stichting.IRemisier)">
+            <summary>
+            Instantiates collection of Asset Managers of a Remisier
+            </summary>
+            <param name="bagOfAssetManagers">Data Access object</param>
+            <param name="parentRemisier">Remisier object</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.AssetManagerCollection.#ctor(System.Collections.IList,B4F.TotalGiro.Stichting.IEffectenGiro)">
+            <summary>
+            Instantiates collection of Asset Managers of a Stichting Effectengiro
+            </summary>
+            <param name="bagOfAssetManagers">Data Access object</param>
+            <param name="parentEffectenGiro">Effectengiro object</param>
+        </member>
+        <member name="F:B4F.TotalGiro.Stichting.AssetManagerCollection.parentRemisier">
+            <moduleiscollection>
+            </moduleiscollection>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.AssetManagerCollection.ParentRemisier">
+            <summary>
+            Get/set Remisier object belonging to a collection of Asset Managers
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.AssetManagerCollection.ParentEffectenGiro">
+            <summary>
+            Get/set an Effectengiro object belonging to a collection of Asset Managers
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.ManagementCompanyMapper">
+            <summary>
+            This class is used to instantiate Management companies objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.ManagementCompanyMapper.GetAssetManager(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get Asset Manager by ID
+            </summary>
+            <param name="dataSession">Data Access object</param>
+            <param name="id">Unique number</param>
+            <returns>Asset Manager object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.ManagementCompanyMapper.GetAssetManager(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.KnownAssetManagers)">
+            <summary>
+            Get a default Asset Manager 
+            </summary>
+            <param name="dataSession"></param>
+            <param name="KnownAssetManager"></param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.ManagementCompanyMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.IManagementCompany)">
+            <summary>
+            Updates a ManagementCompany
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="list">The ManagementCompany</param>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.RemisierMapper">
+            <summary>
+            This class is used to instantiate Remisier objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.RemisierMapper.GetRemisier(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Gets Remisier by unique identifier
+            </summary>
+            <param name="session">Data Access object</param>
+            <param name="RemisierID">Unique identifier</param>
+            <returns>Object of Remisier</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.RemisierMapper.GetRemisiers(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get all Remisiers
+            </summary>
+            <param name="session">Data Access object</param>
+            <returns>Collection of all Remisiers</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.Login.LoginMapper">
+            <summary>
+            This class is used to instantiate Login and Security objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.Login.LoginMapper.GetCurrentLogin(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Gets the current login object 
+            </summary>
+            <param name="session">Data Access object</param>
+            <returns>Login object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.Login.LoginMapper.GetCurrentManagmentCompany(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Gets management company instance
+            </summary>
+            <param name="session"></param>
+            <returns>Management company instance</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.Login.LoginMapper.GetSecurityInfo(B4F.TotalGiro.Dal.IDalSession,System.Collections.Generic.List{NHibernate.Expression.ICriterion})">
+            <summary>
+            
+            </summary>
+            <param name="session"></param>
+            <param name="expressions"></param>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.Login.LoginMapper.GetSecurityInfo(B4F.TotalGiro.Dal.IDalSession,System.Collections.Generic.List{NHibernate.Expression.ICriterion},B4F.TotalGiro.Stichting.Login.SecurityInfoOptions)">
+            <summary>
+            Extends expression list with authentication filters
+            </summary>
+            <param name="session">Data Access object</param>
+            <param name="expressions">List of filters</param>
+            <param name="option">Hierarchical filter by sort of company</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.Login.LoginMapper.GetSecurityInfoStringForSQL(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,System.String,System.String)">
+            <summary>
+            Extends expression list with authentication filters
+            </summary>
+            <param name="session">Data Access object</param>
+            <param name="expressions">List of filters</param>
+            <param name="option">Hierarchical filter by sort of company</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.Login.LoginMapper.Insert(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.Login.Login)">
+            <summary>
+            Creates a new object in the database
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">Object of type Login</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Stichting.Login.LoginMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.Login.Login)">
+            <summary>
+            Updates an object, saves its data to the database
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">Object of type Login</param>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.EffectenGiro">
+            <summary>
+            Class representing a company which has a EffectenGiro permit
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.EffectenGiro.CustodianAccount">
+            <summary>
+            Get/set a Custodian belonging to an EffectenGiro company
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.EffectenGiro.AssetManagers">
+            <summary>
+            Get/set collection of Asset Managers in relation with an EfectenGiro company
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Stichting.EffectenGiro.CompanyType">
+            <summary>
+            Get/set type of company 
+            </summary>
+        </member>
+    </members>
+</doc>

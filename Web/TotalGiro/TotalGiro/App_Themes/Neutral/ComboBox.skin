@@ -1,0 +1,16 @@
+﻿<b4f:ComboBox 
+    Height="13px"
+    Width="127px"
+    Font-Size="11px" 
+    runat="server" />
+<b4f:ComboBox 
+    SkinID="custom-width"
+    Height="13px"
+    Font-Size="11px"
+    runat="server" />
+<b4f:ComboBox 
+    SkinID="broad"
+    Height="13px"
+    Width="227px"
+    Font-Size="11px"
+    runat="server" />    

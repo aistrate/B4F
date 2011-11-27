@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponentParent" Collapsed="true">
+    <Position X="2" Y="4.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>QAAAIEEAAAAAAAQAAAAAQAAAQACDAAAAIADAAAACAAA=</HashCode>
+      <FileName>Journal\Bookings\BookingComponentParent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.TransactionComponent" Collapsed="true">
+    <Position X="3.75" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Journal\Bookings\TransactionComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBooking" Collapsed="true">
+    <Position X="2" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAAACkAAAAAwAIQAFgDGAAIAQAAAAhAgAABAAAAQIFw=</HashCode>
+      <FileName>Journal\Bookings\GeneralOperationsBooking.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ManagementFee" Collapsed="true">
+    <Position X="1.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAQAIREaQAEQMgAAAQAAAAEAAAAEAAIIA=</HashCode>
+      <FileName>Journal\Bookings\ManagementFee.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsComponent" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAABACABA=</HashCode>
+      <FileName>Journal\Bookings\GeneralOperationsComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.CashDividend" Collapsed="true">
+    <Position X="3.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAEAAAAgCAAAAABEAAAAQIAAAEAAAAACAAAAAgAJAA=</HashCode>
+      <FileName>Journal\Bookings\CashDividend.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBookingTaxeable" Collapsed="true">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAASAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Journal\Bookings\GeneralOperationsBookingTaxeable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.CashTransfer" Collapsed="true">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAgAAAAEAAABAIAAAAAAAAAAAAAAASAIAA=</HashCode>
+      <FileName>Journal\Bookings\CashTransfer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPayment" Collapsed="true">
+    <Position X="6.75" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAACAgEAAAAAIAAAAAAAAAAAACAAAAoAA=</HashCode>
+      <FileName>Journal\Bookings\BondCouponPayment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Static.GLLookupRecord, B4F.TotalGiro.GeneralLedger"
+		   table="GLDefaultCurrencyConfig">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="IsExternalExecution" column="IsExternalExecution" />
+		<property name="IsInternalExecution" column="IsInternalExecution" />		
+		<property name="IsUnSettled" column="IsUnSettled" />
+		<property name="BookingComponentType" column="BookingComponentTypeID" type="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponentTypes, B4F.TotalGiro.Interfaces"/>
+		<property name="BookingComponentParentType" column="BookingComponentParentTypeID" type="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponentParentTypes, B4F.TotalGiro.Interfaces"/>
+		<many-to-one name="Currency" column="CurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none"/>
+		<many-to-one name="MainAccount" column="MainAccountid" class="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger" cascade="none"/>
+		<many-to-one name="CounterAccount" column="CounterAccountid" class="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger" cascade="none"/>
+	</class>
+</hibernate-mapping>

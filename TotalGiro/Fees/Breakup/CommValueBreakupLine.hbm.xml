@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0" default-access="property" >
+	<class name="B4F.TotalGiro.Fees.Calculations.CommValueBreakupLine, B4F.TotalGiro.Fees" table="CommValueBreakup" lazy="true" proxy="B4F.TotalGiro.Fees.Calculations.ICommValueBreakupLine, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="CommValueBreakupID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="CalcType" column="CalcType" type="B4F.TotalGiro.Fees.Calculations.CommValueBreakupType, B4F.TotalGiro.Interfaces"/>
+		<component name="CalcValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Value" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="ValueCurrencyID" cascade="none"/>
+		</component>
+		<property name="CalcInfo" column="Info" />
+		<many-to-one name="Parent" class="B4F.TotalGiro.Fees.Calculations.CommValueDetails, B4F.TotalGiro.Fees" column="CommValueDetailsID" cascade="save-update"/>
+	</class>
+</hibernate-mapping>

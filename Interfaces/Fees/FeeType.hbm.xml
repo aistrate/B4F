@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+	<class name="B4F.TotalGiro.Fees.FeeType, B4F.TotalGiro.Interfaces" table="FeeTypes" mutable="false" >
+		<id name="key" column="FeeTypeID" unsaved-value="0" access="field">
+			<generator class="identity"/>
+		</id>
+		<property name="Name" column="ManagementFeeType"/>
+		<property name="Description" column="Description"/>
+		<property name="CalcBasis" column="FeeCalcBasis" type="B4F.TotalGiro.Fees.FeeCalcBasis, B4F.TotalGiro.Interfaces"/>
+		<property name="IsRelevantForMgtFee" column="IsRelevantForMgtFee"/>
+		<property name="UseTax" column="UseTax"/>
+		<property name="IsCalculation" column="IsCalculation"/>
+		<property name="IsDiscount" column="IsDiscount"/>
+		<many-to-one name="DiscountOnFeeType" column="DiscountOnFeeTypeID" class="B4F.TotalGiro.Fees.FeeType, B4F.TotalGiro.Interfaces" />
+		<many-to-one name="SettleDifferenceOnFeeType" column="SettleDifferenceOnFeeTypeID" class="B4F.TotalGiro.Fees.FeeType, B4F.TotalGiro.Interfaces" />
+		<property name="ManagementType" column="ManagementTypeID" type="B4F.TotalGiro.Accounts.ManagementPeriods.ManagementTypes, B4F.TotalGiro.Interfaces" />
+		<property name="BookingComponentType" column="BookingComponentTypeID" type="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponentTypes, B4F.TotalGiro.Interfaces"/>
+	</class>
+
+	<query name="B4F.TotalGiro.Fees.FeeTypes" >
+		<![CDATA[
+        from FeeType F 
+        where F.ManagementType = :managementType
+		order by F.Name
+    ]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Fees.GetFeeType" >
+		<![CDATA[
+        from FeeType F 
+        where F.key = :feeTypeID
+    ]]>
+	</query>
+
+</hibernate-mapping>

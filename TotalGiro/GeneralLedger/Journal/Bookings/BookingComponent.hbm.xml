@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponent, B4F.TotalGiro.GeneralLedger"
+		   table="BookingComponents"
+		   proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBookingComponent, B4F.TotalGiro.Interfaces"
+			dynamic-update="true">
+		<id name="Key" column="BookingComponentID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<property name="BookingComponentType" column="BookingComponentTypeID" type="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponentTypes, B4F.TotalGiro.Interfaces"/>
+		<many-to-one name="Parent" column="BookingComponentParentid" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponentParent, B4F.TotalGiro.GeneralLedger" cascade="all" />
+		<many-to-one name="MainLine" column="MainJournalEntryLineID" class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger" cascade="none"/>
+		<property name="creationDate" column="CreationDate" type="Date" access="field" />
+		<bag name="journalLines" access="field" generic="true" lazy="true" cascade="all-delete-orphan"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.IJournalEntryLine, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingLineCollection, B4F.TotalGiro.GeneralLedger]], B4F.TotalGiro.Interfaces">
+			<key column="BookingComponentID" foreign-key="BookingComponentID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+	</class>
+</hibernate-mapping>

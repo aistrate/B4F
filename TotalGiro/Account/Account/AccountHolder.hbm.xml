@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.AccountHolder, B4F.TotalGiro.Accounts" table="AccountHoldersAccounts"
+		proxy="B4F.TotalGiro.Accounts.IAccountHolder, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="AccountHoldersAccountID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Contact" column="ContactID" class="B4F.TotalGiro.CRM.Contact, B4F.TotalGiro.CRM" cascade="save-update" fetch="join" />
+		<many-to-one name="GiroAccount" column="AccountID" class="B4F.TotalGiro.Accounts.CustomerAccount, B4F.TotalGiro.Accounts" fetch="join" not-found="ignore" />
+		<property name="Aanvraag" column="AanvraagID" />
+		<property name="IsPrimaryAccountHolder" column="PrimaryAccountHolder" />
+		<property name="CreationDate" column="CreationDate" type="Date" insert="false" update="false" />
+	</class>
+</hibernate-mapping>
+
+

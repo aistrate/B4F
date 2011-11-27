@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Interface Name="B4F.TotalGiro.Accounts.IAccount" Collapsed="true">
+    <Position X="7.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\IAccount.cs</FileName>
+      <HashCode>QAAAQIAEAAEAAAQEgEAAgEEAAAAGAYAAAAAAAAARAAQ=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.ICustodyAccount" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\ICustodyAccount.cs</FileName>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.ICommissionAccount" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\ICommissionAccount.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.IAccountTypeSystem" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\IAccountTypeSystem.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.ICounterPartyAccount" Collapsed="true">
+    <Position X="14" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\ICounterPartyAccount.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.ITradingAccount" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\ITradingAccount.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.IAccountTypeInternal" Collapsed="true">
+    <Position X="4.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <FileName>Account\IAccountTypeInternal.cs</FileName>
+      <HashCode>AAAIAMAACAQAAAQEQQAAAAAAAIAAABwAAEAAAEABAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.IAccountTypeCustomer" Collapsed="true">
+    <Position X="7" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Account\IAccountTypeCustomer.cs</FileName>
+      <HashCode>AAIIAECAAAEAAAAAAkAIAgCAAAAAQAAAAACEAACEAEA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.ICustomerAccount" Collapsed="true">
+    <Position X="5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\ICustomerAccount.cs</FileName>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAgAAAAAAAAgEAAAAAAAAAE=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.INostroAccount" Collapsed="true">
+    <Position X="7.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\INostroAccount.cs</FileName>
+      <HashCode>AAAAAAAAAAAICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.IAccountTypeExternal" Collapsed="true">
+    <Position X="13" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>Account\IAccountTypeExternal.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.ICrumbleAccount" Collapsed="true">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\ICrumbleAccount.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Accounts.IOwnAccount" Collapsed="true">
+    <Position X="8.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Account\IOwnAccount.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+</ClassDiagram>

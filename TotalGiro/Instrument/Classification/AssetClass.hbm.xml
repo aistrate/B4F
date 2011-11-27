@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.Classification.AssetClass, B4F.TotalGiro.Instruments" table="AssetClass" proxy="B4F.TotalGiro.Instruments.Classification.IAssetClass, B4F.TotalGiro.Interfaces" mutable="false" >
+    <cache usage="read-only" />
+    <id name="Key" column="AssetClassID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="AssetName" column="AssetClass" />
+	</class>
+</hibernate-mapping>

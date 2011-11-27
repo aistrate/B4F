@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Reporting Project", "Reporting Project\Reporting Project.rptproj", "{96D1B593-7464-4295-8DA4-0D46B5FF450D}"
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Notas", "..\..\Notas\Notas.rptproj", "{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://b4f-tfs:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Reporting\u0020Project\\Reporting\u0020Project.rptproj
+		SccProjectName1 = Reporting\u0020Project
+		SccLocalPath1 = Reporting\u0020Project
+		SccProjectUniqueName2 = ..\\..\\Notas\\Notas.rptproj
+		SccProjectName2 = ../../Notas
+		SccLocalPath2 = ..\\..\\Notas
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Demo|Default = Demo|Default
+		PreProduction|Default = PreProduction|Default
+		Production|Default = Production|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.Debug|Default.ActiveCfg = Debug
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.Debug|Default.Build.0 = Debug
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.Debug|Default.Deploy.0 = Debug
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.Demo|Default.ActiveCfg = Demo
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.Demo|Default.Build.0 = Demo
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.Demo|Default.Deploy.0 = Demo
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.PreProduction|Default.ActiveCfg = PreProduction
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.PreProduction|Default.Build.0 = PreProduction
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.PreProduction|Default.Deploy.0 = PreProduction
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.Production|Default.ActiveCfg = Production
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.Production|Default.Build.0 = Production
+		{96D1B593-7464-4295-8DA4-0D46B5FF450D}.Production|Default.Deploy.0 = Production
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.Debug|Default.ActiveCfg = Debug
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.Debug|Default.Build.0 = Debug
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.Debug|Default.Deploy.0 = Debug
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.Demo|Default.ActiveCfg = Demo
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.Demo|Default.Build.0 = Demo
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.Demo|Default.Deploy.0 = Demo
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.PreProduction|Default.ActiveCfg = PreProduction
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.PreProduction|Default.Build.0 = PreProduction
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.PreProduction|Default.Deploy.0 = PreProduction
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.Production|Default.ActiveCfg = Production
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.Production|Default.Build.0 = Production
+		{BB59756C-3D9D-44E8-B40B-A51C8D3F285B}.Production|Default.Deploy.0 = Production
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

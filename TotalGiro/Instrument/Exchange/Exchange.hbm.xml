@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.Exchange, B4F.TotalGiro.Instruments" table="Exchanges" proxy="B4F.TotalGiro.Instruments.IExchange, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="ExchangeID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<property name="ExchangeName" column="Exchange" />
+		<property name="DefaultSettlementPeriod" column="DefaultSettlementPeriod" />
+		<many-to-one name="DefaultCurrency" column="DefaultCurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="DefaultCountry" column="CountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		<property name="DefaultNumberOfDecimals" column="DefaultNumberOfDecimals" />
+		<bag name="bagOfExchangeHolidays" table="ExchangeHolidays" access="field" cascade="none" lazy="true">
+			<key column="ExchangeID" />
+			<element column="Holiday" type="Date" />
+		</bag>
+	</class>
+</hibernate-mapping>

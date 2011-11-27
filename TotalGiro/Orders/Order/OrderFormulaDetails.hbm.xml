@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Orders.OrderFormulaDetails, B4F.TotalGiro.Orders" table="vweOrderDetails" 
+		   proxy="B4F.TotalGiro.Orders.IOrderFormulaDetails, B4F.TotalGiro.Interfaces" mutable="false">
+		<id name="Key" column="OrderID" unsaved-value="0">
+			<generator class="assigned"/>
+		</id>
+		<many-to-one name="topParentOrder"  column="TopParentOrderIDNull"  access="field" class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" cascade="none" outer-join="true" insert="false" update="false"/>
+	</class>
+</hibernate-mapping>

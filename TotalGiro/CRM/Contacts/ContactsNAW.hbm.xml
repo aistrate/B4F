@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.CRM.ContactsNAW, B4F.TotalGiro.CRM" table="ContactsNAW" mutable="false"
+		proxy ="B4F.TotalGiro.CRM.IContactsNAW, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ContactsNawID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<property name="Name" column="Naam" />
+		<many-to-one name="Contact" column="ContactID" class="B4F.TotalGiro.CRM.Contact, B4F.TotalGiro.CRM" cascade="none"/>
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="Date" />
+		<component name="ResidentialAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="Straat"/>
+			<property name="HouseNumber" column="HuisNummer"/>
+			<property name="HouseNumberSuffix" column="HuisNummerToevoeging"/>
+			<property name="PostalCode" column="PostCode"/>
+			<property name="City" column="Plaats"/>
+			<many-to-one name="Country" column="CountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<component name="PostalAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="PostStraat"/>
+			<property name="HouseNumber" column="PostHuisNummer"/>
+			<property name="HouseNumberSuffix" column="PostHuisNummerToevoeging"/>
+			<property name="PostalCode" column="PostPostCode"/>
+			<property name="City" column="PostPlaats"/>
+			<many-to-one name="Country" column="PostCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+	</class>
+</hibernate-mapping>

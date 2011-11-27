@@ -1,0 +1,45 @@
+﻿.screen-only
+{
+	display: none;
+}
+body
+{
+	color: Black !important;
+}
+#header-text span
+{
+	color: Black !important;
+}
+td#content-place-holder
+{
+	height: 0px !important;
+}
+hr
+{
+	height: 1px;
+	color: Silver;
+}
+a
+{
+	color: Black !important;
+}
+.ajax__tab_xp .ajax__tab_outer
+{
+    border: solid 2px #CCCCCC;
+}
+.ajax__tab_xp .ajax__tab_active .ajax__tab_outer
+{
+    border: solid 2px #444444;
+}
+.ajax__tab_xp .ajax__tab_tab
+{
+	font-weight: normal;
+}
+.ajax__tab_xp .ajax__tab_active .ajax__tab_tab
+{
+	font-weight: bold;
+}
+.ajax__tab_xp .ajax__tab_body
+{
+	border: solid 1px #999999;
+}

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodian, B4F.TotalGiro.Communicator" table="ExtCustodians" lazy="true">
+    <id name="Key" column="ExtCustodianID" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Name" column="ExtCustodian" />
+  </class>
+</hibernate-mapping>

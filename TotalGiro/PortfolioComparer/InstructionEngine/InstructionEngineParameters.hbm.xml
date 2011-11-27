@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.Instructions.InstructionEngineParameters, B4F.TotalGiro.PortfolioComparer" table="RebalanceParameters" >
+		<id name="key" column="RebalanceParameterID" access="field" unsaved-value="0">
+			<generator class="assigned" />
+		</id>
+		<component name="MinimumRebalanceAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" >
+			<property name="Quantity" column="MinimumRebalanceAmount" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="MinimumRebalanceAmountID" cascade="none"/>
+		</component>
+		<property name="MinimumRebalancePercentage" column="MinimumRebalanceAmount" insert="false" update="false" />
+		<property name="PricingType" column="MinimumRebalancePricingType" type="B4F.TotalGiro.Instruments.PricingTypes, B4F.TotalGiro.Interfaces" />
+	</class>
+</hibernate-mapping>

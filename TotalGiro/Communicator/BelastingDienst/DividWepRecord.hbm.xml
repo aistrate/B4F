@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.BelastingDienst.DividWepRecord, B4F.TotalGiro.Communicator"
+		   table="DividWep"
+		   proxy="B4F.TotalGiro.Communicator.BelastingDienst.IDividWepRecord, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="RecordType" column="RecordType" />
+		<property name="AccountNumber" column="AccountNumber" />
+		<property name="Naam" column="Naam" />
+		<property name="Voorletters" column="Voorletters" />
+		<property name="Voorvoegsels" column="Voorvoegsels" />
+
+		<property name="Straatnaam" column="Straatnaam" />
+		<property name="Huisnummer" column="Huisnummer" />
+		<property name="Toevoeging" column="Toevoeging" />
+		<property name="Postcode" column="Postcode" />
+		<property name="Plaatsnaam" column="Plaatsnaam" />
+
+		<property name="Geboortedag" column="Geboortedag" />
+		<property name="Geboortemaand" column="Geboortemaand" />
+		<property name="Geboorteeeuw" column="geboorteeeuw" />
+		<property name="Geboortejaar" column="Geboortejaar" />
+		<property name="Rechtsvormcode" column="Rechtsvormcode" />
+
+		<property name="GezamenlijkBelang" column="GezamenlijkBelang" />
+		<property name="SoortFonds" column="SoortFonds" />
+		<property name="WepValue" column="WEP" />
+		<property name="Soortvalutawep" column="Soortvalutawep" />
+		<property name="Soortdivrente" column="Soortdivrente" />
+
+		<property name="DivrentebedragValue" column="Divrentebedrag" />
+		<property name="ValutaDivrentebedrag" column="ValutaDivrentebedrag" />
+		<property name="Typeobligatie" column="Typeobligatie" />
+		<property name="Typebronbelasting" column="Typebronbelasting" />
+		<property name="BedragbronbelastingValue" column="Bedragbronbelasting" />
+
+		<property name="ValutaBedragbronbelasting" column="ValutaBedragbronbelasting" />
+		<property name="Valutajaar" column="Valutajaar" />
+		<property name="Sofinummer" column="Sofinummer" />
+		<property name="KvKnummer" column="KvKnummer" />
+		<property name="Correctie" column="Correctie" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.CustomerAccount, B4F.TotalGiro.Accounts"  cascade="all"/>
+		<many-to-one name="EndTermRecord" 
+					 column="EndTermRecordID" 
+					 class="B4F.TotalGiro.Valuations.ReportedData.EndTermValue, B4F.TotalGiro.Valuations"  
+					 unique="true"
+					 cascade="all"/>
+		<many-to-one name="ParentFile" column="DividWepFileID" class="B4F.TotalGiro.Communicator.BelastingDienst.DividWepFile, B4F.TotalGiro.Communicator" cascade="all"/>
+
+	</class>
+</hibernate-mapping>

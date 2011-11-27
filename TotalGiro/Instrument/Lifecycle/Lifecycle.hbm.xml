@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+  <class name="B4F.TotalGiro.Instruments.Lifecycle, B4F.TotalGiro.Instruments" table="Lifecycles" proxy="B4F.TotalGiro.Instruments.ILifecycle, B4F.TotalGiro.Interfaces" >
+    <id name="Key" column="LifecycleID" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp name="lastUpdated" column="LastUpdated" access="field" />
+    <many-to-one name="AssetManager" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" column="AssetManagerID" cascade="none" not-null="true" />
+    <property name="Name" column="LifecycleName"/>
+    <property name="IsActive" column="IsActive" />
+    <property name="CreatedBy" column="CreatedBy"/>
+    <property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+    <list name="lines" access="field" generic="true" lazy="true" cascade="all-delete-orphan"
+      collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.ILifecycleLine, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.LifecycleLineCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+      <key column="LifecycleID" foreign-key="LifecycleID" />
+      <index column="SerialNo" />
+      <one-to-many class="B4F.TotalGiro.Instruments.LifecycleLine, B4F.TotalGiro.Instruments" />
+    </list>
+  </class>
+
+  <query name="B4F.TotalGiro.Instruments.ActiveLifecycles" >
+    <![CDATA[
+		from Lifecycle L
+    where L.IsActive = 1
+		and L.AssetManager.Key = :managementCompanyID
+		order by L.Name
+    ]]>
+  </query>
+
+  <query name="B4F.TotalGiro.Instruments.Lifecycles" >
+    <![CDATA[
+		from Lifecycle L
+		where 1 = 1
+		and L.AssetManager.Key = :managementCompanyID
+		and L.Name like :name
+		and L.IsActive = :isActive
+		order by L.Name
+    ]]>
+  </query>
+
+  <query name="B4F.TotalGiro.Instruments.AccountWithLifecycleData" >
+    <![CDATA[
+    select A.Key, A.Number, A.ModelPortfolio.Key, A.Lifecycle.Key, C.DateOfBirth, C.DateOfFounding
+    from CustomerAccount A
+    left join A.bagOfAccountHolders AH
+    left join AH.Contact C
+    where A.Status = 1
+    and A.TradeableStatus = 1
+    and AH.IsPrimaryAccountHolder = 1
+    and A.Lifecycle is not null
+		and A.AccountOwner.Key = :managementCompanyID
+    ]]>
+  </query>
+
+
+
+</hibernate-mapping>

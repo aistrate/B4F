@@ -1,0 +1,199 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B20D7876-3CEE-4E84-98D0-BE22F1A9F655}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JobConsole</RootNamespace>
+    <AssemblyName>JobConsole</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>http://localhost/JobConsole/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="JobConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JobConsole.designer.cs">
+      <DependentUpon>JobConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="JobConsole.resx">
+      <DependentUpon>JobConsole.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataMigration\DataMigration.csproj">
+      <Project>{69BAF4B6-0C61-4A6B-A554-047136929691}</Project>
+      <Name>DataMigration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\Account\Accounts.csproj">
+      <Project>{70C20F7D-646F-4023-BD90-9812FF522284}</Project>
+      <Name>Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\BackOffice\BackOffice.csproj">
+      <Project>{4A1B9DC0-5014-4492-81DF-EE43B7E70F28}</Project>
+      <Name>BackOffice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\Communicator\Communicator.csproj">
+      <Project>{ACCBB2CE-D954-498A-83E1-3C984D59EFD4}</Project>
+      <Name>Communicator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\CRM\CRM.csproj">
+      <Project>{5EBA3D32-40DB-4496-BDD2-B1EA4DA07D45}</Project>
+      <Name>CRM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\DAL\DAL.csproj">
+      <Project>{B8880639-F591-41D0-A811-D832A36A8064}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\Fees\Fees.csproj">
+      <Project>{2114094E-08F6-4074-8AA0-E19D4FFC7924}</Project>
+      <Name>Fees</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\Instrument\Instruments.csproj">
+      <Project>{B6D55091-F990-42AB-A294-72E6560ED5DD}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\Orders\Orders.csproj">
+      <Project>{A8682060-DBB0-4965-A8EF-5F8908D34789}</Project>
+      <Name>Orders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\PortfolioComparer\PortfolioComparer.csproj">
+      <Project>{029555AF-2A64-4885-8823-681E51C451AB}</Project>
+      <Name>PortfolioComparer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\Reports\Reports.csproj">
+      <Project>{F8A037ED-0E64-495B-8636-4397EB843EE7}</Project>
+      <Name>Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\Security\Security.csproj">
+      <Project>{920CD10C-E485-47AF-A47D-23DC299F762B}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\StaticData\StaticData.csproj">
+      <Project>{ED2055BB-79F9-464C-B937-232D29FD4CB1}</Project>
+      <Name>StaticData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TotalGiro\Stichting\Stichting.csproj">
+      <Project>{05EA6D28-853D-455E-A323-0AB5F3FC3507}</Project>
+      <Name>Stichting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JobManager\JobManager.csproj">
+      <Project>{D7F96095-5CD2-4719-A7B9-9E517A38E3DE}</Project>
+      <Name>JobManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

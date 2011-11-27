@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="true" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.Nav.NavCalculation, B4F.TotalGiro.Instruments"
+		table="NavCalculations" proxy="B4F.TotalGiro.Instruments.Nav.INavCalculation, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<property name="ValuationDate" column="ValuationDate" />
+		<many-to-one name="Fund" column="Instrumentid" class="B4F.TotalGiro.Instruments.VirtualFund, B4F.TotalGiro.Instruments"  cascade="none" />
+		<many-to-one name="PrevNavCalculation" column="PrevNavCalculationid" class="B4F.TotalGiro.Instruments.Nav.NavCalculation, B4F.TotalGiro.Instruments"  cascade="none" />
+		<property name="Status" column="StatusID" type="B4F.TotalGiro.Instruments.Nav.NavCalculationStati, B4F.TotalGiro.Interfaces" />
+		<property name="TotalParticipationsBeforeFill" column="TotalParticipationsBeforeFill" />
+		<property name="TotalParticipationsAfterFill" column="TotalParticipationsAfterFill" />
+		<many-to-one name="Bookings" column="BookingID" class="B4F.TotalGiro.GeneralLedger.Journal.MemorialBooking, B4F.TotalGiro.GeneralLedger" cascade="all" />
+		<component name="GrossAssetValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="GrossAssetValue" />
+			<many-to-one name="Underlying" column="GrossAssetValueInstrumentID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<component name="NettAssetValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="NettAssetValue" />
+			<many-to-one name="Underlying" column="NettAssetValueInstrumentID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<component name="NavPerUnit" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="NavPerUnit" />
+			<many-to-one name="Underlying" column="NavPerUnitID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<component name="PublicOfferPrice" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="PublicOfferPrice" />
+			<many-to-one name="Underlying" column="PublicOfferPriceID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<bag name="newOrders" access="field" generic="true" lazy="true" cascade="all"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.Nav.INavCalculationOrder, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.Nav.NavCalculationOrderCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+			<key column="NavCalculationID" foreign-key="NavCalculationID" />
+			<one-to-many class="B4F.TotalGiro.Instruments.Nav.NavCalculationOrder, B4F.TotalGiro.Instruments" />
+		</bag>
+		<bag name="portfolio" access="field" generic="true" lazy="true"
+		collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.Nav.INavPosition, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.Nav.NavPortfolio, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+			<key column="NavCalculationID" foreign-key="NavCalculationID" />
+			<one-to-many class="B4F.TotalGiro.Instruments.Nav.NavPosition, B4F.TotalGiro.Instruments" />
+		</bag>
+	</class>
+	<query name="B4F.TotalGiro.Instruments.Nav.GetLastNavCalculation" >
+		<![CDATA[
+		FROM NavCalculation S 
+		WHERE S.Fund = :fund 
+		AND (S.ValuationDate IN 
+			(SELECT MAX(N.ValuationDate) FROM NavCalculation N WHERE N.Fund = :fund))
+	]]>
+	</query>
+</hibernate-mapping>

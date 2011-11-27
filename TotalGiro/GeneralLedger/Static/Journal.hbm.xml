@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Static.Journal, B4F.TotalGiro.GeneralLedger" table="GLJournals" 
+		   proxy ="B4F.TotalGiro.GeneralLedger.Static.IJournal, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="JournalID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="JournalType" column="GLJournalTypeID" />
+		<property name="JournalNumber" column="JournalNumber" />
+		<property name="BankAccountNumber" column="BankAccountNumber" />    
+		<property name="BankAccountDescription" column="BankAccountDescription" />
+    <property name="IsSystem" column="IsSystem" />
+		<many-to-one name="ExactJournal" column="ExactJournalID" class="B4F.TotalGiro.Communicator.Exact.ExactJournal, B4F.TotalGiro.Communicator"
+					 cascade="none" />
+		<property name="IsAdminAccount" column="IsAdminAccount" />
+		<property name="ShowManualAllowedGLAccountsOnly" column="ShowManualAllowedGLAccountsOnly" />
+		<many-to-one name="FixedGLAccount" column="FixedGLAccountID" class="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger" 
+					 cascade="none" />
+		<many-to-one name="ManagementCompany" column="ManagementCompanyID" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting"
+			         cascade="none"  />
+		<many-to-one name="Currency" column="CurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		<bag name="bagLastBankStatement" table="GLJournalEntries" access="field" lazy="true"
+			 where="JournalEntryID IN 
+						(SELECT E.JournalEntryID FROM GLJournalEntries E, 
+								(SELECT JE.JournalID, MAX(JE.TransactionDate) _MaxTransactionDate FROM GLJournalEntries JE 
+									WHERE JE.Status = 4 GROUP BY JE.JournalID) _M 
+							WHERE E.JournalID = _M.JournalID AND E.TransactionDate = _M._MaxTransactionDate AND E.JournalEntryTypeID = 1)">
+			<key column="JournalID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntry, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+		<bag name="entries" access="field" cascade="none" lazy="true" generic="true" where="Status in (1,2)">
+			<key column="JournalID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntry, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+
+	</class>
+	<query name="B4F.TotalGiro.GeneralLedger.Static.Journal.GetJournalByType" cacheable="false" read-only="true">
+		<![CDATA[
+        from Journal J
+		where J.JournalType = :journalType
+		and J.Currency.Key = :currencyKey
+		]]>
+	</query>
+	
+	
+</hibernate-mapping>

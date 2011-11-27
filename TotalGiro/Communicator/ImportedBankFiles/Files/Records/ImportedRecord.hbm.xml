@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.ImportedRecord, B4F.TotalGiro.Communicator" table="ImportedFileRecords" >
+    <id name="key" access="field" column="ImportedFileRecordID" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <many-to-one name="ImportedFile" column="ImportedFileID" class="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.ImportedFile, B4F.TotalGiro.Communicator" cascade="all" />
+    <joined-subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.GLDMTX, B4F.TotalGiro.Communicator"
+                     table="ImportedRecordsGLDMTX" >
+      <key column="ImportedFileRecordID"/>
+      <property name="ClientNumber" column="ClientNumber" />
+      <property name="BankAcctID" column="BankAcctID" />
+      <property name="BankStatementDate" column="BankStatementDate"  type="Date"/>
+      <property name="BankStatementNr" column="BankStatementNr" />
+      <property name="BankMessageNr" column="BankMessageNr" />
+      <property name="OpenBalanceDate" column="OpenBalanceDate" />
+      <property name="OpenBalanceCurrCode" column="OpenBalanceCurrCode" />
+      <property name="OpenBalance" column="OpenBalance" />
+      <property name="ReferenceBank" column="ReferenceBank" />
+      <property name="ReferenceClient" column="ReferenceClient" />
+      <property name="SwiftMsgeRef" column="SwiftMsgeRef" />
+      <property name="MovementValueDate" column="MovementValueDate" type="Date" />
+      <property name="MovementEntryDate" column="MovementEntryDate" type="Date"/>
+      <property name="ReversalIndication" column="ReversalIndication" />
+      <property name="MovementCurrCode" column="MovementCurrCode" />
+      <property name="MovementAmt" column="MovementAmt" />
+      <property name="CPAcctNr" column="CPAcctNr" />
+      <property name="CPName" column="CPName" />
+      <property name="CPAddress" column="CPAddress" />
+      <property name="CPResidence" column="CPResidence" />
+      <property name="CPCountry" column="CPCountry" />
+      <property name="BankTransactionType" column="BankTransactionType" />
+      <property name="BankTXTypeDesc" column="BankTXTypeDesc" />
+      <property name="BankTxTypeInformation" column="BankTxTypeInformation" />
+      <property name="CloseBalanceProcessDate" column="CloseBalanceProcessDate" type="Date"/>
+      <property name="CloseBalanceProcessTime" column="CloseBalanceProcessTime" />
+      <property name="CloseBalanceCurrCode" column="CloseBalanceCurrCode" />
+      <property name="CloseBalance" column="CloseBalance" />
+      <property name="TXReferenceNumber" column="TXReferenceNumber" />
+      <property name="RelatedReference" column="RelatedReference" />
+      <property name="TXCodeSwift" column="TXCodeSwift" />
+    </joined-subclass>
+    <joined-subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.GLDSAL, B4F.TotalGiro.Communicator"
+                     table="ImportedRecordsGLDSAL" >
+      <key column="ImportedFileRecordID"/>
+      <property name="BankMessageNr" column="BankMsgeNr" />
+      <property name="BankAcctID" column="BankAcctID" />
+      <property name="BankPageNr" column="BankPageNr" />
+      <property name="BookBalanceDate" column="BookBalanceDate" />
+      <property name="BookBalanceCurrCode" column="BookBalanceCurrCode" />
+      <property name="BookBalance" column="BookBalance" />
+      <property name="AvailBalanceDate" column="AvailBalanceDate" />
+      <property name="AvailBalanceCurrCode" column="AvailBalanceCurrCode" />
+      <property name="AvailBalance" column="AvailBalance" />
+      <property name="ForBalanceDate" column="ForBalanceDate" />
+      <property name="ForBalanceCurrCode" column="ForBalanceCurrCode" />
+      <property name="ForBalance" column="ForBalance" />
+    </joined-subclass>
+    <joined-subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.EFFMTX, B4F.TotalGiro.Communicator"
+                     table="ImportedRecordsEFFMTX" >
+      <key column="ImportedFileRecordID"/>
+      <property name="BankMsgeNr" column="BankMsgeNr" />
+      <property name="MsgeRefersTo" column="MsgeRefersTo" />
+      <property name="PageNr" column="PageNr" />
+      <property name="FollowUpInd" column="FollowUpInd" />
+      <property name="BankAcctID" column="BankAcctID" />
+      <property name="BankDetails01" column="BankDetails01" />
+      <property name="BankDetails02" column="BankDetails02" />
+      <property name="BankDetails03" column="BankDetails03" />
+      <property name="BeginOfPeriod" column="BeginOfPeriod" />
+      <property name="EndOfPeriod" column="EndOfPeriod" />
+      <property name="CreationDate" column="CreationDate" />
+      <property name="BankSecCodeType" column="BankSecCodeType" />
+      <property name="SecuritiesCode" column="SecuritiesCode" />
+      <property name="SecDesc" column="SecDesc" />
+      <property name="BankSecType" column="BankSecType" />
+      <property name="InterestRate" column="InterestRate" />
+      <property name="StockExchCountryCode" column="StockExchCountryCode" />
+      <property name="Quotation" column="Quotation" />
+      <property name="SecCurrCode" column="SecCurrCode" />
+      <property name="ClassOfSec" column="ClassOfSec" />
+      <property name="TypeofBalance" column="TypeofBalance" />
+      <property name="BalanceCode" column="BalanceCode" />
+      <property name="CorrespondentNr" column="CorrespondentNr" />
+      <property name="CircuitCode" column="CircuitCode" />
+      <property name="OpenBalanceDate" column="OpenBalanceDate" />
+      <property name="OpenBalance" column="OpenBalance" />
+      <property name="Movement" column="Movement" />
+      <property name="BankTxType" column="BankTxType" />
+      <property name="OurImportedRef" column="OurImportedRef" />
+      <property name="BankReference" column="BankReference" />
+      <property name="SettlementDate" column="SettlementDate" />
+      <property name="CPDebit" column="CPDebit" />
+      <property name="CPAcctNr" column="CPAcctNr" />
+      <property name="TypeOfCode" column="TypeOfCode" />
+      <property name="CPCode" column="CPCode" />
+      <property name="CPDetails01" column="CPDetails01" />
+      <property name="CPDetails02" column="CPDetails02" />
+      <property name="CPDetails03" column="CPDetails03" />
+      <property name="SecPriceCurr" column="SecPriceCurr" />
+      <property name="SecPrice" column="SecPrice" />
+      <property name="AmountCurrCode" column="AmountCurrCode" />
+      <property name="Amount" column="Amount" />
+      <property name="CLoseBalance" column="CLoseBalance" />
+      <property name="AdditionalInfo01" column="AdditionalInfo01" />
+      <property name="AdditionalInfo02" column="AdditionalInfo02" />
+      <property name="AdditionalInfo03" column="AdditionalInfo03" />
+      <property name="AdditionalInfo04" column="AdditionalInfo04" />
+      <property name="AdditionalInfo05" column="AdditionalInfo05" />
+      <property name="AdditionalInfo06" column="AdditionalInfo06" />
+      <property name="CounterParty" column="CounterParty" />
+      <property name="TxDesc" column="TxDesc" />
+    </joined-subclass>
+    <joined-subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.FNDSTT, B4F.TotalGiro.Communicator"
+                     table="ImportedRecordsFNDSTT" >
+      <key column="ImportedFileRecordID"/>
+      <property name="BankSwiftRefNr" column="BankSwiftRefNr" />
+      <property name="BankAcctID" column="BankAcctID" />
+      <property name="BankBalanceDate" column="BankBalanceDate" />
+      <property name="CreationDate" column="CreationDate" />
+      <property name="BankSecType" column="BankSecType" />
+      <property name="NumberOfShares" column="NumberOfShares" />
+      <property name="IsinCode" column="IsinCode" />
+      <property name="VvdeNr" column="VvdeNr" />
+      <property name="BankSecurityName" column="BankSecurityName" />
+      <property name="SecCurrCode" column="SecCurrCode" />
+      <property name="LastMovementDate" column="LastMovementDate" />
+      <property name="NameOfCustodian" column="NameOfCustodian" />
+      <property name="TypeOfInvestment" column="TypeOfInvestment" />
+      <property name="StatementLineNr" column="StatementLineNr" />
+      <property name="AbbreviatedNameOfCust" column="AbbreviatedNameOfCust" />
+      <property name="SubCustodianCode" column="SubCustodianCode" />
+    </joined-subclass>
+    <joined-subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.BinckRecord, B4F.TotalGiro.Communicator"
+				 table="BinckPositionsImport" >
+      <key column="ImportedFileRecordID"/>
+      <property name="AccountNumber" column="AccountNumber" />
+      <property name="BalanceDate" column="BalanceDate" />
+      <property name="Symbol" column="Symbol" />
+      <property name="ISIN" column="ISIN" />
+      <property name="DerSymbol" column="DerSymbol" />
+      <property name="DerExpiratie" column="DerExpiratie" />
+      <property name="DerStrikePrice" column="DerStrikePrice" />
+      <property name="Currency" column="Currency" />
+      <property name="Price" column="Price" />
+      <property name="PositionSize" column="PositionSize" />
+      <property name="ExRate" column="ExRate" />
+      <property name="BlockSize" column="BlockSize" />
+      <property name="ValueRapCurr" column="ValueRapCurr" />
+      <property name="ValueOrgCurr" column="ValueOrgCurr" />
+      <property name="StartvalOrgCurr" column="StartvalOrgCurr" />
+      <property name="StockType" column="StockType" />
+      <property name="FondsCode" column="FondsCode" />
+      <property name="Description" column="Description" />
+    </joined-subclass>
+    <joined-subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.BinckRecordPam, B4F.TotalGiro.Communicator"
+						 table="BinckPositionsPAMImport" >
+      <key column="ImportedFileRecordID"/>
+      <property name="AccountNumber" column="AccountNumber" />
+      <property name="BalanceDate" column="BalanceDate" />
+      <property name="Symbol" column="Symbol" />
+      <property name="ISIN" column="ISIN" />
+      <property name="DerSymbol" column="DerSymbol" />
+      <property name="DerExpiratie" column="DerExpiratie" />
+      <property name="DerStrikePrice" column="DerStrikePrice" />
+      <property name="Currency" column="Currency" />
+      <property name="Price" column="Price" />
+      <property name="PositionSize" column="PositionSize" />
+      <property name="ExRate" column="ExRate" />
+      <property name="BlockSize" column="BlockSize" />
+      <property name="ValueRapCurr" column="ValueRapCurr" />
+      <property name="ValueOrgCurr" column="ValueOrgCurr" />
+      <property name="StartvalOrgCurr" column="StartvalOrgCurr" />
+      <property name="StockType" column="StockType" />
+      <property name="FondsCode" column="FondsCode" />
+      <property name="Description" column="Description" />
+    </joined-subclass>
+    <joined-subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.TradeReconRecord, B4F.TotalGiro.Communicator"
+				 table="ImportedRecordsBinckMutations" >
+      <key column="ImportedFileRecordID"/>
+      <property name="BB_nummer" column="BB_nummer" />
+      <property name="Rek_Soort" column="Rek_Soort" />
+      <property name="Valuta_rek" column="Valuta_rek" />
+      <property name="Transactie_Datum" column="Transactie_Datum" />
+      <property name="Trans_Tijd" column="Trans_Tijd" />
+      <property name="Trans_Status" column="Trans_Status" />
+      <property name="Trans_Soort" column="Trans_Soort" />
+      <property name="FX_Koers" column="FX_Koers" />
+      <property name="Valuta_Fonds" column="Valuta_Fonds" />
+      <property name="Aantal_Nominal" column="Aantal_Nominal" />
+      <property name="Koers" column="Koers" />
+      <property name="Nota_Bedrag" column="Nota_Bedrag" />
+      <property name="Provisie" column="Provisie" />
+      <property name="Belasting" column="Belasting" />
+      <property name="Opgelopen_Rente" column="Opgelopen_Rente" />
+      <property name="Settlement_Datum" column="Settlement_Datum" />
+      <property name="Trans_Nummer" column="Trans_Nummer" />
+      <property name="ISIN_Code" column="ISIN_Code" />
+      <property name="Symbol" column="Symbol" />
+      <property name="Dividend" column="Dividend" />
+      <property name="Exp_Maand" column="Exp_Maand" />
+      <property name="Strike" column="Strike" />
+      <property name="Instrument_Type" column="Instrument_Type" />
+      <property name="Info_1" column="Info_1" />
+      <property name="Info_2" column="Info_2" />
+      <property name="Info_3" column="Info_3" />
+      <property name="Infor_4" column="Infor_4" />
+      <property name="Boek_Datum" column="Boek_Datum" />
+      <property name="Fonds_Cat" column="Fonds_Cat" />
+      <property name="Fonds_Code" column="Fonds_Code" />
+      <property name="FondsNaam" column="FondsNaam" />
+      <property name="Eff_Waarde" column="Eff_Waarde" />
+      <property name="Provisie_Cat" column="Provisie_Cat" />
+    </joined-subclass>
+    <joined-subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.FNDSTXRecord, B4F.TotalGiro.Communicator"
+				 table="ImportedRecordsFNDSTXImport" >
+      <key column="ImportedFileRecordID"/>
+      <property name="BankSwiftRefNr" column="BankSwiftRefNr" />
+      <property name="BankAcctID" column="BankAcctID" />
+      <property name="BankBalanceDate" column="BankBalanceDate" />
+      <property name="CreationDate" column="CreationDate" />
+      <property name="BankSecType" column="BankSecType" />
+      <property name="NumberOfShares" column="NumberOfShares" />
+      <property name="IsinCode" column="IsinCode" />
+      <property name="VvdeNr" column="VvdeNr" />
+      <property name="BankSecurityName" column="BankSecurityName" />
+      <property name="Quotation" column="Quotation" />
+      <property name="SecCurrCode" column="SecCurrCode" />
+      <property name="SecuritiesPrice" column="SecuritiesPrice" />
+      <property name="ForexRate" column="ForexRate" />
+      <property name="EffectiveValueCurrencyCode" column="EffectiveValueCurrencyCode" />
+      <property name="EffectiveValue1" column="EffectiveValue1" />
+      <property name="BalanceSpecificationCode" column="BalanceSpecificationCode" />
+      <property name="PriceCreationDate" column="PriceCreationDate" />
+      <property name="InterestRate" column="InterestRate" />
+      <property name="CancellationIndication" column="CancellationIndication" />
+      <property name="WithoutValueIndication" column="WithoutValueIndication" />
+      <property name="LastMovementDate" column="LastMovementDate" />
+      <property name="ForeignExchangeRateFactor" column="ForeignExchangeRateFactor" />
+      <property name="PaymentPercentage" column="PaymentPercentage" />
+      <property name="PaidUpAmount" column="PaidUpAmount" />
+      <property name="DistributionPercentage" column="DistributionPercentage" />
+      <property name="AmountOfDistribution" column="AmountOfDistribution" />
+      <property name="NameOfCustodian" column="NameOfCustodian" />
+      <property name="TypeOfInvestment" column="TypeOfInvestment" />
+      <property name="AbbreviatedNameOfCustodian" column="AbbreviatedNameOfCustodian" />
+      <property name="PositiveNegativeBalance" column="PositiveNegativeBalance" />
+      <property name="SubCustodian" column="SubCustodian" />
+      <property name="ForeignExchangeRateEffectiveValue" column="ForeignExchangeRateEffectiveValue" />
+      <property name="ForeignExchangeRateFactorEffectiveValue" column="ForeignExchangeRateFactorEffectiveValue" />
+      <property name="AccruedInterest" column="AccruedInterest" />
+      <property name="CouponDueDate" column="CouponDueDate" />
+      <property name="NumberOfInterestDays" column="NumberOfInterestDays" />
+      <property name="UsanceDay" column="UsanceDay" />
+      <property name="UsanceYear" column="UsanceYear" />
+      <property name="FebCode" column="FebCode" />
+      <property name="AbbreviatedNameOfCountry" column="AbbreviatedNameOfCountry" />
+      <property name="TotalEffectiveValue" column="TotalEffectiveValue" />
+      <property name="IndicationDebitTotal" column="IndicationDebitTotal" />
+      <property name="BicCode" column="BicCode" />
+      <property name="PlaceOfSafekeeping" column="PlaceOfSafekeeping" />
+
+    </joined-subclass>
+  </class>
+</hibernate-mapping>

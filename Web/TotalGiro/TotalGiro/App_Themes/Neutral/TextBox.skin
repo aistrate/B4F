@@ -1,0 +1,65 @@
+<asp:TextBox
+    Height="12px"
+    Width="145px"
+    Font-Size="11px" 
+    runat="server">
+</asp:TextBox>
+<asp:TextBox
+    Height="12px"
+    SkinID="custom-width"
+    Font-Size="11px"
+    runat="server">
+</asp:TextBox>
+<asp:TextBox
+    SkinID="custom-size"
+    Font-Size="11px" 
+    runat="server">
+</asp:TextBox>
+<asp:TextBox
+    Width="200px"
+    SkinID="broad"
+    Height="12px"
+    Font-Size="11px" 
+    runat="server">
+</asp:TextBox>
+<asp:TextBox
+    Width="600px"
+    SkinID="Ultra-broad"
+    Height="12px"
+    Font-Size="11px" 
+    runat="server">
+</asp:TextBox>
+<asp:TextBox
+    Width="58px"
+    SkinID="small"
+    Height="12px"
+    Font-Size="11px" 
+    runat="server">
+</asp:TextBox>
+<asp:TextBox
+    Width="30px"
+    SkinID="Ultra-Small"
+    Height="12px"
+    Font-Size="11px" 
+    runat="server">
+</asp:TextBox>
+<asp:TextBox
+    Width="30px"
+    SkinID="PostalCode"
+    Height="12px"
+    Font-Size="11px" 
+    runat="server">
+</asp:TextBox>
+<asp:TextBox
+    Width="300px"
+    SkinID="MultiLine"
+    Height="300px" 
+    Font-Size="11px" 
+    runat="server">
+</asp:TextBox>
+<asp:TextBox
+    SkinID="CustomMultiLine"
+    Font-Size="11px" 
+    runat="server">
+</asp:TextBox>
+

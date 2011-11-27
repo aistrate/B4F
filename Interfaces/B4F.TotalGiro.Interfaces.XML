@@ -1,0 +1,2608 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Interfaces</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.Stichting.IRemisierCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Stichting.RemisierCollection">RemisierCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.StaticData.ICountry">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.StaticData.Country">Country</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Routes.RouteTypes">
+            <summary>
+            This enumeration lists the possible routes
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Routes.RouteTypes.ManualDesk">
+            <summary>
+            Manual desk
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Routes.RouteTypes.Automatic">
+            <summary>
+            All automatic routes (fund desk or exchange)
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Routes.RouteTypes.MoneyDesk">
+            <summary>
+            Money desk
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Routes.RouteTypes.ForExDesk">
+            <summary>
+            Foreign Exchange desk
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Routes.IRoute">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Routes.Route">Route</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IMutualFund">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.MutualFund">MutualFund</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ITradeableInstrument">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.TradeableInstrument">TradeableInstrument</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IInstrument">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.Instrument">Instrument</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.PositionAmountReturnValue">
+            <summary>
+            This enumeration is used for filtering an accounts portfolio
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionAmountReturnValue.Cash">
+            <summary>
+            Only use the cash positions in the porfolio
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionAmountReturnValue.CashFund">
+            <summary>
+            Only use the cash fund positions in the porfolio
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionAmountReturnValue.BothCash">
+            <summary>
+            Use both the cash and cash fund positions in the porfolio
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionAmountReturnValue.All">
+            <summary>
+            Use all positions in the porfolio
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.OpenOrderAmountReturnValue">
+            <summary>
+            This enumeration is used for returning the open order amount
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.OpenOrderAmountReturnValue.Nett">
+            <summary>
+            Return the nett open order amount
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.OpenOrderAmountReturnValue.Gross">
+            <summary>
+            Return the gross open order amount
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.IAccountTypeInternal">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeInternal">AccountTypeInternal</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.IAccount">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.Account">Account</see> class
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.IAccount.ToString">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.IAccount.Equals(System.Object)">
+            <exclude/>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.IAccount.AccountType">
+            <summary>
+            See <see cref="P:B4F.TotalGiro.Accounts.Account.AccountType">AccountType</see> for a description
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.IAccount.BaseCurrency">
+            <summary>
+            See <see cref="P:B4F.TotalGiro.Accounts.Account.BaseCurrency">BaseCurrency</see> for a description
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.IAccount.Key">
+            <summary>
+            See <see cref="P:B4F.TotalGiro.Accounts.Account.Key">Key</see> for a description
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.IAccount.Number">
+            <summary>
+            See <see cref="P:B4F.TotalGiro.Accounts.Account.Number">Number</see> for a description
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.IAccount.ShortName">
+            <summary>
+            See <see cref="P:B4F.TotalGiro.Accounts.Account.ShortName">ShortName</see> for a description
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.IAccount.DisplayNumberWithName">
+            <summary>
+            See <see cref="P:B4F.TotalGiro.Accounts.Account.DisplayNumberWithName">DisplayNumberWithName</see> for a description
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.IAccount.IsInternal">
+            <summary>
+            See <see cref="P:B4F.TotalGiro.Accounts.Account.IsInternal">IsInternal</see> for a description
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.IAccount.StorePositions">
+            <exclude/>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.IRemisier">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Stichting.Remisier">Remisier</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.IEffectenGiro">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Stichting.EffectenGiro">EffectenGiro</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.IManagementCompany">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Stichting.ManagementCompany">ManagementCompany</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IOrderSizeBased">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.OrderSizeBased">OrderSizeBased</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.ISecurityOrder">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.SecurityOrder">SecurityOrder</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IOrder">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Order">Order</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IAllocateableOrder">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.IAllocateableOrder.allocateToChild(B4F.TotalGiro.Orders.Transactions.IOrderExecution,B4F.TotalGiro.Orders.Transactions.IOrderAllocation,B4F.TotalGiro.Fees.IFeeFactory)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.IAllocateableOrder.allocateTransaction(B4F.TotalGiro.Orders.Transactions.IOrderExecution,B4F.TotalGiro.Orders.Transactions.IOrderAllocation,B4F.TotalGiro.Fees.IFeeFactory)">
+            <exclude/>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IModelInstrument">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.ModelInstrument">ModelInstrument</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IExchange">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.Exchange">Exchange</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ExRates.IHistoricalExRateCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateCollection">HistoricalExRateCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.ITransferAccount">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.TransferAccount">TransferAccount</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.IAccountTypeSystem">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeSystem">AccountTypeSystem</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.INostroAccount">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.NostroAccount">NostroAccount</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.IAccountTypeCustomer">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeCustomer">AccountTypeCustomer</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Utils.CompareOperator">
+            <summary>
+            This enumeration is used to list compare operators
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.CompareOperator.Greater">
+            <summary>
+            The Greater then operator
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.CompareOperator.GreaterOrEqual">
+            <summary>
+            The Greater then or equal operator
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.CompareOperator.Smaller">
+            <summary>
+            The Less then operator
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.CompareOperator.SmallerOrEqual">
+            <summary>
+            The Less then or equal operator
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Utils.MathOperator">
+            <summary>
+            This enumeration is used to list math operators
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.MathOperator.Add">
+            <summary>
+            The Add operator
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.MathOperator.Subtract">
+            <summary>
+            The Subtract operator
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Utils.EqualityOperator">
+            <summary>
+            This enumeration is used to list Equality operators
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.EqualityOperator.Equals">
+            <summary>
+            The Equals operator
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.EqualityOperator.NotEquals">
+            <summary>
+            The NotEquals operator
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Utils.SortingDirection">
+            <summary>
+            Specifies the direction in which to sort a list of items. 
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.SortingDirection.Ascending">
+            <summary>
+            Sort from smallest to largest. For example, from A to Z.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.SortingDirection.Descending">
+            <summary>
+            Sort from largest to smallest. For example, from Z to A. 
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Utils.CompareToZeroOperator">
+            <summary>
+            This enumeration is used to compare numbers with zero
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.CompareToZeroOperator.SmallerThanZero">
+            <summary>
+            The value is smaller than zero
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.CompareToZeroOperator.IsZero">
+            <summary>
+            The value is zero
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Utils.CompareToZeroOperator.GreaterThanZero">
+            <summary>
+            The value is greater than zero
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Utils.DateInterval">
+            <summary>
+            Indicates how to determine and format date intervals when calling date-related functions.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Utils.Util">
+            <summary>
+            Class with utilities
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Utils.Util.DateDiff(B4F.TotalGiro.Utils.DateInterval,System.DateTime,System.DateTime)">
+            <summary>
+            Returns a Int value specifying the number of time intervals between two Date values
+            </summary>
+            <param name="interval">The requested type of interval</param>
+            <param name="startDate">The start date</param>
+            <param name="endDate">The end date</param>
+            <returns>The diffrence between the two dates</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Utils.Util.NullDate">
+            <summary>
+            The Nulldate
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.ITransaction">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Transactions.Transaction">Transaction</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.ITransactionCollectionGeneric">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Transactions.TransactionCollectionGeneric">TransactionCollectionGeneric</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.ValuationCashTxTypeMapping">
+            <summary>
+            Enum used to for mapping with the valuations
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.ICashTransaction">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Transactions.CashTransaction">CashTransaction</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.InstrumentSize">
+            <summary>
+            The instrument size class is used to work with sizes of instruments as a single piece of information.
+            The class is immutable.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.#ctor(System.Decimal,B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class based upon a size and an instrument.
+            </summary>
+            <param name="quantity">The quantity of the instrument</param>
+            <param name="underlying">The instrument involved</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.#ctor(B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class based upon a existing size instance (clone).
+            </summary>
+            <param name="Existing">An existing instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.#ctor(System.Decimal,B4F.TotalGiro.Instruments.IInstrument,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class
+            </summary>
+            <param name="quantity">The quantity of the instrument</param>
+            <param name="underlying">The instrument involved</param>
+            <param name="noRounding">This argument takes care that the quantity is not rounded to the instrument's default number of decimal places</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Clone(System.Decimal)">
+            <summary>
+            A method that clones the current instance into a new instance with a new quantity
+            </summary>
+            <param name="quantity">The new quantity</param>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.GetMoney">
+            <summary>
+            This method clones the data of this instance into a <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class instance
+            </summary>
+            <returns>A new <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class instance</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Round">
+            <summary>
+            This method rounds the quantity to the instrument's default number of decimal places
+            </summary>
+            <returns>A new rounded instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Round(System.Int32)">
+            <summary>
+            This method rounds the quantity to the requested number of decimal places
+            </summary>
+            <param name="decimals">the requested number of decimal places</param>
+            <returns>A new rounded instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Abs">
+            <summary>
+            This method clones the current instance however it is returned with a positive (absolute) quantity
+            </summary>
+            <returns>A new absolute instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.GetSize(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            This method returns the result of an amount divided by the price
+            </summary>
+            <param name="amount">The amount has been used</param>
+            <param name="price">The price that has been used</param>
+            <returns>A new instance of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Add(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method adds two instances of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class together
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>The sum. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_Addition(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method adds two instances of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class together
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>The sum. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Subtract(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method subtracts two instances of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_Subtraction(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method subtracts two instances of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Multiply(B4F.TotalGiro.Instruments.InstrumentSize,System.Decimal)">
+            <summary>
+            This method multiplies an instance of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <param name="multiplier">The number that is multiplied with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_Multiply(B4F.TotalGiro.Instruments.InstrumentSize,System.Decimal)">
+            <summary>
+            This method multiplies an instance of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <param name="multiplier">The number that is multiplied with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Divide(B4F.TotalGiro.Instruments.InstrumentSize,System.Decimal)">
+            <summary>
+            This method divides an instance of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <param name="divider">The number that is divided with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Divide(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method divides two instances of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class with one and other
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>The result</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_Division(B4F.TotalGiro.Instruments.InstrumentSize,System.Decimal)">
+            <summary>
+            This method divides an instance of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <param name="divider">The number that is divided with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_Division(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method divides two instances of a <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class with one and other
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>The result</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Multiply(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            This method returns an <see cref="T:B4F.TotalGiro.Instruments.Money">amount</see> by multiplying a size by a price
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <param name="rhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_Multiply(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            This method returns an <see cref="T:B4F.TotalGiro.Instruments.Money">amount</see> by multiplying a size by a price
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <param name="rhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <returns>The result</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.ZeroedAmount">
+            <summary>
+            The method returns a clone of the size object but with a zero quantity
+            </summary>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.Equals(System.Object)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="obj">Size object to compare to</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_Equality(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            Check wether two instances of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class are equal
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.NotEquals(System.Object)">
+            <summary>
+            Not equality operator
+            </summary>
+            <param name="obj">Size object to compare to</param>
+            <returns>true if not equal, false if equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_Inequality(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            Check wether two instances of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class are not equal
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>true if not equal, false if equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode.
+            </summary>
+            <returns>Integer containing the id of the size</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.IsWithinTolerance(System.Decimal)">
+            <summary>
+            Is the quantity within the supplied boundaries
+            </summary>
+            <param name="tolerance">The supplied boundary</param>
+            <returns>True when the quantity is within the supplied boundaries</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_GreaterThan(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            Check wether one instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class is greater than the other 
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>true if the left instance is greater.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_GreaterThanOrEqual(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            Check wether one instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class is greater or equal than the other 
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>true if the left instance is greater or equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_LessThan(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            Check wether one instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class is less than the other 
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>true if the left instance is less.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.op_LessThanOrEqual(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            Check wether one instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class is less or equal than the other 
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class on the right hand side</param>
+            <returns>true if the left instance is less or equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentSize.CompareTo(System.Object)">
+            <summary>
+            Compare two instances of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class
+            </summary>
+            <param name="obj">size object to compare to</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.Quantity">
+            <summary>
+            The actual quantity of the size, just a number
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.Underlying">
+            <summary>
+            The instrument of the size
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.NoRounding">
+            <summary>
+            A read-only property to see if the quantity was rounded on instantiating
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.DisplayString">
+            <summary>
+            Returns a readable string of an object of this class
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.Sign">
+            <summary>
+            Returns whether the quantity is either zero or positive (true) or negative (false)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.NumberOfDecimals">
+            <summary>
+            This property returns the significant number of decimals
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.IsMoney">
+            <summary>
+            Is the underlying instrument of type Cash
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.UnderlyingShortName">
+            <summary>
+            Returns the short name of the underlying instrument (when of type Cash).
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.IsZero">
+            <summary>
+            Does the quantity equal zero
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentSize.IsNotZero">
+            <summary>
+            Does the quantity not equal zero
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ICurrency">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.Currency">Currency</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ExRates.IExRate">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.ExRates.ExRate">ExRate</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IInstrumentExchangeCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.InstrumentExchangeCollection">InstrumentExchangeCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.AccruedInterestCalcTypes">
+            <summary>
+            The different types of day count conventions. Method to calculate the fraction of a year between two dates.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.AccruedInterestCalcTypes.Zero">
+            <summary>
+            There is no accrued interest
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.AccruedInterestCalcTypes.ACT_ACT">
+            <summary>
+            ISMA-99 Normal
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.AccruedInterestCalcTypes.ACT_ACT_Ultimo">
+            <summary>
+            ISMA-99 Ultimo
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.AccruedInterestCalcTypes.ac30_360">
+            <summary>
+            German
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.AccruedInterestCalcTypes.ac30E_360">
+            <summary>
+            German Special
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.AccruedInterestCalcTypes.ac30U_360">
+            <summary>
+            US
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IBond">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.Bond">Bond</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.ITradingAccount">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.TradingAccount">TradingAccount</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.ICrumbleTransaction">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Transactions.CrumbleTransaction">CrumbleTransaction</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.ExternalInterfaces.ExternalInterfaces">
+            <summary>
+            This enumeration lists the type of external interfaces
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.ExternalInterfaces.ExternalInterfaces.Cleopatra">
+            <summary>
+            Cleopatra back office interface
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.ExternalInterfaces.ExternalInterfaces.Euronext">
+            <summary>
+            Euronext interface
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.ExternalInterfaces.ISymbolType">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.ExternalInterfaces.SymbolType">SymbolType</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.ExternalInterfaces.ISymbol">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.ExternalInterfaces.Symbol">Symbol</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IAggregateAmtOrder">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.AggregateAmtOrder">AggregateAmtOrder</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IAggregatedOrder">
+            <summary>
+            Interface for all the aggregated orders
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.IAggregatedOrder.TotalOpenValue">
+            <summary>
+            Returns the total value of the order that has not been filled.
+            </summary>
+            <returns>The total value of the order that has not been filled.</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IOrderAmountBased">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.OrderAmountBased">OrderAmountBased</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ISecCategory">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.SecCategory">SecCategory</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Rules.CommRuleTypes">
+            <summary>
+            The type of commission rule
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Rules.CommRuleTypes.Specific">
+            <summary>
+            A specific commission rule (for a particular account or a account/instrument combination)
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Rules.CommRuleTypes.Default">
+            <summary>
+            The default commission rule
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Rules.CommRuleOpenClose">
+            <summary>
+            Does this rule apply to either open, close or both type of orders
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Rules.CommRuleOpenClose.Open">
+            <summary>
+            This rule applies to open orders only
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Rules.CommRuleOpenClose.Close">
+            <summary>
+            This rule applies to close orders only
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Rules.CommRuleOpenClose.Both">
+            <summary>
+            This rule applies is not dependant on the open/close flag
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Rules.CommRuleBuySell">
+            <summary>
+            Does this rule apply to either buy, sell or both type of orders
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Rules.CommRuleBuySell.Buy">
+            <summary>
+            This rule applies to buy orders only
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Rules.CommRuleBuySell.Sell">
+            <summary>
+            This rule applies to buy orders only
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Rules.CommRuleBuySell.Both">
+            <summary>
+            This rule applies is not dependant on the buy/sell flag
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Rules.ICommRule">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Fees.Rules.CommRule">CommRule</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.KnownAssetManagers">
+            <exclude/>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.IAssetManager">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Stichting.AssetManager">AssetManager</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.PredictedSize">
+            <summary>
+            This class is returned after a size of an instrument is predicted using the last known price/rate of the instrument.
+            After the prediction the instance of this class will hold the <see cref="T:B4F.TotalGiro.Instruments.PredictedSizeReturnValue">status</see>, size and used rate. 
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.PredictedSize.#ctor(B4F.TotalGiro.Instruments.PredictedSizeReturnValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.PredictedSize">PredictedSize</see> class.
+            </summary>
+            <param name="status">The <see cref="T:B4F.TotalGiro.Instruments.PredictedSizeReturnValue">status</see> of the prediction</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.PredictedSize.#ctor(B4F.TotalGiro.Instruments.InstrumentSize,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.PredictedSize">PredictedSize</see> class.
+            </summary>
+            <param name="size">The predicted size</param>
+            <param name="rateDate">The date of the used rate to predict the size</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.PredictedSize.Size">
+            <summary>
+            The predicted size
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.PredictedSize.Status">
+            <summary>
+            The <see cref="T:B4F.TotalGiro.Instruments.PredictedSizeReturnValue">status</see> of the prediction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.PredictedSize.Rate">
+            <summary>
+            The rate used for the prediction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.PredictedSize.RateDate">
+            <summary>
+            The date of the used rate to predict the size
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.PredictedSize.IsOldDate">
+            <summary>
+            Read-only. Was the date of the used rate to predict the size an old date?
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IStock">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.Stock">Stock</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.ExternalInterfaces.IInstrumentSymbol">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.ExternalInterfaces.InstrumentSymbol">InstrumentSymbol</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.ManagementCompanyType">
+            <summary>
+            This enumeration lists the type of manaement companies
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Stichting.ManagementCompanyType.EffectenGiro">
+            <summary>
+            This is the stichting
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Stichting.ManagementCompanyType.AssetManager">
+            <summary>
+            This is an asset managing company
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.IPositionTx">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTx">PositionTx</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IModelVersion">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.ModelVersion">ModelVersion</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ModelComponentType">
+            <summary>
+            This enumeration lists the types of which a model can be constructed.
+            A model can be constructed of instruments and of other models.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.ModelComponentType.Model">
+            <summary>
+            This model component is a model
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.ModelComponentType.Instrument">
+            <summary>
+            This model component is an instrument
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IModel">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.Model">Model</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderValidationType">
+            <summary>
+            This enumeration lists the (maintype of) success of the order validation
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationType.Success">
+            <summary>
+            The order validation was succesfull
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationType.Warning">
+            <summary>
+            The order validation raised a warning but can still proceed
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationType.Invalid">
+            <summary>
+            The order validation was unsuccesfull
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderValidationSubType">
+            <summary>
+            This enumeration lists the (subtype of) success of the order validation
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Success">
+            <summary>
+            The order validation was succesfull
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Warning_NoCurrentPrice">
+            <summary>
+            The order validation raised a warning since no current price was found for the instrument
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Warning_OldPrice">
+            <summary>
+            The order validation raised a warning since the current price found for the instrument was of an old date
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Warning_OppositeSideOrder">
+            <summary>
+            The order validation raised a warning since (an) opposite side order(s) already exists
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Invalid_NoCash">
+            <summary>
+            The order validation was unsuccesfull since the account has no cash
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Invalid_NotEnoughCash">
+            <summary>
+            The order validation was unsuccesfull since the account has not enough cash
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Invalid_NoPosition">
+            <summary>
+            The order validation was unsuccesfull since a position was being sold that didn't exist
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Invalid_NotEnoughPosition">
+            <summary>
+            The order validation was unsuccesfull since the sell order size exceeded the position size
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Invalid_InstructionExists">
+            <summary>
+            The order can not be placed since a rebalance is happening
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderValidationSubType.Invalid_NotValidated">
+            <summary>
+            The order validation did not happen yet
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderValidationResult">
+            <summary>
+            This class is the result of a <see cref="M:B4F.TotalGiro.Orders.IOrder.Approve">order validation</see>.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderValidationResult.#ctor(B4F.TotalGiro.Orders.OrderValidationSubType,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.Orders.OrderValidationResult">OrderValidationResult</see> class.
+            </summary>
+            <param name="type">The subtype of the validation result</param>
+            <param name="message">A descriptive message in case of warings and errors</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderValidationResult.Type">
+            <summary>
+            The return subtype of succesfullness
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderValidationResult.MainType">
+            <summary>
+            The return (main)type of succesfullness
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderValidationResult.Message">
+            <summary>
+            A descriptive message in case of warings and errors
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.IAccountTypeExternal">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeExternal">AccountTypeExternal</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.AccountTypes">
+            <summary>
+            This enumerations lists all the distinct account roles
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypes.Commission">
+            <summary>
+            The commission account, that gets all the commission
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypes.Overflow">
+            <summary>
+            The overflow (crumble) account. See the <see cref="T:B4F.TotalGiro.Accounts.OverFlowAccount">OverFlowAccount</see> class
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypes.Custodian">
+            <summary>
+            The account that keeps custody of the positions
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypes.Nostro">
+            <summary>
+            The nostro account
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypes.Trader">
+            <summary>
+            The trading account
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypes.Counterparty">
+            <summary>
+            The counterparty account
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypes.Customer">
+            <summary>
+            The customer account
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.StorePositionsLevel">
+            <summary>
+            This enumerations describes the possible ways to store positions in the TotalGiro system for an account
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.StorePositionsLevel.Not">
+            <summary>
+            Do not store any positions at all (external parties).
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.StorePositionsLevel.NotChronological">
+            <summary>
+            Store the positions but disregard the chronological order of the transactions
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.StorePositionsLevel.Chronological">
+            <summary>
+            Store the positions with the chronological order of the transactions in mind
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.ICustomerAccount">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.CustomerAccount">CustomerAccount</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.ICustodyAccount">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.CustodyAccount">CustodyAccount</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.ITransactionOrder">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Transactions.TransactionOrder">TransactionOrder</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IMonetaryOrder">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.MonetaryOrder">MonetaryOrder</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Money">
+            <summary>
+            The instrument size class is used to work with amounts of currencies as a single piece of information.
+            It inherits form <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class.
+            The class is immutable.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.#ctor(System.Decimal,B4F.TotalGiro.Instruments.ICurrency,B4F.TotalGiro.Instruments.ICurrency,System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with the supplied quantity, currency and exrate details
+            </summary>
+            <param name="Quantity">The quantity (just a number) of the amount</param>
+            <param name="Underlying">The currency the amount is in</param>
+            <param name="XRateCurrency">The currency used as a reference</param>
+            <param name="Xrate">The rate (number) between the currency and the reference XRatecurrency</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.#ctor(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.ICurrency,System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class from an existing Money instance and exrate details.
+            </summary>
+            <param name="Existing">An existing instance of <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class which is being cloned</param>
+            <param name="XRateCurrency">The currency used as a reference</param>
+            <param name="Xrate">The rate (number) between the currency and the reference XRatecurrency</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.#ctor(System.Decimal,B4F.TotalGiro.Instruments.ICurrency)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class from an existing Money instance but with an new quantity
+            The ExRate Info is also retrieved from the existing instance.
+            </summary>
+            <param name="Quantity">The quantity (just a number) of the amount</param>
+            <param name="Underlying">The currency the amount is in</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.#ctor(System.Decimal,B4F.TotalGiro.Instruments.ICurrency,B4F.TotalGiro.Instruments.ICurrency,System.Decimal,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class
+            </summary>
+            <param name="Quantity">The quantity (just a number) of the amount</param>
+            <param name="Underlying">The currency the amount is in</param>
+            <param name="XRateCurrency">The currency used as a reference</param>
+            <param name="Xrate">The rate (number) between the currency and the reference XRatecurrency</param>
+            <param name="noRounding">This argument takes care that the quantity is not rounded to the instrument's default number of decimal places</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.GetAmountInBaseCurrency(System.Decimal,B4F.TotalGiro.Instruments.ICurrency)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with the passed in quantity and base currency
+            </summary>
+            <param name="Quantity">The quantity (just a number) of the amount</param>
+            <param name="BaseCurrency">The base currency the amount is in</param>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.GetAmountInBaseCurrency(System.Decimal,B4F.TotalGiro.Accounts.IAccount)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with the passed in quantity and the account's base currency
+            </summary>
+            <param name="Quantity">The quantity (just a number) of the amount</param>
+            <param name="BaseAccount">The account who supplies its base currency</param>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Clone(System.Decimal)">
+            <summary>
+            A method that clones the current instance into a new instance with a new quantity
+            </summary>
+            <param name="quantity">The new quantity</param>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Round">
+            <summary>
+            This method rounds the quantity to the instrument's default number of decimal places
+            </summary>
+            <returns>A new rounded instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Round(System.Int32)">
+            <summary>
+            This method rounds the quantity to the requested number of decimal places
+            </summary>
+            <param name="decimals">the requested number of decimal places</param>
+            <returns>A new rounded instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Abs">
+            <summary>
+            This method clones the current instance however it is returned with a positive (absolute) quantity
+            </summary>
+            <returns>A new absolute instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.ZeroedAmount">
+            <summary>
+            The method returns a clone of the money object but with a zero quantity
+            </summary>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Convert(B4F.TotalGiro.Instruments.ICurrency)">
+             <summary>
+             This method converts the current instance into a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with another underlying currency
+             </summary>
+             <param name="newCurrency">The currency to amount should be converted to</param>
+             <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+            <remarks>
+            The amount is converted using the last known exchange rates of the instruments
+            </remarks>
+            <example>
+            The following situations of buy or sell transactions can occur with foreign exchange rates:
+            USD is only used as an example for a foreign currency.
+            
+                InstCur AcctCur Side    Rate    Bid of Ask
+            1a  USD     EUR     Buy     EUR/USD /Bid
+            1b  USD     EUR     Sell    EUR/USD /Ask
+            2a  EUR     USD     Buy     EUR/USD /Ask
+            2b  EUR     USD     Sell    EUR/USD /Bid
+            
+            4a  GBP     USD     Buy     GBP/USD Bid/Ask
+            4b  GBP     USD     Sell    GBP/USD Ask/Bid
+            5a  USD     GBP     Buy     USD/GBP Bid/Ask
+            5b  USD     GBP     Sell    USD/GBP Ask/Bid
+            
+            The following examples make the situations described above more clearly:
+            Keep in mind that the base currency is EUR.
+            
+                Cur TrdVal  Rate     Total      Cur Translation
+            1a  USD 40000   0.8750   45,714.29  EUR Buy USD, Sell EUR
+            1b  USD 40000   0.8850   45,197.74  EUR Sell USD, buy EUR
+            2a  EUR 40000   0.8850   35,400.00  USD Buy EUR, Sell USD
+            2b  EUR 40000   0.8750   35,000.00  USD Sell EUR, Buy USD
+            
+            4a  GBP 40000   0.6794   27,174.10  USD Buy GBP/Sell EUR and Sell USD/Buy EUR
+            4b  GBP 40000   0.7010   28,039.91  USD Sell GBP/Buy EUR and Buy USD/Sell EUR
+            5a  USD 40000   1.4265   57,061.53  GBP Buy USD/Sell EUR and Sell GBP/Buy EUR
+            5b  USD 40000   1.4720   58,879.59  GBP Sell USD/Buy EUR and Buy GBP/Sell EUR
+            
+            Rates
+                                BID           MID                     ASK
+            EUR/USD             0.8750        0.8800                  0.8850
+            EUR/GBP             0.6012        0.6073                  0.6134
+            </example>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Convert(B4F.TotalGiro.Instruments.ICurrency,B4F.TotalGiro.Orders.Side)">
+            <summary>
+            This method converts the current instance into a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with another underlying currency taking the <see cref="T:B4F.TotalGiro.Orders.Side">side</see> into account
+            </summary>
+            <param name="newCurrency">The currency to amount should be converted to</param>
+            <param name="side">The <see cref="T:B4F.TotalGiro.Orders.Side">side</see> of the transaction</param>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+            <seealso cref="M:B4F.TotalGiro.Instruments.Money.Convert(B4F.TotalGiro.Instruments.ICurrency)">Exchangerate example</seealso>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Convert(B4F.TotalGiro.Instruments.ICurrency,B4F.TotalGiro.Orders.Side,System.DateTime,B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            This method converts the current instance into a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with another underlying currency taking the <see cref="T:B4F.TotalGiro.Orders.Side">side</see> into account
+            </summary>
+            <param name="newCurrency">The currency to amount should be converted to</param>
+            <param name="side">The <see cref="T:B4F.TotalGiro.Orders.Side">side</see> of the transaction</param>
+            <param name="date">The date of the exchange rate that should be used to convert</param>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+            <seealso cref="M:B4F.TotalGiro.Instruments.Money.Convert(B4F.TotalGiro.Instruments.ICurrency)">Exchangerate example</seealso>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Convert(System.Decimal,B4F.TotalGiro.Instruments.ICurrency)">
+            <summary>
+            This method converts the current instance into a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with another underlying currency by passing in the exrate to use
+            </summary>
+            <param name="side">The <see cref="T:B4F.TotalGiro.Orders.Side">side</see> of the transaction</param>
+            <param name="rate">The rate to use</param>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.GetExRate(B4F.TotalGiro.Instruments.ExRates.IExRate,B4F.TotalGiro.Instruments.ExRates.IExRate,B4F.TotalGiro.Orders.Side)">
+            <summary>
+            Return the exchange rate between to currencies taking the <see cref="T:B4F.TotalGiro.Orders.Side">side</see> into account 
+            </summary>
+            <param name="fromCurrency">The from currency to compare</param>
+            <param name="toCurrency">The to currency to compare</param>
+            <param name="side">The <see cref="T:B4F.TotalGiro.Orders.Side">side</see> of the transaction</param>
+            <returns>The rate</returns>
+            <seealso cref="M:B4F.TotalGiro.Instruments.Money.Convert(B4F.TotalGiro.Instruments.ICurrency)">Exchangerate example</seealso>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Add(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            This method adds two instances of a <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class together
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class on the right hand side</param>
+            <returns>The sum. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.op_Addition(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            This method adds two instances of a <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class together
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class on the right hand side</param>
+            <returns>The sum. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Subtract(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            This method subtracts two instances of a <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class on the right hand side</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.op_Subtraction(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            This method subtracts two instances of a <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class on the right hand side</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Multiply(B4F.TotalGiro.Instruments.Money,System.Decimal)">
+            <summary>
+            This method multiplies an instance of a <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</param>
+            <param name="multiplier">The number that is multiplied with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.op_Multiply(B4F.TotalGiro.Instruments.Money,System.Decimal)">
+            <summary>
+            This method multiplies an instance of a <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</param>
+            <param name="multiplier">The number that is multiplied with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Divide(B4F.TotalGiro.Instruments.Money,System.Decimal)">
+            <summary>
+            This method divides an instance of a <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</param>
+            <param name="divider">The number that is divided with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.op_Division(B4F.TotalGiro.Instruments.Money,System.Decimal)">
+            <summary>
+            This method divides an instance of a <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</param>
+            <param name="divider">The number that is divided with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Divide(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method returns an <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> by dividing an amount by a size
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</param>
+            <param name="rhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.op_Division(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method returns an <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> by dividing an amount by a size
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</param>
+            <param name="rhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.Divide(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            This method returns an <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> by dividing an amount by a price
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</param>
+            <param name="rhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Money.op_Division(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            This method returns an <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> by dividing an amount by a price
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</param>
+            <param name="rhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Money.XRateCurrency">
+            <summary>
+            The currency used as a reference to compare to (probably the base currency of the TotalGiro system)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Money.Xrate">
+            <summary>
+            The rate (number) between the currency and the reference XRatecurrency
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Dal.IDalSession">
+            <summary>
+            The main runtime interface between a GUI application and DAL. 
+            This is the central API class abstracting the notion of a persistence service.  
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.IDalSession.Close">
+            <summary>
+            End the Session by disconnecting from the ADO.NET connection and cleaning up.  
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.IDalSession.Disconnect">
+            <summary>
+            Disconnect the ISession from the current ADO.NET connection.  
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.IDalSession.Reconnect">
+            <summary>
+            Obtain a new ADO.NET connection.  
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.IDalSession.Refresh(System.Object)">
+            <summary>
+            Re-read the state of the given instance from the underlying database.  
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Dal.IDalSession.IsConnected">
+            <summary>
+            Is the ISession currently connected? 
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Dal.IDalSession.IsOpen">
+            <summary>
+            Is the ISession still open? 
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.IExportedTxFile">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Communicator.Cleopatra.ExportedTxFile">ExportedTxFile</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.IOverFlowAccount">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.OverFlowAccount">OverFlowAccount</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.IOrderAllocation">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Transactions.OrderAllocation">OrderAllocation</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.INonTradeMovement">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Transactions.NonTradeMovement">NonTradeMovement</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IStgSizeOrder">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.StgSizeOrder">StgSizeOrder</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IAggregateSizeOrder">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.AggregateSizeOrder">AggregateSizeOrder</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IStgOrder">
+            <summary>
+            Interface for all the Stichting orders
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionTypes">
+            <summary>
+            This enumeration lists all possible account instruction types
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionTypes.Rebalance">
+            <summary>
+            Currently the only instruction type is a rebalance instruction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionStati">
+            <summary>
+            This enumeration describes all possible stati during processing of an instruction
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionStati.New">
+            <summary>
+            The instruction is new and not yet being processed
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionStati.PendingOrders">
+            <summary>
+            There are pending orders found, so the rebalance has to wait.
+            These ordersmight be size based sell orders due to a restructure of the modelportfolio
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionStati.Rebalance">
+            <summary>
+            The rebalance has been kicked off
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionStati.PendingRebalanceOrders">
+            <summary>
+            There are still pending orders due to the rebalance
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionStati.CashFund">
+            <summary>
+            All cash remaining (long, short) is sucked up into the cash fund
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionStati.PendingCashFundOrders">
+            <summary>
+            The cash fund order is still pending
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionStati.Terminate">
+            <summary>
+            The instruction is terminated (inactived)
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.IInstruction">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">Instruction</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Utils.XMLStateMachine">
+            <summary>
+            This class implements a table-driven finite state machine.
+            The table is defined by an XML document. The System.Xml.XmlTextReader 
+            class is used for fast scanning of the table and allows larger tables 
+            to be used as opposed to System.Xml.XmlDocument.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Utils.XMLStateMachine.SetStatus(System.IO.Stream,System.Int32,System.Int32,B4F.TotalGiro.Utils.IStateMachineClient)">
+            <summary>
+            The bool SetStatus method gets the next valid state given the current state and the supplied input.
+            </summary>
+            <param name="currentStateID">The current status.</param>
+            <returns>A int that identifies the next state</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.ITransactionCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Transactions.TransactionCollection">TransactionCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Prices.IPriceDetail">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.Prices.PriceDetail">PriceDetail</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IModelInstrumentCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.ModelInstrumentCollection">ModelInstrumentCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ICashManagementFund">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.CashManagementFund">CashManagementFund</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.FSInterface.IFSExportFile">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Communicator.FSInterface.FSExportFile">FSExportFile</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.PortfolioFilterValues">
+            <summary>
+            This enumeration lists the type of position types on which can be filtered
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.PortfolioFilterValues.Cash">
+            <summary>
+            Using this option only cash positions are returned
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.PortfolioFilterValues.CashFund">
+            <summary>
+            Using this option only cash fund positions are returned
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.PortfolioFilterValues.BothCash">
+            <summary>
+            Using this option both cash and cash fund positions are returned
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.PortfolioFilterValues.Security">
+            <summary>
+            Using this option only security positions are returned
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.PortfolioFilterValues.SecurityAndCashFund">
+            <summary>
+            Using this option only security and cash fund positions are returned
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.IPortfolio">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.Positions.Portfolio">Portfolio</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.ICashPosition">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.Positions.CashPosition">CashPosition</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.IPosition">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.Positions.Position">Position</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Collections.GenericCollection`1">
+            <moduleiscollection>
+            </moduleiscollection>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.IndexOf(`0)">
+            <summary>
+            Returns the relevant index of item in the collection
+            </summary>
+            <param name="item">The relevant item</param>
+            <returns>The index</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.Insert(System.Int32,`0)">
+            <summary>
+            Inserts an item with a certain index
+            </summary>
+            <param name="index">The index number</param>
+            <param name="item">The item that is to be added</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.RemoveAt(System.Int32)">
+            <summary>
+            Removes an item from the collection by an index number
+            </summary>
+            <param name="index">The index number</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.Add(`0)">
+            <summary>
+            Add a new item to the collection.
+            </summary>
+            <param name="item">The position being added</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.Clear">
+            <summary>
+            Clears all items from the collection
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.Contains(`0)">
+            <summary>
+            Check whether an item exists in the collection
+            </summary>
+            <param name="item">The relevant item</param>
+            <returns>True when the item exists in the collection</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            This method copies the items from the collection to an array upto the supplied index
+            </summary>
+            <param name="array">The returned array</param>
+            <param name="arrayIndex">The supplied index</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.Remove(`0)">
+            <summary>
+            Removes an item from the collection
+            </summary>
+            <param name="item">The relevant item</param>
+            <returns>Returns true when successfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.GetEnumerator">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.System#Collections#IEnumerable#GetEnumerator">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Collections.GenericCollection`1.getSortedItemList(System.Collections.IComparer)">
+            <summary>
+            This method returns a new IList with the same items, but now sorted.
+            </summary>
+            <param name="sorter">The IComparer that specifies how to sort</param>
+            <returns>An IList bag with sorted items</returns>
+        </member>
+        <member name="F:B4F.TotalGiro.Collections.GenericCollection`1.bagCollection">
+            <exclude/>
+        </member>
+        <member name="P:B4F.TotalGiro.Collections.GenericCollection`1.Item(System.Int32)">
+            <summary>
+            Returns an item out of the collection by an index number passed in
+            </summary>
+            <param name="index">The index number</param>
+            <returns>The relevant item</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Collections.GenericCollection`1.Count">
+            <summary>
+            Returns the total number of items in the collection
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Collections.GenericCollection`1.IsReadOnly">
+            <summary>
+            Returns whether the collection is readonly
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.FeeTypes">
+            <summary>
+            This enumeration lists the possible feetypes for which fee calaculation can exist
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.FeeTypes.TransactionCosts">
+            <summary>
+            The fee that is involved in transactions with specific counterparties
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.FeeTypes.ManagmentFee">
+            <summary>
+            The fee that is involved in managing the customers portfolio
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.FeeTypes.Commission">
+            <summary>
+            The commission that has to be paid for placing an order
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.IFeeFactory">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Fees.FeeFactory">FeeFactory</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IStgMonetaryOrder">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.StgMonetaryOrder">StgMonetaryOrder</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IAggregateMonetaryOrder">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.AggregateMonetaryOrder">AggregateMonetaryOrder</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.IInstructionCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.Instructions.InstructionCollection">InstructionCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.IAssetManagerCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Stichting.AssetManagerCollection">AssetManagerCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.CVType">
+            <summary>
+            This enumeration lists the values that are of interest of the <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTx">Position transaction</see>
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.CVType.Value">
+            <summary>
+            The PositionTx uses the Value from the Transaction
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.CVType.CValue">
+            <summary>
+            The PositionTx uses the CValue from the Transaction
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.CVType.Commission">
+            <summary>
+            The PositionTx uses the Commission from the Transaction
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.CVType.ServiceCharge">
+            <summary>
+            The PositionTx uses the Service Charge from the Transaction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.TransactionSide">
+            <summary>
+            This enumeration lists the side of interest of the <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTx">Position transaction</see>
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.TransactionSide.A">
+            <summary>
+            The PositionTx looks at the Transaction from the perspective of Account A
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.TransactionSide.B">
+            <summary>
+            The PositionTx looks at the Transaction from the perspective of Account B
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.IsLong">
+            <summary>
+            Is this a long or short position
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.IsLong.Long">
+            <summary>
+            This is a long position
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Positions.IsLong.Short">
+            <summary>
+            This is a short position
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.OrderRouteMapper.IOrderRouteMapper">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.OrderRouteMapper.OrderRouteMapper">OrderRouteMapper</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.ICounterPartyAccount">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.CounterPartyAccount">CounterPartyAccount</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.ExternalInterfaces.IInstrumentSymbolCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.ExternalInterfaces.InstrumentSymbolCollection">InstrumentSymbolCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.IOrderCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.OrderCollection">OrderCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.SecCategories">
+            <summary>
+            The security category of the instrument
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.SecCategories.Stocks">
+            <summary>
+            This is a stock instrument
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.SecCategories.Bonds">
+            <summary>
+            This is a stock instrument
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.SecCategories.Cash">
+            <summary>
+            This is a bond instrument
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.SecCategories.MutualFunds">
+            <summary>
+            This is cash
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.SecCategories.CashManagementFund">
+            <summary>
+            This is a Cash Management Fund
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.SecCategories.Undefined">
+            <summary>
+            This is an undefined instrument
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.KnownCurrency">
+            <summary>
+            The known currencies in the system
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Euro">
+            <summary>
+            Euro
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Amerikaanse_Dollar">
+            <summary>
+            American Dollar
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Engelse_Pond">
+            <summary>
+            English Pound
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Zwitserse_Frank">
+            <summary>
+            Swiss Frank
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Australische_Dollar">
+            <summary>
+            Australian Dollar
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Canadese_dollar">
+            <summary>
+            Canadian Dollar
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Zuid_Afrika_Rand">
+            <summary>
+            Soth African Rand
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Stockholm_exchange">
+            <summary>
+            Sweden Kronor
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Hongkong_Dollar">
+            <summary>
+            Hongkong Dollar
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Japanse_Yen">
+            <summary>
+            Japanse Yen
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Korea_Won">
+            <summary>
+            Korea Won
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Nederlandse_Gulden">
+            <summary>
+            Dutch Guilder
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Luxemburgse_Franc">
+            <summary>
+            Luxembourg Frank
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Belgische_Frank">
+            <summary>
+            Belgian Frank
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Duitse_Mark">
+            <summary>
+            Deutsche Mark
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Franse_Franc">
+            <summary>
+            French Frank
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Spaanse_Peseta">
+            <summary>
+            Spanish Peseta
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Ierse_Pond">
+            <summary>
+            Irish Pound
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Italiaanse_Lire">
+            <summary>
+            Italian Lire
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Portugese_Escudo">
+            <summary>
+            Portugese Escudo
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.KnownCurrency.Noorse_Kroon">
+            <summary>
+            Norwegian Kroon
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.PredictedSizeReturnValue">
+            <summary>
+            This enumeration lists the possible results of the size prediction of an instrument.
+            The size is predicted using the last known price/rate of the instrument.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.PredictedSizeReturnValue.OK">
+            <summary>
+            The prediction went ok
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.PredictedSizeReturnValue.NoRate">
+            <summary>
+            No price/rate was found for the instrument
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.PredictedSizeReturnValue.OldRateDate">
+            <summary>
+            The size has been predicted using a price/rate of an old date
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.IOrderExecution">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Orders.Transactions.OrderExecution">OrderExecution</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Prices.IPriceDetailCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.Prices.PriceDetailCollection">PriceDetailCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.IPositionTxCollection">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTxCollection">PositionTxCollection</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.PricingTypes">
+            <summary>
+            The Pricing type of the instrument
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.PricingTypes.Direct">
+            <summary>
+            The price is a normal amount based price
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Instruments.PricingTypes.Percentage">
+            <summary>
+            The price is defined as a percentage of the nominal value
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.Login.SecurityInfoOptions">
+            <summary>
+            An enumeration that lists the options that are used with retrieving account data but keeping the security in mind.
+            If the person who logged on is a stichting employee, he has more rights than for instance a Asset Manager.
+            And the Asset Manager can of course see more than a customer.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Stichting.Login.SecurityInfoOptions.Both">
+            <summary>
+            Data is retrieved both from the managed accounts and the the trading accounts.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Stichting.Login.SecurityInfoOptions.ManagedsAcctsOnly">
+            <summary>
+            Data is retrieved only from the managed accounts.
+            In the case of a stichting employee, the managed accounts are the asset managers.
+            In the case of a asset manager, the managed accounts are the customers.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Stichting.Login.SecurityInfoOptions.TradingAcctOnly">
+            <summary>
+            Data is retrieved only from the trading accounts.
+            In the case of a stichting employee, he can view the stichting's trading account data
+            In the case of a asset manager, he can view the asset manager's trading account data
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Stichting.Login.SecurityInfoOptions.NoFilter">
+            <summary>
+            This applies to the stichting only.
+            It is possible to see all data.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.Login.ILogin">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Stichting.Login.Login">Login</see> class.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Stichting.Login.IEmployee">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Stichting.Login.Employee">Employee</see> class.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderFillability">
+            <summary>
+            This enumeration lists the possiblities whether an order is fillable.
+            If the order is not fillable there are several causes why not
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderFillability.True">
+            <summary>
+            This order is fillable
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderFillability.NoChildOrder">
+            <summary>
+            This order not is fillable since it is a child order, and only the parent orders can be filled
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderFillability.NoStatusNotFillable">
+            <summary>
+            This order not is fillable since the status of the order does not allow filling due to several causes
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderStati">
+            <summary>
+            This enumeration lists the possible stati an order can receive
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStati.New">
+            <summary>
+            The order has just been entered
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStati.Routed">
+            <summary>
+            The order has been routed to the relevant desk/exchange
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStati.Placed">
+            <summary>
+            The order has been received at the relevant desk/exchange
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStati.PartFilled">
+            <summary>
+            The order has been partly filled
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStati.Filled">
+            <summary>
+            The order has been completely filled, but not all transactions have been approved
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStati.Checked">
+            <summary>
+            The order has been completely filled and all transactions have been approved
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStati.Terminated">
+            <summary>
+            The order is finished
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderCancelStati">
+            <summary>
+            This enumeration lists the possible cancel stati an order can receive
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderCancelStati.Neutral">
+            <summary>
+            The order is in neutral mode, so no cancel request has been made
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderCancelStati.CancelRequested">
+            <summary>
+            A cancel request was done
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderCancelStati.CancelQueued">
+            <summary>
+            The cancel request is in the queue to be sent to the relevant desk/exchange
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderCancelStati.CancelPending">
+            <summary>
+            The cancel request is pending on the relevant desk/exchange
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderCancelStati.CancelOnExchange">
+            <summary>
+            The cancel request has been received on the relevant desk/exchange
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderCancelStati.Cancelled">
+            <summary>
+            The order has been cancelled
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Side">
+            <summary>
+            The side of the order. Buy or Sell.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.Side.XI">
+            <summary>
+            Transfer in
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.Side.Buy">
+            <summary>
+            This is a buy order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.Side.Sell">
+            <summary>
+            This is a sell order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.Side.XO">
+            <summary>
+            Transfer out
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderErrors">
+            <summary>
+            This enumeration lists the type of errors that can happen to the order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderErrors.Neutral">
+            <summary>
+            There was no error
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderErrors.AllocationProblem">
+            <summary>
+            There was an allocation problem
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderTypes">
+            <summary>
+            This enumeration lists the types of orders
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderTypes.AmountBased">
+            <summary>
+            This is an amount based order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderTypes.SizeBased">
+            <summary>
+            This is an size based order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderTypes.Monetary">
+            <summary>
+            This is an monetary order
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderActionTypes">
+            <summary>
+            This is the action that caused the creation of the order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderActionTypes.NoAction">
+            <summary>
+            No special action caused the creation of the order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderActionTypes.FirstDeposit">
+            <summary>
+            A first deposit caused the creation of the order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderActionTypes.Rebalance">
+            <summary>
+            A rebalance caused the creation of the order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderActionTypes.SingleOrder">
+            <summary>
+            This order was entered as a single order 
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderSideFilter">
+            <summary>
+            This enumeration lists the possible filter options on the <see cref="T:B4F.TotalGiro.Orders.T:B4F.TotalGiro.Orders.Side">Side</see> flag of the order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderSideFilter.All">
+            <summary>
+            All orders are returned independant of the side
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderSideFilter.Buy">
+            <summary>
+            Only Buy orders are returned
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderSideFilter.Sell">
+            <summary>
+            Only Sell orders are returned
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.CommCalcBasedOn">
+            <summary>
+            What property of the order is the commission calculations using 
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Calculations.CommCalcBasedOn.Value">
+            <summary>
+            It is using the order value to calculate the commission
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Calculations.CommCalcBasedOn.Size">
+            <summary>
+            It is using the order size to calculate the commission
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.FeeCalcTypes">
+            <summary>
+            This enumeration lists the possible calculation types
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Calculations.FeeCalcTypes.Flat">
+            <summary>
+            This is a flat calculation rule (staffel in dutch)
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Calculations.FeeCalcTypes.Slab">
+            <summary>
+            This is a slab calculation rule (like calculating tax)
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Fees.Calculations.FeeCalcTypes.Simple">
+            <summary>
+            This is a simple calculation rule with just one rule
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.ICommCalc">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Fees.Calculations.CommCalc">CommCalc</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.IInstrumentExchange">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.InstrumentExchange">InstrumentExchange</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.CRM.Gender">
+            <summary>
+            system gender collection
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.ICommissionAccount">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.CommissionAccount">CommissionAccount</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.ISecurityPosition">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Accounts.Positions.SecurityPosition">SecurityPosition</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Price">
+            <summary>
+            The price class is used to work with prices which consist of a quantity, a underlying instrument and the currency of the price.
+            This is all kept as one piece of information.
+            The class is immutable.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.#ctor(System.Decimal,B4F.TotalGiro.Instruments.ICurrency,B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class.
+            </summary>
+            <param name="quantity">The quantity (just a number) of the price</param>
+            <param name="underlying">The currency the price is in</param>
+            <param name="instrument">The instrument to which the price belongs</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.#ctor(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class.
+            </summary>
+            <param name="money">This is the amount that one particular instrument to which the price belongs would cost</param>
+            <param name="instrument">The instrument to which the price belongs</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.GetUnderlyingFromInstrument">
+            <summary>
+            When the Underlying is null -> retrieve it from the Instrument
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.Clone(System.Decimal)">
+            <summary>
+            A method that clones the current instance into a new instance with a new quantity
+            </summary>
+            <param name="quantity">The new quantity</param>
+            <returns>A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.Round">
+            <summary>
+            This method rounds the quantity to the currency's default number of decimal places
+            </summary>
+            <returns>A new rounded instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.Round(System.Int32)">
+            <summary>
+            This method rounds the quantity to the requested number of decimal places
+            </summary>
+            <param name="decimals">the requested number of decimal places</param>
+            <returns>A new rounded instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.Abs">
+            <summary>
+            This method clones the current instance however it is returned with a positive (absolute) quantity
+            </summary>
+            <returns>A new absolute instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:B4F.TotalGiro.Instruments.Price.GetAveragePrice(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.InstrumentSize)" -->
+        <member name="M:B4F.TotalGiro.Instruments.Price.Multiply(B4F.TotalGiro.Instruments.Price,System.Decimal)">
+            <summary>
+            This method multiplies an instance of a <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <param name="multiplier">The number that is multiplied with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_Multiply(B4F.TotalGiro.Instruments.Price,System.Decimal)">
+            <summary>
+            This method multiplies an instance of a <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <param name="multiplier">The number that is multiplied with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.Divide(B4F.TotalGiro.Instruments.Price,System.Decimal)">
+            <summary>
+            This method divides an instance of a <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <param name="divider">The number that is divided with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_Division(B4F.TotalGiro.Instruments.Price,System.Decimal)">
+            <summary>
+            This method divides an instance of a <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class with a specified number
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <param name="divider">The number that is divided with</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.Multiply(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method returns an <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> by multiplying a price with a size
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <param name="rhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_Multiply(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.InstrumentSize)">
+            <summary>
+            This method returns an <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> by multiplying a price with a size
+            </summary>
+            <param name="lhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</param>
+            <param name="rhs">The instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">InstrumentSize</see> class</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Money">Money</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.Add(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            This method adds two instances of a <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class together
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>The sum. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_Addition(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            This method adds two instances of a <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class together
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>The sum. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.Subtract(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            This method subtracts two instances of a <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_Subtraction(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            This method subtracts two instances of a <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>The result. A new instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.Equals(System.Object)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="obj">Price object to compare to</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_Equality(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            Check wether two instances of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class are equal
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.NotEquals(System.Object)">
+            <summary>
+            Not equality operator
+            </summary>
+            <param name="obj">Price object to compare to</param>
+            <returns>true if not equal, false if equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_Inequality(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            Check wether two instances of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class are not equal
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>true if not equal, false if equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode.
+            </summary>
+            <returns>Integer containing the id of the price</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_GreaterThan(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            Check wether one instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class is greater than the other 
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>true if the left instance is greater.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_GreaterThanOrEqual(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            Check wether one instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class is greater or equal than the other 
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>true if the left instance is greater or equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_LessThan(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            Check wether one instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class is less than the other 
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>true if the left instance is less.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Price.op_LessThanOrEqual(B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            Check wether one instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class is less or equal than the other 
+            </summary>
+            <param name="lhs">The first instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the left hand side</param>
+            <param name="rhs">The second instance of the <see cref="T:B4F.TotalGiro.Instruments.Price">Price</see> class on the right hand side</param>
+            <returns>true if the left instance is less or equal.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:B4F.TotalGiro.Instruments.Price.CompareTo(System.Object)" -->
+        <member name="P:B4F.TotalGiro.Instruments.Price.Quantity">
+            <summary>
+            The actual quantity of the price, just a number
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Price.Underlying">
+            <summary>
+            The currency the price is in
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Price.Instrument">
+            <summary>
+            The instrument to which the price belongs
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Price.Amount">
+            <summary>
+            This is the amount that one particular instrument to which the price belongs would cost
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Price.DisplayString">
+            <summary>
+            Returns a readable string of an object of this class
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Price.ShortDisplayString">
+            <summary>
+            Returns a short readable string of an object of this class (the amount)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Price.IsZero">
+            <summary>
+            Does the quantity equal zero
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Price.IsNotZero">
+            <summary>
+            Does the quantity not equal zero
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ExRates.IHistoricalExRate">
+            <summary>
+            Interface for the <see cref="T:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate">HistoricalExRate</see> class
+            </summary>
+        </member>
+    </members>
+</doc>

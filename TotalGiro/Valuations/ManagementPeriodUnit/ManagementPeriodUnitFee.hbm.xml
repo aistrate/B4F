@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnitFee, B4F.TotalGiro.Valuations" table="AccountManagementPeriodsPeriodUnitFees" 
+		   proxy ="B4F.TotalGiro.ManagementPeriodUnits.IManagementPeriodUnitFee, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="ManagementPeriodsPeriodUnitFeeID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Parent" column="ManagementPeriodsPeriodUnitID" class="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnit, B4F.TotalGiro.Valuations" cascade="none" />
+		<many-to-one name="FeeType" column="FeeTypeID" class="B4F.TotalGiro.Fees.FeeType, B4F.TotalGiro.Interfaces" cascade="none" not-null="true" />
+		<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Amount" />
+			<many-to-one name="Underlying" column="AmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none"/>
+		</component>
+		<property name="calcSourceKey" column="FeeCalcVersionID" access="field" />
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Reports.Financial.Report, B4F.TotalGiro.Reports" table="Reports"
+		   proxy="B4F.TotalGiro.Reports.Financial.IReport, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ReportID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="ReportLetter" column="ReportLetterId" class="B4F.TotalGiro.Reports.ReportLetter, B4F.TotalGiro.Reports"/>
+		<property name="ReportStatusId" column="ReportStatusId" />
+		<property name="CreationDate" column="CreationDate" type="DateTime" />
+		<many-to-one name="Document" column="DocumentID" class="B4F.TotalGiro.Reports.Documents.FinancialReportDocument, B4F.TotalGiro.Reports" 
+					 cascade="none"/>
+		<many-to-one name="ModelPortfolio" column="SelectedModelID" class="B4F.TotalGiro.Instruments.ModelBase, B4F.TotalGiro.Instruments" cascade="none" />		
+     	<property name="ErrorMessage" column="ErrorMessage" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none" />		
+		<many-to-one name="ContactsNAW" column="NawID" class="B4F.TotalGiro.CRM.ContactsNAW, B4F.TotalGiro.CRM" cascade="none"/>
+		<many-to-one name="SecondContactsNAW" column="SecondNawID" class="B4F.TotalGiro.CRM.ContactsNAW, B4F.TotalGiro.CRM" cascade="none"/>
+		<joined-subclass name="B4F.TotalGiro.Reports.Financial.ReportEOY, B4F.TotalGiro.Reports" table="ReportEOY"
+					 proxy="B4F.TotalGiro.Reports.Financial.IReportEOY, B4F.TotalGiro.Interfaces">
+			<key column="ReportID"/>
+		</joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.Reports.Financial.ReportQuarter, B4F.TotalGiro.Reports" table="ReportQuarter"
+					 proxy="B4F.TotalGiro.Reports.Financial.IReportQuarter, B4F.TotalGiro.Interfaces">
+			<key column="ReportID"/>
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

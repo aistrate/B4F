@@ -1,0 +1,899 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Communicator</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodian">
+            <summary>
+            Gets the orders that have been written to the FS export file with a specific id.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodian.ToString">
+            <summary>
+            Gets the orders that have been written to the FS export file with a specific id.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodian.Key">
+            <summary>
+            Gets the orders that have been written to the FS export file with a specific id.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodian.Name">
+            <summary>
+            Gets the orders that have been written to the FS export file with a specific id.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.TBM.MissingHistoricalPrice">
+            <summary>
+            Class to hold a list of missing prices in the historical positions of TotalGiro
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportedOrderList.#ctor(B4F.TotalGiro.Communicator.FSInterface.FSExportFile,System.Collections.IList)">
+            <summary>
+            Constructor, holds a list of orders and binds them to an export file.
+            based on an IList.
+            </summary>
+            <param name="parent">Export file.</param>
+            <param name="orders">List of orders that have been written to the export file.</param>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport">
+            <summary>
+            Class representing a cash transaction import row in a Bo Import file.
+            This is only used during data migration.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport.Key">
+            <summary>
+            Unique identifier for this record
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport.TransactionDate">
+            <summary>
+            Gets/sets transaction date
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport.Ledger">
+            <summary>
+            Gets/sets the ledger code
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport.BoAccount">
+            <summary>
+            Gets/sets the BackOffice account number
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport.BoLedgerGrp">
+            <summary>
+            Gets/sets the BackOffice ledger group code
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport.BankAcctID">
+            <summary>
+            Gets/sets the bankaccount id
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport.BoSymbol">
+            <summary>
+            Gets/sets the symbol used by BackOffice for this instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.Cleopatra.BoCashTransactionImport.Currency">
+            <summary>
+            Gets/sets the currency for this transaction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Currencies.XeNetImport">
+            <summary>
+            Class that implements the currency exchange rate input through e-mail
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Currencies.XeNetImport.#ctor(System.IO.FileInfo)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="FileToImport">File (saved email) to parse for currency exchange rates</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Currencies.XeNetImport.ImportFile(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Loads the currency exchange rates from the file into the database
+            </summary>
+            <param name="theSession">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>A list of all known (stored) currencies</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Currencies.XeNetImport.FileToImport">
+            <summary>
+            Gets/sets the file (complete path) with exchange rates.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction">
+            <summary>
+            Class to hold imported Security transactions from BackOffice
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.CreateNTM">
+            <summary>
+            Creates the NTM object, derived from the imported security transaction
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.Equals(System.Object)">
+            <summary>
+            Comparison operator using the unique key of the object
+            </summary>
+            <param name="obj">object to compare to</param>
+            <returns>true if the keys match, false otherwise</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.GetHashCode">
+            <summary>
+            Get the hash code for the key of the object
+            </summary>
+            <returns>Hashcode of the key of the object</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.Key">
+            <summary>
+            Key of the transaction, this is an auto generated key, readonly
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.Account">
+            <summary>
+            Account on the transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.Instrument">
+            <summary>
+            Size of the instrument on the transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.ValueSize">
+            <summary>
+            Size of the instrument on the transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.TxDate">
+            <summary>
+            Date of the transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.TxSide">
+            <summary>
+            The side of the transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.Price">
+            <summary>
+            Price of the transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.ExRate">
+            <summary>
+            Get/Set the exrate of the transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction.Transaction">
+            <summary>
+            Reference to the TotalGiro transaction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.ExportTransactions">
+            <summary>
+            Class that implements methods to export transactions to the BackOffice system.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.ExportTransactions.#ctor(System.Collections.IList,System.String,System.Diagnostics.TraceSwitch,System.DateTime)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="ListOfTxtoExport">List of transactions to export to BackOffice</param>
+            <param name="SavePath">Path of output folder</param>
+            <param name="ExportTrace">Trace on/off</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.ExportTransactions.CreateExport">
+            <summary>
+            Creates an export file containing the cuurent set of transactions
+            </summary>
+            <returns>true if it succeeded, else false</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportTransactions.DbConnect">
+            <summary>
+            Gets/sets ODBC connection to export file
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportTransactions.SavePath">
+            <summary>
+            Gets/sets the path where the file should be saved
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportTransactions.ListOfTxtoExport">
+            <summary>
+            Gets/sets the list of transaction to export
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportTransactions.ExportedFiles">
+            <summary>
+            Gets/sets the list of exported files
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.ExportPrices">
+            <summary>
+            Class that implements methods to export transactions to the BackOffice system.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.ExportPrices.#ctor(System.Data.DataSet,System.Collections.IList,System.DateTime,System.String,System.Diagnostics.TraceSwitch)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="pricestoexport">DataSet of prices to export to BackOffice</param>
+            <param name="SavePath">Path of output folder</param>
+            <param name="ExportTrace">Trace on/off</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.ExportPrices.CreateExport(System.Random)">
+            <summary>
+            Creates an export file containing the current set of prices
+            </summary>
+            <returns>true if it succeeded, else false</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportPrices.DbConnect">
+            <summary>
+            Gets/sets ODBC connection to export file
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportPrices.SavePath">
+            <summary>
+            Gets/sets the path where the file should be saved
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportPrices.PriceDate">
+            <summary>
+            Gets/sets the date for the price export.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportPrices.PricesToExport">
+            <summary>
+            Gets/sets the list of instrument prices to export
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportPrices.ExRatesToExport">
+            <summary>
+            Gets/sets the list of exchange rates to export
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.ExportPrices.ExportedFiles">
+            <summary>
+            Gets/sets the list of exported files
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Currencies.ECBRates">
+            <summary>
+            Class that is responsible for reading Currency rates from European Central Bank.
+            Periodically an XML formatted stream can be requested from the ECB site containing the currency exchange rates.
+            This XML stream is parsed and the exchange rates are being stored in the database.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Currencies.ECBRates.LoadExRates(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Loads the exchange rates that have not been read into the database yet.
+            </summary>
+            <param name="DataSession">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>true if successful else false</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.BoLedgerMapper">
+            <summary>
+            This class is used to instantiate BoLedgerMapper objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoLedgerMapper.GetBoLedger(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            This method retrieves an BoLedger instance through it's unique key.
+            </summary>
+            <param name="DataSession">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="BoLedgerID">Unique ID of the BoLedger object.</param>
+            <returns>A BoLedger object or null if none is found.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoLedgerMapper.GetBoLedgers(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Gets all BoLedger objects
+            </summary>
+            <param name="DataSession">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>A list of BoLedger objects</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.Enabled">
+            <summary>
+            Switches on/off the file to be imported.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.ClassName">
+            <summary>
+            The name of the class to be used for importing , if the file is to be imported by standard
+            text file import.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.SourceDirectory">
+            <summary>
+            The name of the Directory where the file is to be found.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.SourceDir">
+            <summary>
+            The Directory where the file is to be found.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.BackupDirectory">
+            <summary>
+            In the case of "BackupAfterImport" set to YES, this names the directory to backup the file to after import.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.BackupAfterImport">
+            <summary>
+            Should the original data file be moved to a backup directory. This would allow the fiel to be safely moved , 
+            and not accidently re-imported.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.ImportTable">
+            <summary>
+            To which table should the new data be appended to , after import.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.TxtExtension">
+            <summary>
+            Does the file to import already use a .TXT extension? If so, any deletion of *.TXT fiels would be dangerous.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.UseNameForImport">
+            <summary>
+            Does the file require a specific name for import (see also :- NameToUseForImport).
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.NameToUseForImport">
+            <summary>
+            In the case of use of Schema.Ini files, known import names must be used. ie., FNDSTT.802 must 
+            be renamed to FNDSTT.TXT for import.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.DataSetFieldNames">
+            <summary>
+            List of filed names for generic viewing of imported data.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.MappingSpName">
+            <summary>
+            After import the imported data must be mapped to current TotalGiro Entities. This property
+            hold the Stored Procedure to map this data.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.ExtractDatefromFile">
+            <summary>
+            Should the import routine extract the current data date from the File Name?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.TextFiles.TextFileToImport.ImportSpName">
+            <summary>
+            When importing data using the direct to SQL method , the name of the Stored Procedure to provide th
+            import must be given.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.TBM.TBMMapper.GetIssueDetailsByIsin(B4F.TotalGiro.Dal.IDalSession,System.String)">
+            <summary>
+            Gets the details of a TBM issue by ISIN code.
+            </summary>
+            <param name="DataSession">Data session object</param>
+            <param name="IssueId">ISIN code</param>
+            <returns>A list of issue details</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.TBM.TBMMapper.GetIssueDetails(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Gets the details of a TBM issue by issueid.
+            </summary>
+            <param name="DataSession">Data session object</param>
+            <param name="IssueId">Issue Id (TBM Key value for an instrument)</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.TBM.TBMMapper.GetIssuesDetailsList(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Gets a list of TBMIssueDetails objects.
+            </summary>
+            <param name="DataSession">Data session object</param>
+            <returns>A list of type <seealso cref="T:B4F.TotalGiro.Communicator.TBM.TBMIssueDetails">TBMIssueDetails</seealso>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.TBM.TBMMapper.GetMissingHistoricalPriceList(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Gets a list of MissingHistoricalPrice objects.
+            </summary>
+            <param name="DataSession">Data session object</param>
+            <returns>A list of type <seealso cref="T:B4F.TotalGiro.Communicator.TBM.MissingHistoricalPrice">MissingHistoricalPrice</seealso>.</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction">
+            <summary>
+            Class to hold imported cash transactions from BackOffice
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.CreateCashTransaction">
+            <summary>
+            Creates the cash transaction object, derived from the imported transaction data
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.Equals(System.Object)">
+            <summary>
+            Comparison operator using the unique key of the object
+            </summary>
+            <param name="obj">object to compare to</param>
+            <returns>true if the keys match, false otherwise</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.GetHashCode">
+            <summary>
+            Get the hash code for the key of the object
+            </summary>
+            <returns>Hashcode of the key of the object</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.Key">
+            <summary>
+            Key of the transaction, this is an auto generated key, readonly
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.Account">
+            <summary>
+            Account number the transaction belongs to
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.ValueSize">
+            <summary>
+            The value of the transactions
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.TransactionDate">
+            <summary>
+            Date of the transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.Ledger">
+            <summary>
+            Ledger code of BackOffice
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.Imported">
+            <summary>
+            Imported flag indicating that this is an imported transaction, meaning that this BackOffice transaction has not been converted to a cash transaction in the database.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction.ImportedTransaction">
+            <summary>
+            The imported transaction itself
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.PearelLeven.PLMapper">
+            <summary>
+            Helper class to expose functions
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.PearelLeven.PLMapper.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.PearelLeven.PLMapper.Export(System.DateTime)">
+            <summary>
+            Creates an XML file containing the current last price of the
+            funds Paerel Leven is interested in. 
+            </summary>
+            <returns>XML string containing prices</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.PearelLeven.PLMapper.FundPriceXML(B4F.TotalGiro.Dal.NHSession,System.String,System.String,System.DateTime)">
+            <summary>
+            Latest fund price information in XML form
+            </summary>
+            <param name="session">NHibernate session</param>
+            <param name="transactionid">unique number in this export</param>
+            <param name="fundnr">ISIN code for fund</param>
+            <returns>XML string containing price information</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.BoCashPosition">
+            <summary>
+            Class to hold imported cash positions from BackOffice
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashPosition.Key">
+            <summary>
+            Key of the position, this is an auto generated key, readonly
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashPosition.Account">
+            <summary>
+            Account number that holds the position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashPosition.ValueSize">
+            <summary>
+            Value of the instrument (cash) in position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoCashPosition.BalanceDate">
+            <summary>
+            Date of the position
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper">
+            <summary>
+            Class that implements different methods to access Fund Settle export file functionality.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.GetExportFile(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Gets an FS export file by id.
+            </summary>
+            <param name="DataSession">Data session object</param>
+            <param name="FSExportFileid">File Id (Key)</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.GetExportFiles(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Gets a list of all FS export files.
+            </summary>
+            <param name="DataSession">Data session object</param>
+            <returns>A list of type <seealso cref="T:B4F.TotalGiro.Communicator.FSInterface.FSExportFile">FSExportFile</seealso>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Gets the orders that have been written to the FS export file with a specific id.
+            </summary>
+            <param name="DataSession">Data session object</param>
+            <param name="fileId">File Id (Key)</param>
+            <returns>A list of type <seealso cref="T:B4F.TotalGiro.Orders.Order">Order</seealso></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.Delete(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Deletes an FS export file, the object as well as the file on disk.
+            </summary>
+            <param name="DataSession">Data session object</param>
+            <param name="fileId">File Id (Key)</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.Insert(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Communicator.FSInterface.FSExportFile)">
+            <summary>
+            Makes newly created FSExportFile persistent.
+            </summary>
+            <param name="DataSession">data session object</param>
+            <param name="obj">newly created object</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.Insert(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            Makes newly created list of FSExportFile persistent.
+            </summary>
+            <param name="DataSession">data session object</param>
+            <param name="obj">list of newly created objects</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Communicator.FSInterface.FSExportFile)">
+            <summary>
+            Saves the data of an existing FSExportFile.
+            </summary>
+            <param name="DataSession">data session object</param>
+            <param name="obj">existing object</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.Update(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            Saves the data of an existing list of FSExportFile objects.
+            </summary>
+            <param name="DataSession">data session object</param>
+            <param name="obj">list of existing FSExportFile objects</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.Delete(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Communicator.FSInterface.FSExportFile)">
+            <summary>
+            Deletes an existing FSExportFile.
+            </summary>
+            <param name="DataSession">data session object</param>
+            <param name="obj">existing object</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.FSInterface.FSExportFileMapper.Delete(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            Deletes a list of FSExportFile objects.
+            </summary>
+            <param name="DataSession">data session object</param>
+            <param name="obj">list of existing FSExportFile objects</param>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.ExportTxCollection">
+            <summary>
+            Class to hold a collection of ExportTxFile objects
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransactionMapper">
+            <summary>
+            This class is used to instantiate BoSecurityTransaction objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransactionMapper.GetBoSecurityTransaction(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Gets a BoSecurityTransaction object using the unique key
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="Key">Key of the security transaction object</param>
+            <returns>the requested GetBoSecurityTransaction object or null if it doesn't exist.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransactionMapper.GetUnImportedTransactions(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Gets all BoSecurityTransaction that are not (yet) imported to actual NTM's
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>A list of GetBoSecurityTransaction objects that have not been imported.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransactionMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Communicator.Cleopatra.BoSecurityTransaction)">
+            <summary>
+            Update method to persist the changes to the object to the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">BoSecurityTransaction to save changes for</param>
+            <returns>true if it succeeded, else false</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.FSInterface.FSExportFile">
+            <summary>
+            Class to hold Fund Settle export file information such as location, Fund Settle number, creation date of the file, etc.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.Key">
+            <summary>
+            Key of the file, this is an auto generated key, readonly
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.FilePath">
+            <summary>
+            The full path of the file, without name and extention.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.FileName">
+            <summary>
+            The name of the file, without extention.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.FileExt">
+            <summary>
+             The extention of the file.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.FullName">
+            <summary>
+            The full path of the file including the name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.FSNumber">
+            <summary>
+            The number of the order batch as it is known to Fund Settle
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.CreationDate">
+            <summary>
+            Date and time of creation of the file.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.SentDate">
+            <summary>
+            Date and time of the actual sending of the file to Fund Settle.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.Seperator">
+            <summary>
+            The seperator that is used by Fund Settle during the parsing of the export file.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.FSInterface.FSExportFile.Orders">
+            <summary>
+            Orders is a property to allow NHibernate to access for DataStore purposes only!
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.TextFiles.TextFileCSV">
+            <summary>
+            Class that decribes a comma seperated text file. It is an implementation of the TextFileToImport abstract class.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.BoCashPositionMapper">
+            <summary>
+            This class is used to instantiate BoCashPositionMapper objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoCashPositionMapper.GetBoCashPosition(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Gets a BoCashPosition object using the unique key
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="Key">Key of the position object</param>
+            <returns>the requested BoCashPosition object or null if it doesn't exist.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.TBM.TBMRequest.updateQuoteHistory(System.String)">
+            <summary>
+            Updates the quote history for the instrument with the given ISIN. This call takes
+            into account the last known price for this instrument. Only newer prices will be
+            retrieved from TBM.
+            </summary>
+            <param name="sISIN">ISIN code of the instrument</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.TBM.TBMRequest.CheckMissingHistoricalPrices">
+            <summary>
+            Checks for missing prices in the history of prices
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodianMapper">
+            <summary>
+            This class is used to instantiate the ExtCustodian objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodianMapper.GetExtCustodian(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Gets the ExtCustodian
+            </summary>
+            <param name="session">Data session object</param>
+            <param name="key">The unique identifier of the extCustodian</param>
+            <returns>A list of type <seealso cref="T:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodian">ExtCustodian</seealso></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodianMapper.GetExtCustodians(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Gets the ExtCustodians
+            </summary>
+            <param name="session">Data session object</param>
+            <returns>A list of type <seealso cref="T:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodian">ExtCustodian</seealso></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodianMapper.GetExtCustodianPosition(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodian,B4F.TotalGiro.Instruments.IInstrument,System.DateTime)">
+            <summary>
+            Gets the Position for the ExtCustodian and instrument for the specified date
+            </summary>
+            <param name="session">Data session object</param>
+            <param name="custodian">The specified ExtCustodians</param>
+            <param name="instrument">The specified Instrument</param>
+            <param name="balanceDate">The specified date</param>
+            <returns>An ExtCustodian Position</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodianMapper.GetExtCustodianPositions(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodian,System.DateTime)">
+            <summary>
+            Gets the Positions for the ExtCustodian for the specified date
+            </summary>
+            <param name="session">Data session object</param>
+            <param name="custodian">The specified ExtCustodians</param>
+            <param name="balanceDate">The specified date</param>
+            <returns>A list ExtCustodian Positions</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.ExtCustodians.ExtCustodianMapper.InsertOrUpdate(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Communicator.ExtCustodians.Positions.ExtPosition)">
+            <summary>
+            Creates/Updates a new object in the database
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">Object of type ExtPosition</param>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.ExportedTxFileMapper">
+            <summary>
+            This class is used to instantiate ExportedTxFile objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.ExportedTxFileMapper.Update(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            Update method to persist the changes to a list of ExportedTxFile objects to the database.
+            </summary>
+            <param name="DataSession">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="ExportFiles">A list of ExportedTxFile objects to save changes for</param>
+            <returns>true if it succeeded, else false</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.TextFiles.TextFileSQLImport">
+            <summary>
+            Used to import Text files directly into the Server using SQL Linked Server methods. This
+            has the advantage of being publicly modified.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.TextFiles.TextFileSQLImport.ImportAllFiles">
+            <summary>
+            Standard Import.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.TextFiles.TextFileSQLImport.ExtractDate(System.String,System.DateTime@)">
+            <summary>
+            Used to extract the Date from the Imported text file. Useful in situations like the BO Positions
+            where the date of the data is not included in the data.
+            </summary>
+            <param name="FileName"></param>
+            <param name="FileDate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Currencies.exRateDate">
+            <summary>
+            Structure to hold exchange rate/ date combination.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Currencies.exRateDate.#ctor(System.DateTime,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="RateDate">Date of the currency exchange rate</param>
+            <param name="RateCurrency">Currency</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Currencies.exRateDate.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Currencies.exRateDate.Equals(System.Object)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="obj">exRateDate object to compare to</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransactionMapper">
+            <summary>
+            This class is used to instantiate BoCashTransaction objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransactionMapper.GetBoCashTransaction(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Gets a BoCashTransaction object using the unique key
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="Key">Key of the position object</param>
+            <returns>the requested GetBoCashTransaction object or null if it doesn't exist.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransactionMapper.GetUnImportedTransactions(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Gets all BoCashTransaction that are not (yet) imported to actual cash transactions
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>A list of GetBoCashTransaction objects that have not been imported.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Communicator.Cleopatra.BoCashTransactionMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Communicator.Cleopatra.BoCashTransaction)">
+            <summary>
+            Update method to persist the changes to the object to the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">BoCashTransaction to save changes for</param>
+            <returns>true if it succeeded, else false</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.LedgerGroups">
+            <summary>
+            Known ledger codes in BackOffice import files
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Communicator.Cleopatra.LedgerGroups.Unknown">
+            <summary>
+            BackOffice code, Unknown ledger group
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Communicator.Cleopatra.LedgerGroups.CurrentAccount">
+            <summary>
+            BackOffice code, Current account ledger group
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Communicator.Cleopatra.BoLedger">
+            <summary>
+            Ledger class to hold information about what the origin of a BackOffice transaction is.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoLedger.Key">
+            <summary>
+            Unique identifier for this object
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoLedger.Ledger">
+            <summary>
+            Ledger code name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoLedger.ParentLedger">
+            <summary>
+            The ledger group this ledger code belongs to
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoLedger.Description">
+            <summary>
+            Description of this ledger code
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Communicator.Cleopatra.BoLedger.Imported">
+            <summary>
+            Has the ledger code been imported to the database
+            </summary>
+        </member>
+    </members>
+</doc>

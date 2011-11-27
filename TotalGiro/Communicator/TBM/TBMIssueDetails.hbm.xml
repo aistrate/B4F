@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Communicator.TBM.TBMIssueDetails, B4F.TotalGiro.Communicator" table="TBMIssueDetails" lazy="true">
+    <id name="IssueId" column="issueid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="ISIN" column="ISINCode" />
+    <property name="ExchangeCode" column="exchangecode" />
+  </class>
+</hibernate-mapping>

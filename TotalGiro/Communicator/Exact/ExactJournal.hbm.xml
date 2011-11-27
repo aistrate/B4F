@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.Exact.ExactJournal, B4F.TotalGiro.Communicator"
+		   table="ExactJournals" 
+		   proxy="B4F.TotalGiro.Communicator.Exact.IExactJournal, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="LedgerType" column="LedgerTypeID" class="B4F.TotalGiro.Communicator.Exact.LedgerType, B4F.TotalGiro.Communicator"
+			         cascade="all" />
+		<property name="JournalNumber" column="JournalNumber" />
+	</class>
+</hibernate-mapping>

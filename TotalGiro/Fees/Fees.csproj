@@ -1,0 +1,176 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2114094E-08F6-4074-8AA0-E19D4FFC7924}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.Fees</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.Fees</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Fees.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/B4F.TotalGiro.Fees/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\B4F.TotalGiro.Fees.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\NHibernate2_1_2\Framework20\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommCalculations\CommCalc.cs" />
+    <Compile Include="CommCalculations\CommCalcFlatSizeBased.cs" />
+    <Compile Include="CommCalculations\CommCalcLine.cs" />
+    <Compile Include="CommCalculations\CommCalcLineAmountBased.cs" />
+    <Compile Include="CommCalculations\CommCalcLineCollection.cs" />
+    <Compile Include="CommCalculations\CommCalcLineSizeBased.cs" />
+    <Compile Include="CommCalculations\CommCalcMapper.cs" />
+    <Compile Include="CommCalculations\CommCalcSlab.cs" />
+    <Compile Include="CommCalculations\CommCalcFlat.cs" />
+    <Compile Include="CommCalculations\CommCalcSimple.cs" />
+    <Compile Include="CommCalculations\ICommCalcLineCollection.cs" />
+    <Compile Include="CommClient.cs" />
+    <Compile Include="Common\RuleComparer.cs" />
+    <Compile Include="FeeCalculations\FeeCalc.cs" />
+    <Compile Include="FeeCalculations\FeeCalcExcludedInstrumentInfoDetailCollection.cs" />
+    <Compile Include="FeeCalculations\FeeCalcExcludedInstrumentInfo.cs" />
+    <Compile Include="FeeCalculations\FeeCalcExcludedInstrumentInfoDetail.cs" />
+    <Compile Include="FeeCalculations\FeeCalcMapper.cs" />
+    <Compile Include="FeeCalculations\FeeCalcVersionFlat.cs" />
+    <Compile Include="FeeCalculations\FeeCalcLine.cs" />
+    <Compile Include="FeeCalculations\FeeCalcLineCollection.cs" />
+    <Compile Include="FeeCalculations\FeeCalcVersionCollection.cs" />
+    <Compile Include="FeeCalculations\FeeCalcVersionSimple.cs" />
+    <Compile Include="FeeCalculations\FeeCalcVersion.cs" />
+    <Compile Include="FeeFactory.cs" />
+    <Compile Include="FeeRules\FeeRule.cs" />
+    <Compile Include="FeeRules\FeeRuleFinder.cs" />
+    <Compile Include="FeeRules\FeeRuleMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CommRules\CommRuleMapper.cs" />
+    <Compile Include="CommRules\CommRule.cs" />
+    <Compile Include="CommRules\CommRuleFinder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CommCalculations\CommCalc.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CommCalculations\CommCalcLine.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CommRules\CommRule.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CommCalculations\CommCalc.cd" />
+    <None Include="FeeCalculations\FeeCalculations.cd" />
+    <None Include="Fees.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{B8880639-F591-41D0-A811-D832A36A8064}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Instrument\Instruments.csproj">
+      <Project>{B6D55091-F990-42AB-A294-72E6560ED5DD}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StaticData\StaticData.csproj">
+      <Project>{ED2055BB-79F9-464C-B937-232D29FD4CB1}</Project>
+      <Name>StaticData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stichting\Stichting.csproj">
+      <Project>{05EA6D28-853D-455E-A323-0AB5F3FC3507}</Project>
+      <Name>Stichting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FeeCalculations\FeeCalc.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FeeCalculations\FeeCalcVersion.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FeeCalculations\FeeCalcExcludedInstrumentInfo.hbm.xml" />
+    <EmbeddedResource Include="FeeCalculations\FeeCalcLine.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FeeCalculations\FeeCalcExcludedInstrumentInfoDetail.hbm.xml" />
+    <EmbeddedResource Include="FeeRules\FeeRule.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

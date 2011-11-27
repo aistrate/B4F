@@ -1,0 +1,76 @@
+<b4f:MultipleSelectionGridView runat="server"
+    Width="770px"
+    GridLines="None"
+    BorderStyle="Solid"
+    BorderWidth="1px"
+    BorderColor="Black"
+    Font-Name="Verdana" 
+    Font-Size="11px"
+    CellSpacing="0"
+    CellPadding="0"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row" Height="17px" BackColor="#AAB9C2" Font-Bold="True" />
+    <RowStyle CssClass="gridview-row multiline-multigv" />
+    <AlternatingRowStyle BackColor="#EFF2F4" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <PagerSettings Mode="NumericFirstLast" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</b4f:MultipleSelectionGridView>
+
+<b4f:MultipleSelectionGridView runat="server"
+    SkinID="custom-width"
+    GridLines="None"
+    BorderStyle="Solid"
+    BorderWidth="1px"
+    BorderColor="Black"
+    Font-Name="Verdana" 
+    Font-Size="11px"
+    CellSpacing="0"
+    CellPadding="0"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row" Height="17px" BackColor="#AAB9C2" Font-Bold="True" />
+    <RowStyle CssClass="gridview-row multiline-multigv" />
+    <AlternatingRowStyle BackColor="#EFF2F4" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <PagerSettings Mode="NumericFirstLast" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0" border="0" width="700px">
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</b4f:MultipleSelectionGridView>
+
+<b4f:MultipleSelectionGridView runat="server" 
+    SkinID="no-stripes"
+    GridLines="None"
+    BorderStyle="Solid"
+    BorderWidth="1px"
+    BorderColor="Black"
+    Font-Name="Verdana" 
+    Font-Size="11px"
+    CellSpacing="0"
+    CellPadding="0"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row" Height="17px" BackColor="#AAB9C2" Font-Bold="True" />
+    <RowStyle CssClass="gridview-row multiline-multigv" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <PagerSettings Mode="NumericFirstLast" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0" border="0" width="700px">
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</b4f:MultipleSelectionGridView>

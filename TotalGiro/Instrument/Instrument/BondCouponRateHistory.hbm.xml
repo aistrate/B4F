@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.BondCouponRateHistory, B4F.TotalGiro.Instruments" 
+		table="BondCouponRatesHistory" 
+		proxy="B4F.TotalGiro.Instruments.IBondCouponRateHistory, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="BondCouponRateHistoryID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="LastUpdated" column="LastUpdated"  />
+		<many-to-one name="Parent" column="InstrumentID" class="B4F.TotalGiro.Instruments.Bond, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="startDate" column="StartDate" type="Date" access="field" />
+		<property name="endDate" column="EndDate" type="Date" access="field"/>
+		<property name="CouponRate" column="CouponRate"  />
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false"  />
+		<property name="CreatedBy" column="CreatedBy" />
+		<property name="LastUpdatedBy" column="LastUpdatedBy" />
+	</class>
+</hibernate-mapping>

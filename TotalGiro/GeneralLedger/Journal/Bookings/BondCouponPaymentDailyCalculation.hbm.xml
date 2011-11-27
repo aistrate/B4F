@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPaymentDailyCalculation, B4F.TotalGiro.GeneralLedger"
+		   table="BondCouponDailyCalculations"
+		   proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBondCouponPaymentDailyCalculation, B4F.TotalGiro.Interfaces"
+			dynamic-update="true">
+		<id name="Key" column="BondCouponDailyCalculationID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="Parent" column="GeneralOperationsBookingID" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPayment, B4F.TotalGiro.GeneralLedger" cascade="all" not-null="true" />
+		<many-to-one name="Position" column="TGPositionID" class="B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPosition, B4F.TotalGiro.Accounts" cascade="none" />
+		<property name="calcDate" column="CalcDate" type="Date" not-null="true" access="field" />
+		<property name="settlementDate" column="SettlementDate" type="Date" not-null="true"  access="field"/>
+		<component name="PositionSize" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="PositionSize" />
+			<many-to-one name="Underlying" column="PositionSizeID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="CalculatedAccruedInterestUpToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="CalculatedAccruedInterestUpToDate" />
+			<many-to-one name="Underlying" column="CalculatedAccruedInterestUpToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="DailyInterest" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="DailyInterest" />
+			<many-to-one name="Underlying" column="DailyInterestID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<bag name="oldCalculations" access="field" inverse="true" cascade="all-delete-orphan" lazy="true" generic="true">
+			<key column="NewBondCouponDailyCalculationID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPaymentDailyCalculation, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Stichting.Login.Login, B4F.TotalGiro.Stichting" table="Logins" 
+		proxy="B4F.TotalGiro.Stichting.Login.ILogin, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="LoginID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<property name="UserName" column="UserName" />
+		<property name="IsActive" column="IsActive" />
+		<property name="creationDate" column="CreationDate" access="field" type="DateTime" insert="false" update="false" />
+		<joined-subclass name="B4F.TotalGiro.Stichting.Login.CustomerLogin, B4F.TotalGiro.Stichting" table="LoginsCustomer" 
+				   proxy="B4F.TotalGiro.Stichting.Login.ICustomerLogin, B4F.TotalGiro.Interfaces">
+			<key column="LoginID"/>
+      <many-to-one name="Contact" column="ContactID" class="B4F.TotalGiro.CRM.Contact, B4F.TotalGiro.CRM" />
+      <property name="PasswordSent" column="PasswordSent" />
+    </joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.Stichting.Login.RemisierEmployeeLogin, B4F.TotalGiro.Stichting" table="LoginsRemisierEmployee"
+		   proxy="B4F.TotalGiro.Stichting.Login.IRemisierEmployeeLogin, B4F.TotalGiro.Interfaces">
+			<key column="LoginID"/>
+			<many-to-one name="RemisierEmployee" column="RemisierEmployeeID" 
+                   class="B4F.TotalGiro.Stichting.Remisier.RemisierEmployee, B4F.TotalGiro.Stichting" />
+      <property name="PasswordSent" column="PasswordSent" />
+      <!--<property name="IsLocalAdministrator" column="IsLocalAdministrator" />-->
+		</joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.Stichting.Login.InternalEmployeeLogin, B4F.TotalGiro.Stichting" table="LoginsEmployee" 
+				   proxy="B4F.TotalGiro.Stichting.Login.IInternalEmployeeLogin, B4F.TotalGiro.Interfaces">
+			<key column="LoginID"/>
+			<many-to-one name="Employer" column="ManagementCompanyID" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" />
+			<component name="StornoLimit" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="StornoLimit" />
+				<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="StornoLimitID" 
+                     cascade="none"/>
+			</component>
+			<joined-subclass name="B4F.TotalGiro.Stichting.Login.StichtingEmployeeLogin, B4F.TotalGiro.Stichting" 
+                       table="LoginsStichtingEmployee" 
+                       proxy="B4F.TotalGiro.Stichting.Login.IStichtingEmployeeLogin, B4F.TotalGiro.Interfaces">
+				<key column="LoginID"/>
+				<joined-subclass name="B4F.TotalGiro.Stichting.Login.ComplianceEmployeeLogin, B4F.TotalGiro.Stichting" 
+                         table="LoginsComplianceEmployee" 
+                         proxy="B4F.TotalGiro.Stichting.Login.IComplianceEmployeeLogin, B4F.TotalGiro.Interfaces">
+					<key column="LoginID"/>
+				</joined-subclass>
+			</joined-subclass>
+			<joined-subclass name="B4F.TotalGiro.Stichting.Login.AssetManagerEmployeeLogin, B4F.TotalGiro.Stichting" 
+                       table="LoginsAssetManagerEmployee" 
+                       proxy="B4F.TotalGiro.Stichting.Login.IAssetManagerEmployeeLogin, B4F.TotalGiro.Interfaces">
+				<key column="LoginID"/>
+			</joined-subclass>			
+		</joined-subclass>
+
+	</class>
+</hibernate-mapping>

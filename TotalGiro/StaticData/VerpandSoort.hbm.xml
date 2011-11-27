@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.StaticData.VerpandSoort, B4F.TotalGiro.StaticData" 
+		   table="VerpandSoort"
+	   proxy="B4F.TotalGiro.StaticData.IVerpandSoort, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="VerpandSoortID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="Description" column="VerpandSoort" />
+		<many-to-one name="VerpandOwner" column="ManagementCompanyID" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" cascade="none"  />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,166 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{05EA6D28-853D-455E-A323-0AB5F3FC3507}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.Stichting</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.Stichting</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Stichting.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/B4F.TotalGiro.Stichting/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\B4F.TotalGiro.Stichting.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\NHibernate2_1_2\Framework20\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\LinqToNHibernate\LinqToNHibernate1_0\NHibernate.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountCategory\AccountCategory.cs" />
+    <Compile Include="AccountCategory\AccountCategoryCollection.cs" />
+    <Compile Include="AccountCategory\AccountCategoryMapper.cs" />
+    <Compile Include="AssetManager.cs" />
+    <Compile Include="AssetManagerInstrumentCollection.cs" />
+    <Compile Include="EffectenGiro.cs" />
+    <Compile Include="AssetManagerInstrument.cs" />
+    <Compile Include="Login\ExternalLogin.cs" />
+    <Compile Include="Login\NoLoginForCurrentUserException.cs" />
+    <Compile Include="Remisier\RemisierEmployeeMapper.cs" />
+    <Compile Include="TradeableInstrumentCollection.cs" />
+    <Compile Include="Login\AssetManagerEmployeeLogin.cs" />
+    <Compile Include="Login\ComplianceEmployeeLogin.cs" />
+    <Compile Include="Login\CustomerLogin.cs" />
+    <Compile Include="Login\Login.cs" />
+    <Compile Include="Login\InternalEmployeeLogin.cs" />
+    <Compile Include="Login\RemisierEmployeeLogin.cs" />
+    <Compile Include="Login\StichtingEmployeeLogin.cs" />
+    <Compile Include="Login\UserLogEntry.cs" />
+    <Compile Include="ManagementCompany.cs" />
+    <Compile Include="Login\LoginMapper.cs" />
+    <Compile Include="ManagementCompanyMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemisierCollection.cs" />
+    <Compile Include="AssetManagerCollection.cs" />
+    <Compile Include="Remisier\Remisier.cs" />
+    <Compile Include="Remisier\RemisierEmployee.cs" />
+    <Compile Include="Remisier\RemisierEmployeesCollection.cs" />
+    <Compile Include="Remisier\RemisierMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{920CD10C-E485-47AF-A47D-23DC299F762B}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StaticData\StaticData.csproj">
+      <Project>{ED2055BB-79F9-464C-B937-232D29FD4CB1}</Project>
+      <Name>StaticData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Stichting.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Login\Login.cd" />
+    <None Include="ManagementCompany.cd" />
+    <None Include="Stichting.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Login\Login.hbm.xml" />
+    <EmbeddedResource Include="ManagementCompany.hbm.xml" />
+    <EmbeddedResource Include="Remisier\Remisier.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AccountCategory\AccountCategory.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Remisier\RemisierEmployee.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Login\UserLogEntry.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AssetManagerInstrument.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

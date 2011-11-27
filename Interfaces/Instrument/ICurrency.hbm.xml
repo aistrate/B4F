@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.ICurrency, B4F.TotalGiro.Interfaces" table="tblEGInstruments">
+		<id name="Key" column="InstrumentID"  unsaved-value="0">
+			<generator class="NHibernate.Id.TableHiLoGenerator">
+				<param name="table">IDGenerator</param>
+				<param name="column">NextID</param>
+			</generator>
+		</id>
+	</class>
+</hibernate-mapping>

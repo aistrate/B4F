@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+
+	<query name="B4F.TotalGiro.ApplicationLayer.BackOffice.GetBondPositions" >
+		<![CDATA[
+        select P.Account.Key
+		from FundPosition P
+		where P.Size.Underlying.secCategoryID = :bondSecCategoryId
+		and P.Size.Quantity != 0
+		and (P.lastBondCouponCalcDate <= :upToDate or P.lastBondCouponCalcDate is null)
+		group by P.Account.Key
+    ]]>
+	</query>
+
+	<query name="B4F.TotalGiro.ApplicationLayer.BackOffice.GetActiveBondCouponPaymentsWithClosedPositions" >
+		<![CDATA[
+        from BondCouponPayment P
+		where P.Status = :statusActive
+		and P.Position.Size.Quantity = 0
+    ]]>
+	</query>
+
+	<query name="B4F.TotalGiro.ApplicationLayer.BackOffice.GetBondCouponPaymentDailyCalculationsForPosition" >
+		<![CDATA[
+		from BondCouponPaymentDailyCalculation C
+		where C.Position.Key = :positionId
+		and C.calcDate > :calcDate
+		and C.Parent.Status = :statusId
+		and C.Parent.StornoBooking is null
+	]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.ApplicationLayer.BackOffice.GetCoupons" >
+		<![CDATA[
+		from CouponHistory C
+        left join fetch C.Instrument I
+		where 1=1
+		and I.Isin like :isin
+		and I.Name like :instrumentName
+		and I.CurrencyNominal.Key = :currencyNominalId
+		and C.endAccrualDate >= :dateFrom
+		and C.startAccrualDate <= :dateTo
+		order by I.Name, C.endAccrualDate
+	]]>
+	</query>
+
+	<query name="B4F.TotalGiro.ApplicationLayer.BackOffice.GetCouponPaymentsByCouponHistoryID" >
+		<![CDATA[
+		from BondCouponPayment C
+		where C.StornoBooking is null 
+		and C.IsStorno = 0
+		and C.CouponHistory.Key = :couponId
+		order by C.Position.Key
+	]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.ApplicationLayer.BackOffice.GetCouponPaymentCalculations" >
+		<![CDATA[
+		from BondCouponPaymentDailyCalculation C
+		where C.Parent.CouponHistory.Key = :couponId
+		and C.Position.Key = :positionId
+		order by C.calcDate desc
+	]]>
+	</query>
+
+</hibernate-mapping>

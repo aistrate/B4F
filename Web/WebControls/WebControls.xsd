@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:vs="http://schemas.microsoft.com/Visual-Studio-Intellisense" xmlns="urn:http://schemas.bits4finance.com/TotalGiro" elementFormDefault="qualified" targetNamespace="urn:http://schemas.bits4finance.com/TotalGiro" vs:friendlyName="B4F Web Controls" vs:ishtmlschema="false" vs:iscasesensitive="false" vs:requireattributequotes="false" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation>MultipleSelectionGridView etc.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="MultipleSelectionGridView" type="MultipleSelectionGridViewDef" />
+	<xsd:element name="ArrowsLinkButton" type="ArrowsLinkButtonDef" />
+	<xsd:element name="ErrorLabel" type="ErrorLabelDef" />
+	<xsd:simpleType name="TableCaptionAlign">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NotSet" />
+			<xsd:enumeration value="Top" />
+			<xsd:enumeration value="Bottom" />
+			<xsd:enumeration value="Left" />
+			<xsd:enumeration value="Right" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="TableItemStyleDef">
+		<xsd:attribute name="HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="BorderColor" type="xsd:string" />
+		<xsd:attribute name="BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="CssClass" type="xsd:string" />
+		<xsd:attribute name="Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="Font-Name" type="xsd:string" />
+		<xsd:attribute name="Font-Names" type="xsd:string" />
+		<xsd:attribute name="Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="ForeColor" type="xsd:string" />
+		<xsd:attribute name="Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="Width" type="xsd:unsignedInt" />
+		<xsd:attribute vs:omtype="event" name="OnDisposed" />
+	</xsd:complexType>
+	<xsd:simpleType name="BorderStyle">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NotSet" />
+			<xsd:enumeration value="None" />
+			<xsd:enumeration value="Dotted" />
+			<xsd:enumeration value="Dashed" />
+			<xsd:enumeration value="Solid" />
+			<xsd:enumeration value="Double" />
+			<xsd:enumeration value="Groove" />
+			<xsd:enumeration value="Ridge" />
+			<xsd:enumeration value="Inset" />
+			<xsd:enumeration value="Outset" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="DataControlFieldCollectionDef">
+		<xsd:choice>
+			<xsd:element form="unqualified" name="DataControlField" type="DataControlFieldDef" />
+		</xsd:choice>
+		<xsd:attribute vs:omtype="event" name="OnFieldsChanged" />
+	</xsd:complexType>
+	<xsd:complexType name="ArrowsLinkButtonDef">
+		<xsd:choice>
+			<xsd:element name="ErrorLabel" type="ErrorLabelDef" />
+			<xsd:element name="ArrowsLinkButton" type="ArrowsLinkButtonDef" />
+			<xsd:element name="MultipleSelectionGridView" type="MultipleSelectionGridViewDef" />
+		</xsd:choice>
+		<xsd:attribute name="CommandName" type="xsd:string" />
+		<xsd:attribute name="CommandArgument" type="xsd:string" />
+		<xsd:attribute name="CausesValidation" type="xsd:boolean" />
+		<xsd:attribute name="OnClientClick" type="xsd:string" />
+		<xsd:attribute name="Text" type="xsd:string" />
+		<xsd:attribute name="PostBackUrl" type="xsd:string" />
+		<xsd:attribute name="ValidationGroup" type="xsd:string" />
+		<xsd:attribute name="AccessKey" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="BorderColor" type="xsd:string" />
+		<xsd:attribute name="BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="CssClass" type="xsd:string" />
+		<xsd:attribute name="Enabled" type="xsd:boolean" />
+		<xsd:attribute name="EnableTheming" type="xsd:boolean" />
+		<xsd:attribute name="Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="Font-Name" type="xsd:string" />
+		<xsd:attribute name="Font-Names" type="xsd:string" />
+		<xsd:attribute name="Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="ForeColor" type="xsd:string" />
+		<xsd:attribute name="Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="SkinID" type="xsd:string" />
+		<xsd:attribute name="TabIndex" type="xsd:short" />
+		<xsd:attribute name="ToolTip" type="xsd:string" />
+		<xsd:attribute name="Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="ID" type="xsd:string" />
+		<xsd:attribute name="EnableViewState" type="xsd:boolean" />
+		<xsd:attribute name="Visible" type="xsd:boolean" />
+		<xsd:attribute vs:omtype="event" name="OnClick" />
+		<xsd:attribute vs:omtype="event" name="OnCommand" />
+		<xsd:attribute vs:omtype="event" name="OnDisposed" />
+		<xsd:attribute vs:omtype="event" name="OnDataBinding" />
+		<xsd:attribute vs:omtype="event" name="OnInit" />
+		<xsd:attribute vs:omtype="event" name="OnLoad" />
+		<xsd:attribute vs:omtype="event" name="OnPreRender" />
+		<xsd:attribute vs:omtype="event" name="OnUnload" />
+		<xsd:attribute name="Runat">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="server" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="PagerSettingsDef">
+		<xsd:attribute name="FirstPageImageUrl" type="xsd:string" />
+		<xsd:attribute name="FirstPageText" type="xsd:string" />
+		<xsd:attribute name="LastPageImageUrl" type="xsd:string" />
+		<xsd:attribute name="LastPageText" type="xsd:string" />
+		<xsd:attribute name="Mode" type="PagerButtons" />
+		<xsd:attribute name="NextPageImageUrl" type="xsd:string" />
+		<xsd:attribute name="NextPageText" type="xsd:string" />
+		<xsd:attribute name="PageButtonCount" type="xsd:int" />
+		<xsd:attribute name="Position" type="PagerPosition" />
+		<xsd:attribute name="PreviousPageImageUrl" type="xsd:string" />
+		<xsd:attribute name="PreviousPageText" type="xsd:string" />
+		<xsd:attribute name="Visible" type="xsd:boolean" />
+		<xsd:attribute vs:omtype="event" name="OnPropertyChanged" />
+	</xsd:complexType>
+	<xsd:complexType name="DataControlFieldDef">
+		<xsd:choice>
+			<xsd:element form="unqualified" name="ControlStyle" type="StyleDef" />
+			<xsd:element form="unqualified" name="FooterStyle" type="TableItemStyleDef" />
+			<xsd:element form="unqualified" name="HeaderStyle" type="TableItemStyleDef" />
+			<xsd:element form="unqualified" name="ItemStyle" type="TableItemStyleDef" />
+		</xsd:choice>
+		<xsd:attribute name="AccessibleHeaderText" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="ControlStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="ControlStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="ControlStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="ControlStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="ControlStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="ControlStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="ControlStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="ControlStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="ControlStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="ControlStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="ControlStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="ControlStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="ControlStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="ControlStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="ControlStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="ControlStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="FooterStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="FooterStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="FooterStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="FooterStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="FooterStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="FooterStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="FooterStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="FooterStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="FooterStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="FooterStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="FooterStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="FooterStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="FooterStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="FooterStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="FooterText" type="xsd:string" />
+		<xsd:attribute name="HeaderImageUrl" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="HeaderStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="HeaderStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="HeaderStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="HeaderStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="HeaderStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="HeaderStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="HeaderStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="HeaderStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="HeaderStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="HeaderStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="HeaderStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="HeaderStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="HeaderStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="HeaderText" type="xsd:string" />
+		<xsd:attribute name="InsertVisible" type="xsd:boolean" />
+		<xsd:attribute name="ItemStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="ItemStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="ItemStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="ItemStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="ItemStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="ItemStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="ItemStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="ItemStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="ItemStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="ItemStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="ItemStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="ItemStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="ItemStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="ItemStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="ItemStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="ItemStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="ItemStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="ItemStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="ItemStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="ShowHeader" type="xsd:boolean" />
+		<xsd:attribute name="SortExpression" type="xsd:string" />
+		<xsd:attribute name="Visible" type="xsd:boolean" />
+	</xsd:complexType>
+	<xsd:complexType name="ITemplateDef" />
+	<xsd:complexType name="ErrorLabelDef">
+		<xsd:choice>
+			<xsd:element name="ErrorLabel" type="ErrorLabelDef" />
+			<xsd:element name="ArrowsLinkButton" type="ArrowsLinkButtonDef" />
+			<xsd:element name="MultipleSelectionGridView" type="MultipleSelectionGridViewDef" />
+		</xsd:choice>
+		<xsd:attribute name="Text" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="ForeColor" type="xsd:string" />
+		<xsd:attribute name="Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="AssociatedControlID" type="xsd:string" />
+		<xsd:attribute name="AccessKey" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="BorderColor" type="xsd:string" />
+		<xsd:attribute name="BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="CssClass" type="xsd:string" />
+		<xsd:attribute name="Enabled" type="xsd:boolean" />
+		<xsd:attribute name="EnableTheming" type="xsd:boolean" />
+		<xsd:attribute name="Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="Font-Name" type="xsd:string" />
+		<xsd:attribute name="Font-Names" type="xsd:string" />
+		<xsd:attribute name="Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="Font-Underline" type="xsd:boolean" />
+		<xsd:attribute name="Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="SkinID" type="xsd:string" />
+		<xsd:attribute name="TabIndex" type="xsd:short" />
+		<xsd:attribute name="ToolTip" type="xsd:string" />
+		<xsd:attribute name="ID" type="xsd:string" />
+		<xsd:attribute name="EnableViewState" type="xsd:boolean" />
+		<xsd:attribute name="Visible" type="xsd:boolean" />
+		<xsd:attribute vs:omtype="event" name="OnDisposed" />
+		<xsd:attribute vs:omtype="event" name="OnDataBinding" />
+		<xsd:attribute vs:omtype="event" name="OnInit" />
+		<xsd:attribute vs:omtype="event" name="OnLoad" />
+		<xsd:attribute vs:omtype="event" name="OnPreRender" />
+		<xsd:attribute vs:omtype="event" name="OnUnload" />
+		<xsd:attribute name="Runat">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="server" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:simpleType name="PagerButtons">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NextPrevious" />
+			<xsd:enumeration value="Numeric" />
+			<xsd:enumeration value="NextPreviousFirstLast" />
+			<xsd:enumeration value="NumericFirstLast" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType vs:noambientcontentmodel="true" name="MultipleSelectionGridViewDef">
+		<xsd:choice>
+			<xsd:element form="unqualified" name="AlternatingRowStyle" type="TableItemStyleDef" />
+			<xsd:element form="unqualified" name="Columns" type="DataControlFieldCollectionDef" />
+			<xsd:element form="unqualified" name="EditRowStyle" type="TableItemStyleDef" />
+			<xsd:element form="unqualified" name="EmptyDataRowStyle" type="TableItemStyleDef" />
+			<xsd:element form="unqualified" name="EmptyDataTemplate" type="ITemplateDef" />
+			<xsd:element form="unqualified" name="FooterStyle" type="TableItemStyleDef" />
+			<xsd:element form="unqualified" name="HeaderStyle" type="TableItemStyleDef" />
+			<xsd:element form="unqualified" name="PagerSettings" type="PagerSettingsDef" />
+			<xsd:element form="unqualified" name="PagerStyle" type="TableItemStyleDef" />
+			<xsd:element form="unqualified" name="PagerTemplate" type="ITemplateDef" />
+			<xsd:element form="unqualified" name="RowStyle" type="TableItemStyleDef" />
+			<xsd:element form="unqualified" name="SelectedRowStyle" type="TableItemStyleDef" />
+		</xsd:choice>
+		<xsd:attribute name="MultipleSelection" type="xsd:boolean" />
+		<xsd:attribute name="SelectAllChecked" type="xsd:boolean" />
+		<xsd:attribute name="SelectionBoxVisibleBy" type="xsd:string" />
+		<xsd:attribute name="SelectionBoxEnabledBy" type="xsd:string" />
+		<xsd:attribute name="AllowPaging" type="xsd:boolean" />
+		<xsd:attribute name="AllowSorting" type="xsd:boolean" />
+		<xsd:attribute name="AlternatingRowStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="AlternatingRowStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="AlternatingRowStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="AlternatingRowStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="AlternatingRowStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="AlternatingRowStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="AlternatingRowStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="AlternatingRowStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="AlternatingRowStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="AlternatingRowStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="AlternatingRowStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="AlternatingRowStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="AlternatingRowStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="AlternatingRowStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="AlternatingRowStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="AlternatingRowStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="AlternatingRowStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="AlternatingRowStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="AlternatingRowStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="AutoGenerateDeleteButton" type="xsd:boolean" />
+		<xsd:attribute name="AutoGenerateEditButton" type="xsd:boolean" />
+		<xsd:attribute name="AutoGenerateSelectButton" type="xsd:boolean" />
+		<xsd:attribute name="AutoGenerateColumns" type="xsd:boolean" />
+		<xsd:attribute name="BackImageUrl" type="xsd:string" />
+		<xsd:attribute name="Caption" type="xsd:string" />
+		<xsd:attribute name="CaptionAlign" type="TableCaptionAlign" />
+		<xsd:attribute name="CellPadding" type="xsd:int" />
+		<xsd:attribute name="CellSpacing" type="xsd:int" />
+		<xsd:attribute name="DataKeyNames" type="xsd:string" />
+		<xsd:attribute name="EditIndex" type="xsd:int" />
+		<xsd:attribute name="EditRowStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="EditRowStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="EditRowStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="EditRowStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="EditRowStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="EditRowStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="EditRowStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="EditRowStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="EditRowStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="EditRowStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="EditRowStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="EditRowStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="EditRowStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="EditRowStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="EditRowStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="EditRowStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="EditRowStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="EditRowStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="EditRowStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="EnableSortingAndPagingCallbacks" type="xsd:boolean" />
+		<xsd:attribute name="EmptyDataRowStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="EmptyDataRowStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="EmptyDataRowStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="EmptyDataRowStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="EmptyDataRowStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="EmptyDataRowStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="EmptyDataRowStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="EmptyDataRowStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="EmptyDataRowStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="EmptyDataRowStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="EmptyDataRowStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="EmptyDataRowStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="EmptyDataRowStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="EmptyDataRowStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="EmptyDataRowStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="EmptyDataRowStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="EmptyDataRowStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="EmptyDataRowStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="EmptyDataRowStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="EmptyDataText" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="FooterStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="FooterStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="FooterStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="FooterStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="FooterStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="FooterStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="FooterStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="FooterStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="FooterStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="FooterStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="FooterStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="FooterStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="FooterStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="FooterStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="GridLines" type="GridLines" />
+		<xsd:attribute name="HeaderStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="HeaderStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="HeaderStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="HeaderStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="HeaderStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="HeaderStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="HeaderStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="HeaderStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="HeaderStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="HeaderStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="HeaderStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="HeaderStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="HeaderStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="HeaderStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="HeaderStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="PageIndex" type="xsd:int" />
+		<xsd:attribute name="PagerSettings-FirstPageImageUrl" type="xsd:string" />
+		<xsd:attribute name="PagerSettings-FirstPageText" type="xsd:string" />
+		<xsd:attribute name="PagerSettings-LastPageImageUrl" type="xsd:string" />
+		<xsd:attribute name="PagerSettings-LastPageText" type="xsd:string" />
+		<xsd:attribute name="PagerSettings-Mode" type="PagerButtons" />
+		<xsd:attribute name="PagerSettings-NextPageImageUrl" type="xsd:string" />
+		<xsd:attribute name="PagerSettings-NextPageText" type="xsd:string" />
+		<xsd:attribute name="PagerSettings-PageButtonCount" type="xsd:int" />
+		<xsd:attribute name="PagerSettings-Position" type="PagerPosition" />
+		<xsd:attribute name="PagerSettings-PreviousPageImageUrl" type="xsd:string" />
+		<xsd:attribute name="PagerSettings-PreviousPageText" type="xsd:string" />
+		<xsd:attribute name="PagerSettings-Visible" type="xsd:boolean" />
+		<xsd:attribute name="PagerStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="PagerStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="PagerStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="PagerStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="PagerStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="PagerStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="PagerStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="PagerStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="PagerStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="PagerStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="PagerStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="PagerStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="PagerStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="PagerStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="PagerStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="PagerStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="PagerStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="PagerStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="PagerStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="PageSize" type="xsd:int" />
+		<xsd:attribute name="RowHeaderColumn" type="xsd:string" />
+		<xsd:attribute name="RowStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="RowStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="RowStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="RowStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="RowStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="RowStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="RowStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="RowStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="RowStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="RowStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="RowStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="RowStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="RowStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="RowStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="RowStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="RowStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="RowStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="RowStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="RowStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="SelectedIndex" type="xsd:int" />
+		<xsd:attribute name="SelectedRowStyle-HorizontalAlign" type="HorizontalAlign" />
+		<xsd:attribute name="SelectedRowStyle-VerticalAlign" type="VerticalAlign" />
+		<xsd:attribute name="SelectedRowStyle-Wrap" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="SelectedRowStyle-BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="SelectedRowStyle-BorderColor" type="xsd:string" />
+		<xsd:attribute name="SelectedRowStyle-BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="SelectedRowStyle-BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="SelectedRowStyle-CssClass" type="xsd:string" />
+		<xsd:attribute name="SelectedRowStyle-Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="SelectedRowStyle-Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="SelectedRowStyle-Font-Name" type="xsd:string" />
+		<xsd:attribute name="SelectedRowStyle-Font-Names" type="xsd:string" />
+		<xsd:attribute name="SelectedRowStyle-Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="SelectedRowStyle-Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="SelectedRowStyle-Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="SelectedRowStyle-Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="SelectedRowStyle-ForeColor" type="xsd:string" />
+		<xsd:attribute name="SelectedRowStyle-Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="SelectedRowStyle-Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="ShowFooter" type="xsd:boolean" />
+		<xsd:attribute name="ShowHeader" type="xsd:boolean" />
+		<xsd:attribute name="UseAccessibleHeader" type="xsd:boolean" />
+		<xsd:attribute name="DataMember" type="xsd:string" />
+		<xsd:attribute name="DataSourceID" type="xsd:string" />
+		<xsd:attribute name="AccessKey" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="BorderColor" type="xsd:string" />
+		<xsd:attribute name="BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="CssClass" type="xsd:string" />
+		<xsd:attribute name="Enabled" type="xsd:boolean" />
+		<xsd:attribute name="EnableTheming" type="xsd:boolean" />
+		<xsd:attribute name="Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="Font-Name" type="xsd:string" />
+		<xsd:attribute name="Font-Names" type="xsd:string" />
+		<xsd:attribute name="Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="ForeColor" type="xsd:string" />
+		<xsd:attribute name="Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="SkinID" type="xsd:string" />
+		<xsd:attribute name="TabIndex" type="xsd:short" />
+		<xsd:attribute name="ToolTip" type="xsd:string" />
+		<xsd:attribute name="Width" type="xsd:unsignedInt" />
+		<xsd:attribute name="ID" type="xsd:string" />
+		<xsd:attribute name="EnableViewState" type="xsd:boolean" />
+		<xsd:attribute name="Visible" type="xsd:boolean" />
+		<xsd:attribute vs:omtype="event" name="OnRowDeleted" />
+		<xsd:attribute vs:omtype="event" name="OnRowUpdated" />
+		<xsd:attribute vs:omtype="event" name="OnRowCancelingEdit" />
+		<xsd:attribute vs:omtype="event" name="OnRowDeleting" />
+		<xsd:attribute vs:omtype="event" name="OnRowEditing" />
+		<xsd:attribute vs:omtype="event" name="OnPageIndexChanged" />
+		<xsd:attribute vs:omtype="event" name="OnPageIndexChanging" />
+		<xsd:attribute vs:omtype="event" name="OnSelectedIndexChanged" />
+		<xsd:attribute vs:omtype="event" name="OnSelectedIndexChanging" />
+		<xsd:attribute vs:omtype="event" name="OnSorted" />
+		<xsd:attribute vs:omtype="event" name="OnSorting" />
+		<xsd:attribute vs:omtype="event" name="OnRowUpdating" />
+		<xsd:attribute vs:omtype="event" name="OnRowCommand" />
+		<xsd:attribute vs:omtype="event" name="OnRowCreated" />
+		<xsd:attribute vs:omtype="event" name="OnRowDataBound" />
+		<xsd:attribute vs:omtype="event" name="OnDataBound" />
+		<xsd:attribute vs:omtype="event" name="OnDisposed" />
+		<xsd:attribute vs:omtype="event" name="OnDataBinding" />
+		<xsd:attribute vs:omtype="event" name="OnInit" />
+		<xsd:attribute vs:omtype="event" name="OnLoad" />
+		<xsd:attribute vs:omtype="event" name="OnPreRender" />
+		<xsd:attribute vs:omtype="event" name="OnUnload" />
+		<xsd:attribute name="Runat">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="server" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:simpleType name="VerticalAlign">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NotSet" />
+			<xsd:enumeration value="Top" />
+			<xsd:enumeration value="Middle" />
+			<xsd:enumeration value="Bottom" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="HorizontalAlign">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NotSet" />
+			<xsd:enumeration value="Left" />
+			<xsd:enumeration value="Center" />
+			<xsd:enumeration value="Right" />
+			<xsd:enumeration value="Justify" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GridLines">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="None" />
+			<xsd:enumeration value="Horizontal" />
+			<xsd:enumeration value="Vertical" />
+			<xsd:enumeration value="Both" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PagerPosition">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Bottom" />
+			<xsd:enumeration value="Top" />
+			<xsd:enumeration value="TopAndBottom" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="StyleDef">
+		<xsd:attribute vs:builder="color" name="BackColor" type="xsd:string" />
+		<xsd:attribute vs:builder="color" name="BorderColor" type="xsd:string" />
+		<xsd:attribute name="BorderWidth" type="xsd:unsignedInt" />
+		<xsd:attribute name="BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="CssClass" type="xsd:string" />
+		<xsd:attribute name="Font-Bold" type="xsd:boolean" />
+		<xsd:attribute name="Font-Italic" type="xsd:boolean" />
+		<xsd:attribute name="Font-Name" type="xsd:string" />
+		<xsd:attribute name="Font-Names" type="xsd:string" />
+		<xsd:attribute name="Font-Overline" type="xsd:boolean" />
+		<xsd:attribute name="Font-Size" type="xsd:unsignedInt" />
+		<xsd:attribute name="Font-Strikeout" type="xsd:boolean" />
+		<xsd:attribute name="Font-Underline" type="xsd:boolean" />
+		<xsd:attribute vs:builder="color" name="ForeColor" type="xsd:string" />
+		<xsd:attribute name="Height" type="xsd:unsignedInt" />
+		<xsd:attribute name="Width" type="xsd:unsignedInt" />
+		<xsd:attribute vs:omtype="event" name="OnDisposed" />
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,2 @@
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="FirstPreviousPageBackButton.ascx.cs" Inherits="UC_FirstPreviousPageBackButton" %>
+<asp:Button ID="btnBack" CausesValidation="false" Enabled="true" runat="server" Text="Level Up" OnClick="btnBack_Click" Width="80px" />

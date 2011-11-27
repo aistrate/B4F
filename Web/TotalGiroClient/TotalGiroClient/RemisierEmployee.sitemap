@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode title="Home" url="Default.aspx">
+    
+    <siteMapNode title="Client Portfolios" url="Clients/ClientPortfolios.aspx" />
+    <siteMapNode title="Monitor Portefeuille" url="Planning/FinancialPlanner.aspx" />
+
+    <siteMapNode title="Wachtwoord wijzigen" url="Authenticate/ChangePassword.aspx" />
+  </siteMapNode>
+</siteMap>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>AdoNetDataSet</Name>
+  <ConnectionProperties>
+    <Extension>DATASET</Extension>
+    <ConnectString />
+    <IntegratedSecurity>true</IntegratedSecurity>
+  </ConnectionProperties>
+  <DataSourceID>20bfdf42-c66c-42a8-bd90-e1c9024a00f7</DataSourceID>
+</RptDataSource>

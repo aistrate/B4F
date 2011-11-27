@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.Maintenance.BookYearClosure, B4F.TotalGiro.GeneralLedger"
+		   dynamic-update="true"
+		   table="BookYearClosures"
+		   proxy ="B4F.TotalGiro.GeneralLedger.Journal.Maintenance.IBookYearClosure, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="BookYear" column="BookYearID" cascade="all" class="B4F.TotalGiro.GeneralLedger.Static.GLBookYear, B4F.TotalGiro.GeneralLedger" />
+		<property name="CreatedBy" column="CreatedBy" />
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false" />
+		<bag name="clientClosures" access="field" generic="true" lazy="true" cascade="all" inverse="true"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.Maintenance.IClientBookYearClosure, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.GeneralLedger.Journal.Maintenance.ClientBookYearClosureCollection, B4F.TotalGiro.GeneralLedger]], B4F.TotalGiro.Interfaces">
+			<key column="ID" foreign-key="BookYearClosureID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Maintenance.ClientBookYearClosure, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+	</class>
+</hibernate-mapping>

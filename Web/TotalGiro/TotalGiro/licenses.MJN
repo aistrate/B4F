@@ -1,0 +1,5 @@
+ComponentArt.Web.UI.MultiPage, ComponentArt.Web.UI, Version=3.0.1623.0, Culture=neutral, PublicKeyToken=9bc9f846553156bb
+ComponentArt.Web.UI.TabStrip, ComponentArt.Web.UI, Version=3.0.1623.0, Culture=neutral, PublicKeyToken=9bc9f846553156bb
+ComponentArt.Web.UI.Grid, ComponentArt.Web.UI, Version=3.0.1623.0, Culture=neutral, PublicKeyToken=9bc9f846553156bb
+Dundas.Charting.WebControl.Chart, DundasWebChart, Version=5.0.0.1692, Culture=neutral, PublicKeyToken=90d06b0c62d592d0
+ChartFX.WebForms.Chart, ChartFX.WebForms, Version=7.0.2138.21759, Culture=neutral, PublicKeyToken=a1878e2052c08dce

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.DerivativeMaster, B4F.TotalGiro.Instruments" table="DerivativesMaster" proxy="B4F.TotalGiro.Instruments.IDerivativeMaster, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="DerivativeMasterID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field"  />
+		<many-to-one name="Exchange" column="ExchangeID" class="B4F.TotalGiro.Instruments.Exchange, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="Name" column="Name" />
+		<property name="SecCategory" column="SecCategoryID" type="B4F.TotalGiro.Instruments.SecCategories, B4F.TotalGiro.Interfaces" />
+		<many-to-one name="Underlying" column="UnderlyingInstrumentID" class="B4F.TotalGiro.Instruments.TradeableInstrument, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="UnderlyingSecCategory" column="UnderlyingSecCategoryID" type="B4F.TotalGiro.Instruments.SecCategories, B4F.TotalGiro.Interfaces" />
+		<property name="ContractSize" column="ContractSize"  />
+		<property name="DecimalPlaces" column="DecimalPlaces" />
+    <property name="DerivativeSymbol" column="DerivativeSymbol" />
+		<bag name="series" access="field" cascade="none" lazy="true" generic="true" >
+			<key column="DerivativeMasterID" />
+			<one-to-many class="B4F.TotalGiro.Instruments.Derivative, B4F.TotalGiro.Instruments" />
+		</bag>
+		<many-to-one  name="CurrencyNominal" column="CurrencyNominalID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false"  />
+	</class>
+
+	<query name="B4F.TotalGiro.Instruments.Instrument.DerivativeMasters" >
+		<![CDATA[
+		from DerivativeMaster D
+		left join fetch D.Underlying I
+		where 1 = 1
+		and D.SecCategory in (select S.key from SecCategory S where S.SecCategoryType = :secCategoryType )
+		and I.Isin like :isin
+		and D.Name like :instrumentName
+		and D.SecCategory = :secCategoryId
+		and D.Exchange.Key = :exchangeId
+		and D.CurrencyNominal.Key = :currencyNominalId
+		order by D.Name
+	]]>
+	</query>
+
+</hibernate-mapping>

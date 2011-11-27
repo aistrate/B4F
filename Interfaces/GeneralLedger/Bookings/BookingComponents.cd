@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBookingComponent" Collapsed="true">
+    <Position X="10" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAEAAAAAAAQAAAAAQAAAQAAAAAAAIACAABAAAAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\IBookingComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBookingComponentParent" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAEAAACAAAQAAAAAAAAAQAAAAAAAIACAABACAAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\IBookingComponentParent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ICashDividend" Collapsed="true">
+    <Position X="6.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAgAAAAAAAAAAAAAAAAAEAAAAAEAAAAAAABAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\ICashDividend.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IGeneralOperationsBooking" Collapsed="true">
+    <Position X="4.5" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAQIAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\IGeneralOperationsBooking.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IManagementFee" Collapsed="true">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\IManagementFee.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IGeneralOperationsComponent" Collapsed="true">
+    <Position X="4" Y="5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\IGeneralOperationsComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ITransactionComponent" Collapsed="true">
+    <Position X="7.5" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\ITransactionComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBookingLineCollection" Collapsed="true">
+    <Position X="9.5" Y="4.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\IBookingLineCollection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponentType" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAACAAgAAAAAAAAAACABAAEgAAQAAEA=</HashCode>
+      <FileName>GeneralLedger\Bookings\IBookingComponent.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponentParentType" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\IBookingComponentParent.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBookingTypes" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAQAAAAAAAAA=</HashCode>
+      <FileName>GeneralLedger\Bookings\IGeneralOperationsBooking.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

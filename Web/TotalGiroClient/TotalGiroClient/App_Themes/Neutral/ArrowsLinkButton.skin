@@ -1,0 +1,8 @@
+<b4f:ArrowsLinkButton
+    CssClass="ArrowsLinkButton"
+    runat="server" />
+
+<b4f:ArrowsLinkButton
+    SkinId="padding"
+    CssClass="ArrowsLinkButton padding"
+    runat="server" />

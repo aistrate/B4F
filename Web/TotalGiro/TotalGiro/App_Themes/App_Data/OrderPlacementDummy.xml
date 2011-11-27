@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<orders>
+	<order	ISIN="NL0000442077"
+			name="Delta Lloyd Mix Fonds"
+			company="Delta Lloyd"
+			valuta="EUR"
+			size="11172.34"
+			amount="3019944.66"
+			ordernr="1234">
+	</order>
+	<order	ISIN="NL0000280246"
+			name="FBTO Euro Mixfonds (NL)"
+			company="FBTO"
+			valuta="EUR"
+			size="302167.22"
+			amount="7777777.66"
+			ordernr="5678">
+	</order>
+</orders>

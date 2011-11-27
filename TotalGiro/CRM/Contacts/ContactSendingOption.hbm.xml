@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.CRM.ContactSendingOption, B4F.TotalGiro.CRM" table="ContactSendingOptions" 
+		proxy ="B4F.TotalGiro.CRM.IContactSendingOption, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="ContactSendingOptionID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Contact" column="ContactID" class="B4F.TotalGiro.CRM.Contact, B4F.TotalGiro.CRM"/>
+		<property name="SendableDocumentCategory" column="SendableDocumentCategoryID"
+				  type="B4F.TotalGiro.CRM.SendableDocumentCategories, B4F.TotalGiro.Interfaces" />
+		<property name="SendingOption" column="SendingOptionID"
+				  type="B4F.TotalGiro.CRM.SendingOptions, B4F.TotalGiro.Interfaces" />
+		<property name="Value" column="Value" type="Boolean" />
+	</class>
+</hibernate-mapping>

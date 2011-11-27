@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Valuations.LastValuationCashMutationHolder, B4F.TotalGiro.Accounts" table="AccountsLastValuationCashMutations" proxy="B4F.TotalGiro.Valuations.ILastValuationCashMutationHolder, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="AccountsLastValuationCashMutationID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<component name="CashMutKey" class="B4F.TotalGiro.Valuations.ValuationCashMutationKey, B4F.TotalGiro.Interfaces">
+			<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeCustomer, B4F.TotalGiro.Accounts"  />
+			<many-to-one name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" />
+			<property name="ValuationCashType" column="ValuationCashTypeID" type="B4F.TotalGiro.Valuations.ValuationCashTypes, B4F.TotalGiro.Interfaces"/>
+		</component>
+		<many-to-one name="LastCashMutation" column="ValuationCashMutationID" class="B4F.TotalGiro.Valuations.ValuationCashMutation, B4F.TotalGiro.Valuations" />
+	</class>
+</hibernate-mapping>
+
+

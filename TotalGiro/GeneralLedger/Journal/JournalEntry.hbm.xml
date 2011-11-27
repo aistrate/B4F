@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.JournalEntry, B4F.TotalGiro.GeneralLedger"
+		   dynamic-update="true"
+		   table="GLJournalEntries"
+		   proxy ="B4F.TotalGiro.GeneralLedger.Journal.IJournalEntry, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="JournalEntryID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<!--JournalEntryTypeID determines the subclassed JournalEntry class to instantiate-->
+		<!--JournalEntryTypeID: 1 is a Bank Statement -->
+		<!--JournalEntryTypeID: 2 is a Memorial Booking -->
+		<!--JournalEntryTypeID: 3 is a Client Transaction (Verkoop) -->
+		<discriminator column="JournalEntryTypeID" />
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<property name="JournalEntryNumber" column="JournalEntryNumber" />
+		<property name="Status" column="Status" type="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryStati, B4F.TotalGiro.Interfaces" />
+		<many-to-one name="Journal" column="JournalID" class="B4F.TotalGiro.GeneralLedger.Static.Journal, B4F.TotalGiro.GeneralLedger" cascade="none" />
+		<property name="TransactionDate" column="TransactionDate" type="Date" />
+		<property name="BookedBy" column="BookedBy" />
+		<many-to-one name="BookYear" column="BookYearID" cascade="none"
+			 class="B4F.TotalGiro.GeneralLedger.Static.GLBookYear, B4F.TotalGiro.GeneralLedger" />
+		<property name="CreatedBy" column="CreatedBy" />
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false" />
+		<bag name="lines" access="field" generic="true" inverse="true" lazy="true" cascade="all"  order-by="LineNumber"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.IJournalEntryLine, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLineCollection, B4F.TotalGiro.GeneralLedger]], B4F.TotalGiro.Interfaces">
+			<key column="JournalEntryID" foreign-key="JournalEntryID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+		<subclass	name="B4F.TotalGiro.GeneralLedger.Journal.BankStatement, B4F.TotalGiro.GeneralLedger"
+					proxy="B4F.TotalGiro.GeneralLedger.Journal.IBankStatement, B4F.TotalGiro.Interfaces"
+					dynamic-update="true"
+					discriminator-value="1">
+			<many-to-one name="PrevBankStatement" column="PrevJournalEntryID" cascade="none"
+						 class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntry, B4F.TotalGiro.GeneralLedger" />
+			<component name="ClosingBalance" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="ClosingBalance" />
+				<many-to-one name="Underlying" column="ClosingBalanceID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			</component>
+			<property name="HasClosingBalance" column="HasClosingBalance" />
+			<many-to-one name="ImportedBankBalance" column="ImportedFileRecordID"
+						 class="B4F.TotalGiro.Communicator.Exact.ImportedBankBalance, B4F.TotalGiro.Communicator" cascade="none" />
+		</subclass>
+		<subclass	name="B4F.TotalGiro.GeneralLedger.Journal.MemorialBooking, B4F.TotalGiro.GeneralLedger"
+					proxy="B4F.TotalGiro.GeneralLedger.Journal.IMemorialBooking, B4F.TotalGiro.Interfaces"
+					dynamic-update="true"
+					discriminator-value="2">
+			<property name="Description" column="Description" type="string" />
+		</subclass>
+		<subclass	name="B4F.TotalGiro.GeneralLedger.Journal.TradingJournalEntry, B4F.TotalGiro.GeneralLedger"
+					proxy="B4F.TotalGiro.GeneralLedger.Journal.ITradingJournalEntry, B4F.TotalGiro.Interfaces" 
+					dynamic-update="true"
+					discriminator-value="3" >
+			<many-to-one name="Trade" column="TGTransactionID" cascade="all" class="B4F.TotalGiro.Orders.Transactions.Transaction, B4F.TotalGiro.Orders" />
+			<many-to-one name="MatchedSettlement" column="ExternalSettlementID" cascade="none" class="B4F.TotalGiro.GeneralLedger.Journal.ExternalSettlement, B4F.TotalGiro.GeneralLedger" />
+		</subclass>
+	</class>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetLastJournalEntriesWithJournal" >
+		<![CDATA[
+		from JournalEntry S 
+		where S.Key in (
+			select S.Key
+			from JournalEntry S 
+			where S.Key in (
+				select S.Key
+				from JournalEntry S 
+				where S.Journal.Key = :journalId
+				and (S.TransactionDate in (select MAX(JE.TransactionDate) from JournalEntry JE where JE.Journal = :journalId)
+				or S.TransactionDate is null)))
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetLastJournalEntriesWithUnKnownJournal" >
+		<![CDATA[
+		from JournalEntry S 
+		where S.Key in (
+			select S.Key
+			from JournalEntry S 
+			where S.Key in (
+				select S.Key
+				from JournalEntry S 
+				where S.TransactionDate in (select MAX(JE.TransactionDate) from JournalEntry JE) 
+				or S.TransactionDate is null))
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetLastJournalEntryDate" >
+		<![CDATA[
+		select COALESCE(MAX(JE.TransactionDate), getdate())
+		from JournalEntry JE 
+		where JE.Journal = :journalId
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.MigrateExternalSettlements" >
+		<![CDATA[
+			select distinct JE.Key
+			from JournalEntryLine JEL
+			join JEL.Parent JE
+			join JEL.GLAccount GA
+			where GA.IsExternalSettlement = 1
+			and JEL.IsSettledStatus = 0
+			and JE.TransactionDate <= '01/01/2008'
+			and JE.Key not in (4493244, 4493245, 4493260, 4493261, 4493266, 4493268, 4493273)
+		]]>
+	</query>
+	<!--<query name="B4F.TotalGiro.GeneralLedger.Journal.GetUnmatchedBankSettlementKeys" >
+		<![CDATA[
+		Select JEL.Key
+		from JournalEntryLine JEL
+		left join JEL.Parent JE
+		left join JE.Journal J
+		left join JEL.GLAccount G
+		where J.JournalType = :journalType
+		and G.IsBankSettlement = 1
+		and JEL.MatchedSettlement is null
+		order by JE.TransactionDate, JEL.Key
+		]]>
+	</query>-->
+
+	
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetUnsettledExternalTradeEntriesByID" >
+		<![CDATA[
+		from TradingJournalEntry E
+		left join fetch E.Trade T
+		where T.Key in (:ids)
+		and E.MatchedSettlement is null
+		order by T.TransactionDate, E.Key
+		]]>
+	</query>
+	
+
+</hibernate-mapping>

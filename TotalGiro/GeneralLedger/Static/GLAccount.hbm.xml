@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger" table="GLAccounts" 
+		   proxy ="B4F.TotalGiro.GeneralLedger.Static.IGLAccount, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="GLAccountID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="CashTransferType" column="CashTransferTypeID" type="B4F.TotalGiro.GeneralLedger.Static.CashTransferTypes, B4F.TotalGiro.Interfaces" />
+		<property name="Description" column="Description" />
+		<many-to-one  name="AccountinExact" column="ExactAccountID" class="B4F.TotalGiro.Communicator.Exact.ExactAccount, B4F.TotalGiro.Communicator" cascade="none" />
+		<property name="GLAccountNumber" column="GLAccountNumber" />
+		<property name="IsAllowedManual" column="IsAllowedManual" />
+		<property name="IsBankFixedLine" column="IsBankFixedLine" />
+		<property name="IsBankSettlement" column="IsBankSettlement" type="Boolean" />
+		<property name="IsClientOpenBalance" column="IsClientOpenBalance" type="Boolean" />
+		<property name="IsCostOfStockExternal" column="IsCostOfStockExternal" type="Boolean" />
+		<property name="IsDefaultDeposit" column="IsDefaultDeposit" type="Boolean" />
+		<property name="IsDefaultWithdrawal" column="IsDefaultWithdrawal" type="Boolean" />
+		<property name="IsDividendTaxExternal" column="IsDividendTaxExternal" type="Boolean" />
+		<property name="IsDividendTaxInternal" column="IsDividendTaxInternal" type="Boolean" />
+		<property name="IsExternalSettlement" column="IsExternalSettlement" type="Boolean" />
+		<property name="IsGrossDividendExternal" column="IsGrossDividendExternal" type="Boolean" />
+		<property name="IsGrossDividendInternal" column="IsGrossDividendInternal" type="Boolean" />
+		<property name="IsFixed" column="IsFixed" type="Boolean" />
+		<property name="IsIncome" column="IsIncome" />
+		<property name="IsSettledWithClient" column="IsSettledWithClient" />
+		<property name="IsSettlementDifference" column="IsSettlementDifference" type="Boolean" />
+		<property name="IsToSettleWithClient" column="IsToSettleWithClient" />
+		<property name="IsVirtualFundUse" column="IsVirtualFundUse" />
+    <property name="IsSystem" column="IsSystem" type="Boolean" />
+		<property name="RequiresGiroAccount" column="RequiresGiroAccount" />
+		<property name="ValuationCashType" column="ValuationCashTypeID" type="B4F.TotalGiro.Valuations.ValuationCashTypes, B4F.TotalGiro.Interfaces" insert="false" update="false" />
+		<many-to-one  name="ValuationCashTypeDetails" column="ValuationCashTypeID" class="B4F.TotalGiro.Valuations.ValuationCashType, B4F.TotalGiro.Valuations" cascade="none" insert="false" update="false" />
+		<many-to-one  name="DefaultCurrency" column="DefaultCurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="GLBookingType" column="BookingTypeID" class="B4F.TotalGiro.GeneralLedger.Static.GLBookingType, B4F.TotalGiro.GeneralLedger" cascade="none" insert="false" update="false" />
+		<many-to-one name="GLSettledAccount" column="GLSettledAccountID" class="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger" cascade="all" />
+		<many-to-one name="UnSettledType" column="GLSubPositionsUnSettledTypeID" class="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPositionUnSettledType, B4F.TotalGiro.Accounts" />
+	</class>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Static.GetGLAccounts" >
+		<![CDATA[
+		from GLAccount GL
+		where 1=1
+		and GL.IsFixed = :isFixed
+		and GL.IsAllowedManual = :isAllowedManual
+		order by GL.GLAccountNumber
+		]]>
+	</query>
+
+</hibernate-mapping>

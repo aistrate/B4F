@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+	<class name="B4F.TotalGiro.Fees.FeeCalculations.FeeCalc, B4F.TotalGiro.Fees" table="FeeCalculations" proxy="B4F.TotalGiro.Fees.FeeCalculations.IFeeCalc, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="FeeCalcID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<many-to-one name="AssetManager" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" column="ManagementCompanyID" cascade="none" not-null="true" />
+		<property name="Name" column="FeeCalcName"/>
+		<many-to-one name="FeeCurrency" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="FeeCurrencyID" cascade="none"/>
+		<many-to-one name="FeeType" column="FeeTypeID" class="B4F.TotalGiro.Fees.FeeType, B4F.TotalGiro.Interfaces" not-null="true" update="false" />
+		<property name="IsActive" column="IsActive" insert="false" />
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+		<bag name="versions" table="FeeCalculationVersions" cascade="all-delete-orphan" access="field" >
+			<key column="FeeCalcID" />
+			<one-to-many class="B4F.TotalGiro.Fees.FeeCalculations.FeeCalcVersion, B4F.TotalGiro.Fees"/>
+		</bag>
+	</class>
+
+	<query name="B4F.TotalGiro.Fees.FeeCalculations.ActiveFeeCalculations" >
+		<![CDATA[
+        from FeeCalc F 
+        where F.IsActive = 1
+		and F.AssetManager.Key = :managementCompanyID
+		order by F.Name
+    ]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Fees.FeeCalculations.FeeCalculations" >
+		<![CDATA[
+		from FeeCalc F
+		where 1 = 1
+		and F.AssetManager.Key = :managementCompanyID
+		and F.Name like :calcName
+		and F.FeeType.key = :feeType
+		and F.IsActive = :isActive
+		order by F.Name
+    ]]>
+	</query>
+
+</hibernate-mapping>

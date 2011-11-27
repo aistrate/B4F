@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="B4F.TotalGiro.Instruments.MutualFund" Collapsed="true">
+    <Position X="4.25" Y="6" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAUBAAIACAAAEFAAEQAARAJAQAAAEEAAAAAAAAAEA=</HashCode>
+      <FileName>Instrument\MutualFund.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.Currency" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABSNAAIAAwCAAAJFAAkQAAAAAETACABAAAgIAAAQDgA=</HashCode>
+      <FileName>Instrument\Currency.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.TradeableInstrument" Collapsed="true">
+    <Position X="6" Y="3.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QCQASIEgAQggAAAIIAEAAARAAASEIACAAAAQCQAAkEA=</HashCode>
+      <FileName>Instrument\TradeableInstrument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.CashManagementFund" Collapsed="true">
+    <Position X="2.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAFAAEQAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Instrument\CashManagementFund.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.Instrument" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QCQQMMYAAQKOIABTGQAQBhUQGAaAA0CCggAEAAAAAiA=</HashCode>
+      <FileName>Instrument\Instrument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.Bond" Collapsed="true">
+    <Position X="8.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAqAMADBKFEAgAlRkAgAEYAACAjACAB4AAACCEAMg=</HashCode>
+      <FileName>Instrument\Bond.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.Stock" Collapsed="true">
+    <Position X="6.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Instrument\Stock.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.InstrumentsWithPrices" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIIAAAAAAAAAAAQBAoAEAQIAAAAIAAAACAAAAAA=</HashCode>
+      <FileName>Instrument\InstrumentsWithPrices.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.BenchMark" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAQCAAAAAAAEAAEAAAASAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Instrument\BenchMark.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.SecurityInstrument" Collapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAhAAAAAIACAAAAEAAAAAEA=</HashCode>
+      <FileName>Instrument\SecurityInstrument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.Derivative" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAQIAgAAgAAACAAAUQAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Instrument\Derivative.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.Turbo" Collapsed="true">
+    <Position X="12.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAASAAAAACAABAAAAEAAAAAAAAAACAAAAAAAAAAACg=</HashCode>
+      <FileName>Instrument\Turbo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.Option" Collapsed="true">
+    <Position X="10.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEBAAAAACAAAAAAAEAgAAgAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Instrument\Option.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.VirtualFund" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAgQACAAEgAAAEAQIAAAEAAAIAAAASAAgAAgAA=</HashCode>
+      <FileName>Instrument\VirtualFund.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.InstrumentCorporateAction" Collapsed="true">
+    <Position X="3" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAQAQAMgAQiAAAAAAAUQAoAAAAaAAABAAgAEAAAAEAg=</HashCode>
+      <FileName>Instrument\InstrumentCorporateAction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Instruments.Dividend" Collapsed="true">
+    <Position X="5.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Instrument\Dividend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

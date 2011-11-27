@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.Nav.NavPosition, B4F.TotalGiro.Instruments" 
+		table="NavPositions" proxy="B4F.TotalGiro.Instruments.Nav.INavPosition, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<discriminator column="NavPositionTypeID" />
+		<!--NavPositionTypeID determines the subclassed Position class to instantiate-->
+		<!--NavPositionTypeID: 1 is a Security Position-->
+		<!--NavPositionTypeID: 2 is a Cash Position-->
+		<property name="ExchangeRateUsed" column="ExchangeRateUsed" />
+		<component name="Size" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="ValueSize" />
+			<many-to-one name="Underlying" column="ValueInstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<component name="ClosingPriceUsed" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="ClosingPriceUsed" />
+			<many-to-one name="Underlying" column="ClosingPriceUsedID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<many-to-one name="Instrument" column="ClosingPriceUsedID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<component name="CurrentValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="CurrentValue" />
+			<many-to-one name="Underlying" column="CurrentValueInstrumentID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<many-to-one name="XRateCurrency" column="CurrentValueXRateInstrumentID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<property name="XRate" column="CurrentValueXRate" />
+		</component>
+		<component name="CurrentBaseValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="CurrentBaseValue" />
+			<many-to-one name="Underlying" column="CurrentBaseValueInstrumentID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<many-to-one name="XRateCurrency" column="CurrentBaseValueXRateInstrumentID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<property name="XRate" column="CurrentBaseValueXRate" />
+		</component>
+		<many-to-one name="ClosingPriceRecord" column="ClosingPriceRecordID" class="B4F.TotalGiro.Instruments.Prices.HistoricalPrice, B4F.TotalGiro.Instruments"  cascade="none" />
+		<many-to-one name="ExchangeRateRecord" column="ExchangeRateRecordID" class="B4F.TotalGiro.Instruments.ExRates.HistoricalExRate, B4F.TotalGiro.Instruments"  cascade="none" />
+		<many-to-one name="Parent" column="NavCalculationID" class="B4F.TotalGiro.Instruments.Nav.NavCalculation, B4F.TotalGiro.Instruments"  cascade="none" />
+		<subclass name="B4F.TotalGiro.Instruments.Nav.NavFundPosition, B4F.TotalGiro.Instruments" discriminator-value="1" proxy="B4F.TotalGiro.Instruments.Nav.INavFundPosition, B4F.TotalGiro.Interfaces">
+		</subclass>
+		<subclass name="B4F.TotalGiro.Instruments.Nav.NavCashPosition, B4F.TotalGiro.Instruments" discriminator-value="2" proxy="B4F.TotalGiro.Instruments.Nav.INavCashPosition, B4F.TotalGiro.Interfaces">
+		</subclass>
+		
+		
+	</class>
+</hibernate-mapping>

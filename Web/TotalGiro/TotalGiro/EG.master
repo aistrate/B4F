@@ -1,0 +1,96 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="EG.master.cs" Inherits="EG" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head runat="server">
+        <title>Total Giro</title>
+        <link rel="shortcut icon" href="favicon.ico" /> 
+        <style type="text/css">
+            .headerTextClass
+            {
+                position: relative;
+                left: 20px;
+                top: 10px;
+                font-size: 16pt;
+                font-family: Verdana;
+                vertical-align: top;
+                color: white;
+                letter-spacing: 1pt;
+            }
+        </style>
+    </head>
+    
+    <body style="margin-left: 0px; margin-top: 0px; border: 3px; background-color:<%=CustomBGColor%>">
+        <form id="frmMaster" runat="server">
+            <ajaxToolkit:ToolkitScriptManager ID="smManager" runat="Server" EnablePartialRendering="true" EnableScriptGlobalization="false" />
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td rowspan="4" style="width: 50%; vertical-align: top">
+                        <asp:Label ID="lblDummy" runat="server" Width="5px"></asp:Label>
+                    </td>
+                    <td style="width: 1000px; background-color: #8A99A2; height: 50px; vertical-align: top; text-align: left;">
+                        <div id="headerTextDiv" class="headerTextClass">
+                            <asp:Literal ID="headerText" runat="server" Text=""/>
+                        </div>
+                    </td>
+                    <td style="background-color: #B8C0C6">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td rowspan="2">
+                                    <asp:Label ID="Label1" runat="server" Width="10px"></asp:Label></td>
+                                <td style="height: 18px">
+                                    <asp:Label ID="lblUserLabel" runat="server" Text="User:" Width="80px"></asp:Label></td>
+                                <td>
+                                    <asp:Label ID="lblUser" runat="server" Font-Bold="True"></asp:Label>
+                                    &nbsp;&nbsp;<asp:LoginStatus LogoutAction="Redirect" LogoutPageUrl="~/Default.aspx" ID="lsLogin" runat="server"/></td>
+                            </tr>
+                            <tr>
+                                <td style="height: 18px">
+                                    <asp:Label ID="lblDatabaseLabel" runat="server" Text="Database:" Width="80px"></asp:Label></td>
+                                <td>
+                                    <asp:Label ID="lblDatabase" runat="server" Font-Bold="True" Width="130px" ></asp:Label></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td rowspan="4" style="width: 50%; vertical-align: top">
+                        
+                    </td>
+                </tr>
+                <tr style="height: 0px">
+                    <td colspan="2" style="background-color: #CDD7DC; vertical-align: bottom" >
+                        <asp:Menu ID="menMain" runat="server" Orientation="Horizontal" BackColor="#CDD7DC" 
+                            DynamicHorizontalOffset="0" ForeColor="#444444" 
+                            StaticSubMenuIndent="0px" DataSourceID="siteMap" ItemWrap="False" 
+                            StaticEnableDefaultPopOutImage="True" SkipLinkText="" 
+                            OnMenuItemDataBound="menMain_MenuItemDataBound" >
+                                
+                                <StaticHoverStyle BackColor="#909090" ForeColor="White" />
+                                <StaticMenuItemStyle HorizontalPadding="3px" VerticalPadding="3px" />
+                                
+                                <DynamicHoverStyle BackColor="#909090" ForeColor="White" />
+                                <DynamicSelectedStyle BackColor="#8A99A2" ForeColor="White" />
+                                <DynamicMenuStyle BorderColor="#AAB9C2" BorderWidth="1px"/>
+                                <DynamicMenuItemStyle HorizontalPadding="18px" VerticalPadding="5px" />
+                        </asp:Menu>
+                        <asp:SiteMapDataSource ID="siteMap" runat="server" ShowStartingNode="False" />
+                    </td>
+                </tr>
+                <tr style="height: 0px"><td colspan="2">&nbsp;</td></tr>
+                <tr>
+                    <td colspan="2">
+                        <table width="900px" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td style="width: 10px;">&nbsp;</td>
+                                <td style="vertical-align: top; width: 885px" >
+                                    <asp:contentplaceholder ID="bodyContentPlaceHolder" runat="server" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+         </form>
+    </body>
+</html>

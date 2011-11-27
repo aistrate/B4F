@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBooking, B4F.TotalGiro.GeneralLedger"
+		   table="GeneralOperationsBookings"
+		   proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IGeneralOperationsBooking, B4F.TotalGiro.Interfaces"
+			dynamic-update="true">
+		<id name="Key" column="GeneralOperationsBookingID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<discriminator column="GeneralOperationsBookingTypeID" />
+		<many-to-one name="GeneralOpsJournalEntry" column="JournalEntryID" cascade="all" class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntry, B4F.TotalGiro.GeneralLedger" />
+		<many-to-one name="Account" column="AccountID" cascade="none" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" />
+		<property name="Description" column="Description" />
+		<property name="IsStorno" column="IsStorno" />
+		<property name="StornoReason" column="StornoReason" />
+		<many-to-one name="StornoBooking" column="StornoBookingID" cascade="none" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBooking, B4F.TotalGiro.GeneralLedger" />
+		<many-to-one name="OriginalBooking" column="OriginalBookingID" cascade="none" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBooking, B4F.TotalGiro.GeneralLedger" />
+		<many-to-one name="GLBookingType" column="GeneralOperationsBookingTypeID" class="B4F.TotalGiro.GeneralLedger.Static.GLBookingType, B4F.TotalGiro.GeneralLedger" cascade="none" insert="false" update="false" />
+		<property name="IsNotarizable" column="IsNotarizable" />
+		<many-to-one name="BookNota" column="NotaID" class="B4F.TotalGiro.Notas.Nota, B4F.TotalGiro.Notas" cascade="all" />
+		<property name="NotaMigrated" column="NotaMigrated" />
+		<property name="creationDate" column="CreationDate" type="Date" access="field"/>
+		<bag name="components" access="field" generic="true" lazy="true" cascade="all" inverse="true"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.Bookings.IGeneralOperationsComponent, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsComponentCollection, B4F.TotalGiro.GeneralLedger]], B4F.TotalGiro.Interfaces">
+			<key column="GeneralOperationsBookingID" foreign-key="GeneralOperationsBookingID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsComponent, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+		<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBookingTaxeable, B4F.TotalGiro.GeneralLedger"
+		  dynamic-update="true"
+		  discriminator-value="66"
+		  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IGeneralOperationsBookingTaxeable, B4F.TotalGiro.Interfaces">
+			<property name="TaxPercentage" column="TaxPercentage" />
+			<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ManagementFee, B4F.TotalGiro.GeneralLedger"
+			  dynamic-update="true"
+			  discriminator-value="1"
+			  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IManagementFee, B4F.TotalGiro.Interfaces">
+				<property name="StartDate" column="StartDate" type="Date" />
+				<property name="EndDate" column="EndDate" type="Date" />
+				<bag name="units" access="field" inverse="true" cascade="all-delete-orphan" lazy="true" generic="true">
+					<key column="GeneralOperationsBookingID" />
+					<one-to-many class="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnit, B4F.TotalGiro.Valuations" />
+				</bag>
+			</subclass>
+			<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.CashDividend, B4F.TotalGiro.GeneralLedger"
+			  dynamic-update="true"
+			  discriminator-value="2"
+			  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ICashDividend, B4F.TotalGiro.Interfaces">
+				<many-to-one name="DividendDetails" column="CorporateActionHistoryID" class="B4F.TotalGiro.Instruments.CorporateAction.DividendHistory, B4F.TotalGiro.Instruments" cascade="none"/>
+				<component name="UnitsInPossession" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+					<property name="Quantity" column="DividendUnits" />
+					<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="DividendUnitsID" cascade="none" />
+				</component>
+			</subclass>
+		</subclass>
+		<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.CashTransfer, B4F.TotalGiro.GeneralLedger"
+		  dynamic-update="true"
+		  discriminator-value="4"
+		  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ICashTransfer, B4F.TotalGiro.Interfaces">
+		</subclass>
+		<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ForeignExchange, B4F.TotalGiro.GeneralLedger"
+		  dynamic-update="true"
+		  discriminator-value="8"
+		  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IForeignExchange, B4F.TotalGiro.Interfaces">
+		</subclass>
+		<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPayment, B4F.TotalGiro.GeneralLedger"
+		  dynamic-update="true"
+		  discriminator-value="16"
+		  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBondCouponPayment, B4F.TotalGiro.Interfaces">
+			<property name="Status" column="StatusID" type="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPaymentStati, B4F.TotalGiro.Interfaces" />
+			<many-to-one name="CouponHistory" column="CorporateActionHistoryID" class="B4F.TotalGiro.Instruments.CorporateAction.CouponHistory, B4F.TotalGiro.Instruments" cascade="none" />
+			<many-to-one name="Position" column="TGPositionID" class="B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPosition, B4F.TotalGiro.Accounts" cascade="none" />
+			<bag name="dailyCalculations" access="field" generic="true" lazy="true" cascade="all-delete-orphan"
+				collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBondCouponPaymentDailyCalculation, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPaymentDailyCalculationCollection, B4F.TotalGiro.GeneralLedger]], B4F.TotalGiro.Interfaces">
+				<key column="GeneralOperationsBookingID" foreign-key="GeneralOperationsBookingID" />
+				<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPaymentDailyCalculation, B4F.TotalGiro.GeneralLedger" />
+			</bag>
+		</subclass>
+	</class>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GetNotarizableBookingIds" >
+		<![CDATA[
+		select B.Key 
+		from GeneralOperationsBooking B
+		left join B.GeneralOpsJournalEntry E
+		left join B.Account A
+		where A in (select CA from CustomerAccount CA)
+		and B.BookNota is null
+		and IsNull(B.NotaMigrated, 0) = 0
+		and B.GLBookingType = :bookingType
+		and A.AccountOwner.Key = :managementCompanyId
+		and A.Key = :accountId
+		and B.IsNotarizable = 1
+		order by A.Number, E.TransactionDate, B.Key
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GetGeneralOperationsBookings" >
+		<![CDATA[
+		from GeneralOperationsBooking B
+		left join fetch B.GeneralOpsJournalEntry E
+		where B.Account.Key = :accountId
+		and E.TransactionDate between :beginDate and :endDate
+		and IsNull(B.IsStorno, 0) = 0 and B.StornoBooking is null and 1 = :hideStornos
+		and B.GLBookingType = :bookTypeId
+	]]>
+	</query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="nosetter.camelcase">
+	<class name="B4F.TotalGiro.Stichting.Remisier.Remisier, B4F.TotalGiro.Stichting" table="tblEGBedrijf" 
+		proxy="B4F.TotalGiro.Stichting.Remisier.IRemisier, B4F.TotalGiro.Interfaces"
+		lazy="true">
+		<id name="Key" column="id" unsaved-value="0" access="property">
+			<generator class="identity"/>
+		</id>
+		<property name="remisierType" column="Type" access="field" update="false" />
+		<property name="InternalRef" column="Nummer" />
+		<property name="Name" column="Naam" />
+		<component name="OfficeAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="Straat" access="property"/>
+			<property name="HouseNumber" column="Huisnummer" access="property"/>
+			<property name="HouseNumberSuffix" column="HuisnummerToevoeging" access="property"/>
+			<property name="PostalCode" column="PostCode" access="property"/>
+			<property name="City" column="Plaats" access="property"/>
+			<many-to-one name="Country" column="OfficeCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" 
+                   cascade="none" access="property"/>
+		</component>
+		<component name="PostalAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces" access="property">
+			<property name="Street" column="PostStraat" access="property"/>
+			<property name="HouseNumber" column="PostHuisnummer" access="property"/>
+			<property name="HouseNumberSuffix" column="PostHuisnummerToevoeging" access="property"/>
+			<property name="PostalCode" column="PostPostCode" access="property"/>
+			<property name="City" column="PostWoonPlaats" access="property"/>
+			<many-to-one name="Country" column="PostalCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData"
+                   cascade="none" access="property"/>
+		</component>
+		<!--<many-to-one name="ContactPerson" column="ContactPersonID" class="B4F.TotalGiro.StaticData.Person, B4F.TotalGiro.StaticData" cascade="none" />-->
+		<component name="ContactPerson" class="B4F.TotalGiro.StaticData.Person, B4F.TotalGiro.Interfaces">
+			<property name="genderChar" column="CPTelefoon" access="field" />
+			<property name="Initials" column="CPTussenvoegsels" />
+			<property name="MiddleName" column="CPVoorletters" />
+			<property name="LastName" column="CPNaam" />
+			<component name="Telephone" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="CPMobiel"/>
+			</component>
+			<!--<component name="TelephoneAH" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="CountryCode" column="TelephoneAHCountryCode"/>
+				<property name="AreaCode" column="TelephoneAHAreaCode"/>
+				<property name="LocalNumber" column="TelephoneAHLocalNumber"/>
+			</component>
+			<component name="Mobile" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="CPMobiel"/>
+			</component>-->
+			<property name="Email" column="CPEmail" />
+		</component>
+
+		<many-to-one name="AssetManager" column="AssetManagerID" class="B4F.TotalGiro.Stichting.AssetManager, B4F.TotalGiro.Stichting" cascade="none" />
+		<component name="BankDetails" class="B4F.TotalGiro.StaticData.BankDetails, B4F.TotalGiro.StaticData">
+			<property name="BankName" column="RekeningBank" />
+			<many-to-one name="Bank" column="BankID" class="B4F.TotalGiro.StaticData.Bank, B4F.TotalGiro.StaticData" cascade="none" />
+			<property name="AccountNumber" column="Rekening"/>
+			<property name="BankAccountName" column="Rekeningnaam"/>
+			<component name="BankAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces" access="property">
+				<property name="City" column="Rekeningplaats" access="property"/>
+			</component>
+		</component>
+		<property name="Email" column="Email" />
+		<component name="Telephone" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+			<property name="Number" column="Telefoon"/>
+		</component>
+		<component name="Fax" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+			<property name="Number" column="Fax"/>
+		</component>		
+		<!--<bag name="bagOfAssetManagers" table="CompanyRelations" access="field" cascade="all" inverse="true" lazy="true">
+			<key column="ChildCompanyID" />
+			<many-to-many class="B4F.TotalGiro.Stichting.AssetManager, B4F.TotalGiro.Stichting" column="ParentCompanyID"   />
+		</bag>-->
+		<bag name="employees" access="field" generic="true" lazy="true" cascade="all" where="Deleted = 0" order-by="Naam"
+			 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Stichting.Remisier.IRemisierEmployee, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Stichting.Remisier.RemisierEmployeesCollection, B4F.TotalGiro.Stichting]], B4F.TotalGiro.Interfaces">
+			<key column="BedrijfId" />
+			<one-to-many class="B4F.TotalGiro.Stichting.Remisier.RemisierEmployee, B4F.TotalGiro.Stichting" />
+		</bag>
+
+		<many-to-one name="ParentRemisier" column="ParentBedrijfID" class="B4F.TotalGiro.Stichting.Remisier.Remisier, B4F.TotalGiro.Stichting" cascade="none" access="property" />
+		<property name="ParentRemisierKickBackPercentage" column="ParentRemisierKickBackPercentage" access="property" />
+		<bag name="childRemisiers" access="field" generic="true" lazy="true" cascade="none" table="tblEGBedrijf"
+			 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Stichting.Remisier.IRemisier, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Stichting.Remisier.RemisierCollection, B4F.TotalGiro.Stichting]], B4F.TotalGiro.Interfaces">
+			<key column="ParentBedrijfID" />
+			<one-to-many class="B4F.TotalGiro.Stichting.Remisier.Remisier, B4F.TotalGiro.Stichting" />
+		</bag>
+		<property name="ProvisieAfspraak" column="Provisieafspraak" access="property" />
+		<property name="DatumOvereenkomst" column="DatumOvereenkomst" access="property" />
+		<property name="NummerOvereenkomst" column="NummerOvereenkomst" access="property" />
+		<property name="NummerAFM" column="NummerAFM" access="property" />
+		<property name="NummerKasbank" column="NummerKasbank" access="property" />
+		<property name="deleted" column="Deleted" access="field"  />
+    <property name="IsActive" type="Boolean" access="nosetter.camelcase" formula="(1 - ISNULL(Deleted, 1))" />
+	</class>
+
+	<query name="B4F.TotalGiro.Stichting.Remisier.Remisiers" >
+		<![CDATA[
+		from Remisier R
+		where 1 = 1
+		and R.AssetManager.Key = :assetManagerId
+		and R.Name like :remisierName
+		and R.deleted = :deleted
+		order by R.Name
+	]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Stichting.Remisier.AccountsAttachedToRemisier" >
+		<![CDATA[
+		select count(A.Key)
+		from CustomerAccount A
+		inner join A.RemisierEmployee E
+		where A.Status = 1
+		and E.Remisier.Key = :remisierId
+	]]>
+	</query>
+
+</hibernate-mapping>

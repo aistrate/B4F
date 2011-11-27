@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.Instructions.Instruction, B4F.TotalGiro.Accounts" table="AccountInstructions" proxy ="B4F.TotalGiro.Accounts.Instructions.IInstruction, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="AccountInstructionID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeCustomer, B4F.TotalGiro.Accounts" cascade="none" />
+		<property name="Status" column="InstructionStatusID" />
+		<property name="IsActive" column="IsActive" />
+		<property name="Cancelled" column="Cancelled" />
+		<property name="Message" column="Message" />
+		<property name="Warning" column="Warning" />
+		<property name="DoNotChargeCommission" column="DoNotChargeCommission" />
+		<property name="ExecutionDate" column="ExecutionDate" type="Date" />
+		<property name="ActualExecutedDate" column="ActualExecutedDate" type="Date" />
+		<property name="CloseDate" column="CloseDate" type="Date" />
+		<property name="CreationDate" column="CreationDate" type="DateTime" />
+		<!--<bag name="bagOfOrders" table="Orders" access="field" where="MoneyParentID IS NULL" lazy="true">
+			<key column="AccountInstructionID" />
+			<one-to-many class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" />
+		</bag>-->
+		<bag name="orders" access="field" generic="true" lazy="true" cascade="all" where="MoneyParentID IS NULL"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.IOrder, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.Instructions.InstructionOrderCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+			<key column="AccountInstructionID" foreign-key="AccountInstructionID" />
+			<one-to-many class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" />
+		</bag>
+		<property name="OrdersGenerated" column="OrdersGenerated" insert="false" update="false" />
+		<joined-subclass name="B4F.TotalGiro.Accounts.Instructions.InstructionTypeRebalance, B4F.TotalGiro.Accounts" table="AccountInstructionsTypeRebalance" proxy="B4F.TotalGiro.Accounts.Instructions.IInstructionTypeRebalance, B4F.TotalGiro.Interfaces">
+			<key column="AccountInstructionID"/>
+			<property name="OrderActionType" column="OrderActionTypeID" type="B4F.TotalGiro.Orders.OrderActionTypes, B4F.TotalGiro.Interfaces" />
+			<!--<bag name="bagOfTransfers" table="TransactionsCashTransfer" access="field" lazy="true">
+				<key column="AccountInstructionID" foreign-key="Instruction" />
+				<one-to-many class="B4F.TotalGiro.Orders.OldTransactions.ObsoleteCashTransfer, B4F.TotalGiro.Orders" />
+			</bag>-->
+			<bag name="transfers" access="field" generic="true" lazy="true" cascade="save-update" inverse="false"
+				collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.IJournalEntryLine, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.Instructions.CashTransferCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+				<key column="AccountInstructionID" foreign-key="AccountInstructionID" />
+				<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger" />
+			</bag>
+			<joined-subclass name="B4F.TotalGiro.Accounts.Instructions.RebalanceInstruction, B4F.TotalGiro.Accounts" table="AccountInstructionsRebalance" proxy="B4F.TotalGiro.Accounts.Instructions.IRebalanceInstruction, B4F.TotalGiro.Interfaces">
+				<key column="AccountInstructionID" />
+				<many-to-one name="CashWithdrawalInstruction" column="CashWithdrawalInstructionID" class="B4F.TotalGiro.Accounts.Instructions.CashWithdrawalInstruction, B4F.TotalGiro.Accounts" cascade="none" />
+				<bag name="excludedComponents" access="field" generic="true" lazy="true" cascade="all-delete-orphan"
+					 table="AccountInstructionsRebalanceExcludedComponents"
+					 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Accounts.Instructions.Exclusions.IRebalanceExclusion, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.Instructions.Exclusions.RebalanceExclusionCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+					<key column="AccountInstructionID" />
+					<one-to-many class="B4F.TotalGiro.Accounts.Instructions.Exclusions.RebalanceExclusion, B4F.TotalGiro.Accounts" />
+				</bag>
+			</joined-subclass>
+			<joined-subclass name="B4F.TotalGiro.Accounts.Instructions.BuyModelInstruction, B4F.TotalGiro.Accounts" table="AccountInstructionsBuyModel" proxy="B4F.TotalGiro.Accounts.Instructions.IBuyModelInstruction, B4F.TotalGiro.Interfaces">
+				<key column="AccountInstructionID"/>
+				<component name="DepositCashPositionDifference" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+					<property name="Quantity" column="DepositCashPositionDifference" />
+					<many-to-one name="Underlying" column="DepositCashPositionDifferenceID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+				</component>
+			</joined-subclass>
+
+      <joined-subclass name="B4F.TotalGiro.Accounts.Instructions.ClientDepartureInstruction, B4F.TotalGiro.Accounts" table="AccountInstructionsClientDepartures" proxy="B4F.TotalGiro.Accounts.Instructions.IClientDepartureInstruction, B4F.TotalGiro.Interfaces">
+        <key column="AccountInstructionID"/>
+        <many-to-one name="counterAccount" column="CounterAccountID" access="field" class="B4F.TotalGiro.Accounts.CounterAccount, B4F.TotalGiro.Accounts" cascade="none" />
+        <property name="TransferDescription" column="TransferDescription" />
+        <many-to-one name="MoneyTransferOrder" column="MoneyOrderID" class="B4F.TotalGiro.BackOffice.Orders.MoneyTransferOrder, B4F.TotalGiro.BackOffice" cascade="all" />
+      </joined-subclass>
+
+    </joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.Accounts.Instructions.CashWithdrawalInstruction, B4F.TotalGiro.Accounts" table="AccountInstructionsCashWithdrawals" proxy="B4F.TotalGiro.Accounts.Instructions.ICashWithdrawalInstruction, B4F.TotalGiro.Interfaces">
+			<key column="AccountInstructionID"/>
+			<property name="WithdrawalDate" column="WithdrawalDate" type="Date" />
+			<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="WithdrawalAmount" />
+				<many-to-one name="Underlying" column="WithdrawalAmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			</component>
+			<property name="IsPeriodic" column="IsPeriodic" />
+			<many-to-one name="counterAccount" column="CounterAccountID" access="field" class="B4F.TotalGiro.Accounts.CounterAccount, B4F.TotalGiro.Accounts" cascade="none" />
+			<property name="Reference" column="Reference" />
+			<many-to-one name="Rule" column="WithdrawalRuleID" class="B4F.TotalGiro.Accounts.Withdrawals.WithdrawalRule, B4F.TotalGiro.Accounts" cascade="none" />
+			<property name="transferDescription" column="TransferDescription" access="field" />
+			<many-to-one name="MoneyTransferOrder" column="MoneyOrderID" class="B4F.TotalGiro.BackOffice.Orders.MoneyTransferOrder, B4F.TotalGiro.BackOffice" cascade="all" />
+		</joined-subclass>
+	</class>
+
+	<query name="B4F.TotalGiro.Accounts.Instructions.AccountActiveInstructions" >
+		<![CDATA[
+        from Instruction I
+		where I.IsActive = 1
+		and I.Account.Key = :accountId
+    ]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Accounts.Instructions.GetInstructions" >
+		<![CDATA[
+        from Instruction I
+		where (1=1
+		and I.IsActive = :isActive
+		or (I.IsActive = 0 and I.CloseDate >= :executionDateShowClosedToday)
+		)
+		and I.ExecutionDate <= :executionDate
+		and I.Account.AccountOwner.Key = :assetManagerId
+		and I.Account.ModelPortfolio.Key = :modelPortfolioId
+		and I.Account.Number like :accountNumber
+		and I.Account.ShortName like :accountName
+		{0}
+		order by I.ExecutionDate ASC, I.Key DESC
+    ]]>
+	</query>
+
+
+</hibernate-mapping>

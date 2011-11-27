@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.KasBank.GLDSTD, B4F.TotalGiro.Communicator" table="GLDSTD" lazy="true">
+		<id name="Key" column="GLDSTDID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<!--Position 1 - 1-->
+		<property name="PriorityCode" column="PriorityCode" />
+		<!--Position 2 - 17-->
+		<property name="Reference" column="Reference" />
+		<!--Position 42 - 44-->
+		<property name="CurrencyCode" column="CurrencyCode" />
+		<!--Position 67 - 101-->
+		<property name="NarDebet1" column="NarDebet1" />
+		<!--Position 102 - 136-->
+		<property name="NarDebet2" column="NarDebet2" />
+		<!--Position 137 - 171-->
+		<property name="NarDebet3" column="NarDebet3" />
+		<!--Position 172 - 206-->
+		<property name="NarDebet4" column="NarDebet4" />
+		<!--Position 207 - 241-->
+		<property name="DebetAcctNr" column="DebetAcctNr" />
+		<!--Position 428 - 462-->
+		<property name="NarCorrespondentBank1" column="NarCorrespondentBank1" />
+		<!--Position 428 - 497-->
+		<property name="NarCorrespondentBank2" column="NarCorrespondentBank2" />
+		<!--Position 498 - 532-->
+		<property name="NarCorrespondentBank3" column="NarCorrespondentBank3" />
+		<!--Position 533 - 567-->
+		<property name="NarCorrespondentBank4" column="NarCorrespondentBank4" />
+		<!--Position 568 - 578-->
+		<property name="SwiftCorrespondentBank" column="SwiftCorrespondentBank" />
+		<!--Position 614 - 648-->
+		<property name="NarBenefBank1" column="NarBenefBank1" />
+		<!--Position 649 - 683-->
+		<property name="NarBenefBank2" column="NarBenefBank2" />
+		<!--Position 684 - 718-->
+		<property name="NarBenefBank3" column="NarBenefBank3" />
+		<!--Position 719 - 753-->
+		<property name="NarBenefBank4" column="NarBenefBank4" />
+		<!--Position 754 - 764-->
+		<property name="SwiftBenefBank" column="SwiftBenefBank" />
+		<!--Position 765 - 799-->
+		<property name="BankBankAcctNr" column="BankBankAcctNr" />
+		<!--Position 800 - 834-->
+		<property name="NarBenef1" column="NarBenef1" />
+		<!--Position 835 - 869-->
+		<property name="NarBenef2" column="NarBenef2" />
+		<!--Position 870 - 904-->
+		<property name="NarBenef3" column="NarBenef3" />
+		<!--Position 905 - 939-->
+		<property name="NarBenef4" column="NarBenef4" />
+		<!--Position 940 - 974-->
+		<property name="BenefBankAcctNr" column="BenefBankAcctNr" />
+		<!--Position 975 - 1009-->
+		<property name="GroundForPayment1" column="GroundForPayment1" />
+		<!--Position 1010 - 1044-->
+		<property name="GroundForPayment2" column="GroundForPayment2" />
+		<!--Position 1045 - 1079-->
+		<property name="GroundForPayment3" column="GroundForPayment3" />
+		<!--Position 1080 - 1114-->
+		<property name="GroundForPayment4" column="GroundForPayment4" />
+		<!--Position 1115 - 1115-->
+		<property name="IndicationOfCost" column="IndicationOfCosts" />
+		<!--Position 1326 - 1342-->
+		<property name="Amount" column="Amount" />
+		<!--Position 1343 - 1343-->
+		<property name="IndicationOfNonRes" column="IndicationOfNonRes" />
+		<!--Position 1344 - 1344-->
+		<property name="NatureOfCP" column="NatureOfCp" />
+		<!--Position 1345 - 1352-->
+		<property name="ProcessDate" column="ProcessDate" />
+		<!--Position 1354 - 1354-->
+		<property name="CircuitCode" column="CircuitCode" />
+		<!--Position 1359 - 1374-->
+		<property name="TestKey" column="TestKey" />
+		<!--Position 1380 - 1380-->
+		<property name="OptionsContract" column="OptionsContract" />
+		<!--Position 1381 - 1460-->
+		<property name="TextOnForex" column="TextOnForex" />
+		<!--Position 1461 - 1464-->
+		<property name="CodeOnForex" column="CodeOnForex" />
+		<!--Position 1465 - 1466-->
+		<property name="CountryCodeForex" column="CountryCodeForex" />
+		<property name="creationDate" column="CreationDate" access="field"  type="Date"/>
+		<!--<one-to-one name="OriginalMoneyOrder" class="B4F.TotalGiro.BackOffice.Orders.MoneyTransferOrder, B4F.TotalGiro.BackOffice" property-ref="GLDSTDRecord" cascade="all" />-->
+		<many-to-one name="OriginalMoneyOrder" column="OriginalMoneyOrderID" class="B4F.TotalGiro.BackOffice.Orders.MoneyTransferOrder, B4F.TotalGiro.BackOffice" cascade="all"  />
+		<many-to-one name="ParentFile" column="GldStdFileID" class="B4F.TotalGiro.Communicator.KasBank.GLDSTDFile, B4F.TotalGiro.Communicator" cascade="all" />
+	</class>
+</hibernate-mapping>

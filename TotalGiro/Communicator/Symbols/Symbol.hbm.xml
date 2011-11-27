@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.Symbol, B4F.TotalGiro.Communicator" 
+         proxy="B4F.TotalGiro.Communicator.ISymbol, B4F.TotalGiro.Interfaces" 
+         table="Symbols" >
+		<id name="Key" column="SymbolID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="ExternalSymbol" column="Symbol" />
+    <many-to-one name="ExternalInterface" column="InterfacesExternalID" class="B4F.TotalGiro.Communicator.ExternalInterfaces.ExternalInterface, B4F.TotalGiro.Communicator" cascade="none" />
+    <joined-subclass name="B4F.TotalGiro.Communicator.InstrumentSymbol, B4F.TotalGiro.Communicator"
+                     proxy="B4F.TotalGiro.Communicator.IInstrumentSymbol, B4F.TotalGiro.Interfaces" 
+                     table="SymbolInstruments" >
+			<key column="SymbolID"/>
+			<many-to-one  name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+		</joined-subclass>		
+	</class>
+</hibernate-mapping>

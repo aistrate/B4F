@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="B4F.TotalGiro.Reports.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="B4F_TotalGiro_Reports_ReportExecutionEngine_ReportExecutionService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.0.0.34/ReportServer/ReportExecution2005.asmx</Value>
+    </Setting>
+    <Setting Name="B4F_TotalGiro_Reports_ReportExecutionEngine_ReportExecutionService_Credentials" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

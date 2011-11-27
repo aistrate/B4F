@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Dal.Utils.spReturnValue, B4F.TotalGiro.Dal" table="dummy" >
+		<id name="Key" column="dummy1" unsaved-value="0">
+			<generator class="assigned" />
+		</id>
+		<!--<property name="Value" column="dummy2" />-->
+	</class>
+</hibernate-mapping>

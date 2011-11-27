@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Valuations.Valuation, B4F.TotalGiro.Valuations" table="Valuations" where="(MarkedForDeletion is null or MarkedForDeletion = 0)" proxy ="B4F.TotalGiro.Valuations.IValuation, B4F.TotalGiro.Interfaces" mutable="false" >
+		<id name="Key" column="ValuationID">
+			<generator class="assigned"/>
+		</id>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none"  />
+		<many-to-one name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="Date" column="ValuationDate" type="Date" />
+		<many-to-one name="ValuationMutation" column="ValuationMutationID" class="B4F.TotalGiro.Valuations.ValuationMutation, B4F.TotalGiro.Valuations" cascade="none" fetch="join" />
+		<many-to-one name="HistoricalPrice" column="InstrumentPriceHistoryID" class="B4F.TotalGiro.Instruments.Prices.HistoricalPrice, B4F.TotalGiro.Instruments" cascade="none" fetch="join" />
+		<many-to-one  name="HistoricalExRate" column="HistoricalExRateID" class="B4F.TotalGiro.Instruments.ExRates.HistoricalExRate, B4F.TotalGiro.Instruments" cascade="none" fetch="join" />
+		<component name="MarketValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="MarketValue" />
+			<many-to-one name="Underlying" column="MarketValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="BaseMarketValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="BaseValue" />
+			<many-to-one name="Underlying" column="BaseValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<many-to-one name="AccruedInterestCashMutation" column="AccruedInterestCashMutationID" class="B4F.TotalGiro.Valuations.ValuationCashMutation, B4F.TotalGiro.Valuations" cascade="none" />
+		<!--<many-to-one name="AverageHolding" column="AverageHoldingID" class="B4F.TotalGiro.Valuations.AverageHoldings.AverageHolding, B4F.TotalGiro.Valuations" cascade="none" />-->
+	</class>
+</hibernate-mapping>

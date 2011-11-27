@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="B4F.TotalGiro.Accounts.AccountStatus, B4F.TotalGiro.Accounts" table="AccountStatus" >
+		<id name="key" column="AccountStatusID" unsaved-value="0" access="field">
+			<generator class="assigned" />
+		</id>
+		<property name="Name" column="AccountStatus" />
+		<property name="IsOpen" column="IsOpen" />
+	</class>
+</hibernate-mapping>

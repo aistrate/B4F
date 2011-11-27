@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+	<class name="B4F.TotalGiro.Instruments.ModelHierarchy, B4F.TotalGiro.Instruments" table="vweNestedModelHierarchy" proxy="B4F.TotalGiro.Instruments.IModelHierarchy, B4F.TotalGiro.Interfaces" mutable="false" >
+    <cache usage="read-only" />
+		<id name="Key" column="id" unsaved-value="0">
+			<generator class="assigned"/>
+		</id>
+		<many-to-one name="TopParentModel" column="TopParentModelID" class="B4F.TotalGiro.Instruments.ModelBase, B4F.TotalGiro.Instruments" />
+		<many-to-one name="TopParentModelVersion" column="TopParentModelVersionID" class="B4F.TotalGiro.Instruments.ModelVersion, B4F.TotalGiro.Instruments" />
+		<many-to-one name="ParentModel" column="ParentModelID" class="B4F.TotalGiro.Instruments.ModelBase, B4F.TotalGiro.Instruments" />
+		<many-to-one name="ParentModelVersion" column="ParentModelVersionID" class="B4F.TotalGiro.Instruments.ModelVersion, B4F.TotalGiro.Instruments" />
+		<many-to-one name="ChildModel" column="ChildModelID" class="B4F.TotalGiro.Instruments.ModelBase, B4F.TotalGiro.Instruments" />
+		<many-to-one name="ChildModelVersion" column="ChildModelVersionID" class="B4F.TotalGiro.Instruments.ModelVersion, B4F.TotalGiro.Instruments" />
+		<property name="HierarchyLevel" column="Level" />
+	</class>
+
+	<query name="B4F.TotalGiro.Instruments.ModelEmbeddedInParentModel" >
+		<![CDATA[
+        select count(H.Key)
+        from ModelHierarchy H
+		where H.TopParentModel.Key = :topParentModelID
+		and H.TopParentModel.IsActive = 1
+		and H.ChildModel.Key = :childModelID
+    ]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Instruments.ParentModels" >
+		<![CDATA[
+        from ModelHierarchy H
+		where H.ChildModel.Key = :childModelID
+		and H.TopParentModel.LatestVersion = H.TopParentModelVersion
+		and H.TopParentModel.IsActive = 1
+    ]]>
+	</query>
+
+</hibernate-mapping>

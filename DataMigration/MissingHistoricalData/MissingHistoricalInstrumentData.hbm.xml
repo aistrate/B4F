@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.DataMigration.MissingHistoricalData.MissingHistoricalInstrumentData, B4F.DataMigration" table="dbo.FN_TG_GetMissingPriceDates(1003, NULL, NULL)" lazy="true">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="InstrumentID" cascade="none" />
+		<property name="Date" column="Date" type="Date" />
+		<property name="IsBizzDay" column="IsBizzDay" />
+	</class>
+</hibernate-mapping>

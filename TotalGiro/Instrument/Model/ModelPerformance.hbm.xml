@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Instruments.ModelPerformance, B4F.TotalGiro.Instruments" table="ModelPerformances" 
+         proxy="B4F.TotalGiro.Instruments.IModelPerformance, B4F.TotalGiro.Interfaces">
+    <id name="Key" unsaved-value="0">
+      <column name="ModelPerformanceId"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one name="ModelPortfolio" column="ModelID" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" cascade="none" />
+    <property name="Quarter" column="PerformanceTypeId" />
+    <property name="PerformanceYear" column="PerformanceYear" />
+    
+    <property name="IBoxxTarget" column="IBoxxTarget" />
+    <property name="MSCIWorldTarget" column="MSCIWorldTarget" />
+    <property name="CompositeTarget" column="CompositeTarget" />
+    <property name="BenchMarkValue" column="BenchMarkValue" />
+    <property name="EmployeeID" column="EmployeeID" />
+  </class>
+
+  <query name="B4F.TotalGiro.Instruments.ModelBechmarkPerformances" >
+    <![CDATA[
+        from ModelPerformance R 
+        where R.ModelPortfolio.Key = :modelID
+        and   R.Quarter = :quarter
+        and   R.PerformanceYear = :yyyy        
+        order by R.PerformanceYear desc,  R.Quarter desc
+    ]]>
+  </query>
+</hibernate-mapping>

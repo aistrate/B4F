@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.Balances.TrialBalance, B4F.TotalGiro.GeneralLedger"   
+		   table="vweTrialBalance">
+		<id name="Key" column="Transactiondate" >
+			<generator class="assigned"/>
+		</id>
+		<bag name="records" access="field" generic="true">				
+			<key column="TransactionDate"/>			
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Balances.TrialBalanceRecord, B4F.TotalGiro.GeneralLedger" />
+			<loader query-ref="getTrialBalance_SP"/>
+		</bag>
+	</class>
+	<sql-query name="getTrialBalance_SP">
+		
+		<load-collection alias="records" role ="B4F.TotalGiro.GeneralLedger.Journal.Balances.TrialBalance.records"/>
+		exec TG_GetTrialBalance ?
+	</sql-query> 
+</hibernate-mapping>

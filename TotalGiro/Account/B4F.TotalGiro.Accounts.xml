@@ -1,0 +1,1704 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Accounts</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.Accounts.TransactionReceipt">
+            <summary>
+            Class to hold the fysical (pdf files) with transaction information that are sent to the client
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.NostroAccount">
+            <summary>
+            This nostro account is the management company's own (customer) account where they keep their own positions and trade with.
+            It resembles the Customer account except for probably they don't pay any commission.
+            It is a internal customertype account of the TotalGiro system.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.AccountTypeCustomer">
+            <summary>
+            This is an abstract class and a subclass of the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeInternal">AccountTypeInternal</see> class.
+            It serves as a base class for accounts that are customers in the TotalGiro system, so people who invest their money.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.AccountTypeInternal">
+            <summary>
+            This is an abstract class and a subclass of the <see cref="T:B4F.TotalGiro.Accounts.Account">Account</see> class.
+            It serves as a base class for accounts that are internal in the TotalGiro system, like customer and own accounts.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Account">
+            <summary>
+            The Account class is an abstract class. It is on top of the hierarchy, since all other account classes inherit from the Account class.
+            The class only provides some common properties and has the basic functionality for comparison.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Account.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Account">Account</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Account.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Account">Account</see> class.
+            </summary>
+            <param name="number">The Account's number</param>
+            <param name="shortName">Shortname of the account</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Account.op_Equality(B4F.TotalGiro.Accounts.Account,B4F.TotalGiro.Accounts.IAccount)">
+            <summary>
+            Method to compare whether two account objects are identical
+            </summary>
+            <param name="lhs">Left hands side account to be compared</param>
+            <param name="rhs">Right hands side account to be compared</param>
+            <returns>Returns True when both instances are equal</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Account.op_Inequality(B4F.TotalGiro.Accounts.Account,B4F.TotalGiro.Accounts.IAccount)">
+            <summary>
+            Method to compare whether two account objects are not identical
+            </summary>
+            <param name="lhs">Left hands side account to be compared</param>
+            <param name="rhs">Right hands side account to be compared</param>
+            <returns>Returns True when both instances are not equal</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Account.Equals(System.Object)">
+            <summary>
+            Overridden equality operator. 
+            Method to compare whether a account instance is equal to the current instance of the account
+            </summary>
+            <param name="obj">The account that is tested for equality</param>
+            <returns>Returns True when both instances are equal</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Account.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            Override of the ToString method, to display a descriptive name.
+            </summary>
+            <returns>It returns the account number of the current account instance</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Account.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode.
+            Returns the hashcode of the account to be able of comparing different account instances for equality
+            </summary>
+            <returns>Returns the Key property of the account instance</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Account.AccountType">
+            <summary>
+            The AccountType defines the type of account. For example customer or counterparty.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Account.BaseCurrency">
+            <summary>
+            Abstract property to get the Base currency of the account
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Account.Key">
+            <summary>
+            The unique identifier of each aacount
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Account.Number">
+            <summary>
+            The Account number of the account
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Account.ShortName">
+            <summary>
+            The short name of the account
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Account.IsInternal">
+            <summary>
+            Is this an internal account. Does it reside in the totalgiro system.
+            Internal means that positions and other important issues are dealt with for the account.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Account.StorePositions">
+            <summary>
+            The way how the account stores its positions
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeInternal">AccountTypeInternal</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.#ctor(System.String,System.String,B4F.TotalGiro.Stichting.IManagementCompany)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeInternal">AccountTypeInternal</see> class.
+            </summary>
+            <param name="number">The Account's number</param>
+            <param name="shortName">Shortname of the account</param>
+            <param name="accountOwner">The owner of the account</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.TotalPositionAmount(B4F.TotalGiro.Accounts.PositionAmountReturnValue)">
+            <summary>
+            This method retrieves the cash amount in base currency of the relevant type of positions (Cash, cash fund, securities).
+            </summary>
+            <param name="retVal">The filter used on the positions</param>
+            <returns>The amount in base currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OpenOrderAmount">
+            <summary>
+            The total gross amount in base currency of all open (active) orders
+            </summary>
+            <returns>The amount in base currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OpenOrderAmount(B4F.TotalGiro.Accounts.OpenOrderAmountReturnValue)">
+            <summary>
+            An overload of the <see cref="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OpenOrderAmount">OpenOrderAmount</see> method.
+            With this method it is possible to return either the total nett or total gross open order amount.
+            </summary>
+            <param name="retVal">Value determines if either the gross or nett value is returned</param>
+            <returns>The amount in base currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OpenOrderAmount(B4F.TotalGiro.Accounts.OpenOrderAmountReturnValue,B4F.TotalGiro.Orders.OrderSideFilter)">
+            <summary>
+            An overload of the <see cref="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OpenOrderAmount">OpenOrderAmount</see> method.
+            With this method it is possible to return either the total nett or total gross open order amount.
+            And it is possible to filter on either buy, sell or both orders.
+            </summary>
+            <param name="retVal">Value determines if either the gross or nett value is returned</param>
+            <param name="sideFilter">Value determines which orders are included depending on the <see cref="T:B4F.TotalGiro.Orders.Side">side</see> of the order</param>
+            <returns>The amount in base currency</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.AccountOwner">
+            <summary>
+            This is the owner of the internal account.
+            Customer accounts are owned by a Asset managing company, while the accounts of the asset managing company are owned by the stichting.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.BaseCurrency">
+            <summary>
+            The base currency of the internal account
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.AccountforAggregation">
+            <summary>
+            This account is used when orders for the internal account are aggregated to an aggregated order.
+            This account on this aggregated order will be the AccountforAggregation.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.AccountforCommission">
+            <summary>
+            This account will receive the commission whenever orders are placed.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.IsInternal">
+            <summary>
+            A flag indicating whether this account is internal
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.Portfolio">
+            <summary>
+            The portfolio of the internal account
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.AccountHolders">
+            <summary>
+            The portfolio of the internal account
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.StorePositions">
+            <summary>
+            The way how the account stores its positions
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.CommissionCalcReqd">
+            <summary>
+            Does the account need commission calculation
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.HistoricalPositionKeys">
+            <summary>
+            The access point to all historical positions.
+            First select the relevant key (account, instrument) and then get the historical positions of this key combination
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.OrdersForAccount">
+            <summary>
+            The active orders that exist for this internal account
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.TotalCashAmount">
+            <summary>
+            The total cash amount (not including the cash fund) of the internal account returned in base currency
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection">
+            <summary>
+            This class is used to hold the collection of orders that belong to an internal account
+            </summary>
+            <moduleiscollection>
+            </moduleiscollection>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,System.Collections.IList)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.TotalAmount">
+            <summary>
+            The total amount of the order collection in base currency
+            </summary>
+            <returns>The amount in base currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.TotalAmount(B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            An overload of the <see cref="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.TotalAmount">TotalAmount</see> method.
+            With this method it is possible to filter on orders in a specific instrument.
+            </summary>
+            <param name="instrument">The instrument used to filter on</param>
+            <returns>The amount in base currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.TotalAmount(B4F.TotalGiro.Instruments.IInstrument,System.Boolean)">
+            <summary>
+            An overload of the <see cref="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.TotalAmount">TotalAmount</see> method.
+            With this method it is possible to filter on orders in a specific instrument.
+            But it is also possible to return the total amount of orders where the value is in foreign currency but the requested instrument is in system currency (Monetary only)
+            </summary>
+            <param name="instrument">The instrument used to filter on</param>
+            <param name="useRequestedInstrument">
+            Determines the way how filtering is done with the instrument on the orders.
+            When true it returns the total amount of all orders in the relevant instrument.
+            When false it returns the total amount of orders where the value is in foreign currency but the requested instrument is in system currency (Monetary only)
+            </param>
+            <returns>The amount in base currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.TotalAmountInSpecifiedNominalCurrency(B4F.TotalGiro.Instruments.ICurrency,System.Boolean)">
+            <summary>
+            This method returns the total amount of all orders in the passed in currency
+            If reservedOrdersOnly eqauls true it looks at all orders where the nominal currency of instrument on the order matches the passed in currency.
+            And if this is not the case it only looks at the orders that have a Money Order attached (this means that this amount is reserved).
+            </summary>
+            <param name="currencyNominal">The currency the amount should be in</param>
+            <param name="reservedOrdersOnly">
+            If false the order amount should be converted when the instrument nominal currency doesn't match the passed in currency.
+            If true then in the case when the instrument nominal currency doesn't match the passed in currency it only looks at the order when a Money Order is attached to the order (this means that this amount is reserved).
+            </param>
+            <returns>The amount in the relevant currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.TotalSize(B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            The total size of the order for a particular instrument
+            </summary>
+            <param name="instrument">The instrument of interest</param>
+            <returns>The <see cref="T:B4F.TotalGiro.Instruments.InstrumentSize">size</see></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.Filter(B4F.TotalGiro.Instruments.IInstrument,B4F.TotalGiro.Orders.OrderSideFilter)">
+            <summary>
+            This method returns a filtered order collection in a specific instrument.
+            It is also possible to return these orders depending on the instrument and the <see cref="T:B4F.TotalGiro.Orders.Side">side</see> of the order. 
+            </summary>
+            <param name="tradedInstrument">The instrument of interest</param>
+            <param name="sideFilter">Value determines which orders are included depending on the <see cref="T:B4F.TotalGiro.Orders.Side">side</see> of the order</param>
+            <returns>A filtered collection of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.Exclude(System.Collections.Generic.IList{B4F.TotalGiro.Instruments.IInstrument})">
+            <summary>
+            This method returns a order collection without the instruments to exclude
+            </summary>
+            <param name="excludedInstruments">The instruments to exclude from the result</param>
+            <returns>A filtered collection of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.Remove(B4F.TotalGiro.Orders.IOrder,System.Boolean)">
+            <exclude/>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeInternal.OrderCollection.ParentAccount">
+            <summary>
+            The account the order collection belongs to
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeCustomer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeCustomer">AccountTypeCustomer</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeCustomer.#ctor(System.String,System.String,B4F.TotalGiro.Stichting.IManagementCompany,B4F.TotalGiro.Instruments.IModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeCustomer">AccountTypeCustomer</see> class.
+            </summary>
+            <param name="number">The Account's number</param>
+            <param name="shortName">Shortname of the account</param>
+            <param name="accountOwner">The owner of the account</param>
+            <param name="modelPortfolio">The model portfolio the account is tied to</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeCustomer.SetModelPortfolio(B4F.TotalGiro.Instruments.IModel,B4F.TotalGiro.Stichting.Login.IEmployee)">
+            <summary>
+            The method to alter the Model portfolio
+            </summary>
+            <param name="newModelPortfolio">The new model portfolio</param>
+            <param name="employee">The employee who performs the change</param>
+            <returns>true when successfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeCustomer.SetModelPortfolio(B4F.TotalGiro.Instruments.IModel,B4F.TotalGiro.Stichting.Login.IEmployee,System.DateTime)">
+            <summary>
+            The method to alter the Model portfolio
+            </summary>
+            <param name="newModelPortfolio">The new model portfolio</param>
+            <param name="employee">The employee who performs the change</param>
+            <param name="changeDate">The date of the change</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeCustomer.GetModelInstrumentAllocation(B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            This method returns the allocation of a certain instrument in the account's model portfolio.
+            When the instrument does not exist in the model portfolio 0 is returned.
+            </summary>
+            <param name="instrument">The instrument of interest</param>
+            <returns>The allocation of the particular instrument in the account's model portfolio</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeCustomer.CreateInstruction(B4F.TotalGiro.Accounts.Instructions.InstructionTypes,System.DateTime)">
+            <summary>
+            This is the method where a new rebalance instruction is created for the account.
+            </summary>
+            <param name="instructionType">The type of instruction, currently we only support rebalance instructions</param>
+            <param name="executionDate">The date that the rebalance should be executed</param>
+            <returns>A new <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">instruction</see></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeCustomer.CreateInstruction(B4F.TotalGiro.Accounts.Instructions.InstructionTypes,System.DateTime,System.DateTime)">
+            <summary>
+            This is the method where a new rebalance instruction is created for the account.
+            </summary>
+            <param name="instructionType">The type of instruction, currently we only support rebalance instructions</param>
+            <param name="executionDate">The date that the rebalance should be executed</param>
+            <param name="rebalanceDate">The date that the rebalance took place, can be in the past</param>
+            <returns>A new <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">instruction</see></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeCustomer.ModelPortfolio">
+            <summary>
+            This is the model portfolio that is tied to the account.
+            The account's portfolio is based upon this model.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeCustomer.ModelPortfolioName">
+            <summary>
+            The name of the model portfolio
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeCustomer.ModelPortfolioChanges">
+            <summary>
+            This is the collection of modelportfolio changes that belong to the account.
+            The <see cref="T:B4F.TotalGiro.Accounts.ModelHistory.ModelHistoryCollection">modelportfolio changes</see> that belong to the current account.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeCustomer.AccountInstructions">
+            <summary>
+            This is the collection of rebalance instructions that belong to the account.
+            A <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">rebalance instruction</see> defines the workflow that is involved in a rebalance.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeCustomer.ActiveAccountInstructions">
+            <summary>
+            This is the collection of rebalance instructions that belong to the account.
+            A <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">rebalance instruction</see> defines the workflow that is involved in a rebalance.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeCustomer.CurrentRebalanceDate">
+            <summary>
+            The current rebalance date of the active instruction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeCustomer.LastRebalanceDate">
+            <summary>
+            The last rebalance date of an instruction that was NOT cancelled but finished completely
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeCustomer.AllowNewInstruction">
+            <summary>
+            This property informs whether a new instruction can be inserted.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.NostroAccount.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.NostroAccount">NostroAccount</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.NostroAccount.VerifyStornoLimit(B4F.TotalGiro.Instruments.Money,System.Boolean)">
+            <summary>
+            Checks whether amount throws total portfolio value of nostro account over Storno Limit.
+            </summary>
+            <param name="amount">The amount to add to account's total portfolio before checking against Storno Limit.</param>
+            <param name="raiseException">If True, an exception will be thrown in case the amount doesn't verify the storno limit; if False, only the return value will be affected.</param>
+            <returns>True if new portfolio value (of nostro account) is below or equal to Storno Limit, False if not.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.NostroAccount.AccountType">
+            <summary>
+            The AccountType defines the type of account.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.NostroAccount.StornoLimit">
+            <summary>
+            The upper limit of how much (in base currency) can be stornoed against this Nostro account.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.CustomerAccount">
+            <summary>
+            This is a account that belongs to the customers of the asset managing companies.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.CustomerAccount.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.CustomerAccount">CustomerAccount</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.CustomerAccount.#ctor(System.String,System.String,B4F.TotalGiro.Stichting.IManagementCompany,B4F.TotalGiro.Instruments.IModel,B4F.TotalGiro.CRM.IContact)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.CustomerAccount">CustomerAccount</see> class.
+            </summary>
+            <param name="number">The Account's number</param>
+            <param name="shortName">Shortname of the account</param>
+            <param name="accountOwner">The owner of the account</param>
+            <param name="modelPortfolio">The model portfolio the account is tied to</param>
+            <param name="contact">An accountholder</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.CustomerAccount.#ctor(System.String,System.String,B4F.TotalGiro.Stichting.IManagementCompany,B4F.TotalGiro.Instruments.IModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.CustomerAccount">CustomerAccount</see> class.
+            </summary>
+            <param name="number">The Account's number</param>
+            <param name="shortName">Shortname of the account</param>
+            <param name="accountOwner">The owner of the account</param>
+            <param name="modelPortfolio">The model portfolio the account is tied to</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.CustomerAccount.AccountType">
+            <summary>
+            The AccountType defines the type of account.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.CustomerAccount.CommissionCalcReqd">
+            <summary>
+            Does the account need commission calculation
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.AccountTypeExternal">
+            <summary>
+            This is an abstract class and a subclass of the <see cref="T:B4F.TotalGiro.Accounts.Account">Account</see> class.
+            It serves as a base class for accounts that are external to the TotalGiro system, like counterparties and custody accounts.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeExternal.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeExternal">AccountTypeExternal</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.AccountTypeExternal.BaseCurrency">
+            <summary>
+            This is the base currency of the external account
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.OverFlowAccount">
+            <summary>
+            This class is used to instantiate account instances that are used for storing the overflow of orders.
+            For instance the shortage or surplus that is left after the transaction allocation will go to this account.
+            But also in the case when the instrument does not support fractions when trading, the number of positions to round up the order will also be placed on the overflow account.
+            It is a system account of the TotalGiro system.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.AccountTypeSystem">
+            <summary>
+            This is an abstract class and a subclass of the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeInternal">AccountTypeInternal</see> class.
+            It serves as a base class for accounts that are used in the TotalGiro system with a specific system function, like the overflow and the commission account.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeSystem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeSystem">AccountTypeSystem</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountTypeSystem.#ctor(System.String,System.String,B4F.TotalGiro.Stichting.IManagementCompany)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.AccountTypeSystem">AccountTypeSystem</see> class.
+            </summary>
+            <param name="number">The Account's number</param>
+            <param name="shortName">Shortname of the account</param>
+            <param name="accountOwner">The owner of the account</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.OverFlowAccount.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.OverFlowAccount">OverFlowAccount</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.OverFlowAccount.AccountType">
+            <summary>
+            The AccountType defines the type of account.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.AccountHolder">
+            <summary>
+            The AccountHodler is the Contact (Person or Company) that holds an Account
+            in the System. There is a many-to-many relationship bewteen accounts and Accountholders.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountHolder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.CRM.IContact)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.AccountHolder">AccountHolder</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountHolder.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode.
+            Returns the hashcode of the AccountHolder to be able of comparing different account instances for equality
+            </summary>
+            <returns>Returns the Key property of the account instance</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.PositionTx">
+            <summary>
+            A position transaction is created when a <see cref="T:B4F.TotalGiro.Orders.Transactions.Transaction">Transaction</see> is approved.
+            It is used to either create or update a account's position in the instrument that is bought.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.PositionTx.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTx">PositionTx</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.PositionTx.#ctor(B4F.TotalGiro.Orders.Transactions.ITransaction,B4F.TotalGiro.Accounts.Positions.TransactionSide,B4F.TotalGiro.Accounts.Positions.CVType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTx">PositionTx</see> class.
+            </summary>
+            <param name="transaction">The transaction with all the data which is important to adjust the current position</param>
+            <param name="txSide">Determines which side of the transaction is important (either party or counterparty).</param>
+            <param name="isCV">Determines which value of the transaction is of interest (either value, countervalue or commission)</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.OpenAmount">
+            <summary>
+            The open amount on the position transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.OpenSize">
+            <summary>
+            The open size on the position transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.Key">
+            <summary>
+            The unique identifier of the position transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.Account">
+            <summary>
+            The account that holds the position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.Instrument">
+            <summary>
+            The instrument of the position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.CashGeneratingInstrument">
+            <summary>
+            In case of a cash Position -> the instrument that the cash belongs to.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.ParentPosition">
+            <summary>
+            The position that this position transaction belongs to
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.TxSide">
+            <summary>
+            Determines which side of the transaction is important (either party or counterparty).
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.IsCV">
+            <summary>
+            <param name="IsCV">Determines which value of the transaction is of interest (either value, countervalue or commission)</param>
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.Size">
+            <summary>
+            The size of the position transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.Value">
+            <summary>
+            The value of the position transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.Price">
+            <summary>
+            The price of the position transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.IsCashPosition">
+            <summary>
+            Is the instrument of type cash
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.ValuationCashTxMapping">
+            <summary>
+            Is the instrument of type cash
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.TransactionDate">
+            <summary>
+            The date when the transaction was done
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTx.ParentTransaction">
+            <summary>
+            The transaction that generated this position transaction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionMapper">
+            <summary>
+            This class is used to instantiate Instruction objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionMapper.GetInstruction(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            This method retrieves an instruction instance by its unique identifier. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="id">The unique identifier of the instruction</param>
+            <returns>An Instance of an account class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionMapper.GetInstructions(B4F.TotalGiro.Dal.IDalSession)">
+            <overloads>
+            This method has 5 overloads.
+            </overloads>
+            <summary>
+            This method retrieves the list of instruction instances
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>A list of instruction instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionMapper.GetInstructions(B4F.TotalGiro.Dal.IDalSession,System.Int32[])">
+            <summary>
+            This method retrieves the list of instruction instances
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="instructionIDs">An array of uniquely identifiers of the instructions</param>
+            <returns>A list of instruction instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionMapper.GetInstructions(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.Account,System.Boolean)">
+            <summary>
+            This method retrieves the list of instruction instances
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="account">The account that owns the instructions</param>
+            <param name="activeOnly">A flag indicating whether only active instructions should be returned</param>
+            <returns>A list of instruction instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionMapper.GetInstructions(B4F.TotalGiro.Dal.IDalSession,System.Boolean)">
+            <summary>
+            This method retrieves the list of instruction instances
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="activeOnly">A flag indicating whether only active instructions should be returned</param>
+            <returns>A list of instruction instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionMapper.GetInstructions(B4F.TotalGiro.Dal.IDalSession,System.Boolean,System.DateTime)">
+            <summary>
+            This method retrieves the list of instruction instances
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="activeOnly">A flag indicating whether only active instructions should be returned</param>
+            <param name="date">The date that filters the execution dates of the instructions. The Execution date should be before the date passed in.</param>
+            <returns>A list of instruction instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.Instructions.IInstruction)">
+            <summary>
+            This method is used to insert or update an instruction
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">The instruction that is inserted or updated</param>
+            <returns>Returns True when succesfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionMapper.Update(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            This method is used to insert or update a list of instructions
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="list">The instructions that need insertion or updating</param>
+            <returns>Returns True when succesfull</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.HistoricalPositionCollection">
+            <summary>
+            This class is used to hold the collection of historical positions
+            </summary>
+            <moduleiscollection/>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.HistoricalPositionCollection.#ctor(B4F.TotalGiro.Accounts.Positions.HistoricalPositionKey,System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.HistoricalPositionCollection">HistoricalPositionCollection</see> class.
+            </summary>
+            <param name="parent">The Historical Position Key (account instrument) that the historical positions belong to</param>
+            <param name="bagOfHistoricalPositions">The NHibernate collection of positions</param>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.HistoricalPositionMapper">
+            <summary>
+            This class is used to instantiate historical position objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.HistoricalPositionMapper.GetHistPositions(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            This method retrieves a list of historical position instances that belong to the specified account key
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="accountID">The unique identifier of a <see cref="T:B4F.TotalGiro.Accounts.Account">Account</see></param>
+            <returns>A list of historical position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.HistoricalPositionMapper.GetHistPositions(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            This method retrieves a list of historical position instances that belong to the specified keys 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="Keys">A list with historical position keys</param>
+            <returns>A list of historical position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.HistoricalPositionMapper.GetHistPositionKeys(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccountTypeInternal)">
+            <summary>
+            This method retrieves a list of historical position keys instances that belong to the specified account
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="account">An instance of the <see cref="T:B4F.TotalGiro.Accounts.Account">Account</see> class to whom the historical position keys belong</param>
+            <returns>A list of historical position key instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.HistoricalPositionMapper.GetHistPositions(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccountTypeInternal)">
+            <summary>
+            This method retrieves a list of historical position instances that belong to the specified account key
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="account">An instance of the <see cref="T:B4F.TotalGiro.Accounts.Account">Account</see> class to whom the historical positions belong</param>
+            <returns>A list of historical position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.HistoricalPositionMapper.GetMaxHistPositions(System.String,System.String,System.Int32)">
+            <summary>
+            This method retrieves the maximum date of historical positions of an account
+            </summary>
+            <param name="accountnr">Number of an acccount</param>
+            <param name="accountname">Name of an acccount</param>
+            <param name="assetManagerId">Assetmanager of an account</param>
+            <returns>A list of maximum dates of historical positions</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.CashPosition">
+            <summary>
+            This class represents cash positions.
+            So this means that these positions only include currency instruments.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.Position">
+            <summary>
+            A position is the account's holding of a specific instrument.
+            It holds properties like size and currentvalue.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Position.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.Position">Position</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Position.#ctor(B4F.TotalGiro.Accounts.Positions.PositionTx,B4F.TotalGiro.Accounts.AccountTypeInternal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.Position">Position</see> class.
+            </summary>
+            <param name="posTx"></param>
+            <param name="account"></param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Position.ReCalculatePosition">
+            <summary>
+            This method recalculates the position values using it's position transactions
+            </summary>
+            <returns>True when succesfull</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:B4F.TotalGiro.Accounts.Positions.Position.Equals(System.Object)" -->
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Position.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode.
+            </summary>
+            <returns>Integer containing the id of the position</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Position.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.IsSecurityPosition">
+            <summary>
+            Is this a Security position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.IsCashPosition">
+            <summary>
+            Is this a cash position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.Key">
+            <summary>
+            The unique identifier of the position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.Account">
+            <summary>
+            The account that holds this position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.Size">
+            <summary>
+            The instrument size of the position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.Instrument">
+            <summary>
+            The instrument on the position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.Sign">
+            <summary>
+            Is this a long or short position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.Realised">
+            <summary>
+            Is this position realised (closed off)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.AvgOpenPrice">
+            <summary>
+            The average price spent on the instrument on the position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.LastPrice">
+            <summary>
+            The last price spent on the instrument on the position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.CurrentValue">
+            <summary>
+            The current value of the position using the last known price
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.TotalOpenSize">
+            <summary>
+            The total instrument size that was bought of this instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.TotalOpenAmount">
+            <summary>
+            The total amount that was spent on this instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.CreationDate">
+            <summary>
+            The date that this position was created
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.LastUpdated">
+            <summary>
+            The last modification date of this position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.ModelAllocation">
+            <summary>
+            The ideal model allocation of the instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.PositionTransactions">
+            <summary>
+            The position transactions that made up this instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Position.OpenOrderAmount">
+            <summary>
+            The open order amount of the account for the position's instrument
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.CashPosition.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.CashPosition">CashPosition</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.CashPosition.#ctor(B4F.TotalGiro.Accounts.Positions.PositionTx,B4F.TotalGiro.Accounts.AccountTypeInternal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.CashPosition">CashPosition</see> class.
+            </summary>
+            <param name="posTx">The Position Transaction that updated this position</param>
+            <param name="account">The account that holds this position</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.CashPosition.IsSecurityPosition">
+            <summary>
+            Is this a Security position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.CashPosition.IsCashPosition">
+            <summary>
+            Is this a cash Position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.CashPosition.CurrentValue">
+            <summary>
+            The current value of the position.
+            This equals the size of the position.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.CashPosition.CurrentBaseValue">
+            <summary>
+            Returns the current value in base currency.
+            When the cash is not the base currency then it is converted using the latest exchange rate.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.CashPosition.OpenOrderAmount">
+            <summary>
+            Returns the accounts open order amount for the underlying instrument of the position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.CashPosition.OpenOrderAmountInSameCurrency">
+            <summary>
+            Returns the total open order amount of all (tradeable instrument) orders 
+            where the nominal currency of the requested instrument is the same as the currency of this position
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.CounterPartyAccount">
+            <summary>
+            This class is used to instantiate counterparty account instances that are used to trade with.
+            They serve as the counterparty on the <see cref="T:B4F.TotalGiro.Orders.Transactions.Transaction">transactions</see> objects.
+            It is an external account of the TotalGiro system.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.CounterPartyAccount.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.CounterPartyAccount">CounterPartyAccount</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.CounterPartyAccount.AccountType">
+            <summary>
+            The AccountType defines the type of account.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.CounterPartyAccount.DefaultExchange">
+            <summary>
+            The default exchange where the counterparty is trading.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.Instruction">
+            <summary>
+            This is the rebalance instruction that defines the workflow that is involved in a rebalance.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.Instruction.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">Instruction</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.Instruction.#ctor(B4F.TotalGiro.Accounts.Instructions.InstructionTypes,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">Instruction</see> class.
+            </summary>
+            <param name="instructionType">The type of instruction</param>
+            <param name="executionDate">The date the instruction should execute</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.Instruction.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.Key">
+            <summary>
+            The unique identifier of the instruction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.Account">
+            <summary>
+            The account the instruction belongs to.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.IsActive">
+            <summary>
+            Is this instruction still active.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.Cancelled">
+            <summary>
+            Was this instruction cancelled.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.InstructionType">
+            <summary>
+            The type of instruction. Currently only rebalance instructions are supported.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.DisplayInstructionType">
+            <exclude/>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.Status">
+            <summary>
+            The status of the instruction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.DisplayStatus">
+            <exclude/>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.HasOrders">
+            <exclude/>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.ExecutionDate">
+            <summary>
+            The date that the instruction should execute.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.RebalanceDate">
+            <summary>
+            The date that the rebalance was done (can be historical)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.CreationDate">
+            <summary>
+            The date that the instruction was created.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.LastUpdated">
+            <summary>
+            The date that the instruction was last modified.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.Message">
+            <summary>
+            A descriptive message on the instruction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.Instruction.Orders">
+            <summary>
+            The active orders that originated from this instruction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.TradingAccount">
+            <summary>
+            This class is used to instantiate account instances that are used for trading.
+            This account is stored on the <see cref="T:B4F.TotalGiro.Orders.IStgOrder">actual orders</see> that are used for trading 
+            It is a system account of the TotalGiro system.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.TradingAccount.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.TradingAccount">TradingAccount</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.TradingAccount.AccountType">
+            <summary>
+            The AccountType defines the type of account.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.PositionsView">
+            <summary>
+            Used to determine which positions to retrieve
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionsView.All">
+            <summary>
+            Retrieves all positions
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionsView.NotZero">
+            <summary>
+            Retrieves all positions where the size is not zero
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionsView.Zero">
+            <summary>
+            Retrieves all positions where the size is zero
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.PositionReturnClass">
+            <summary>
+            Used to determine which type of positions to retrieve in the <see cref="M:B4F.TotalGiro.Accounts.AccountMapper.GetPositions(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccount,B4F.TotalGiro.Accounts.PositionReturnClass)">GetPositions</see> method
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionReturnClass.SecurityPosition">
+            <summary>
+            Returns the positions where the instrument is a security
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionReturnClass.CashPosition">
+            <summary>
+            Returns the positions where the instrument is cash
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.PositionReturnClass.AllPositions">
+            <summary>
+            Returns all positions
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.AccountTypeReturnClass">
+            <summary>
+            Used to determine which accounts to retrieve
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypeReturnClass.All">
+            <summary>
+            Retrieves all accounts
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypeReturnClass.Internal">
+            <summary>
+            Retrieves all internal accounts
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.AccountTypeReturnClass.External">
+            <summary>
+            Retrieves all external accounts 
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.AccountMapper">
+            <summary>
+            This class is used to instantiate Account and Position objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetAccountByNumber(B4F.TotalGiro.Dal.IDalSession,System.String)">
+            <summary>
+            This method retrieves an account instance via its bank account number.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="number">The account number to be found.</param>
+            <returns>A specific instance of a account class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetDedicatedAccount(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.AccountTypes)">
+            <summary>
+            This method retrieves a specific account instance that has a specific role in the TotalGiro system.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="type">The role of the account</param>
+            <returns>An Instance of an account class</returns>
+            <remarks>This method is obsolete</remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetAccount(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            This method retrieves an account instance by its unique identifier. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="id">The unique identifier of the account</param>
+            <returns>An Instance of an account class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetAccountAsIList(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            This method retrieves a list with one account instance by its unique identifier. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="id">The unique identifier of the account</param>
+            <returns>A list with one account instance</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetAccounts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.AccountTypes,B4F.TotalGiro.Stichting.IManagementCompany)">
+            <summary>
+            This method retrieves a list of account instances that comply to a specific role and to a certain owner. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="type">The role of the account</param>
+            <param name="accountOwner">The owner of the account. In the case of a customer the owner is an asset manager. In the case of an asset manager the owner is the stichting</param>
+            <returns>A list of account instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetAccounts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.AccountTypes,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions)">
+            <summary>
+            This method retrieves a list of account instances that comply to a specific role and that meet the TotalGiro's user security setting. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="type">The role of the account</param>
+            <param name="option">The security option of the user of the system</param>
+            <returns>A list of account instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetCustomerAccounts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.IAssetManager,System.String,System.String)">
+            <summary>
+            This method retrieves a list of customeraccount instances that meet the passed in arguments. 
+            When an argument is ommitted it is not used to filter the accounts
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="assetManager">The asset manager the customer belongs to</param>
+            <param name="accountNumber">The account's number of the account</param>
+            <param name="accountName">The name of the account</param>
+            <returns>A list of AccountTypeInternal (customer) instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetCustomerAccounts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.IAssetManager,B4F.TotalGiro.Instruments.IModel,System.String,System.String,System.Boolean)">
+            <summary>
+            This method retrieves a list of customeraccount instances that meet the passed in arguments. 
+            When an argument is ommitted it is not used to filter the accounts
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="assetManager">The asset manager the customer belongs to</param>
+            <param name="model">The account's model portfolio</param>
+            <param name="accountNumber">The account's number of the account</param>
+            <param name="accountName">The name of the account</param>
+            <param name="accountsWithModelOnly">Only return accounts that have a model attached</param>
+            <returns>A list of AccountTypeInternal (customer) instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetInternalAccounts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.AccountTypes,B4F.TotalGiro.Stichting.IAssetManager)">
+            <summary>
+            This method retrieves a list of internal account instances that comply to a specific role and belong to a specific account manager. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="type">The role of the account</param>
+            <param name="assetManager">The asset manager the customer belongs to</param>
+            <returns>A list of AccountTypeInternal instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetExternalAccounts(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            This method retrieves a list of external account instances. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.</param>
+            <returns>A list of AccountTypeInternal instances.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetAccounts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.AccountTypes)">
+            <summary>
+            This method retrieves a list of account instances that comply to a specific role. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="type">The role of the account</param>
+            <returns>A list of account instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetAccounts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.AccountTypeReturnClass)">
+            <summary>
+            This method retrieves a list of account instances of a certain type. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="type">The type of accounts that should be returned</param>
+            <returns>A list of account instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetAccounts(B4F.TotalGiro.Dal.IDalSession,System.Int32[])">
+            <summary>
+            This method retrieves a list of account instances that are uniquely identified by one of the unique identifiers in the passed-in array. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="accountIDs">An array of account unique identifiers</param>
+            <returns>A list of account instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetAccounts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.IAssetManager)">
+            <summary>
+            This method retrieves a list of account instances that belong to a specific account manager. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="assetManager">The asset manager the account belongs to</param>
+            <returns>A list of account instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetManagedAccounts(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            This method retrieves a list of account instances that are attached to a modelportfolio. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>A list of account instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetFilteredAccounts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.AccountTypes,System.String)">
+            <summary>
+            This method retrieves a list of account instances that comply to a specific role and meet the filter criteria. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="type">The role of the account</param>
+            <param name="AccountFilter">A filter for the account number of the account. All accounts are returned where the account number sesembles any part of the filter string</param>
+            <returns>A list of account instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetNewAccounts(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            This method retrieves a list of new internal account instances that have a cash position(s) and no security positions and orders.
+            These accounts are new accounts that have made their first cash deposit.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>A list of account instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetPosition(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            This method retrieves a specific Position instance that is uniquely identified by the passed in argument. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="positionId">The unique identifier of the position</param>
+            <returns>An instance of a specific Position class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetPosition(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccount,B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            This method retrieves a specific Position instance for a specific account and instrument. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="account">The account of the position</param>
+            <param name="instrument">The instrument of the position</param>
+            <returns>An instance of a specific Position class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetPositions(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccount)">
+            <summary>
+            This method retrieves a list of Position instances that belong to a specific account. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="account">The account the positions belong to</param>
+            <returns>A list of position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetPositions(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccount,B4F.TotalGiro.Accounts.PositionsView)">
+            <summary>
+            This method retrieves a list of Position instances that belong to a specific account and meet the PositionsView criterium. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="account">The account the positions belong to</param>
+            <param name="view">Determines which positions to show (zero side, non zero sized or all)</param>
+            <returns>A list of position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetPositions(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccount,B4F.TotalGiro.Accounts.PositionReturnClass)">
+            <summary>
+            This method retrieves a list of Position instances that are either security, cash or both and belong to a specific account. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="account">The account the positions belong to</param>
+            <param name="returnClass">The type of position</param>
+            <returns>A list of position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetPositions(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccount,B4F.TotalGiro.Accounts.PositionReturnClass,B4F.TotalGiro.Accounts.PositionsView)">
+            <summary>
+            This method retrieves a list of Position instances that are either security, cash or both and meet the PositionsView criterium and belong to a specific account. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="account">The account the positions belong to</param>
+            <param name="returnClass">The type of position</param>
+            <param name="view">Determines which positions to show (zero side, non zero sized or all)</param>
+            <returns>A list of position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetPositions(B4F.TotalGiro.Dal.IDalSession,System.Int32[])">
+            <summary>
+            This method retrieves a list of Position instances that are uniquely identified by one of the unique identifiers in the passed-in array. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="positionIds">An array with uniquely identifiers</param>
+            <returns>A list of position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetCashPositions(B4F.TotalGiro.Dal.IDalSession,System.Collections.ICollection)">
+            <summary>
+            This method retrieves a list of CashPosition instances that are uniquely identified by one of the unique identifiers in the passed-in array. 
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="positionIds">An array with uniquely identifiers</param>
+            <returns>A list of position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.GetCashPositions(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.AccountTypes,B4F.TotalGiro.Instruments.ICurrency,B4F.TotalGiro.Utils.EqualityOperator,B4F.TotalGiro.Accounts.PositionsView,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            This method retrieves a list of Cash Position instances for a certain account type and depending on the EqualityOperator it either returns positions that are equal to the instrument or not equal to the instrument.
+            The type of returned positions is determined by the view
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="accountType">The role of the account</param>
+            <param name="currency">The currency that the positions are filtered on</param>
+            <param name="eqOperator">This argument determines the method of currency filtering. Either positions that are equal to the instrument or not equal to the instrument.</param>
+            <param name="view">Determines which positions to show (zero side, non zero sized or all)</param>
+            <param name="assetManagerId">Asset manager</param>
+            <param name="accountNumber">Account number</param>
+            <param name="accountName">Account name</param>
+            <returns>A list of cash position instances</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccount)">
+            <summary>
+            This method is used to insert or update the account
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">The account that is inserted or updated</param>
+            <returns>Returns True when succesfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.Insert(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.IAccount)">
+            <summary>
+            This method is used to insert the account
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">The account that is inserted or updated</param>
+            <returns>Returns True when succesfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.AccountMapper.UpDateList(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            This method is used to insert or update the list of accounts
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">The list of accounts that is inserted or updated</param>
+            <returns>Returns True when succesfull</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.SecurityPosition">
+            <summary>
+            This class represents security positions.
+            So this means that these positions only include security (stocks, bonds, funds) instruments.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.SecurityPosition.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.SecurityPosition">SecurityPosition</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.SecurityPosition.#ctor(B4F.TotalGiro.Accounts.Positions.PositionTx,B4F.TotalGiro.Accounts.AccountTypeInternal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.SecurityPosition">SecurityPosition</see> class.
+            </summary>
+            <param name="posTx"></param>
+            <param name="account"></param>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.SecurityPosition.IsSecurityPosition">
+            <summary>
+            Is this a Security position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.SecurityPosition.IsCashPosition">
+            <summary>
+            Is this a cash position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.SecurityPosition.CurrentValue">
+            <summary>
+            The current value of the position.
+            The last known price is used to calculate this value
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.SecurityPosition.CurrentBaseValue">
+            <summary>
+            Returns the current value in base currency.
+            When the nominal currency of the instrument is not the base currency then it is converted using the latest exchange rate.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.HistoricalPositionKey">
+            <summary>
+            This class represents cash positions.
+            So this means that these positions only include currency instruments.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.HistoricalPositionKey.Key">
+            <summary>
+            The unique identifier of the Historical Position Key
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.HistoricalPositionKey.Account">
+            <summary>
+            The account that the historical positions (key) belong to.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.HistoricalPositionKey.Instrument">
+            <summary>
+            The instrument involved in the historical positions
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.HistoricalPositionKey.HistoricalPositions">
+            <summary>
+            The collection of historical positions
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.ModelHistory.ModelHistoryCollection">
+            <summary>
+            The class that holds the modelportfolio changes per account
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.ModelHistory.ModelHistoryCollection.Parent">
+            <summary>
+            The account the model changes belong to.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.TransferAccount">
+            <summary>
+            This class is used to instantiate account instances that are used for transferring instruments to clients.
+            It is a system account of the TotalGiro system.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.Portfolio">
+            <summary>
+            Portfolio is in reality a special name for PositionCollection. 
+            It is a collection of Positions that belong to a single account.
+            </summary>
+            <moduleiscollection/>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Portfolio.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.Portfolio">Portfolio</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Portfolio.CreatePositionTx(B4F.TotalGiro.Orders.Transactions.ITransaction,B4F.TotalGiro.Accounts.Positions.TransactionSide,B4F.TotalGiro.Accounts.Positions.CVType)">
+            <summary>
+            This method creates a new <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTx">position transaction</see> after a <see cref="T:B4F.TotalGiro.Orders.Transactions.Transaction">transaction</see> is approved.
+            </summary>
+            <param name="transaction">The transaction with all the data which is important to adjust the current position</param>
+            <param name="txSide">Determines which side of the transaction is important (either party or counterparty).</param>
+            <param name="isCV">Determines which value of the transaction is of interest (either value, countervalue or commission)</param>
+            <returns>A new <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTx">position transaction</see> instance</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Portfolio.TotalValue">
+            <summary>
+            The total value of the portfolio in base currency
+            </summary>
+            <returns>The amount in base currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Portfolio.GetPosition(B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            Returns the position for a specific instrument
+            </summary>
+            <param name="instrument">The instrument of interest</param>
+            <returns>A <see cref="T:B4F.TotalGiro.Accounts.Positions.Position">position</see> instance</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Portfolio.Filter(B4F.TotalGiro.Accounts.Positions.PortfolioFilterValues)">
+            <summary>
+            This method returns a filtered portfolio. The filter is instrument type specific
+            </summary>
+            <param name="retVal">The instrument type specific filter option</param>
+            <returns>A new portfolio instance that meets the filter criterium</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Portfolio.Exclude(System.Collections.Generic.IList{B4F.TotalGiro.Instruments.IInstrument})">
+            <summary>
+            This method returns a portfolio that is excluded from the instruments in the list.
+            </summary>
+            <param name="excludedInstruments">The list of instruments to exclude from the portfolio</param>
+            <returns>A new portfolio instance that meets the filter criterium</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Portfolio.Add(B4F.TotalGiro.Accounts.Positions.IPosition)">
+            <summary>
+            Add a new Position to the Portfolio.
+            </summary>
+            <param name="item">The position being added</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.Portfolio.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.Portfolio.Account">
+            <summary>
+            The account that holds the portfolio
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.CustodyAccount">
+            <summary>
+            This account is a custodian (keeps custody of the positions).
+            It is an external account of the TotalGiro system.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.CustodyAccount.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.CustodyAccount">CustodyAccount</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.CustodyAccount.AccountType">
+            <summary>
+            The AccountType defines the type of account.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.CustodyAccount.CustodianName">
+            <summary>
+            The name of the Custodian account
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.HistoricalPosition">
+            <summary>
+            This class represents the historical positions of a certain account in specific instruments
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.HistoricalPosition.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.HistoricalPosition">HistoricalPosition</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.HistoricalPosition.Key">
+            <summary>
+            The unique identifier of the historical position
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.HistoricalPosition.Parent">
+            <summary>
+            The key where the historical position belongs to.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.HistoricalPosition.Value">
+            <summary>
+            The historical position value
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.HistoricalPosition.Date">
+            <summary>
+            The datestamp when the historical position was actual.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.CommissionAccount">
+            <summary>
+            This class is used to instantiate account instances that are used for storing the commission.
+            It is a system account of the TotalGiro system.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.CommissionAccount.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.CommissionAccount">CommissionAccount</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.CommissionAccount.AccountType">
+            <summary>
+            The AccountType defines the type of account.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.PositionTxCollection">
+            <summary>
+            This class is used to hold the collection of position transactions
+            </summary>
+            <moduleiscollection/>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.PositionTxCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTxCollection">PositionTxCollection</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.PositionTxCollection.#ctor(B4F.TotalGiro.Orders.Transactions.ITransaction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTxCollection">PositionTxCollection</see> class.
+            </summary>
+            <param name="CreatingTransaction"></param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.PositionTxCollection.#ctor(System.Collections.IList,B4F.TotalGiro.Accounts.Positions.Position)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.PositionTxCollection">PositionTxCollection</see> class.
+            </summary>
+            <param name="postionTxs"></param>
+            <param name="ParentPosition"></param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.PositionTxCollection.Add(B4F.TotalGiro.Accounts.Positions.IPositionTx)">
+            <summary>
+            Add a new Position transaction to the collection.
+            </summary>
+            <param name="item">The position being added</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Positions.PositionTxCollection.ParentPosition">
+            <summary>
+            The position that holds these position transactions
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionCollection">
+            <summary>
+            This class is used to hold the collection of account instructions
+            </summary>
+            <moduleiscollection/>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionCollection.#ctor(B4F.TotalGiro.Accounts.IAccountTypeCustomer,System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">Instruction</see> class.
+            </summary>
+            <param name="parentAccount">The account that owns the collection of instructions</param>
+            <param name="bagOfInstructions">The hibernate collection of instructions</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionCollection.Sort(B4F.TotalGiro.Utils.SortingDirection)">
+            <summary>
+            This method returns a sorted IInstructionCollection class
+            </summary>
+            <param name="direction">The direction of sorting</param>
+            <returns>A sorted IInstructionCollection class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionCollection.Add(B4F.TotalGiro.Accounts.Instructions.IInstruction)">
+            <summary>
+            This method adds an instruction to the collection, but only when no active instructions exist for the account.
+            </summary>
+            <param name="item">The instruction being added</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.InstructionCollection.ParentAccount">
+            <summary>
+            The account that owns the collection of instructions
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.InstructionCollection.GetActiveInstruction">
+            <summary>
+            Returns the active instruction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Positions.HistoricalPositionKeyCollection">
+            <summary>
+            This class is used to hold the collection of historical position keys
+            </summary>
+            <moduleiscollection/>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Positions.HistoricalPositionKeyCollection.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Positions.HistoricalPositionKeyCollection">HistoricalPositionKeyCollection</see> class.
+            </summary>
+            <param name="account">The account that the historical positions belong to</param>
+            <param name="bagOfHistoricalPositionKeys">The NHibernate collection with historical position keys</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,157 @@
+<%@ Master Language="C#" CodeFile="TotalGiroClient.master.cs" Inherits="TotalGiroClient" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+    <head id="Head1" runat="server">
+        <title></title>
+        <link rel="stylesheet" type="text/css" media="print" href="App_Themes/Print/Print.css" />
+    </head>
+    
+    <body style="margin: 0px; border: 3px; background-color:<%=MasterBackgroundColor%>"
+          xmlns:b4f="urn:http://schemas.bits4finance.com/TotalGiro">
+        <form id="frmMaster" runat="server">
+            <div>
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td class="screen-only" style="vertical-align: top; width: 240px">
+                            <table width="240px" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td style="height: 70px; vertical-align: middle; text-align: center">
+                                        <asp:Image ID="imgPaerelLogo" runat="server" CssClass="no-margin" ImageUrl="~/Images/PaerelLogo.gif" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 16px; background-color: #E9EEF3"></td>
+                                </tr>
+                                <tr>
+                                    <td style="background-color: #E9EEF3">
+                                        <asp:TreeView
+                                                  ID="tvwMenu"
+                                                  runat="server"
+                                                  NodeWrap="True"
+                                                  ForeColor="#313457"
+                                                  DataSourceID="smdsMenu"
+                                                  NodeIndent="0"
+                                                  Font-Bold="True"
+                                                  Font-Size="1.05em" 
+                                                  ShowExpandCollapse="False"
+                                                  SkipLinkText="">
+                                            <HoverNodeStyle Font-Underline="True" />
+                                            <SelectedNodeStyle Font-Underline="True" Font-Italic="True" />
+                                            <NodeStyle HorizontalPadding="12px" VerticalPadding="0px" NodeSpacing="4px" />
+                                        </asp:TreeView>
+                                        <asp:SiteMapDataSource ID="smdsMenu" runat="server" ShowStartingNode="false" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 12px; background-color: #E9EEF3"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Image ID="imgShell" runat="server" CssClass="no-margin" ImageUrl="~/Images/Shell.png" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        
+                        <td style="vertical-align: top">
+                            <table width="98%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="width: 100%; background-color: #323559; height: 70px; vertical-align: top; text-align: left">
+                                        <div style="position: relative; top: 0px; left: 0px">
+                                            <div id="header-text" style="position: absolute; top: 21px; left: 19px; letter-spacing: 1px">
+                                                <asp:Label ID="lblHeaderText" runat="server" SkinID="custom" Font-Size="22px" 
+                                                           ForeColor="White"></asp:Label>
+                                            </div>
+                                            <div style="position: relative; top: 0px">
+                                                <table class="screen-only" border="0" cellspacing="0" cellpadding="0" 
+                                                       style="background-color: #AAB9C2; height: 70px; float: right">
+                                                    <tr style="height: 15px"></tr>
+                                                    <tr>
+                                                        <td style="width: 5px"></td>
+                                                        <td style="height: 20px; width: 110px">
+                                                            <asp:Label ID="lblUserLabel" runat="server" Text="Gebruikersnaam:"></asp:Label>
+                                                        </td>
+                                                        <td style="width: 128px; white-space: nowrap">
+                                                            <asp:Label ID="lblUser" runat="server" Font-Bold="True" SkinID="no-padding"></asp:Label>
+                                                            <asp:LoginStatus LogoutAction="Redirect" LogoutPageUrl="~/Default.aspx" ID="lsLogin" 
+                                                                             runat="server" LoginText="Inloggen" LogoutText="Uitloggen"
+                                                                             OnLoggingOut="lsLogin_LoggingOut"/>
+                                                        </td>
+                                                        <td style="width: 5px"></td>
+                                                    </tr>
+                                                    <asp:Panel ID="pnlDatabase" runat="server" Visible="false">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td style="height: 20px">
+                                                                <asp:Label ID="lblDatabaseLabel" runat="server" Text="Database:"></asp:Label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label ID="lblDatabase" runat="server" Font-Bold="True" 
+                                                                           SkinID="no-padding"></asp:Label>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </asp:Panel>
+                                                    <tr style="height: 15px"></tr>
+                                                </table>
+                                            </div>
+                                            <asp:Panel ID="pnlWebsiteAlternativeTitle" runat="server" Visible="false">
+                                                <div style="position: relative">
+                                                    <div style="position: relative; top: 21px; right: 21px; float: right; letter-spacing: 1px">
+                                                        <asp:Label ID="lblWebsiteAlternativeTitle" runat="server" SkinID="custom" 
+                                                                   Font-Size="22px" ForeColor="White"></asp:Label>
+                                                    </div>
+                                                </div>
+                                            </asp:Panel>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="screen-only"><td>&nbsp;</td></tr>
+                                <tr>
+                                    <td>
+                                        <table width="900px" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="width: 15px; vertical-align: top">
+                                                    <asp:Label ID="lblWedge" runat="server" SkinID="no-padding" Width="15px"></asp:Label>
+                                                </td>
+                                                <td id="content-place-holder" colspan="2" style="vertical-align: top; height: 695px" >
+                                                    <asp:contentplaceholder ID="bodyContentPlaceHolder" runat="server" />
+                                                </td>
+                                            </tr>
+                                            <tr class="screen-only">
+                                                <td style="width: 15px; height: 20px"></td>
+                                                <td style="width: 285px"></td>
+                                                <td style="width: 600px"></td>
+                                            </tr>
+                                            <tr class="screen-only">
+                                                <td></td>
+                                                <td>
+                                                    <asp:HyperLink ID="hlkDisclaimer" runat="server" Text="Disclaimer" CssClass="padding"
+                                                                   NavigateUrl="~/Disclaimer.aspx"></asp:HyperLink>
+                                                    &nbsp;&nbsp;
+                                                    <asp:HyperLink ID="hlkPrivacy" runat="server" Text="Privacy"
+                                                                   NavigateUrl="~/Privacy.aspx"></asp:HyperLink>
+                                                </td>
+                                                <td>
+                                                    <asp:HyperLink ID="hlkHelp" runat="server" Text="Gebruikershandleiding" CssClass="padding"
+                                                                   NavigateUrl="~/Help/HelpContents.aspx"></asp:HyperLink>
+                                                    &nbsp;&nbsp;
+                                                    <asp:HyperLink ID="hlkContact" runat="server" Text="Contact"
+                                                                   NavigateUrl="mailto:servicedesk@paerel.nl"></asp:HyperLink>
+                                                </td>
+                                            </tr>
+                                            <tr class="screen-only">
+                                                <td colspan="3" style="height: 10px"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+         </form>
+    </body>
+</html>

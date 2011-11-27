@@ -1,0 +1,236 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F8A037ED-0E64-495B-8636-4397EB843EE7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.Reports</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.Reports</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Reports.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/B4F.TotalGiro.Reports/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\B4F.TotalGiro.Reports.XML</DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\NHibernate2_1_2\Framework20\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Documents\Document.cs" />
+    <Compile Include="Documents\DocumentMapper.cs" />
+    <Compile Include="Documents\FinancialReportDocument.cs" />
+    <Compile Include="Documents\NotaDocument.cs" />
+    <Compile Include="Documents\NotaDocumentView.cs" />
+    <Compile Include="Letters\LetterPrintCommand.cs" />
+    <Compile Include="Operational\ClientPositionAfterTransfer.cs" />
+    <Compile Include="ReportCompanyInfo.cs" />
+    <Compile Include="ReportCompanyInfoCollection.cs" />
+    <Compile Include="Financial\Report.cs" />
+    <Compile Include="Financial\ReportEOY.cs" />
+    <Compile Include="Financial\ReportMapper.cs" />
+    <Compile Include="Financial\ReportQuarter.cs" />
+    <Compile Include="Notas\NotaCorporateActionPrintCommand.cs" />
+    <Compile Include="Notas\NotaDepositPrintCommand.cs" />
+    <Compile Include="Notas\NotaDividendPrintCommand.cs" />
+    <Compile Include="Notas\NotaFeesPrintCommand.cs" />
+    <Compile Include="Notas\NotaGrouping.cs" />
+    <Compile Include="Notas\NotaGroupingAllInOneReport.cs" />
+    <Compile Include="Notas\NotaGroupingOnePerReport.cs" />
+    <Compile Include="Notas\NotaPrintCommand.cs" />
+    <Compile Include="Notas\NotaTransactionPrintCommand.cs" />
+    <Compile Include="Notas\NotaTransferPrintCommand.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ReportException.cs" />
+    <Compile Include="ReportExecutionWrapper.cs" />
+    <Compile Include="ReportLetter.cs" />
+    <Compile Include="ReportLetterMapper.cs" />
+    <Compile Include="ReportTemplate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportTemplateMapper.cs" />
+    <Compile Include="Web References\ReportExecutionEngine\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Account\Accounts.csproj">
+      <Project>{70C20F7D-646F-4023-BD90-9812FF522284}</Project>
+      <Name>Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRM\CRM.csproj">
+      <Project>{5EBA3D32-40DB-4496-BDD2-B1EA4DA07D45}</Project>
+      <Name>CRM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{B8880639-F591-41D0-A811-D832A36A8064}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notas\Notas.csproj">
+      <Project>{B680B731-224C-4AB2-ADC0-59B0576279E8}</Project>
+      <Name>Notas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orders\Orders.csproj">
+      <Project>{A8682060-DBB0-4965-A8EF-5F8908D34789}</Project>
+      <Name>Orders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{920CD10C-E485-47AF-A47D-23DC299F762B}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stichting\Stichting.csproj">
+      <Project>{05EA6D28-853D-455E-A323-0AB5F3FC3507}</Project>
+      <Name>Stichting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Valuations\Valuations.csproj">
+      <Project>{38DBACFE-BACC-49C3-870F-CFAA9C6721AD}</Project>
+      <Name>Valuations</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports.snk" />
+    <None Include="Web References\ReportExecutionEngine\DocumentMapNode.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ReportExecutionEngine\ExecutionInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ReportExecutionEngine\Extension.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ReportExecutionEngine\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ReportExecutionEngine\ReportExecution2005.wsdl" />
+    <None Include="Web References\ReportExecutionEngine\Warning.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReportTemplate.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.0.0.34/ReportServer/ReportExecution2005.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ReportExecutionEngine\</RelPath>
+      <UpdateFromURL>http://10.0.0.34/ReportServer/ReportExecution2005.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>B4F_TotalGiro_Reports_ReportExecutionEngine_ReportExecutionService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReportLetter.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Financial\Report.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Documents\Document.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

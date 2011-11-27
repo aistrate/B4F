@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" >
+	<class	name="B4F.TotalGiro.Orders.Transfers.PositionTransfer, B4F.TotalGiro.Orders"
+			table="PositionTransfer"
+			proxy="B4F.TotalGiro.Orders.Transfers.IPositionTransfer, B4F.TotalGiro.Interfaces"
+			dynamic-update="true">
+		<id name="Key" column="id" unsaved-value="0" access="property">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="AccountA" column="AccountOutID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none"/>
+		<many-to-one name="AccountB" column="AccountInID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none"/>
+		<property name="transferDate" column="TransferDate" type="Date" access="field"/>
+		<property name="AIsInternal" column="AIsInternal" />
+		<property name="BIsInternal" column="BIsInternal" />
+		<property name="Executed" column="Executed" />
+		<property name="IsInitialised" column="IsInitialised" />
+		<property name="Reason" column="Reason" />
+		<property name="TypeOfTransfer" column="TransferTypeID" type="B4F.TotalGiro.Orders.Transfers.TransferType, B4F.TotalGiro.Interfaces"/>
+		<property name="TransferStatus" column="TransferStatusID" type="B4F.TotalGiro.Orders.Transfers.TransferStatus, B4F.TotalGiro.Interfaces"/>
+		<component name="TransferAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="TransferAmount"   />
+			<many-to-one name="Underlying" column="TransferAmountID"  class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<many-to-one name="APortfolioBefore" column="APortfolioBeforeID" class="B4F.TotalGiro.Orders.Transfers.PositionTransferPortfolio, B4F.TotalGiro.Orders"  cascade="all"/>
+		<many-to-one name="BPortfolioBefore" column="BPortfolioBeforeID" class="B4F.TotalGiro.Orders.Transfers.PositionTransferPortfolio, B4F.TotalGiro.Orders"  cascade="all"/>
+		<many-to-one name="APortfolioAfter" column="APortfolioAfterID" class="B4F.TotalGiro.Orders.Transfers.PositionTransferPortfolio, B4F.TotalGiro.Orders"  cascade="all"/>
+		<many-to-one name="BPortfolioAfter" column="BPortfolioAfterID" class="B4F.TotalGiro.Orders.Transfers.PositionTransferPortfolio, B4F.TotalGiro.Orders"  cascade="all"/>
+		<many-to-one name="CreatedBy" column="CreatedBy" class="B4F.TotalGiro.Stichting.Login.InternalEmployeeLogin, B4F.TotalGiro.Stichting" />
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" />
+		<bag name="transferDetails" access="field" generic="true" lazy="true" cascade="all"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.Transfers.IPositionTransferDetail, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Orders.Transfers.PositionTransferDetailCollection, B4F.TotalGiro.Orders]], B4F.TotalGiro.Interfaces">
+			<key column="PositionTransferID" foreign-key="ID" />
+			<one-to-many class="B4F.TotalGiro.Orders.Transfers.PositionTransferDetail, B4F.TotalGiro.Orders" />
+		</bag>
+	</class>
+</hibernate-mapping>

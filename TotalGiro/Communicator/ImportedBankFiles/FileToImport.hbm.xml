@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Communicator.ImportedBankFiles.FileToImport, B4F.TotalGiro.Communicator"
+		   table="TextFilesToImport" >
+    <id name="Key" column="TextFilesToImportID" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <discriminator column="TextFilesImportTypeID" />
+    <property name="TextFileName" column="TextFileName" />
+    <property name="Description" column="Description" />
+    <property name="FileSearchString" column="FileSearchString" />
+    <property name="SourceDirectory" column="SourceDirectory" />
+    <property name="UseNameForImport" column="UseNameForImport" />
+    <property name="NameToUseForImport" column="NameToUseForImport" />
+    <property name="BackupDirectory" column="BackupDirectory" />
+    <property name="Enabled" column="Enabled" />
+    <property name="BackUpAfterImport" column="BackUpAfterImport" />
+    <bag name="bagOfFiles" table="ImportedFiles" access="field" cascade="all" inverse="true" >
+      <key column="TextFilesToImportID" />
+      <one-to-many class="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.ImportedFile, B4F.TotalGiro.Communicator" />
+    </bag>
+    <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.FixedWidth, B4F.TotalGiro.Communicator" discriminator-value="1">
+      <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.FileGLDMTX, B4F.TotalGiro.Communicator" discriminator-value="2">
+      </subclass>
+      <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.FileGLDSAL, B4F.TotalGiro.Communicator" discriminator-value="3">
+      </subclass>
+      <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.FileEFFMTX, B4F.TotalGiro.Communicator" discriminator-value="4">
+      </subclass>
+      <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.FileFNDSTT, B4F.TotalGiro.Communicator" discriminator-value="5">
+      </subclass>
+      <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.FileFNDSTX, B4F.TotalGiro.Communicator" discriminator-value="6">
+      </subclass>
+    </subclass>
+    <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.CSVFile, B4F.TotalGiro.Communicator" discriminator-value="11">
+      <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.FileBinckPosition, B4F.TotalGiro.Communicator" discriminator-value="12">
+      </subclass>
+      <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.FileBinckPositionPam, B4F.TotalGiro.Communicator" discriminator-value="13">
+      </subclass>
+      <subclass name="B4F.TotalGiro.Communicator.ImportedBankFiles.FileTradeRecon, B4F.TotalGiro.Communicator" discriminator-value="14">
+      </subclass>
+
+    </subclass>
+  </class>
+</hibernate-mapping>

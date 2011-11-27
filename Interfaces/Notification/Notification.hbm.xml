@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+  <class name="B4F.TotalGiro.Notifications.Notification, B4F.TotalGiro.Interfaces" table="Notifications" >
+    <id name="Key" column="NotificationID" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp name="lastUpdated" column="LastUpdated" access="field" />
+    <property name="Message" column="Notification" />
+    <property name="NotificationType" column="NotificationType" type="B4F.TotalGiro.Notifications.NotificationTypes, B4F.TotalGiro.Interfaces"/>
+    <property name="StartDate" column="StartDate" type="Date" />
+    <property name="DueDate" column="DueDate" type="Date" />
+    <property name="CreatedBy" column="CreatedBy" />
+    <property name="isActive" column="IsActive" access="field" />
+    <property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false"/>
+    <bag name="accounts" access="field" generic="true" lazy="true" cascade="all" table="NotificationRelations" where="(AccountID is not null)" >
+      <key column="NotificationID" foreign-key="NotificationID" />
+      <many-to-many column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeCustomer, B4F.TotalGiro.Accounts" />
+    </bag>
+    <bag name="contacts" access="field" generic="true" lazy="true" cascade="all" table="NotificationRelations" where="(ContactID is not null)" >
+      <key column="NotificationID" foreign-key="NotificationID" />
+      <many-to-many column="ContactID" class="B4F.TotalGiro.CRM.Contact, B4F.TotalGiro.CRM" />
+    </bag>
+  </class>
+
+  <query name="B4F.TotalGiro.Notifications.GetAccountNotifications" >
+    <![CDATA[
+    select distinct N, A.Number
+    from AccountTypeCustomer A 
+    left join A.notifications N
+    left join A.bagOfAccountHolders AH
+    left join AH.Contact C    
+    where N is not null
+    and N.NotificationType = :notificationTypeId
+    and N.isActive = :activityFilter
+    and A.AccountOwner.Key = :assetManagerId
+    and A.Number like :accountNumber
+    and (A.ShortName like :contactName or C.CurrentNAW.Name like :contactName)
+    and (C.Key in (select CP.Key from ContactPerson CP where CP.BurgerServiceNummer like :bsN_KvK) or C.Key in (select CC.Key from ContactCompany CC where CC.KvKNumber like :bsN_KvK))
+		]]>
+  </query>
+
+  <query name="B4F.TotalGiro.Notifications.GetContactNotifications" >
+    <![CDATA[
+    select N, C.CurrentNAW.Name
+    from Contact C 
+    left join C.notifications N
+    where N is not null
+    and N.NotificationType = :notificationTypeId
+    and N.isActive = :activityFilter
+    and C.AssetManager.Key = :assetManagerId
+    and C.CurrentNAW.Name like :contactName
+    and (C.Key in (select CP.Key from ContactPerson CP where CP.BurgerServiceNummer like :bsN_KvK) or C.Key in (select CC.Key from ContactCompany CC where CC.KvKNumber like :bsN_KvK))
+		]]>
+  </query>
+</hibernate-mapping>

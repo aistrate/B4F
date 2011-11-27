@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Valuations.ReportedData.PeriodicReporting, B4F.TotalGiro.Valuations"
+		   table="PeriodicReporting"
+		   proxy ="B4F.TotalGiro.Valuations.ReportedData.IPeriodicReporting, B4F.TotalGiro.Interfaces"
+		   mutable="false" >
+		<id name="Key" column="ID">
+			<generator class="identity"/>
+		</id>
+		<component name="ReportingPeriod" class="B4F.TotalGiro.Valuations.ReportedData.ReportingPeriodDetail, B4F.TotalGiro.Interfaces">
+			<property name="EndTermYear" column="EndTermYear" />
+			<property name="TermType" column="EndTermType" type="B4F.TotalGiro.Valuations.ReportedData.EndTermType, B4F.TotalGiro.Interfaces" />
+		</component>
+		<property name="EndTermDate" column="EndTermDate" type="Date" />		
+		<property name="CreatedBy" column="CreatedBY"  />
+		<property name="creationDate" column="CreationDate" access="field" type="Date" />
+	</class>
+</hibernate-mapping>

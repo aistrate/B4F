@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.Exact.ExportedLedgerFile, B4F.TotalGiro.Communicator" 
+		   table="ExportedLedgerFile" lazy="true">
+		<id name="Key" column="ExportedLedgerFileID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="Name" column="Name" />
+		<property name="Ext" column="Ext" />
+		<property name="Path" column="Path" />
+		<property name="Ordinal" column="Ordinal" />
+		<property name="CreationDate" column="CreationDate" type="DateTime" insert="false" update="false"/>
+		<bag name="ledgerEntries" access="field" generic="true" lazy="true" cascade="all"
+	collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Communicator.Exact.ILedgerEntry, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Communicator.Exact.LedgerEntryCollection, B4F.TotalGiro.Communicator]], B4F.TotalGiro.Interfaces">
+			<key column="ExportedLedgerFileID" foreign-key="ExportedLedgerFileID" />
+			<one-to-many class="B4F.TotalGiro.Communicator.Exact.LedgerEntry, B4F.TotalGiro.Communicator" />
+		</bag>
+	</class>
+</hibernate-mapping>

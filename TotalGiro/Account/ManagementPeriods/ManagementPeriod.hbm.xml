@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.ManagementPeriods.ManagementPeriod, B4F.TotalGiro.Accounts" 
+		   table="AccountManagementPeriods" 
+		   proxy="B4F.TotalGiro.Accounts.ManagementPeriods.IManagementPeriod, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="ManagementPeriodID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.CustomerAccount, B4F.TotalGiro.Accounts" cascade="none" />
+		<property name="ManagementType" column="ManagementTypeID" type="B4F.TotalGiro.Accounts.ManagementPeriods.ManagementTypes, B4F.TotalGiro.Interfaces" />
+		<property name="StartDate" column="StartDate" type="Date" not-null="true" />
+		<property name="endDate" column="EndDate" type="Date" access="field"  />
+		<property name="Employee" column="Employee" />
+		<bag name="managementPeriodUnits" access="field" generic="true" lazy="true"
+			 order-by="ManagementPeriodUnitID"
+			 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.ManagementPeriodUnits.IManagementPeriodUnit, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnitCollection, B4F.TotalGiro.Valuations]], B4F.TotalGiro.Interfaces">
+			<key column="ManagementPeriodID" />
+			<one-to-many class="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnit, B4F.TotalGiro.Valuations" />
+		</bag>
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+		<property name="lastUpdated" column="LastUpdated" access="field" type="Date" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Interface Name="B4F.TotalGiro.Instruments.IInstrument" Collapsed="true">
+    <Position X="6.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Instrument\IInstrument.cs</FileName>
+      <HashCode>AAQAEAEAAQiMABQXkAAQBAQQCAaAAgAAAAAAAAAACAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Instruments.ICurrency" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Instrument\ICurrency.cs</FileName>
+      <HashCode>AAAFAAAAAAAAAAJAAAAAAAAAAAQACABAAAgAAAAQCgA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Instruments.ITradeableInstrument" Collapsed="true">
+    <Position X="4" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Instrument\ITradeableInstrument.cs</FileName>
+      <HashCode>AAAAQAAgAAhoAAAABAAAAABAAAAAARAAAAAAAAAAkEA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Instruments.IMutualFund" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Instrument\IMutualFund.cs</FileName>
+      <HashCode>EAAACAAAIAAAAAABAAAQAARAAAAAAAEEAAAAAAAAAEA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Instruments.ICashManagementFund" Collapsed="true">
+    <Position X="2.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>Instrument\ICashManagementFund.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAABAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Instruments.IStock" Collapsed="true">
+    <Position X="5.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Instrument\IStock.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Instruments.IBond" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Instrument\IBond.cs</FileName>
+      <HashCode>AAAACAIAAAABAAAAABgAAAAAAAAAhQCABQAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Instruments.IInstrumentsWithPrices" Collapsed="true">
+    <Position X="4.75" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Instrument\IInstrumentsWithPrices.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAQAAAAAAQAAAAAAAAAACAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Instruments.IBenchMark" Collapsed="true">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Instrument\IBenchMark.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="B4F.TotalGiro.Instruments.SecCategories" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Instrument\IInstrument.cs</FileName>
+      <HashCode>AAAEAAQAAAKAAAAAAAAAAAAAgAABAAAAAAAAAAAAACA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+</ClassDiagram>

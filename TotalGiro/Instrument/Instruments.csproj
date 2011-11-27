@@ -1,0 +1,306 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B6D55091-F990-42AB-A294-72E6560ED5DD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.Instruments</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.Instruments</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Instrument.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/B4F.TotalGiro.Instruments/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\B4F.TotalGiro.Instruments.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\NHibernate2_1_2\Framework20\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\LinqToNHibernate\LinqToNHibernate1_0\NHibernate.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classification\AssetClass.cs" />
+    <Compile Include="Classification\ClassificationMapper.cs" />
+    <Compile Include="Classification\InstrumentsCategories.cs" />
+    <Compile Include="Classification\RegionClass.cs" />
+    <Compile Include="Classification\SectorClass.cs" />
+    <Compile Include="CorporateAction\CorporateActionHistory.cs" />
+    <Compile Include="CorporateAction\CorporateActionHistoryMapper.cs" />
+    <Compile Include="CorporateAction\CouponHistory.cs" />
+    <Compile Include="CorporateAction\DividendHistory.cs" />
+    <Compile Include="CorporateAction\DividendHistoryMapper.cs" />
+    <Compile Include="CorporateAction\CashDividendCollection.cs" />
+    <Compile Include="CorporateAction\StockDividendCollection.cs" />
+    <Compile Include="Exchange\ExchangeHolidayCollection.cs" />
+    <Compile Include="Exchange\ExchangeMapper.cs" />
+    <Compile Include="ExRate\HistoricalExRate.cs" />
+    <Compile Include="ExRate\HistoricalExRateCollection.cs" />
+    <Compile Include="ExRate\HistoricalExRateCompKey.cs" />
+    <Compile Include="ExRate\HistoricalExRateMapper.cs" />
+    <Compile Include="History\InstrumentConversionCollection.cs" />
+    <Compile Include="InstrumentExchange\InstrumentExchangeMapper.cs" />
+    <Compile Include="CorporateAction\BonusDistributionCollection.cs" />
+    <Compile Include="History\InstrumentHistory.cs" />
+    <Compile Include="CorporateAction\CorporateActionBonusDistribution.cs" />
+    <Compile Include="History\InstrumentHistoryMapper.cs" />
+    <Compile Include="History\InstrumentsHistoryConversion.cs" />
+    <Compile Include="Instrument\BenchMark.cs" />
+    <Compile Include="Instrument\Bond.cs" />
+    <Compile Include="Instrument\BondCouponRateHistory.cs" />
+    <Compile Include="Instrument\BondCouponRateHistoryCollection.cs" />
+    <Compile Include="Instrument\CashManagementFund.cs" />
+    <Compile Include="Instrument\CouponHistoryCollection.cs" />
+    <Compile Include="Instrument\Currency.cs" />
+    <Compile Include="Exchange\Exchange.cs" />
+    <Compile Include="Instrument\Derivative.cs" />
+    <Compile Include="Instrument\DerivativeMaster.cs" />
+    <Compile Include="Instrument\InstrumentSymbolCollection.cs" />
+    <Compile Include="Instrument\StockDividend.cs" />
+    <Compile Include="Instrument\Instrument.cs" />
+    <Compile Include="InstrumentExchange\InstrumentExchange.cs" />
+    <Compile Include="InstrumentExchange\InstrumentExchangeCollection.cs" />
+    <Compile Include="Instrument\InstrumentCollection.cs" />
+    <Compile Include="Instrument\InstrumentCorporateAction.cs" />
+    <Compile Include="Instrument\InstrumentMapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Instrument\InstrumentsWithPrices.cs" />
+    <Compile Include="Instrument\Option.cs" />
+    <Compile Include="Instrument\SecCategory.cs" />
+    <Compile Include="Instrument\SecCategoryMapper.cs" />
+    <Compile Include="Instrument\SecurityInstrument.cs" />
+    <Compile Include="Instrument\Stock.cs" />
+    <Compile Include="Instrument\InstrumentCorporateActionCollection.cs" />
+    <Compile Include="Instrument\Turbo.cs" />
+    <Compile Include="Instrument\VirtualFund.cs" />
+    <Compile Include="Lifecycle\Lifecycle.cs" />
+    <Compile Include="Lifecycle\LifecycleLine.cs" />
+    <Compile Include="Lifecycle\LifecycleLineCollection.cs" />
+    <Compile Include="Lifecycle\LifecycleMapper.cs" />
+    <Compile Include="Model\FeeRuleCollection.cs" />
+    <Compile Include="Model\BenchMarkModel.cs" />
+    <Compile Include="Model\ModelBase.cs" />
+    <Compile Include="Model\ModelComponent.cs" />
+    <Compile Include="Model\ModelComponentCollection.cs" />
+    <Compile Include="Model\ModelDetail.cs" />
+    <Compile Include="Model\ModelHierarchy.cs" />
+    <Compile Include="Model\ModelInstrument.cs" />
+    <Compile Include="Model\ModelInstrumentCollection.cs" />
+    <Compile Include="Model\ModelMapper.cs" />
+    <Compile Include="Model\ModelModel.cs" />
+    <Compile Include="Model\ModelPerformance.cs" />
+    <Compile Include="Model\ModelPerformanceCollection.cs" />
+    <Compile Include="Model\ModelPerformanceMapper.cs" />
+    <Compile Include="Model\ModelVersion.cs" />
+    <Compile Include="Instrument\MutualFund.cs" />
+    <Compile Include="Model\ModelVersionCollection.cs" />
+    <Compile Include="Model\PortfolioModel.cs" />
+    <Compile Include="Nav\NavCalculation.cs" />
+    <Compile Include="Nav\NavCalculationCollection.cs" />
+    <Compile Include="Nav\NavCalculationMapper.cs" />
+    <Compile Include="Nav\NavCalculationOrder.cs" />
+    <Compile Include="Nav\NavCalculationOrderMapper.cs" />
+    <Compile Include="Nav\NavCashPosition.cs" />
+    <Compile Include="Nav\NavPortfolio.cs" />
+    <Compile Include="Nav\NavFundPosition.cs" />
+    <Compile Include="Nav\NavPosition.cs" />
+    <Compile Include="Nav\NavCalculationOrderCollection.cs" />
+    <Compile Include="Price\HistoricalPrice.cs" />
+    <Compile Include="Price\HistoricalPriceCollection.cs" />
+    <Compile Include="Price\HistoricalPriceCompKey.cs" />
+    <Compile Include="Price\HistoricalPriceMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Instrument\TradeableInstrument.cs" />
+    <Compile Include="Route\Route.cs" />
+    <Compile Include="Route\RouteMapper.cs" />
+    <Compile Include="TaxRate\HistoricalTaxRate.cs" />
+    <Compile Include="TaxRate\HistoricalTaxRateMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Instrument.snk" />
+    <None Include="Instrument\Instrument.cd" />
+    <None Include="Model\Model.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Instrument\Instrument.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exchange\Exchange.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\Model.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\ModelVersion.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\ModelComponent.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Price\HistoricalPrice.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Instrument\SecCategory.hbm.xml" />
+    <EmbeddedResource Include="Route\Route.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExRate\HistoricalExRate.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{B8880639-F591-41D0-A811-D832A36A8064}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{920CD10C-E485-47AF-A47D-23DC299F762B}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StaticData\StaticData.csproj">
+      <Project>{ED2055BB-79F9-464C-B937-232D29FD4CB1}</Project>
+      <Name>StaticData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stichting\Stichting.csproj">
+      <Project>{05EA6D28-853D-455E-A323-0AB5F3FC3507}</Project>
+      <Name>Stichting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InstrumentExchange\InstrumentExchange.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="History\InstrumentHistory.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Classification\AssetClass.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Classification\InstrumentsCategories.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Classification\RegionClass.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Classification\SectorClass.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Price\HistoricalPriceCompKey.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExRate\HistoricalExRateCompKey.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\ModelDetail.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TaxRate\HistoricalTaxRate.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\ModelHierarchy.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Nav\NavPosition.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Nav\NavCalculation.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Instrument\DerivativeMaster.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Nav\NavCalculationOrder.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\ModelPerformance.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CorporateAction\CorporateActionHistory.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Instrument\BondCouponRateHistory.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Lifecycle\Lifecycle.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Lifecycle\LifecycleLine.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

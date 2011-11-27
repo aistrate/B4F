@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.Instructions.Exclusions.RebalanceExclusion, B4F.TotalGiro.Accounts" table="AccountInstructionsRebalanceExcludedComponents" proxy="B4F.TotalGiro.Accounts.Instructions.Exclusions.IRebalanceExclusion, B4F.TotalGiro.Interfaces">
+		<id name="Key" unsaved-value="0">
+			<column name="RebalanceExcludedComponentID"/>
+			<generator class="identity"/>
+		</id>
+		<discriminator column="ComponentTypeID" />
+		<many-to-one name="Parent" column="AccountInstructionID" class="B4F.TotalGiro.Accounts.Instructions.RebalanceInstruction, B4F.TotalGiro.Accounts" cascade="none"/>
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false" />
+		<subclass name="B4F.TotalGiro.Accounts.Instructions.Exclusions.RebalanceExcludedModel, B4F.TotalGiro.Accounts" proxy="B4F.TotalGiro.Accounts.Instructions.Exclusions.IRebalanceExcludedModel, B4F.TotalGiro.Interfaces" discriminator-value="0">
+			<many-to-one name="Model" column="ModelID" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" cascade="none"/>
+		</subclass>
+		<subclass name="B4F.TotalGiro.Accounts.Instructions.Exclusions.RebalanceExcludedInstrument, B4F.TotalGiro.Accounts" proxy="B4F.TotalGiro.Accounts.Instructions.Exclusions.IRebalanceExcludedInstrument, B4F.TotalGiro.Interfaces" discriminator-value="1">
+			<many-to-one name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.TradeableInstrument, B4F.TotalGiro.Instruments" cascade="none"/>
+		</subclass>
+	</class>
+</hibernate-mapping>

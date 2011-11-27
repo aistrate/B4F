@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.AssetManager, B4F.TotalGiro.Accounts" table="AssetManagers" lazy="true">
+		<id name="key" column="AssetManagerID" unsaved-value="0" access="field">
+			<generator class="NHibernate.Id.TableHiLoGenerator">
+				<param name="table">AccountNextID</param>
+				<param name="column">NextID</param>
+			</generator>
+		</id>
+		<property name="Name" column="AssetManager" />
+		<property name="BoSymbol" column="BOSymbol" />
+		<many-to-one name="ClearingAccount" column="ClearingAccountID" class="B4F.TotalGiro.Accounts.ClearingAccount, B4F.TotalGiro.Accounts" />
+	</class>
+</hibernate-mapping>

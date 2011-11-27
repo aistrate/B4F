@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="B4F.TotalGiro.Accounts.Account" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAQgAIAEAAACQIQEwUAAAFEIAAAECYAAAACAAAARIiA=</HashCode>
+      <FileName>Account\Account.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.AccountTypeCustomer" Collapsed="true">
+    <Position X="2.5" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAKYRDGggAGjgAAAhkAIAkTACGJAQqggAQDEEESGQEQ=</HashCode>
+      <FileName>Account\AccountTypeCustomer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.CustomerAccount" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBIoQYQCAAEECAQACAEAAAgAgAAAAAAAEAAIAFAADCE=</HashCode>
+      <FileName>Account\CustomerAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.CustodyAccount" Collapsed="true">
+    <Position X="16.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Account\CustodyAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.CommissionAccount" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Account\CommissionAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.AccountTypeSystem" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQ=</HashCode>
+      <FileName>Account\AccountTypeSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.TradingAccount" Collapsed="true">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Account\TradingAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.AccountTypeInternal" Collapsed="true">
+    <Position X="6" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAKANAgCIQAAAwkQQAgAABAAIAEARyCQECAAEBRAgA=</HashCode>
+      <FileName>Account\AccountTypeInternal.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.CounterPartyAccount" Collapsed="true">
+    <Position X="14.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAA=</HashCode>
+      <FileName>Account\CounterPartyAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.NostroAccount" Collapsed="true">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAIAAAICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Account\NostroAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.AccountTypeExternal" Collapsed="true">
+    <Position X="15.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Account\AccountTypeExternal.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.CrumbleAccount" Collapsed="true">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAABAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Account\CrumbleAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.TransferAccount" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Account\TransferAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.OwnAccount" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAgAAAQ=</HashCode>
+      <FileName>Account\OwnAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Accounts.VirtualFundTradingAccount" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Account\VirtualFundTradingAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

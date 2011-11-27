@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Valuations.Mapping.PositionTxValuationMapping, B4F.TotalGiro.Valuations" table="TGPositionTxValuationMapping" proxy =" B4F.TotalGiro.Valuations.Mapping.IPositionTxValuationMapping, B4F.TotalGiro.Interfaces"  mutable="false" >
+		<id name="Key" column="TGPositionsTxID" unsaved-value="any">
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="ValuationMutation" column="ValuationMutationID" class="B4F.TotalGiro.Valuations.ValuationMutation, B4F.TotalGiro.Valuations" cascade="none"   />
+		<property name="IsRelevant" column="IsRelevant"/>
+	</class>
+</hibernate-mapping>

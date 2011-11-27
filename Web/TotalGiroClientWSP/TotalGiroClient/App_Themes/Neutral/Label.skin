@@ -1,0 +1,11 @@
+<asp:Label 
+    CssClass="padding"
+    runat="server" />
+
+<asp:Label
+    SkinID="custom"
+    runat="server" />
+
+<asp:Label 
+    SkinID="no-padding"
+    runat="server" />

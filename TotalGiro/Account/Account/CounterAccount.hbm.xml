@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="B4F.TotalGiro.Accounts.CounterAccount, B4F.TotalGiro.Accounts" table="CounterAccounts" proxy="B4F.TotalGiro.Accounts.ICounterAccount, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="CounterAccountID" unsaved-value="0" >
+			<generator class="identity"/>
+		</id>
+		<property name="Number" column="CounterAccountNumber" />
+		<property name="AccountName" column="CounterAccountName" />
+		<property name="BankName" column="CounterAccountBank" />
+		<many-to-one name="Bank" column="BankID" class="B4F.TotalGiro.StaticData.Bank, B4F.TotalGiro.StaticData" cascade="none" />
+		<component name="bankAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces" access="field">
+			<property name="Street" column="Straat"/>
+			<property name="HouseNumber" column="HuisNummer"/>
+			<property name="HouseNumberSuffix" column="HuisNummerToevoeging"/>
+			<property name="PostalCode" column="Postcode"/>
+			<property name="City" column="Plaats"/>
+			<many-to-one name="Country" column="CountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<many-to-one name="ManagementCompany" column="ManagementCompanyID" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" cascade="none" not-null="true" />
+		<property name="IsPublic" column="IsPublic" />
+		<component name="BeneficiaryAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="BeneficiaryStreet"/>
+			<property name="HouseNumber" column="BeneficiaryHouseNumber"/>
+			<property name="HouseNumberSuffix" column="BeneficiaryHouseNumberSuffix"/>
+			<property name="PostalCode" column="BeneficiaryZipCode"/>
+			<property name="City" column="BeneficiaryCity"/>
+			<many-to-one name="Country" column="BeneficiaryCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<bag name="bagOfContacts" access="field" table="ContactsCounterAccounts" cascade="none" lazy="true">
+			<key column="CounterAccountID"  />
+			<many-to-many column="ContactID" class="B4F.TotalGiro.CRM.Contact, B4F.TotalGiro.CRM"/>
+		</bag>
+	</class>
+
+	<query name="B4F.TotalGiro.Accounts.CounterAccount.GetCounterAccounts" >
+		<![CDATA[
+		from CounterAccount A
+        where A.Key in (
+			select A.Key
+			from CounterAccount A
+			LEFT JOIN A.bagOfContacts C
+			LEFT JOIN C.CurrentNAW N
+			where 1=1
+			and A.IsPublic = :isPublic
+			and A.ManagementCompany.Key = :managementCompanyId
+			and A.Number like :counterAccountNumber
+			and A.AccountName like :counterAccountName
+            and N.Name like :contactName
+			and C.IsActive = :isActive
+			and A.Key in (select A.Key from CounterAccount A left join A.bagOfContacts C where C.Key in (select AH.Contact.Key from AccountHolder AH left join AH.GiroAccount G where G.Number like :accountNumber ))
+		) 
+		order by A.AccountName
+	]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Accounts.CounterAccount.GetCounterAccountsByAccount" >
+		<![CDATA[
+		from CounterAccount A
+        where A.Key in (
+            select A.Key
+            from CounterAccount A
+            left join A.bagOfContacts C
+            where C.Key in (
+                select AH.Contact.Key
+                from AccountHolder AH
+                left join AH.GiroAccount G
+                where G.Key = :accountId
+				)
+			)
+			or (A.IsPublic = 1 and 1 = :addPublicAccounts)
+        order by A.IsPublic, A.AccountName
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Accounts.CounterAccount.GetCounterAccountsByContact" >
+		<![CDATA[
+		from CounterAccount A
+        left join fetch A.bagOfContacts C
+        where C.Key = :contactId
+        order by A.AccountName
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Accounts.CounterAccount.GetPublicCounterAccounts" >
+		<![CDATA[
+		from CounterAccount A 
+		where A.IsPublic = 1
+		and A.ManagementCompany.Key = :managementCompanyId
+        order by A.AccountName
+		]]>
+	</query>
+
+</hibernate-mapping>

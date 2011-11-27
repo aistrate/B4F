@@ -1,0 +1,7 @@
+﻿<asp:CheckBoxList 
+    runat="server" 
+    CellPadding="0" 
+    CellSpacing="0" 
+    BorderWidth="0"
+    CssClass="button-list" >
+</asp:CheckBoxList>

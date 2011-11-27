@@ -1,0 +1,525 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Fees</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.Fees.Rules.CommRule">
+            <summary>
+            Represents a rule for matching orders to a commission calculation.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Rules.CommRule.CalculateWeight(B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            Decides whether this commission rule has the highest priority among all matching rules for the given order.
+            </summary>
+            <param name="client">The order/transaction to verify.</param>
+            <returns><b>true</b> if this rule has the highest priority among all matching rules for the given order, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Rules.CommRule.ToString">
+            <summary>
+            A string representation of the commission rule.
+            </summary>
+            <returns>A string representation of the commission rule.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.Key">
+            <summary>
+            Gets or sets the unique ID of the commission rule.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.FeeType">
+            <summary>
+            Gets or sets the type of the fee (see enum <see cref="T:B4F.TotalGiro.Fees.FeeTypes">FeeTypes</see>).
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.Weight">
+            <summary>
+            Gets or sets a number representing the priority of this rule among other rules that match the same order; 
+            the larger the <b>Weight</b>, the higher the priority.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.CommRuleName">
+            <summary>
+            Gets or sets the name of the commission rule.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.ActionType">
+            <summary>
+            Gets or sets the type of financial action this commission rule applies to 
+            (see enum <see cref="T:B4F.TotalGiro.Orders.OrderActionTypes">OrderActionTypes</see>).
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.ApplyToAllAccounts">
+            <summary>
+            Gets or sets a flag indicating that this commission rule applies to all accounts, 
+            thus allowing it to have the highest priority (largest <b>Weight</b>) among otherwise more specific rules 
+            (e.g. a rule for a particular instrument with <b>ApplyToAllAccounts</b> set to <b>true</b> will have a higher priority 
+            than a rule for a particular account and a particular exchange).
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.AccountType">
+            <summary>
+            Gets or sets the <b>AccountType</b> attached to this commission rule; 
+            if set, the rule will only be applied to orders placed for accounts of this type.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.ModelPortfolio">
+            <summary>
+            Gets or sets the <b>ModelPortfolio</b> attached to this commission rule; 
+            if set, the rule will only be applied to orders placed for accounts that use this model portfolio.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.Account">
+            <summary>
+            Gets or sets the <b>Account</b> attached to this commission rule; 
+            if set, the rule will only be applied to orders placed for this account.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.Exchange">
+            <summary>
+            Gets or sets the <b>Exchange</b> attached to this commission rule; 
+            if set, the rule will only be applied to orders placed on this exchange.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.RuleSecCategory">
+            <summary>
+            Gets or sets the <b>SecCategory</b> attached to this commission rule; 
+            if set, the rule will only be applied to orders placed for this security category.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.Instrument">
+            <summary>
+            Gets or sets the <b>Instrument</b> attached to this commission rule; 
+            if set, the rule will only be applied to orders placed for this instrument.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.BuySell">
+            <summary>
+            Specifies whether this commission rule applies to <i>buy</i> or to <i>sell</i> orders.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.OpenClose">
+            <summary>
+            Specifies whether this commission rule applies to <i>open</i> or to <i>close</i> orders.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.CommCalculation">
+            <summary>
+            Gets or sets the commission calculation that will be used for orders matched by this commission rule.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Rules.CommRule.CommRuleType">
+            <summary>
+            Gets a value indicating whether this is a <i>specific</i> or a <i>default</i> commission rule.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.CommCalcMapper">
+            <summary>
+            Class used to instantiate and persist <b>CommCalc</b> and <b>CommCalcLine</b> objects.
+            Data is retrieved from the database using an instance of the Data Access Library 
+            (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcMapper.GetCommissionCalculations(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Retrieves a list of all <b>CommCalc</b> objects in the system.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <returns>A list of all <b>CommCalc</b> objects in the system.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcMapper.GetCommissionCalculation(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Retrieves a <b>CommCalc</b> object by ID.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="ID">The ID of the <b>CommCalc</b> object to be retrieved.</param>
+            <returns>The <b>CommCalc</b> object with the given ID, retrieved from the database.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcMapper.GetCalculationLine(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Retrieves a <b>CommCalcLine</b> object by ID.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="ID">The ID of the <b>CommCalcLine</b> object to be retrieved.</param>
+            <returns>The <b>CommCalcLine</b> object with the given ID, retrieved from the database.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcMapper.Insert(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Fees.Calculations.ICommCalc)">
+            <summary>
+            Inserts a <b>CommCalc</b> object into the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="obj">The <b>CommCalc</b> object to insert into the database.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Fees.Calculations.ICommCalc)">
+            <summary>
+            Updates a <b>CommCalc</b> object to the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="obj">The <b>CommCalc</b> object to update into the database.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcMapper.Delete(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Fees.Calculations.ICommCalc)">
+            <summary>
+            Deletes a <b>CommCalc</b> object from the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="obj">The <b>CommCalc</b> object to delete from the database.</param>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Rules.CommRuleMapper">
+            <summary>
+            Class used to instantiate and persist <b>CommRule</b> objects.
+            Data is retrieved from the database using an instance of the Data Access Library 
+            (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Rules.CommRuleMapper.GetCommissionRules(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Retrieves a list of all <b>CommRule</b> objects in the system.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <returns>A list of all <b>CommRule</b> objects in the system.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Rules.CommRuleMapper.GetCommissionRule(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Retrieves a <b>CommRule</b> object by ID.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="ID">The ID of the <b>CommRule</b> object to be retrieved.</param>
+            <returns>The <b>CommRule</b> object with the given ID, retrieved from the database.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Rules.CommRuleMapper.Insert(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Fees.Rules.ICommRule)">
+            <summary>
+            Inserts a <b>CommRule</b> object into the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="obj">The <b>CommRule</b> object to insert into the database.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Rules.CommRuleMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Fees.Rules.ICommRule)">
+            <summary>
+            Updates a <b>CommRule</b> object to the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="obj">The <b>CommRule</b> object to update into the database.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Rules.CommRuleMapper.Delete(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Fees.Rules.ICommRule)">
+            <summary>
+            Deletes a <b>CommRule</b> object from the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="obj">The <b>CommRule</b> object to delete from the database.</param>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.CommCalcSlab">
+            <summary>
+            Calculates a slab commission.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.CommCalc">
+            <summary>
+            Abstract class from which all Commission Calculation classes are derived.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalc.Calculate(B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            Calculates the commission for a given order.
+            </summary>
+            <param name="client">The order for which to calculate the commission.</param>
+            <returns>The value of the commission.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalc.CalculateNormal(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            Used by method <b>Calculate</b> on derived classes to perform the common part of the commission calculation.
+            </summary>
+            <param name="amount">The amount for which to calculate commission.</param>
+            <param name="client">The order for which to calculate commission.</param>
+            <returns>The value of the commission.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalc.GetAmountSizeBasedOrder(B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            Calculates the amount for a size-based order, by finding out the price first.
+            </summary>
+            <param name="client">The order for which to calculate.</param>
+            <returns>The calculated amount.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalc.CalculateNormal(System.Decimal,B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            Used by method <b>Calculate</b> on derived classes to perform the common part of the commission calculation.
+            </summary>
+            <param name="value">The amount for which to calculate commission.</param>
+            <param name="client">The order for which to calculate commission.</param>
+            <returns>The value of the commission.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalc.ConvertToOrderCurrency(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            Converts an amount to the currency of a given order.
+            </summary>
+            <param name="fee">The amount to convert.</param>
+            <param name="client">The order whose currency to convert to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalc.SetCommissionInfoOnOrder(B4F.TotalGiro.Fees.IFeeClient,System.String)">
+            <summary>
+            Adds a message to field CommissionInfo of the order.
+            </summary>
+            <param name="client">The order to which to add the message.</param>
+            <param name="message">The message to add.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalc.ToString">
+            <summary>
+            A string representation of the commission calculation; returns the value of property <b>Name</b>.
+            </summary>
+            <returns>The commission calculation's <b>Name</b> property value.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalc.GetHashCode">
+            <summary>
+            Hash function for this type. 
+            </summary>
+            <returns>A hash code for the current CommCalc object.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalc.Name">
+            <summary>
+            The name of the commission calculation.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalc.CommCurrency">
+            <summary>
+            The currency of the commission.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalc.Key">
+            <summary>
+            The ID of the commission calculation.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalc.FixedSetup">
+            <summary>
+            A fixed amount always added to the commission.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalc.MinValue">
+            <summary>
+            The minimum value of the calculation.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalc.MaxValue">
+            <summary>
+            The maximum value of the calculation.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalc.CalcBasedOn">
+            <summary>
+            Indicates whether the commission calculation is size-based or value-based.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalc.CalcType">
+            <summary>
+            Indicates whether the commission calculation is flat, slab, or simple.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalc.CommLines">
+            <summary>
+            A collection of child <b>CommCalcLines</b> objects belonging to the Commission Calculation.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcSlab.Calculate(B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            Calculates a slab commission for a given order.
+            </summary>
+            <param name="client">The order for which to calculate the commission.</param>
+            <returns>The value of the commission.</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.FeeFactory">
+            <summary>
+            Class used by Order classes to calculate their attached fees.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.FeeFactory.GetInstance(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Static method that gets an instance of this class. Used whenever an order is created 
+            (orders need <b>FeeFactory</b> objects passed into their constructors to be able to calculate their fees).
+            </summary>
+            <param name="session">A <b>DAL</b> session.</param>
+            <returns>A FeeFactory instance.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.FeeFactory.CalculateFee(B4F.TotalGiro.Fees.FeeTypes,B4F.TotalGiro.Orders.IOrder)">
+            <summary>
+            The method used by <b>Order</b> classes to calculate their attached fees.
+            </summary>
+            <param name="feeType">The type of fee to be calculated.</param>
+            <param name="order">The order for which the fee is calculated.</param>
+            <returns>The value of the fee.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.FeeFactory.CalculateFee(B4F.TotalGiro.Fees.FeeTypes,B4F.TotalGiro.Orders.Transactions.ITransactionOrder)">
+            <summary>
+            The method used by <b>Transaction</b> classes to calculate their attached fees.
+            </summary>
+            <param name="feeType">The type of fee to be calculated.</param>
+            <param name="transaction">The transaction for which the fee is calculated.</param>
+            <returns>The value of the fee.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.FeeFactory.CalculateFee(B4F.TotalGiro.Fees.FeeTypes,B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            The method used by <b>Order</b> and <b>Transaction</b> classes to calculate their attached fees.
+            </summary>
+            <param name="feeType">The type of fee to be calculated.</param>
+            <param name="client">The client (order/transaction) for which the fee is calculated.</param>
+            <returns>The value of the fee.</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.CommCalcLines">
+            <summary>
+            A list of commission calculation lines (<b>CommCalcLine</b> objects).
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLines.#ctor(B4F.TotalGiro.Fees.Calculations.CommCalc,System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <b>CommCalcLines</b> class.
+            </summary>
+            <param name="Parent">The parent <b>CommCalc</b> object.</param>
+            <param name="Lines">A list of <b>CommCalcLine</b> objects to initialize this <b>CommCalcLines</b> object with.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLines.Add(B4F.TotalGiro.Fees.Calculations.CommCalcLine)">
+            <summary>
+            Adds a line to the collection.
+            </summary>
+            <param name="item">The line to add to the collection.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLines.Clear">
+            <summary>
+            Removes all lines from the collection.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.CommCalcSimple">
+            <summary>
+            Calculates a simple, constant commission.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcSimple.Calculate(B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            Calculates a simple, constant commission for a given order.
+            </summary>
+            <param name="client">The order for which to calculate the commission.</param>
+            <returns>The value of the commission.</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.CommCalcFlat">
+            <summary>
+            Calculates a flat commission.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcFlat.Calculate(B4F.TotalGiro.Fees.IFeeClient)">
+            <summary>
+            Calculates a flat commission for a given order.
+            </summary>
+            <param name="client">The order for which to calculate the commission.</param>
+            <returns>The value of the commission.</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Fees.Calculations.CommCalcLine">
+            <summary>
+            A calculation line belonging to a commission calculation.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.#ctor(B4F.TotalGiro.Instruments.Money,System.Decimal,System.Decimal)">
+            <summary>
+            Initializes a new instance of the <b>CommCalc</b> class.
+            </summary>
+            <param name="LowerRange">Lower limit of the interval over which this line is handling commission calculation.</param>
+            <param name="StaticCharge">(Not used)</param>
+            <param name="FeePercentage">Percentage on which the fee calculation for this line is based.</param>
+            <remarks>
+            Only the Upper range may be provided. 
+            The Lower range must be the previous record's Upper Range for Consistency.
+            Each Line may have a Static Charge plus a FeePercentage.
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.Envelops(B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Checks if the given value falls within this line's interval (<b>LowerRange</b> to <b>UpperRange</b>).
+            </summary>
+            <param name="val">Value to check.</param>
+            <returns><b>true</b> if value falls within interval, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.Envelops(System.Decimal)">
+            <summary>
+            Checks if the given value falls within this line's interval (<b>LowerRange</b> to <b>UpperRange</b>).
+            </summary>
+            <param name="val">Value to check.</param>
+            <returns><b>true</b> if value falls within interval, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.IsUnder(B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Checks that this line's interval is under the given value.
+            </summary>
+            <param name="val">Value to check.</param>
+            <returns><b>true</b> if line's interval is under the given value, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.IsUnder(System.Decimal)">
+            <summary>
+            Checks that this line's interval is under the given value.
+            </summary>
+            <param name="val">Value to check.</param>
+            <returns><b>true</b> if line's interval is under the given value, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.Calculate(B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Calculates fee for a given amount.
+            </summary>
+            <param name="val">Amount to calculate fee for.</param>
+            <returns>The calculated fee.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.Calculate(System.Decimal,B4F.TotalGiro.Instruments.ICurrency)">
+            <summary>
+            Calculates fee for a given amount, expressed in a given currency.
+            </summary>
+            <param name="val">Amount to calculate fee for.</param>
+            <param name="instrument">The currency in which the fee will be expressed.</param>
+            <returns>The calculated fee.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.CalculateBackwards(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Money@)">
+            <summary>
+            Calculates a fee so that the fee plus the net amount (of the order) equals the gross amount.
+            </summary>
+            <param name="grossAmount">The gross amount.</param>
+            <param name="fee">The calculated fee (<b>out</b> parameter).</param>
+            <returns><b>true</b> if fee could be calculated (net amount fell on this line), <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.ToString">
+            <summary>
+            A string representation of this Commission Calculation Line.
+            </summary>
+            <returns>A string representation of this Commission Calculation Line.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Fees.Calculations.CommCalcLine.GetHashCode">
+            <summary>
+            Hash function for this type.
+            </summary>
+            <returns>A hash code for the current CommCalcLine object.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalcLine.SerialNo">
+            <summary>
+            Gets this line's index inside the (ordered) collection of Commission Calculation Lines.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalcLine.LowerRange">
+            <summary>
+            Gets or sets the lower limit of the interval over which this line is handling commission calculation.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalcLine.UpperRange">
+            <summary>
+            Gets the upper limit of the interval over which this line is handling commission calculation.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalcLine.DisplayRange">
+            <summary>
+            Gets a string representation of the interval over which this line is handling commission calculation.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalcLine.FeePercentage">
+            <summary>
+            Gets or sets the percentage on which the fee (commission) calculation for this line is based.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Fees.Calculations.CommCalcLine.StaticCharge">
+            <summary>
+            Gets or sets a constant amount that represents the commission for this line's interval.
+            </summary>
+        </member>
+    </members>
+</doc>

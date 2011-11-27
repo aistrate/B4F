@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>TotalGiroLive</Name>
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=b4f-sql.dmz.local;Initial Catalog=TotalGiro</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>cb0c3336-a16a-452a-8012-ed747e7f79f2</DataSourceID>
+</RptDataSource>

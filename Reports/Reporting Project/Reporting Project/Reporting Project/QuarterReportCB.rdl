@@ -1,0 +1,2163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
+  <DataSources>
+    <DataSource Name="dsTotalGiro">
+      <DataSourceReference>dsTotalGiro</DataSourceReference>
+      <rd:DataSourceID>1d649572-d2a2-4d65-bf07-5f395d211f7c</rd:DataSourceID>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Header">
+      <Fields>
+        <Field Name="Number">
+          <DataField>Number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BaseCurrency_Symbol">
+          <DataField>BaseCurrency_Symbol</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ContactAddress_DearSirForm">
+          <DataField>ContactAddress_DearSirForm</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ContactAddress_AddressFirstLine">
+          <DataField>ContactAddress_AddressFirstLine</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ContactAddress_AddressSecondLine">
+          <DataField>ContactAddress_AddressSecondLine</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ContactAddress_ContactStreet">
+          <DataField>ContactAddress_ContactStreet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ContactAddress_ContactCity">
+          <DataField>ContactAddress_ContactCity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>dsTotalGiro</DataSourceName>
+        <CommandText>Header</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@DataSource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="TotalPortfolioValues">
+      <Fields>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TotalValue_Quantity">
+          <DataField>TotalValue_Quantity</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>dsTotalGiro</DataSourceName>
+        <CommandText>TotalPortfolioValues</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@DataSource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="PortfolioAssetClassBreakUp">
+      <Fields>
+        <Field Name="AssetClass_AssetName">
+          <DataField>AssetClass_AssetName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BreakUpValue_Quantity">
+          <DataField>BreakUpValue_Quantity</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="BreakUpPercentage">
+          <DataField>BreakUpPercentage</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>dsTotalGiro</DataSourceName>
+        <CommandText>PortfolioAssetClassBreakUp</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@DataSource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Tablix Name="table1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>3.95in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.17in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="ContactAddress_AddressFirstLine">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ContactAddress_AddressFirstLine.Value</Value>
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ContactAddress_AddressFirstLine</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.17in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ContactAddress_AddressSecondLine.Value</Value>
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>2</ZIndex>
+                      <Visibility>
+                        <Hidden>=(Fields!ContactAddress_AddressSecondLine.Value = "")</Hidden>
+                      </Visibility>
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.17in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ContactAddress_ContactStreet.Value</Value>
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.17in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ContactAddress_ContactCity.Value</Value>
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="table1_Details_Group">
+                <DataElementName>Detail</DataElementName>
+              </Group>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=(Fields!ContactAddress_AddressSecondLine.Value = "")</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+              <DataElementName>Detail_Collection</DataElementName>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>Header</DataSetName>
+        <Top>0.95in</Top>
+        <Left>1in</Left>
+        <Height>0.68in</Height>
+        <Width>3.95in</Width>
+        <Style />
+      </Tablix>
+      <Textbox Name="textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Betreft: </Value>
+                <Style>
+                  <FontFamily>Verdana</FontFamily>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Top>2.45in</Top>
+        <Left>1in</Left>
+        <Height>0.17in</Height>
+        <Width>0.75in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="textbox6">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!Betreft.Value &amp; " (" &amp; First(Fields!Number.Value, "Header") + ")"</Value>
+                <Style>
+                  <FontFamily>Verdana</FontFamily>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>textbox6</rd:DefaultName>
+        <Top>2.45in</Top>
+        <Left>1.75in</Left>
+        <Height>0.17in</Height>
+        <Width>5.2in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="textbox7">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>= "Amsterdam, " + Today.ToString("dd-MM-yyyy")</Value>
+                <Style>
+                  <FontFamily>Verdana</FontFamily>
+                  <FontSize>9pt</FontSize>
+                  <Format>d</Format>
+                  <Language>nl</Language>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>textbox7</rd:DefaultName>
+        <Top>2in</Top>
+        <Left>1in</Left>
+        <Height>0.17in</Height>
+        <Width>5.9in</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="textbox9">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Met vriendelijke groet,</Value>
+                <Style>
+                  <FontFamily>Verdana</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>textbox9</rd:DefaultName>
+        <Top>5.6in</Top>
+        <Left>1in</Left>
+        <Height>0.17in</Height>
+        <Width>5.25in</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="ContactAddress_DearSirForm_1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!ContactAddress_DearSirForm.Value, "Header") + ","</Value>
+                <Style>
+                  <FontFamily>Verdana</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>ContactAddress_DearSirForm_1</rd:DefaultName>
+        <Top>2.9in</Top>
+        <Left>1in</Left>
+        <Height>0.17in</Height>
+        <Width>5.9in</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Subreport Name="PortfolioDevelopment">
+        <ReportName>PortfolioDevelopment</ReportName>
+        <Parameters>
+          <Parameter Name="Datasource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </Parameter>
+          <Parameter Name="BeginDate">
+            <Value>=Parameters!BeginDate.Value</Value>
+          </Parameter>
+          <Parameter Name="EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
+          </Parameter>
+        </Parameters>
+        <KeepTogether>true</KeepTogether>
+        <Top>7.575in</Top>
+        <Height>0.125in</Height>
+        <Width>6.25in</Width>
+        <ZIndex>6</ZIndex>
+        <Visibility>
+          <Hidden>=(Parameters!PortfolioDevelopment.Value &lt;&gt; true)</Hidden>
+        </Visibility>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style />
+      </Subreport>
+      <Subreport Name="PortfolioOverview">
+        <ReportName>PortfolioOverview</ReportName>
+        <Parameters>
+          <Parameter Name="DataSource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </Parameter>
+          <Parameter Name="BeginDate">
+            <Value>=Parameters!BeginDate.Value</Value>
+          </Parameter>
+          <Parameter Name="EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
+          </Parameter>
+        </Parameters>
+        <KeepTogether>true</KeepTogether>
+        <Top>7.825in</Top>
+        <Height>0.125in</Height>
+        <Width>6.25in</Width>
+        <ZIndex>7</ZIndex>
+        <Visibility>
+          <Hidden>=(Parameters!PortfolioOverview.Value &lt;&gt; true)</Hidden>
+        </Visibility>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style />
+      </Subreport>
+      <Subreport Name="MoneyMutations">
+        <ReportName>MoneyMutations</ReportName>
+        <Parameters>
+          <Parameter Name="DataSource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </Parameter>
+          <Parameter Name="BeginDate">
+            <Value>=Parameters!BeginDate.Value</Value>
+          </Parameter>
+          <Parameter Name="EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
+          </Parameter>
+        </Parameters>
+        <KeepTogether>true</KeepTogether>
+        <Top>8.075in</Top>
+        <Height>0.125in</Height>
+        <Width>6.25in</Width>
+        <ZIndex>8</ZIndex>
+        <Visibility>
+          <Hidden>=(Parameters!MoneyMutations.Value &lt;&gt; true)</Hidden>
+        </Visibility>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style />
+      </Subreport>
+      <Rectangle Name="rectangle1">
+        <ReportItems>
+          <Chart Name="chrtPortfolioDevelopment">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="chart1_CategoryGroup1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Date.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <Label>=MonthName(Month(Fields!Date.Value))</Label>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label />
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="Series1">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Fields!TotalValue_Quantity.Value</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                      </ChartDataLabel>
+                      <Style>
+                        <Border>
+                          <Width>2.25pt</Width>
+                        </Border>
+                      </Style>
+                      <ChartMarker>
+                        <Size>6pt</Size>
+                        <Style />
+                      </ChartMarker>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Line</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                        <Width>0.75pt</Width>
+                      </Border>
+                      <Format>d</Format>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Margin>False</Margin>
+                    <Interval>1</Interval>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                      <IntervalOffset>-1</IntervalOffset>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Enabled>True</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Type>None</Type>
+                    </ChartMinorTickMarks>
+                    <PreventFontShrink>true</PreventFontShrink>
+                    <PreventFontGrow>true</PreventFontGrow>
+                    <IncludeZero>false</IncludeZero>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                        <Width>0.75pt</Width>
+                      </Border>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Margin>True</Margin>
+                    <ChartMajorGridLines>
+                      <Enabled>True</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Enabled>True</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Type>None</Type>
+                    </ChartMinorTickMarks>
+                    <Scalar>true</Scalar>
+                    <Minimum>0</Minimum>
+                    <PreventFontShrink>true</PreventFontShrink>
+                    <PreventFontGrow>true</PreventFontGrow>
+                    <IncludeZero>false</IncludeZero>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <ChartThreeDProperties>
+                  <ProjectionMode>Perspective</ProjectionMode>
+                  <Shading>Simple</Shading>
+                  <WallThickness>15</WallThickness>
+                  <Clustered>true</Clustered>
+                </ChartThreeDProperties>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                    <Width>0.75pt</Width>
+                  </Border>
+                  <BackgroundColor>LightGrey</BackgroundColor>
+                </Style>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Default">
+                <Hidden>true</Hidden>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                    <Width>0.75pt</Width>
+                  </Border>
+                </Style>
+                <Position>RightCenter</Position>
+                <Layout>Column</Layout>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <AutoFitTextDisabled>true</AutoFitTextDisabled>
+              </ChartLegend>
+            </ChartLegends>
+            <ChartBorderSkin>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>No Data Available</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>TotalPortfolioValues</DataSetName>
+            <Top>0.2in</Top>
+            <Left>2.9in</Left>
+            <Height>2.15in</Height>
+            <Width>2.7in</Width>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <CustomProperties>
+              <CustomProperty>
+                <Name>__Upgraded2005__</Name>
+                <Value>__Upgraded2005__</Value>
+              </CustomProperty>
+            </CustomProperties>
+            <Style>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </Chart>
+          <Textbox Name="textbox10">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!Omschrijving.Value</Value>
+                    <Style>
+                      <FontFamily>Verdana</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>textbox10</rd:DefaultName>
+            <Height>0.17in</Height>
+            <Width>5.9in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Chart Name="chrtPortfolioDistribution">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label />
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="chart2_SeriesGroup1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!AssetClass_AssetName.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <ChartMembers>
+                    <ChartMember>
+                      <Label>=FormatPercent(Fields!BreakUpPercentage.Value, 1, true)</Label>
+                    </ChartMember>
+                  </ChartMembers>
+                  <Label>=Fields!AssetClass_AssetName.Value</Label>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="Series1">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Fields!BreakUpValue_Quantity.Value</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style>
+                          <FontFamily>Verdana</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <Format>:</Format>
+                          <TextDecoration>Underline</TextDecoration>
+                        </Style>
+                        <Label>=FormatPercent(Fields!BreakUpPercentage.Value, 1, 0, 0, 0)</Label>
+                      </ChartDataLabel>
+                      <Style>
+                        <Border>
+                          <Color>Black</Color>
+                          <Width>0.376pt</Width>
+                        </Border>
+                      </Style>
+                      <ChartMarker>
+                        <Size>6pt</Size>
+                        <Style />
+                      </ChartMarker>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                        <Width>0.75pt</Width>
+                      </Border>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Margin>False</Margin>
+                    <Interval>1</Interval>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                      <IntervalOffset>-1</IntervalOffset>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Enabled>True</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Type>None</Type>
+                    </ChartMinorTickMarks>
+                    <PreventFontShrink>true</PreventFontShrink>
+                    <PreventFontGrow>true</PreventFontGrow>
+                    <IncludeZero>false</IncludeZero>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                        <Width>0.75pt</Width>
+                      </Border>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Margin>True</Margin>
+                    <ChartMajorGridLines>
+                      <Enabled>True</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Enabled>True</Enabled>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>0.75pt</Width>
+                        </Border>
+                      </Style>
+                      <Interval>NaN</Interval>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Type>None</Type>
+                    </ChartMinorTickMarks>
+                    <Scalar>true</Scalar>
+                    <Minimum>0</Minimum>
+                    <PreventFontShrink>true</PreventFontShrink>
+                    <PreventFontGrow>true</PreventFontGrow>
+                    <IncludeZero>false</IncludeZero>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <ChartThreeDProperties>
+                  <ProjectionMode>Perspective</ProjectionMode>
+                  <Shading>Simple</Shading>
+                  <WallThickness>15</WallThickness>
+                  <Clustered>true</Clustered>
+                </ChartThreeDProperties>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                    <Width>0.75pt</Width>
+                  </Border>
+                  <BackgroundColor>White</BackgroundColor>
+                </Style>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Default">
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                    <Width>0.75pt</Width>
+                  </Border>
+                  <FontFamily>Verdana</FontFamily>
+                  <FontSize>6pt</FontSize>
+                  <Color>=iif(Fields!BreakUpPercentage.Value &lt; 0, 100, 200)</Color>
+                </Style>
+                <Position>BottomCenter</Position>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <AutoFitTextDisabled>true</AutoFitTextDisabled>
+              </ChartLegend>
+            </ChartLegends>
+            <Palette>SemiTransparent</Palette>
+            <ChartBorderSkin>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>No Data Available</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>PortfolioAssetClassBreakUp</DataSetName>
+            <Top>0.2in</Top>
+            <Height>2.15in</Height>
+            <Width>2.7in</Width>
+            <ZIndex>2</ZIndex>
+            <CustomProperties>
+              <CustomProperty>
+                <Name>__Upgraded2005__</Name>
+                <Value>__Upgraded2005__</Value>
+              </CustomProperty>
+            </CustomProperties>
+            <Style>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </Chart>
+        </ReportItems>
+        <DataElementOutput>ContentsOnly</DataElementOutput>
+        <Top>3.2in</Top>
+        <Left>1in</Left>
+        <Height>2.4in</Height>
+        <Width>5.9in</Width>
+        <ZIndex>9</ZIndex>
+        <Visibility>
+          <Hidden>=(Parameters!Chartcover.Value &lt;&gt; true)</Hidden>
+        </Visibility>
+        <Style>
+          <BackgroundColor>White</BackgroundColor>
+        </Style>
+      </Rectangle>
+      <Subreport Name="TransactionOverview">
+        <ReportName>TransactionOverview</ReportName>
+        <Parameters>
+          <Parameter Name="DataSource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </Parameter>
+          <Parameter Name="BeginDate">
+            <Value>=Parameters!BeginDate.Value</Value>
+          </Parameter>
+          <Parameter Name="EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
+          </Parameter>
+        </Parameters>
+        <KeepTogether>true</KeepTogether>
+        <Top>7.95in</Top>
+        <Height>0.125in</Height>
+        <Width>6.25in</Width>
+        <ZIndex>10</ZIndex>
+        <Visibility>
+          <Hidden>=(Parameters!TransactionOverview.Value &lt;&gt; true)</Hidden>
+        </Visibility>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style />
+      </Subreport>
+      <Subreport Name="PortfolioSummary">
+        <ReportName>PortfolioSummary</ReportName>
+        <Parameters>
+          <Parameter Name="DataSource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </Parameter>
+          <Parameter Name="BeginDate">
+            <Value>=Parameters!BeginDate.Value</Value>
+          </Parameter>
+          <Parameter Name="EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
+          </Parameter>
+        </Parameters>
+        <KeepTogether>true</KeepTogether>
+        <Top>7.7in</Top>
+        <Height>0.125in</Height>
+        <Width>6.25in</Width>
+        <ZIndex>11</ZIndex>
+        <Visibility>
+          <Hidden>=(Parameters!PortfolioSummary.Value &lt;&gt; true)</Hidden>
+        </Visibility>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style />
+      </Subreport>
+      <Image Name="image1">
+        <Source>External</Source>
+        <Value>SignatureMSKlaster.JPG</Value>
+        <Sizing>FitProportional</Sizing>
+        <Top>5.8in</Top>
+        <Left>1in</Left>
+        <Height>0.8in</Height>
+        <Width>2.3in</Width>
+        <ZIndex>12</ZIndex>
+        <Style>
+          <PaddingTop>17pt</PaddingTop>
+        </Style>
+      </Image>
+      <Tablix Name="table2">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>2.8in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.5in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.75in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.17in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox14">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>M.A. Klaster</Value>
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox14</rd:DefaultName>
+                      <ZIndex>8</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox15">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox15</rd:DefaultName>
+                      <ZIndex>6</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.17in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox12">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Directeur Paerel Vermogensbeheer B.V.</Value>
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox12</rd:DefaultName>
+                      <ZIndex>5</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox13">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox13</rd:DefaultName>
+                      <ZIndex>4</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox16">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox16</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.17in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox17">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox17</rd:DefaultName>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox18">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox18</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox19">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Verdana</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox19</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="table2_Details_Group">
+                <DataElementName>Detail</DataElementName>
+              </Group>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+              <DataElementName>Detail_Collection</DataElementName>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>Header</DataSetName>
+        <Top>6.6in</Top>
+        <Left>1in</Left>
+        <Height>0.51in</Height>
+        <Width>6.05in</Width>
+        <ZIndex>13</ZIndex>
+        <Style />
+      </Tablix>
+      <Tablix Name="list2">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.57in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>1.82in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Rectangle Name="list2_Contents">
+                      <ReportItems>
+                        <Textbox Name="textbox70">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>T +31 (0)20 550 77 77</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>1.12083in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.57in</Width>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox28">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>F +31 (0)20 550 77 00</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>1.29583in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.57in</Width>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox25">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>info@borghols.com</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>1.47291in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.57in</Width>
+                          <ZIndex>2</ZIndex>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox20">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>www.borghols.com</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>1.65in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.57in</Width>
+                          <ZIndex>3</ZIndex>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox78">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cross Border Asset Mgmt</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>0.01251in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.55in</Width>
+                          <ZIndex>4</ZIndex>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox77">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Gebouw 'De Paerel'</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>0.17709in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.55in</Width>
+                          <ZIndex>5</ZIndex>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox76">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Herengracht 199-201</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>0.33543in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.55in</Width>
+                          <ZIndex>6</ZIndex>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox75">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>NL-1016 BE Amsterdam</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>0.48959in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.55in</Width>
+                          <ZIndex>7</ZIndex>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox74">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Postbus 10031</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>0.64375in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.55in</Width>
+                          <ZIndex>8</ZIndex>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox73">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>NL-1001 EA Amsterdam</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>7.25pt</FontSize>
+                                    <Color>#272976</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Top>0.8in</Top>
+                          <Height>0.17in</Height>
+                          <Width>1.55in</Width>
+                          <ZIndex>9</ZIndex>
+                          <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </ReportItems>
+                      <KeepTogether>true</KeepTogether>
+                      <Style />
+                    </Rectangle>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="list2_Details_Group">
+                <DataElementName>Item</DataElementName>
+              </Group>
+              <DataElementName>Item_Collection</DataElementName>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>Header</DataSetName>
+        <Left>5.95in</Left>
+        <Height>1.82in</Height>
+        <Width>1.57in</Width>
+        <ZIndex>14</ZIndex>
+        <Style />
+      </Tablix>
+      <Subreport Name="subreport1">
+        <ReportName>MifidCB</ReportName>
+        <KeepTogether>true</KeepTogether>
+        <Top>8.2in</Top>
+        <Height>0.125in</Height>
+        <Width>6.25in</Width>
+        <ZIndex>15</ZIndex>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Style />
+      </Subreport>
+      <Subreport Name="Appendix">
+        <ReportName>Appendix</ReportName>
+        <Parameters>
+          <Parameter Name="Datasource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </Parameter>
+        </Parameters>
+        <KeepTogether>true</KeepTogether>
+        <Top>7.35in</Top>
+        <Height>0.1in</Height>
+        <Width>6.25in</Width>
+        <ZIndex>16</ZIndex>
+        <Visibility>
+          <Hidden>=(Parameters!PortfolioDevelopment.Value &lt;&gt; true)</Hidden>
+        </Visibility>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style />
+      </Subreport>
+      <Subreport Name="AppendixOfFee">
+        <ReportName>AppendixOfFee</ReportName>
+        <Parameters>
+          <Parameter Name="Datasource">
+            <Value>=Parameters!DataSource.Value</Value>
+          </Parameter>
+        </Parameters>
+        <KeepTogether>true</KeepTogether>
+        <Top>7.45in</Top>
+        <Height>0.1in</Height>
+        <Width>6.25in</Width>
+        <ZIndex>17</ZIndex>
+        <Visibility>
+          <Hidden>=(Parameters!PortfolioDevelopment.Value &lt;&gt; true)</Hidden>
+        </Visibility>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style />
+      </Subreport>
+    </ReportItems>
+    <Height>8.325in</Height>
+    <Style />
+  </Body>
+  <ReportParameters>
+    <ReportParameter Name="DataSource">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>C:\temp\Schemas\FinancialReportDataSet.xml</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>DataSource</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="BeginDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>01-08-2006</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Report_Parameter_6</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="EndDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>31-03-2007</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Report_Parameter_7</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="PortfolioDevelopment">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Report_Parameter_5</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="PortfolioOverview">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Report_Parameter_3</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="PortfolioSummary">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Report_Parameter_4</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="TransactionOverview">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=True</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Bool</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="MoneyMutations">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Report_Parameter_2</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="Chartcover">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=True</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_8</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="Betreft">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Overzicht derde kwartaal 2007</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_9</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="Omschrijving">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>Hierbij ontvangt u de kwartaalrapportage van uw portefeuille bij Cross Border Asset Management (Cross Border Asset Management is een handelsnaam van Borghols B.V.). Het betreft uw individuele performanceoverzicht over het derde kwartaal met een specificatie van de actuele waarde en uw transactieoverzicht. 
+
+U ontvangt bij deze kwartaalrapportage tevens informatie over de nieuwe Europese regelgeving, MifID genaamd, die per november 2007 van kracht wordt.
+
+Mocht u vragen hebben dan bent u welkom bij onze collega’s van de servicedesk.
+Het nummer is 020 – 5128750 en het emailadres is servicedesk@borghols.com. 
+
+Wij vertrouwen erop u met bovenstaande van dienst te zijn geweest.</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_10</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="ShowLogo">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=true</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_11</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <Width>7.55in</Width>
+  <Page>
+    <PageHeader>
+      <Height>0.5in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="textbox8">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Cross Border</Value>
+                  <Style>
+                    <FontFamily>Century</FontFamily>
+                    <FontSize>24pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.05in</Top>
+          <Left>4.45in</Left>
+          <Height>0.4in</Height>
+          <Width>3.0725in</Width>
+          <Style>
+            <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style />
+    </PageHeader>
+    <PageFooter>
+      <Height>0.38in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="textbox79">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!PageNumber.ToString() + 
+" van " + Globals!TotalPages.ToString()</Value>
+                  <Style>
+                    <FontFamily>Verdana</FontFamily>
+                    <FontSize>7pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.2in</Top>
+          <Left>3.15in</Left>
+          <Height>0.18in</Height>
+          <Width>1.27in</Width>
+          <Style>
+            <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+          </Style>
+        </Textbox>
+        <Textbox Name="textbox11">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value />
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Left>3.5in</Left>
+          <Height>0.2in</Height>
+          <Width>0.5in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style />
+    </PageFooter>
+    <PageHeight>11.69in</PageHeight>
+    <PageWidth>8.27in</PageWidth>
+    <InteractiveHeight>11in</InteractiveHeight>
+    <InteractiveWidth>8.5in</InteractiveWidth>
+    <LeftMargin>0.35in</LeftMargin>
+    <RightMargin>0.35in</RightMargin>
+    <TopMargin>0.28in</TopMargin>
+    <BottomMargin>0.2in</BottomMargin>
+    <Style />
+  </Page>
+  <Language>nl-NL</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportID>72976301-019d-44b1-b887-42e7b11e421f</rd:ReportID>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+</Report>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.BackOffice.Orders.PredefinedBeneficiary, B4F.TotalGiro.BackOffice" 
+		   table="MoneyTransferPredefinedBenef">
+		<id name="Key" column="MoneyTransferPredefinedBenefID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="SwiftAddress" column="SwiftAddress" />
+		<property name="BenefBankAcctNr" column="BenefBankAcctNr" />
+		<property name="NarBenef1" column="NarBenef1" />
+		<property name="NarBenef2" column="NarBenef2" />
+		<property name="NarBenef3" column="NarBenef3" />
+		<property name="NarBenef4" column="NarBenef4" />
+		<property name="Description1" column="Description1" />
+		<property name="Description2" column="Description2" />
+		<property name="Description3" column="Description3" />
+		<property name="Description4" column="Description4" />
+		<property name="CostIndication" column="CostIndicationID"  type="B4F.TotalGiro.BackOffice.Orders.IndicationOfCosts, B4F.TotalGiro.Interfaces"/>
+	</class>
+</hibernate-mapping>

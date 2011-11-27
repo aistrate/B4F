@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Interface Name="B4F.TotalGiro.Stichting.IManagementCompany">
+    <Position X="1.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Stichting\IManagementCompany.cs</FileName>
+      <HashCode>AAAAQAAIAgAQAAwEAAAAAAAAAAAAAIAAAAAAAAAQAIA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Stichting.IEffectenGiro">
+    <Position X="2.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Stichting\IEffectenGiro.cs</FileName>
+      <HashCode>AAAAAAIAAAAAAAAAAAAEAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Stichting.IAssetManager">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Stichting\IAssetManager.cs</FileName>
+      <HashCode>AAEAAAAAAAAAAAQAAAAAAAAAAAABAAAAAAAAAAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="B4F.TotalGiro.Stichting.KnownAssetManagers" Collapsed="true">
+    <Position X="5.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Stichting\IAssetManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+</ClassDiagram>

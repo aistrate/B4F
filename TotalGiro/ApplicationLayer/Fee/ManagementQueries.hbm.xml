@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.ManagementPeriodUnitsForMgtFee" >
+		<![CDATA[
+        from ManagementPeriodUnit U 
+        left join fetch U.ManagementPeriod P
+        left join fetch U.UnitParent PU
+        left join fetch U.ManagementFee T
+        left join fetch PU.Account A
+        left join fetch A.ModelPortfolio M
+        where (A.Family.managementTypesCharged & :managementType) <> 0
+        and PU.Period in (:periods)
+        and P.ManagementType = :managementType
+		and A.AccountOwner = :assetManagerId
+		and A.RemisierEmployee.Remisier.Key = :remisierId
+		and A.RemisierEmployee.Key = :remisierEmployeeId
+		and M.Key = :modelPortfolioId
+		and A.Number like :accountNumber
+		and A.ShortName like :accountName
+		and A.Status = :accountStatus
+    ]]>
+	</query>
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.ManagementPeriodUnitsForKickBack" >
+		<![CDATA[
+        from ManagementPeriodUnit U 
+        left join fetch U.ManagementPeriod P
+        left join fetch U.UnitParent PU
+        left join fetch PU.Account A
+        left join fetch A.ModelPortfolio M
+        left join fetch A.RemisierEmployee E 
+		left join fetch E.Remisier R 
+        where (A.Family.managementTypesCharged & :managementType) <> 0
+        and PU.Period in (:periods)
+        and P.ManagementType = :managementType
+		and A.AccountOwner = :assetManagerId
+		and R.Key = :remisierId
+		and E.Key = :remisierEmployeeId
+		and M.Key = :modelPortfolioId
+		and A.Number like :accountNumber
+		and A.ShortName like :accountName
+		and A.Status = :accountStatus
+    ]]>
+	</query>
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.ManagementPeriodUnitsForSummary" >
+		<![CDATA[
+        select PU.Period, SUM(PU.TotalValue.Quantity)
+        from ManagementPeriodUnit U 
+        left join U.ManagementPeriod P
+        left join U.UnitParent PU
+        left join PU.Account A 
+        where (A.Family.managementTypesCharged & :managementType) <> 0
+        and PU.Period in (:periods)
+        and P.ManagementType = :managementType
+		and A.AccountOwner = :assetManagerId
+		and A.RemisierEmployee.Remisier.Key = :remisierId
+		and A.RemisierEmployee.Key = :remisierEmployeeId
+		and A.ModelPortfolio.Key = :modelPortfolioId
+		and A.Number like :accountNumber
+		and A.ShortName like :accountName
+		and A.Status = :accountStatus
+    ]]>
+	</query>
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.ManagementPeriodUnitsForMgtFeeTransactionCreation" >
+		<![CDATA[
+		from ManagementPeriodUnit U 
+        left join fetch U.ManagementPeriod P
+        left join fetch U.UnitParent PU
+        left join fetch PU.Account A
+        where P.Key = :mgtPeriodId
+        and PU.Period in (:periods)
+        and P.ManagementType = :managementType
+        and U.ManagementFee is null
+        and IsNull(U.IsStornoed, 0) = 0
+	]]>
+	</query>
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.AverageHoldingsByUnit" >
+		<![CDATA[
+        from AverageHolding H
+        where H.Key in (
+        select H.Key
+        from ManagementPeriodUnitParent PU
+        left join PU.averageHoldings H
+        , ManagementPeriodUnit U
+        left join U.ManagementPeriod P
+        where U.UnitParent.Key = PU.Key
+        and U.Key = :unitID
+        and P.ManagementType = :managementType)
+    ]]>
+	</query>
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.AverageHoldingFeesByUnit" >
+		<![CDATA[
+        from AverageHoldingFee F
+        left join fetch F.Unit U
+        left join fetch F.calcSource CV
+        where U.Key = :unitID
+    ]]>
+	</query>
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.AccountsForExportAccountDataNoKickBack" >
+		<![CDATA[
+		from CustomerAccount A
+        where A.Key not in (
+        select U.UnitParent.Account.Key
+        from ManagementPeriodUnit U
+        where U.ManagementPeriod.ManagementType = :managementType
+        and U.UnitParent.Period in (:periods))
+        and A.Key not in (
+			select K.Account.Key
+			from KickBackExport K
+			where K.Period in (:periods) )
+        and A.lastValuationDate >= :beginDate
+        and A.firstManagementStartDate <= :endDate
+        and IsNull(A.finalManagementEndDate, :beginDate) >= :beginDate
+        and A.RemisierEmployee is not null
+        and A.AccountOwner.Key = :assetManagerId
+	]]>
+	</query>
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.AvgValuesForExportAccountDataNoKickBack" >
+		<![CDATA[
+		select V.Account.Key, Sum(V.BaseMarketValue.Quantity), Year(V.Date), Month(V.Date)
+        from Valuation V
+        where V.Account.Key = :accountId
+        and V.Date between :beginDate and :endDate
+        group by V.Account.Key, Year(V.Date), Month(V.Date)
+        order by V.Account.Key, Year(V.Date), Month(V.Date)			
+	]]>
+	</query>
+
+	<sql-query name="B4F.TotalGiro.ApplicationLayer.Fee.ValuationRunsAfterDate" >
+		<return-scalar column="Total" type="System.Int32"/>
+		<query-param name="date" type="System.DateTime"/>
+		<![CDATA[
+        SELECT COUNT(*) as Total
+        FROM  ValuationRuns
+        WHERE ValuationDate >= :date
+    ]]>
+	</sql-query>
+
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.ManagementFeeCorrections" >
+		<![CDATA[
+        from ManagementPeriodUnitCorrection C
+        left join fetch C.Unit U
+        left join fetch U.UnitParent PU
+        left join fetch U.ManagementPeriod P
+        left join fetch C.AverageHolding H
+        left join fetch U.UnitParent.Account A
+        left join fetch H.Instrument I
+        left join fetch A.ModelPortfolio M
+        where P.ManagementType = :managementType
+		and A.AccountOwner = :assetManagerId
+		and M.Key = :modelPortfolioId
+		and A.Number like :accountNumber
+		and A.ShortName like :accountName
+		and A.Status = :accountStatus
+		and H.Period in (:periods)
+    ]]>
+	</query>
+	<!--<query name="B4F.TotalGiro.ApplicationLayer.Fee.ManagementFeeTransactionData" >
+		<![CDATA[
+        from MgtFeeBreakupLine L
+        where L.ManagementFee.Key = :tradeId
+        and L.MgtFeeType.key = :feeType
+    ]]>
+	</query>-->
+	<query name="B4F.TotalGiro.ApplicationLayer.Fee.AverageHoldingFees" >
+		<![CDATA[
+        from AverageHoldingFee F
+        left join fetch F.Parent H
+        left join fetch F.Unit U
+        left join fetch U.UnitParent PU
+        left join fetch U.ManagementPeriod P
+        left join fetch F.calcSource CV
+        left join fetch CV.Parent
+        where H.Key = :averageHoldingID 
+        and P.ManagementType = :managementType
+    ]]>
+	</query>
+
+</hibernate-mapping>

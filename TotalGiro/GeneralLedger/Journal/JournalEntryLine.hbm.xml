@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger"
+		   dynamic-update="true"
+		   table="GLJournalEntryLines"
+		   proxy ="B4F.TotalGiro.GeneralLedger.Journal.IJournalEntryLine, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="JournalEntryLineID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<many-to-one name="Parent" column="JournalEntryID" cascade="all" insert="true" update="true"
+					 class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntry, B4F.TotalGiro.GeneralLedger" />
+		<property name="LineNumber" column="LineNumber" />
+		<property name="status" column="Status" access="field" type="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLineStati, B4F.TotalGiro.Interfaces" />
+		<many-to-one name="GLAccount" column="GLAccountID" cascade="none"
+			         class="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger" />
+		<component name="Debit" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Debit" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="DebitInstrumentID" cascade="none" />
+			<many-to-one name="XRateCurrency" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="DebitXrateID" cascade="none" />
+			<property name="XRate" column="DebitXrate" />
+		</component>
+		<component name="Credit" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Credit" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="CreditInstrumentID" cascade="none" />
+			<many-to-one name="XRateCurrency" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="CreditXrateID" cascade="none" />
+			<property name="XRate" column="CreditXrate" />
+		</component>
+		<many-to-one name="GiroAccount" column="GiroAccountID" cascade="none"
+					 class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" />
+		<property name="Description" column="Description" />
+		<property name="OriginalDescription" column="OriginalDescription" />
+		<many-to-one name="StornoedLine" column="StornoedLineID" cascade="none"
+					 class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger" />
+		<bag name="bagStorno" table="GLJournalEntryLines" access="field" lazy="true">
+			<key column="StornoedLineID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+		<many-to-one name="SubledgerEntry" column="LedgerSubEntryID" cascade="none"
+					 class="B4F.TotalGiro.Communicator.Exact.SubledgerEntry, B4F.TotalGiro.Communicator" />
+		<many-to-one name="ImportedBankMovement" column="ImportedFileRecordID"
+			         class="B4F.TotalGiro.Communicator.Exact.ImportedBankMovement, B4F.TotalGiro.Communicator" cascade="none" />
+		<many-to-one name="BookComponent" column="BookingComponentID" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponent, B4F.TotalGiro.GeneralLedger"
+			 cascade="all" />
+		<property name="IsSettledStatus" column="IsSettledStatus" type="Boolean" />
+		<many-to-one name="ParentSubPosition" column="GLSubPositionID" class="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPosition, B4F.TotalGiro.Accounts"
+				cascade="all" />
+		<property name="creationDate" column="CreationDate" type="DateTime" access="field" />
+		<property name="bookDate" column="BookDate" type="Date" access="field"	/>
+		<many-to-one name="Instruction" column="AccountInstructionID" class="B4F.TotalGiro.Accounts.Instructions.Instruction, B4F.TotalGiro.Accounts" cascade="none"/>
+		<many-to-one name="CashInitiatedOrder" column="OrderID" class="B4F.TotalGiro.Orders.OrderAmountBased, B4F.TotalGiro.Orders" cascade="save-update"  />
+		<property name="SkipOrders" column="SkipOrders" />
+		<property name="TegenrekeningNumber" column="TegenrekeningNumber" />
+		<property name="CashTransferDetailType" column="CashTransferDetailType" type="B4F.TotalGiro.GeneralLedger.Journal.CashTransferDetailTypes, B4F.TotalGiro.Interfaces" />
+		<property name="CreatedBy" column="CreatedBy" />
+		<property name="BookedBy" column="BookedBy" />
+		<property name="DoNotExport" column="DoNotExport" />
+		<many-to-one name="MatchedSettlement" column="ExternalSettlementID" cascade="none"
+					 class="B4F.TotalGiro.GeneralLedger.Journal.ExternalSettlement, B4F.TotalGiro.GeneralLedger" />
+	</class>
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetUnmatchedBankSettlements" >
+		<![CDATA[
+		from JournalEntryLine JEL
+		left join fetch JEL.Parent JE
+		left join fetch JE.Journal J
+		left join fetch JEL.GLAccount G
+		where J.JournalType = :journalType
+		and JE.TransactionDate >= :startDate
+		and JE.TransactionDate <= :endDate
+		and G.IsBankSettlement = 1
+		and JEL.IsSettledStatus = 0
+		and J.IsAdminAccount = 0
+		order by JE.TransactionDate, JEL.Key
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetUnmatchedBankSettlementsByIds" >
+		<![CDATA[
+		from JournalEntryLine JEL
+		left join fetch JEL.Parent JE
+		left join fetch JE.Journal J
+		left join fetch JEL.GLAccount G
+		where J.JournalType = :journalType
+		and G.IsBankSettlement = 1
+		and JEL.IsSettledStatus = 0
+		and J.IsAdminAccount = 0
+		and JEL.Key in (:ids)
+		order by JE.TransactionDate, JEL.Key
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.UnProcessedCashTransfers" >
+		<![CDATA[
+		from JournalEntryLine L
+		left join fetch L.GLAccount GL
+		left join fetch L.GiroAccount A
+		left join fetch L.ParentSubPosition P
+		left join fetch L.Parent E
+		left join fetch E.Journal J
+		where P.SettledFlag = 1
+		and J.IsAdminAccount = 0
+		and (GL.IsDefaultDeposit = 1 or GL.CashTransferType = 4)
+		and L.status = :statusBooked
+		and P.Size.Underlying.Key = :baseCurrency
+		and A.Key = :accountID
+        and IsNull(L.SkipOrders , 0) = 0
+        and L.Instruction is null
+        and L.CashInitiatedOrder is null
+		and not exists elements(L.bagStorno)
+		and L.StornoedLine is null	
+	]]>
+	</query>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetClientJournalEntryLines" >
+		<![CDATA[
+		from JournalEntryLine L
+		left join fetch L.Parent E
+		left join fetch L.BookComponent BC
+		left join fetch L.GLAccount GL
+		left join fetch L.GiroAccount A
+		left join fetch L.ParentSubPosition P
+		where P.SettledFlag = 1
+		and (BC is not null and BC.MainLine.Key = L.Key )
+		and L.StornoedLine is null and not exists elements(L.bagStorno) and 1 = :hideStornos
+		and L.status = :statusBooked
+		and P.Size.Underlying.Key = :baseCurrencyId
+		and A.Key = :accountId
+		and E.TransactionDate between :beginDate and :endDate
+	]]>
+	</query>
+
+
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetBookingsToCloseForFinancialYear" >
+		<![CDATA[		
+			from JournalEntryLine J
+			where J.Key In (
+					Select JEL.Key		
+					from JournalEntryLine JEL
+					Left Join JEL.Parent P
+					left join JEL.GiroAccount A
+					left join P.Journal J
+					where P.TransactionDate <= :dateUntil
+					and A.Key = :accountKey)
+			or J.Key in 
+					(Select JEL.Key		
+					from JournalEntryLine JEL
+					Left Join JEL.Parent P
+					left join JEL.GiroAccount A
+					left join P.Journal J
+					where P.TransactionDate = :startOfNextYear
+					and J.IsAdminAccount = 1
+					and A.Key = :accountKey)
+		]]>
+	</query>
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetSettledBookingsForAccountUntilDate" >
+		<![CDATA[		
+			from JournalEntryLine J
+			where J.Key In (
+			Select JEL.Key		
+			from JournalEntryLine JEL
+			Left Join JEL.Parent P
+			left join JEL.GiroAccount A
+			Left Join JEL.GLAccount G
+			left join P.Journal J
+			where P.TransactionDate <= :dateUntil
+			and A.Key = :accountKey
+			and G.IsSettledWithClient = 1)
+	]]>
+	</query>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.GetDividendBookingsForPeriod" >
+		<![CDATA[		
+			from JournalEntryLine JEL1
+			where JEL1.Key In (
+			Select JEL.Key
+			from JournalEntryLine JEL
+			left join JEL.GLAccount GA
+			left Join JEL.Parent J
+			left join J.Journal N
+			where J.TransactionDate between :startDate and :endDate
+			and N.IsAdminAccount = 0
+			and (
+			(GA.IsDividendTaxExternal = 1) 
+			or (GA.IsDividendTaxInternal = 1) 
+			or (GA.IsGrossDividendExternal = 1)
+			or (GA.IsGrossDividendInternal = 1)))
+	]]>
+	</query>
+
+</hibernate-mapping>

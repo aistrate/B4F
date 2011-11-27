@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.ModelBase, B4F.TotalGiro.Instruments" table="Models" proxy="B4F.TotalGiro.Instruments.IModelBase, B4F.TotalGiro.Interfaces">
+		<id name="Key" unsaved-value="0">
+			<column name="ModelID"/>
+			<generator class="identity"/>
+		</id>
+		<discriminator column="ModelTypeID" />
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<property name="ModelName" column="ModelName" />
+		<property name="shortName" column="ShortName" access="field" />
+		<property name="Description" column="Description" />
+		<property name="ModelNotes" column="ModelNotes" />
+		<property name="IsActive" column="Active" />
+		<property name="IsSubModel" column="IsSubModel" />
+		<property name="creationDate" column="CreatedON" type="Date" access="field" insert="false" update="false" />
+		<property name="CreatedBy" column="CreatedBY" />
+		<property name="TempBenchMark" column="TempBenchMark" />
+		<property name="BenchMarkValue" column="BenchMarkValue" />
+		<property name="IBoxxTarget" column="IBoxxTarget" />
+		<property name="MSCIWorldTarget" column="MSCIWorldTarget" />
+		<property name="CompositeTarget" column="CompositeTarget" />
+    <property name="ExpectedReturn" column="ExpectedReturn" />
+    <property name="StandardDeviation" column="StandardDeviation" />
+    <property name="IsPublic" column="IsPublic" />
+		<many-to-one name="LatestVersion" column="VersionID" class="B4F.TotalGiro.Instruments.ModelVersion, B4F.TotalGiro.Instruments" cascade="all"/>
+    <bag name="modelVersions" access="field" generic="true" lazy="true" cascade="all"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.IModelVersion, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.ModelVersionCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+      <key column="ModelID" foreign-key="ModelID" />
+      <one-to-many class="B4F.TotalGiro.Instruments.ModelVersion, B4F.TotalGiro.Instruments" />
+    </bag>
+    <many-to-one name="AssetManager" column="AssetManagerID" class="B4F.TotalGiro.Stichting.AssetManager, B4F.TotalGiro.Stichting" cascade="none"/>
+		<subclass name="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" proxy="B4F.TotalGiro.Instruments.IPortfolioModel, B4F.TotalGiro.Interfaces" discriminator-value="1">
+			<many-to-one name="ModelBenchMark" column="ModelBenchMark" class="B4F.TotalGiro.Instruments.BenchMarkModel, B4F.TotalGiro.Instruments" cascade="none"/>
+			<many-to-one name="Details" column="ModelDetailID" class="B4F.TotalGiro.Instruments.ModelDetail, B4F.TotalGiro.Instruments" cascade="none" />
+			<many-to-one name="CashFundAlternative" column="CashFundAlternativeID" class="B4F.TotalGiro.Instruments.TradeableInstrument, B4F.TotalGiro.Instruments" cascade="none"/>
+			<property name="ExecutionOptions" column="ExecutionOptions"  type="B4F.TotalGiro.Instruments.ExecutionOnlyOptions, B4F.TotalGiro.Interfaces"/>
+			<bag name="bagOfFeeRules" table="FeeRules" access="field" lazy="true">
+				<key column="ModelID" />
+				<one-to-many class="B4F.TotalGiro.Fees.FeeRules.FeeRule, B4F.TotalGiro.Fees"  />
+			</bag>
+      <bag name="bagOfModelPerformances" table="ModelPerformances" access="field" lazy="true">
+        <key column="ModelID" />
+        <one-to-many class="B4F.TotalGiro.Instruments.ModelPerformance, B4F.TotalGiro.Instruments"  />
+      </bag>
+    </subclass>
+		<subclass name="B4F.TotalGiro.Instruments.BenchMarkModel, B4F.TotalGiro.Instruments" proxy="B4F.TotalGiro.Instruments.IBenchMarkModel, B4F.TotalGiro.Interfaces" discriminator-value="2">
+		</subclass>
+	</class>
+</hibernate-mapping>

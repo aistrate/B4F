@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.Prices.HistoricalPrice, B4F.TotalGiro.Instruments" 
+		   table="InstrumentPriceHistory" 
+		   proxy="B4F.TotalGiro.Instruments.Prices.IHistoricalPrice, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="InstrumentPriceHistoryID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+    <component name="Price" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+      <property name="Quantity" column="Price" />
+      <many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="PriceID" cascade="none" />
+			<many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="InstrumentID" cascade="none" />
+		</component>
+    <component name="OpenPrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+      <property name="Quantity" column="OpenPrice" />
+      <many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="OpenPriceID" cascade="none" />
+      <many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="OpenInstrumentID" cascade="none" />
+    </component>
+    <component name="ClosedPrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+      <property name="Quantity" column="ClosedPrice" />
+      <many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="ClosedPriceID" cascade="none" />
+      <many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="ClosedInstrumentID" cascade="none" />
+    </component>
+    <component name="HighPrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+      <property name="Quantity" column="HighPrice" />
+      <many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="HighPriceID" cascade="none" />
+      <many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="HighInstrumentID" cascade="none" />
+    </component>
+    <component name="LowPrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+      <property name="Quantity" column="LowPrice" />
+      <many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="LowPriceID" cascade="none" />
+      <many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="LowInstrumentID" cascade="none" />
+    </component>
+    <property name="Date" column="PriceDate" type="Date" />
+	<property name="creationDate" column="CreationDate" type="Date" insert="false" update="false" access="field" />
+	</class>
+
+	<query name="B4F.TotalGiro.Instruments.Prices.GetHistoricalPrices" >
+		<![CDATA[
+		from HistoricalPrice HP
+		left join fetch HP.Price.Instrument
+		where HP.Price.Instrument.Key in (select P.Size.Underlying.Key from FundPosition P where P.Account.Key = :account)
+		and HP.Date in (:dates)
+		order by HP.Date
+	]]>
+	</query>
+
+</hibernate-mapping>

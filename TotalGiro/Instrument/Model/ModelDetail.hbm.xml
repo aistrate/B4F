@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.ModelDetail, B4F.TotalGiro.Instruments" table="ModelDetails" proxy="B4F.TotalGiro.Instruments.IModelDetail, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ModelDetailID" unsaved-value="0">
+			<generator class="assigned"/>
+		</id>
+		<property name="Description" column="Description" />
+		<property name="DaysDurationRebalance" column="DaysDurationRebalance" />
+		<property name="DaysKeepFreeCash" column="DaysKeepFreeCash" />
+		<property name="DaysFreeUpCash" column="DaysFreeUpCash" />
+		<property name="IncludeCashManagementFund" column="IncludeCashManagementFund" />
+		<property name="CashManagementFundOption" column="CashManagementFundOption" type="B4F.TotalGiro.Instruments.CashManagementFundOptions, B4F.TotalGiro.Interfaces" />
+	</class>
+</hibernate-mapping>

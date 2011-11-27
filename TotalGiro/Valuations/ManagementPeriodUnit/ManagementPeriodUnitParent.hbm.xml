@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnitParent, B4F.TotalGiro.Valuations" table="AccountManagementPeriodUnits" proxy ="B4F.TotalGiro.ManagementPeriodUnits.IManagementPeriodUnitParent, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="ManagementPeriodUnitID" unsaved-value="0">
+			<generator class="assigned"/>
+		</id>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.CustomerAccount, B4F.TotalGiro.Accounts" cascade="none" insert="false" update="false" />
+		<property name="Period" column="Period" insert="false" update="false" />
+		<property name="StartDate" column="StartDate" insert="false" update="false" type="Date" />
+		<property name="EndDate" column="EndDate" insert="false" update="false" type="Date" />
+		<component name="TotalValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" insert="false" update="false" >
+			<property name="Quantity" column="TotalValue" />
+			<many-to-one name="Underlying" column="TotalValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<many-to-one name="ModelPortfolio" column="ModelID" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="IsExecOnlyCustomer" column="IsExecOnlyCustomer" />
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+		<bag name="averageHoldings" access="field" generic="true" lazy="true"
+			 order-by="InstrumentID"
+			 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Valuations.AverageHoldings.IAverageHolding, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Valuations.AverageHoldings.AverageHoldingCollection, B4F.TotalGiro.Valuations]], B4F.TotalGiro.Interfaces">
+			<key column="ManagementPeriodUnitID" />
+			<one-to-many class="B4F.TotalGiro.Valuations.AverageHoldings.AverageHolding, B4F.TotalGiro.Valuations" />
+		</bag>
+		<bag name="managementPeriodUnits" access="field" generic="true" lazy="true"
+			 order-by="ManagementPeriodID" 
+			 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.ManagementPeriodUnits.IManagementPeriodUnit, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnitCollection, B4F.TotalGiro.Valuations]], B4F.TotalGiro.Interfaces">
+			<key column="ManagementPeriodUnitID" foreign-key="ManagementPeriodUnitID" />
+			<one-to-many class="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnit, B4F.TotalGiro.Valuations" />
+		</bag>
+	</class>
+</hibernate-mapping>

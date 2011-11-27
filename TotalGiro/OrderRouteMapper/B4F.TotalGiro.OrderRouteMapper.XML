@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.OrderRouteMapper</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.OrderRouteMapper.OrderRouteMapper">
+            <summary>
+            The OrderRouteMapper class is used to retrieve the route for the order.
+            The class implements the singleton design pattern
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.OrderRouteMapper.OrderRouteMapper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.OrderRouteMapper.OrderRouteMapper">OrderRouteMapper</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.OrderRouteMapper.OrderRouteMapper.GetInstance(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            This method returns a (singleton) instance of the <see cref="T:B4F.TotalGiro.OrderRouteMapper.OrderRouteMapper">OrderRouteMapper</see> class
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>An instance of the <see cref="T:B4F.TotalGiro.OrderRouteMapper.OrderRouteMapper">OrderRouteMapper</see> class</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.OrderRouteMapper.OrderRouteMapper.GetRoute(B4F.TotalGiro.Orders.IOrder)">
+            <summary>
+            This method sets the route on an order
+            </summary>
+            <param name="order">The specific order</param>
+            <returns>The new route for the order</returns>
+        </member>
+    </members>
+</doc>

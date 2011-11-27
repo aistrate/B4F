@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.Prices.HistoricalPriceCompKey, B4F.TotalGiro.Instruments" table="vweInstrumentPriceHistoryAltKey" lazy="true" mutable="false" >
+		<composite-id name="Key" class="B4F.TotalGiro.Instruments.HistoricalInstrumentDataKey, B4F.TotalGiro.Interfaces">
+			<key-property name="Date" column="PriceDate" />
+			<key-many-to-one name="instrument" access="field" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="InstrumentID" />
+		</composite-id>
+		<component name="Price" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces" insert ="false" update="false" >
+			<property name="Quantity" column="Price" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="PriceID" cascade="none" />
+			<many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="InstrumentID" cascade="none" />
+		</component>
+	</class>
+</hibernate-mapping>

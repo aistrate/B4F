@@ -1,0 +1,156 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{63315378-DD6C-4E99-ACE0-737B392756C6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.Web.WebControls</RootNamespace>
+    <AssemblyName>B4F.Web.WebControls</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/B4F.Web.WebControls/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArrowsLinkButton.cs" />
+    <Compile Include="ComboBox.cs" />
+    <Compile Include="DownloadAsXML.cs" />
+    <Compile Include="ErrorLabel.cs" />
+    <Compile Include="ImageButtonEx.cs" />
+    <Compile Include="ImageEx.cs" />
+    <Compile Include="MultipleSelectionGridView.cs" />
+    <Compile Include="PeriodPicker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionCheckBox.cs" />
+    <Compile Include="SelectionBuffer.cs" />
+    <Compile Include="TextBoxEx.cs" />
+    <Compile Include="TimePicker.cs" />
+    <Compile Include="TooltipImage.cs" />
+    <Compile Include="TruncatedLabel.cs" />
+    <Compile Include="YearMonthPicker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WebControls.xsd">
+      <SubType>
+      </SubType>
+    </None>
+    <None Include="WebControls.xsx">
+      <DependentUpon>WebControls.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ClientScript\ComboBox.js" />
+    <EmbeddedResource Include="ClientScript\Common.js" />
+    <EmbeddedResource Include="ClientScript\TextBoxEx.js" />
+    <EmbeddedResource Include="Images\dropdown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BalloonImages\b.gif" />
+    <EmbeddedResource Include="BalloonImages\background.gif" />
+    <EmbeddedResource Include="BalloonImages\l.gif" />
+    <EmbeddedResource Include="BalloonImages\lb.gif" />
+    <EmbeddedResource Include="BalloonImages\lt.gif" />
+    <EmbeddedResource Include="BalloonImages\r.gif" />
+    <EmbeddedResource Include="BalloonImages\rb.gif" />
+    <EmbeddedResource Include="BalloonImages\rt.gif" />
+    <EmbeddedResource Include="BalloonImages\stemb.gif" />
+    <EmbeddedResource Include="BalloonImages\stemt.gif" />
+    <EmbeddedResource Include="BalloonImages\t.gif" />
+    <Content Include="ClientScript\ImageEx.js" />
+    <EmbeddedResource Include="Images\cart.png" />
+    <EmbeddedResource Include="Images\coins.png" />
+    <EmbeddedResource Include="Images\balance.png" />
+    <EmbeddedResource Include="Images\inactive.png" />
+    <EmbeddedResource Include="Images\cross.gif" />
+    <EmbeddedResource Include="Images\emergency-exit.gif" />
+    <EmbeddedResource Include="ClientScript\tip_balloon.js" />
+    <EmbeddedResource Include="ClientScript\tip_centerwindow.js" />
+    <EmbeddedResource Include="ClientScript\tip_followscroll.js" />
+    <EmbeddedResource Include="ClientScript\wz_tooltip.js" />
+    <EmbeddedResource Include="Images\delete.gif" />
+    <EmbeddedResource Include="Images\balloon_Small.gif" />
+    <EmbeddedResource Include="Images\attention_Large.gif" />
+    <EmbeddedResource Include="Images\attention_Small.gif" />
+    <EmbeddedResource Include="Images\balloon_Large.gif" />
+    <EmbeddedResource Include="Images\exclamation.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

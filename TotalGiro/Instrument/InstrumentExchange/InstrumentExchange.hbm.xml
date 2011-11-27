@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Instruments.InstrumentExchange, B4F.TotalGiro.Instruments" table="InstrumentsExchanges"
+	proxy="B4F.TotalGiro.Instruments.IInstrumentExchange, B4F.TotalGiro.Interfaces">
+	<id name="Key" column="InstrumentsExchangeID" unsaved-value="0">
+		<generator class="identity"/>
+	</id>
+	  <many-to-one name="Instrument"
+                 column="InstrumentID"
+                 class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"
+                 cascade="none"
+                 outer-join="true" />
+    <many-to-one name="Exchange"
+                 column="ExchangeID"
+                 class="B4F.TotalGiro.Instruments.Exchange, B4F.TotalGiro.Instruments"
+                 cascade="none"
+                 outer-join="true" />
+    <many-to-one name="DefaultCounterParty"
+                 column="DefaultCounterpartyID"
+                 class="B4F.TotalGiro.Accounts.CounterPartyAccount, B4F.TotalGiro.Accounts"
+                 cascade="none"
+                 outer-join="true" />
+    <property name="NumberOfDecimals" column="NumberOfDecimals" />
+	<property name="TickSize" column="TickSize" />
+	<property name="CertificationRequired" column="CertificationRequired" />
+    <property name="RegisteredInNameOf" column="RegisteredInNameOf" />
+    <property name="DividendPolicy" column="DividendPolicy" />
+    <property name="CommissionRecipientName" column="CommissionRecipientName" />
+    <property name="DefaultSettlementPeriod" column="DefaultSettlementPeriod" />
+    <property name="DoesSupportAmountBasedBuy" column="DoesSupportAmountBasedBuy" />
+	<property name="DoesSupportAmountBasedSell" column="DoesSupportAmountBasedSell" />
+	<property name="DoesSupportServiceCharge" column="DoesSupportServiceCharge" />
+	<property name="ServiceChargePercentageBuy" column="ServiceChargePercentageBuy" />
+	<property name="ServiceChargePercentageSell" column="ServiceChargePercentageSell" />
+  </class>
+</hibernate-mapping>

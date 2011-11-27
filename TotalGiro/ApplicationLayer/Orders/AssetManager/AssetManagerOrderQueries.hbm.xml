@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<query name="B4F.TotalGiro.ApplicationLayer.Orders.AssetManager.AccountsFirstDeposit" >
+		<![CDATA[
+		from AccountTypeCustomer AC 
+        where AC in (select C.Account.Key from CashPosition C where C.SettledPosition.Size.Quantity > 0) 
+        and AC not in (select O.Account.Key from Order O) 
+        and AC not in (select FP.Account.Key from FundPosition FP) 
+        and (AC.AccountOwner = :company)		
+    ]]>
+	</query>
+	<query name="B4F.TotalGiro.ApplicationLayer.Orders.AssetManager.AccountsNewCashTransfers" >
+		<![CDATA[
+		select A.Key, A.Number, A.ShortName, A.IsExecOnlyCustomer, 
+			A.TradeableStatus, A.Status, M.ModelName, 
+			P.Size.Quantity, sum(L.Credit.Quantity - L.Debit.Quantity), count(L)
+		from JournalEntryLine L
+		left join L.GLAccount GL
+		left join L.GiroAccount A
+		left join A.ModelPortfolio M
+		left join L.ParentSubPosition P
+		left join L.Parent E
+		left join E.Journal J
+		where P.SettledFlag = 1
+		and L.status = :statusBooked
+		and (GL.IsDefaultDeposit = 1 or GL.CashTransferType = 4)
+		and P.Size.Underlying.Key = :baseCurrency
+        and P.Size.Quantity > 0
+        and IsNull(L.SkipOrders , 0) = 0
+        and L.Instruction is null
+        and L.CashInitiatedOrder is null
+		and not exists elements(L.bagStorno)
+		and L.StornoedLine is null	
+		and J.IsAdminAccount = 0
+        and A.AccountOwner = :company
+		and A.accountType = :accountType
+		and A in (select O.Account.Key from Order O)
+		group by A.Key, A.Number, A.ShortName, A.IsExecOnlyCustomer, 
+			A.TradeableStatus, A.Status, M.ModelName, P.Size.Quantity		
+		having sum(L.Debit.Quantity - L.Credit.Quantity) < 0
+    ]]>
+	</query>
+
+	<query name="B4F.TotalGiro.ApplicationLayer.Orders.AssetManager.AccountsNewCashTransfersRebalanceInfo" >
+		<![CDATA[
+        from CustomerAccount CA
+        left join fetch CA.ModelPortfolio M
+		where CA.Key in (:accountIds)
+    ]]>
+	</query>
+
+</hibernate-mapping>

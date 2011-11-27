@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fsm name="BuyModelInstructionStates">
+	<states>
+		<state id="1">
+			<event id="1" condition="1" >
+				<transition result="RB" next="1" action="1" />
+				<transition result="CF" next="1" action="2" />
+				<transition result="WD" next="2" action="3" />
+			</event>
+			<event id="2" condition="5" >
+				<transition result="OK" next="7" action="5" />
+			</event>
+		</state>
+		<state id="2">
+			<event id="1" condition="2" >
+				<transition result="OK" next="7" action="4" />
+				<transition result="CANCEL" next="7" action="5" />
+			</event>
+			<event id="2" condition="5" >
+				<transition result="OK" next="7" action="5" />
+			</event>
+		</state>
+	</states>
+</fsm>

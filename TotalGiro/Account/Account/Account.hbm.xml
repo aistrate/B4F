@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.Account, B4F.TotalGiro.Accounts" table="Accounts"
+		   proxy ="B4F.TotalGiro.Accounts.IAccount, B4F.TotalGiro.Interfaces" dynamic-update="true">
+		<id name="Key" unsaved-value="0">
+			<column name="AccountID"/>
+			<generator class="identity"/>
+		</id>
+		<discriminator column="AccountTypeID" />
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<property name="accountType" column="AccountTypeID" type="B4F.TotalGiro.Accounts.AccountTypes, B4F.TotalGiro.Interfaces" access="field" insert="false" update="false" />
+		<property name="Number" column="AccountNumber" />
+		<property name="ShortName" column="AccountShortName" />
+		<property name="FullName" column="AccountFullName" />
+		<property name="creationDate" column="CreationDate" type="Date" insert="false" update="false" access="field" />
+		<many-to-one name="CounterAccount" column="CounterAccountID" class="B4F.TotalGiro.Accounts.CounterAccount, B4F.TotalGiro.Accounts" cascade="save-update" />
+		<property name="Status" column="AccountStatusID" type="B4F.TotalGiro.Accounts.AccountStati, B4F.TotalGiro.Interfaces" />
+		<property name="lastDateStatusChanged" column="LastDateStatusChanged" type="Date" access="field" />
+		<property name="NeedsAttention" column="NeedsAttention" />
+		<subclass name="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts"
+				  proxy="B4F.TotalGiro.Accounts.IAccountTypeInternal, B4F.TotalGiro.Interfaces"
+				  discriminator-value="5"
+				  dynamic-update="true">
+			<property name="ValuationsRequired" column="ValuationsRequired" />
+			<property name="ValuationsEndDate" column="ValuationsEndDate" type="Date"  />
+			<property name="TradeableStatus" column="TradeableStatus" type="B4F.TotalGiro.Accounts.Tradeability, B4F.TotalGiro.Interfaces"/>
+			<property name="DateTradeabilityStatusChanged" column="DateTradeabilityStatusChanged" type="Date" />
+			<many-to-one name="AccountOwner" column="ManagementCompanyID" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" cascade="none"  />
+			<component name="Portfolio"  class="B4F.TotalGiro.Accounts.Portfolios.Portfolio, B4F.TotalGiro.Accounts">
+				<parent name="ParentAccount"/>
+				<bag name="glpositions" access="field" generic="true" lazy="true" cascade="all"
+					collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Accounts.Portfolios.CashPositions.ICashPosition, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashPortfolio, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+					<key column="AccountID" foreign-key="AccountID" />
+					<one-to-many class="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashPosition, B4F.TotalGiro.Accounts" />
+				</bag>
+				<bag name="instrumentPositions" access="field" generic="true" lazy="true" cascade="all"
+					collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Accounts.Portfolios.FundPositions.IFundPosition, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPortfolio, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+					<key column="AccountID" foreign-key="AccountID" />
+					<one-to-many class="B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPosition, B4F.TotalGiro.Accounts" />
+        </bag>
+        <many-to-one name="ExtendedProps" column="AccountID" insert="false" update="false" cascade="none" class="B4F.TotalGiro.Accounts.Portfolios.PortfolioExtendedProperties, B4F.TotalGiro.Accounts" />
+      </component>
+			<bag name="openOrdersForAccount" access="field" generic="true" where="MoneyParentID IS NULL AND OrderStatusID IN (SELECT S.OrderStatusID FROM OrderStatus S WHERE (S.IsOpen = 1))" lazy="true" cascade="all"
+				collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.IOrder, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.AccountOrderCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+				<key column="AccountID" foreign-key="AccountID" />
+				<one-to-many class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" />
+			</bag>
+			<bag name="endTermValues" access="field" generic="true" lazy="true" cascade="all"
+				collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Valuations.ReportedData.IEndTermValue, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.EndTermValueCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+				<key column="AccountID" foreign-key="AccountID" />
+				<one-to-many class="B4F.TotalGiro.Valuations.ReportedData.EndTermValue, B4F.TotalGiro.Valuations" />
+			</bag>
+			<subclass name="B4F.TotalGiro.Accounts.AccountTypeCustomer, B4F.TotalGiro.Accounts"
+					  proxy="B4F.TotalGiro.Accounts.IAccountTypeCustomer, B4F.TotalGiro.Interfaces"
+					  discriminator-value="10"
+				      dynamic-update="true">
+				<many-to-one name="Lifecycle" column="LifecycleID" class="B4F.TotalGiro.Instruments.Lifecycle, B4F.TotalGiro.Instruments" cascade="none" />
+				<many-to-one name="ModelPortfolio" column="ModelID" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" cascade="none" />
+				<property name="firstManagementStartDate" column="ManagementStartDate" type="Date" access="field" />
+				<property name="finalManagementEndDate" column="ManagementEndDate" type="Date" access="field" />
+				<many-to-one name="exitFeePayingAccount" column="ExitFeePayingAccountID" access="field" class="B4F.TotalGiro.Accounts.AccountTypeCustomer, B4F.TotalGiro.Accounts" cascade="none" />
+				<property name="valuationMutationValidityDate" column="ValuationMutationValidityDate" type="Date"  access="field"/>
+				<property name="lastValuationDate" column="LastValuationDate" type="Date" access="field"/>
+				<bag name="bagOfAccountHolders" table="AccountHoldersAccounts" access="field" cascade="save-update" inverse="true" lazy="true">
+					<key column="AccountID" />
+					<one-to-many class="B4F.TotalGiro.Accounts.AccountHolder, B4F.TotalGiro.Accounts" />
+				</bag>
+				<bag name="bagOfModelHistoryItems" table="AccountsModelHistory" access="field" cascade="all" lazy="true" order-by="ChangeDate DESC">
+					<key column="AccountID" />
+					<one-to-many class="B4F.TotalGiro.Accounts.ModelHistory.ModelHistory, B4F.TotalGiro.Accounts" />
+				</bag>
+				<bag name="bagOfInstructions" table="AccountInstructions" access="field" cascade="save-update" lazy="true">
+					<key column="AccountID" />
+					<one-to-many class="B4F.TotalGiro.Accounts.Instructions.Instruction, B4F.TotalGiro.Accounts" />
+				</bag>
+				<bag name="bagOfActiveInstructions" table="AccountInstructions" access="field" cascade="none" where="(IsActive = 1)"  lazy="true">
+					<key column="AccountID" />
+					<one-to-many class="B4F.TotalGiro.Accounts.Instructions.Instruction, B4F.TotalGiro.Accounts" />
+				</bag>
+				<bag name="activeMoneyTransferOrders" access="field" inverse="true" cascade="none" lazy="true" where="(Status &lt; 4)" generic="true">
+					<key column="NarAccountID" />
+					<one-to-many class="B4F.TotalGiro.BackOffice.Orders.MoneyTransferOrder, B4F.TotalGiro.BackOffice" />
+				</bag>
+				<bag name="bagOfValuationCashMutations" table="AccountsLastValuationCashMutations" access="field" lazy="true" cascade="save-update" >
+					<key column="AccountID" />
+					<one-to-many class="B4F.TotalGiro.Valuations.LastValuationCashMutationHolder, B4F.TotalGiro.Accounts" />
+				</bag>
+        <bag name="notifications" access="field" generic="true" lazy="true" cascade="none" table="NotificationRelations"
+				  collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+							    [B4F.TotalGiro.Notifications.Notification, B4F.TotalGiro.Interfaces],
+							    [B4F.TotalGiro.Accounts.AccountNotificationsCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+          <key column="AccountID" foreign-key="AccountID" />
+          <many-to-many column="NotificationID" class="B4F.TotalGiro.Notifications.Notification, B4F.TotalGiro.Interfaces" />
+        </bag>
+        <property name="IsExecOnlyCustomer" column="IsExecOnlyCustomer" />
+				<property name="useManagementFee" column="UseManagementFee" access="field" />
+				<property name="useKickback" column="UseKickback" access="field" />
+				<bag name="managementPeriods" access="field" inverse="true" cascade="all-delete-orphan" generic="true" lazy="true"
+					 order-by="StartDate"
+					 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Accounts.ManagementPeriods.IManagementPeriod, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.ManagementPeriods.ManagementPeriodCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+					<key column="AccountID" />
+					<one-to-many class="B4F.TotalGiro.Accounts.ManagementPeriods.ManagementPeriod, B4F.TotalGiro.Accounts" />
+				</bag>
+				<many-to-one name="CurrentManagementFeePeriod" column="CurrentManagementFeePeriodID" class="B4F.TotalGiro.Accounts.ManagementPeriods.ManagementPeriod, B4F.TotalGiro.Accounts" cascade="none" fetch="join" />
+				<subclass name="B4F.TotalGiro.Accounts.CustomerAccount, B4F.TotalGiro.Accounts"
+						  proxy="B4F.TotalGiro.Accounts.ICustomerAccount, B4F.TotalGiro.Interfaces"
+						  discriminator-value="15"
+						  dynamic-update="true">
+					<many-to-one name="RemisierEmployee" column="RemisierEmployeeID" class="B4F.TotalGiro.Stichting.Remisier.RemisierEmployee, B4F.TotalGiro.Stichting" cascade="none" />
+					<many-to-one name="CurrentRemisierDetails" column="AccountsRemisierHistoryID" class="B4F.TotalGiro.Accounts.RemisierHistory.RemisierHistory, B4F.TotalGiro.Accounts" cascade="none" />
+					<property name="IsJointAccount" column="IsJointAccount" />
+					<property name="ReportToTax" column="ReportToTax" />
+					<many-to-one name="PandHouder" column="PandHouderID" class="B4F.TotalGiro.StaticData.PandHouder, B4F.TotalGiro.StaticData" cascade="none" />
+					<many-to-one name="VerpandSoort" column="VerpandSoortID" class="B4F.TotalGiro.StaticData.VerpandSoort, B4F.TotalGiro.StaticData" cascade="none"/>
+					<property name="EmployerRelationship" column="HasEmployerRelation" type="B4F.TotalGiro.Accounts.AccountEmployerRelationship, B4F.TotalGiro.Interfaces" />
+					<many-to-one name="Family" column="AccountFamilyID" class="B4F.TotalGiro.Accounts.AccountFamily, B4F.TotalGiro.Accounts" cascade="none" />
+					<many-to-one name="RelatedEmployee" column="LoginEmployeeID" class="B4F.TotalGiro.Stichting.Login.InternalEmployeeLogin, B4F.TotalGiro.Stichting" cascade="none" />
+          <many-to-one name="CurrentFinancialTarget" column="AccountFinancialTargetID" class="B4F.TotalGiro.Accounts.AccountFinancialTarget, B4F.TotalGiro.Accounts" cascade="all" />          
+          <bag name="bagOfWithdrawalRules" table="WithdrawalRule" access="field" cascade="all" lazy="true">
+						<key column="AccountID" />
+						<one-to-many class="B4F.TotalGiro.Accounts.Withdrawals.WithdrawalRule, B4F.TotalGiro.Accounts" />
+					</bag>
+					<bag name="bagOfFeeRules" table="FeeRules" access="field" lazy="true">
+						<key column="AccountID" />
+						<one-to-many class="B4F.TotalGiro.Fees.FeeRules.FeeRule, B4F.TotalGiro.Fees"  />
+					</bag>
+					<component name="FirstPromisedDeposit" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+						<property name="Quantity" column="FirstPromisedDeposit" />
+						<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="FirstPromisedDepositID" cascade="none"/>
+					</component>
+					<bag name="bagOfRemisierHistoryItems" table="AccountsRemisierHistory" access="field" cascade="all" lazy="true" order-by="ChangeDate DESC">
+						<key column="AccountID" />
+						<one-to-many class="B4F.TotalGiro.Accounts.RemisierHistory.RemisierHistory, B4F.TotalGiro.Accounts" />
+					</bag>
+          <bag name="financialTargetHistory" access="field" generic="true" lazy="true" cascade="all"
+                  collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Accounts.IAccountFinancialTarget, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.AccountFinancialTargetCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+            <key column="AccountFinancialTargetID" foreign-key="ID" />
+            <one-to-many class="B4F.TotalGiro.Accounts.AccountFinancialTarget, B4F.TotalGiro.Accounts" />
+          </bag>
+				</subclass>
+				<subclass name="B4F.TotalGiro.Accounts.OwnAccount, B4F.TotalGiro.Accounts"
+						  proxy="B4F.TotalGiro.Accounts.IOwnAccount, B4F.TotalGiro.Interfaces"
+						  discriminator-value="20"
+						  dynamic-update="true">
+					<many-to-one name="company" column="ManagementCompanyID" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" cascade="none" access="field" insert="false" update="false" />
+					<subclass name="B4F.TotalGiro.Accounts.CrumbleAccount, B4F.TotalGiro.Accounts"
+							  proxy="B4F.TotalGiro.Accounts.ICrumbleAccount, B4F.TotalGiro.Interfaces"
+							  discriminator-value="25"
+							  dynamic-update="true">
+						<many-to-one name="specialTradingAccount" column="SpecialTradingAccount" class="B4F.TotalGiro.Accounts.TradingAccount, B4F.TotalGiro.Accounts" cascade="none"  access="field" />
+					</subclass>
+					<subclass name="B4F.TotalGiro.Accounts.NostroAccount, B4F.TotalGiro.Accounts"
+							  proxy="B4F.TotalGiro.Accounts.INostroAccount, B4F.TotalGiro.Interfaces"
+							  discriminator-value="30"
+							  dynamic-update="true">
+						<component name="StornoLimit" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+							<property name="Quantity" column="StornoLimit" />
+							<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="StornoLimitID" cascade="none"/>
+						</component>
+					</subclass>
+				</subclass>
+				<subclass name="B4F.TotalGiro.Accounts.VirtualFundHoldingsAccount, B4F.TotalGiro.Accounts"
+						  proxy="B4F.TotalGiro.Accounts.IVirtualFundHoldingsAccount, B4F.TotalGiro.Interfaces"
+						  discriminator-value="85"
+						  dynamic-update="true">
+
+				</subclass>
+				<subclass name="B4F.TotalGiro.Accounts.VirtualFundTradingAccount, B4F.TotalGiro.Accounts"
+						  proxy="B4F.TotalGiro.Accounts.IVirtualFundTradingAccount, B4F.TotalGiro.Interfaces"
+						  discriminator-value="90"
+						  dynamic-update="true">
+
+				</subclass>
+			</subclass>
+			<subclass name="B4F.TotalGiro.Accounts.AccountTypeSystem, B4F.TotalGiro.Accounts"
+					  proxy="B4F.TotalGiro.Accounts.IAccountTypeSystem, B4F.TotalGiro.Interfaces"
+					  discriminator-value="40"
+					  dynamic-update="true">
+				<subclass name="B4F.TotalGiro.Accounts.TradingAccount, B4F.TotalGiro.Accounts"
+						  proxy="B4F.TotalGiro.Accounts.ITradingAccount, B4F.TotalGiro.Interfaces"
+						  discriminator-value="45"
+						  dynamic-update="true">
+					<many-to-one name="company" column="ManagementCompanyID" property-ref="tradingAccountKey"  class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" cascade="none" access="field" insert="false" update="false" />
+				</subclass>
+				<!--<subclass name="B4F.TotalGiro.Accounts.CommissionAccount, B4F.TotalGiro.Accounts" 
+						  proxy="B4F.TotalGiro.Accounts.ICommissionAccount, B4F.TotalGiro.Interfaces" 
+						  discriminator-value="50" 
+						  dynamic-update="true">
+					<many-to-one name="company" column="ManagementCompanyID" property-ref="commissionAccountKey"  class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" cascade="none" access="field" insert="false" update="false" />
+				</subclass>-->
+				<!--<subclass name="B4F.TotalGiro.Accounts.TransferAccount, B4F.TotalGiro.Accounts" 
+						  proxy="B4F.TotalGiro.Accounts.ITransferAccount, B4F.TotalGiro.Interfaces" 
+						  discriminator-value="55" 
+						  dynamic-update="true">
+					<many-to-one name="company" column="ManagementCompanyID" property-ref="transferAccountKey"  class="B4F.TotalGiro.Stichting.EffectenGiro, B4F.TotalGiro.Stichting" cascade="none" access="field" insert="false" update="false" />
+				</subclass>-->
+			</subclass>
+		</subclass>
+		<subclass name="B4F.TotalGiro.Accounts.AccountTypeExternal, B4F.TotalGiro.Accounts"
+				  proxy="B4F.TotalGiro.Accounts.IAccountTypeExternal, B4F.TotalGiro.Interfaces"
+				  discriminator-value="70"
+				  dynamic-update="true">
+			<many-to-one name="BaseCurrency" column="BaseCurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			<subclass name="B4F.TotalGiro.Accounts.CounterPartyAccount, B4F.TotalGiro.Accounts"
+					  proxy="B4F.TotalGiro.Accounts.ICounterPartyAccount, B4F.TotalGiro.Interfaces"
+					  discriminator-value="75"
+					  dynamic-update="true">
+				<many-to-one name="DefaultExchange" column="ExchangeID" class="B4F.TotalGiro.Instruments.Exchange, B4F.TotalGiro.Instruments" cascade="none" />
+			</subclass>
+			<subclass name="B4F.TotalGiro.Accounts.CustodyAccount, B4F.TotalGiro.Accounts"
+					  proxy="B4F.TotalGiro.Accounts.ICustodyAccount, B4F.TotalGiro.Interfaces"
+					  discriminator-value="80"
+				  dynamic-update="true">
+				<property name="CustodianName" column="CustodianName"/>
+			</subclass>
+		</subclass>
+	</class>
+	<query name="B4F.TotalGiro.Accounts.Account.GetAccountsforVirtualFund" >
+		<![CDATA[
+		from AccountTypeCustomer A
+		where A.Key in (
+						Select H.Key 
+						from VirtualFund VF 
+						join VF.HoldingsAccount H
+						where VF.Key = :fundID)
+		or A.Key in (
+						Select T.Key 
+						from VirtualFund VF 
+						join VF.TradingAccount T
+						where VF.Key = :fundID)
+	]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Accounts.Account.GetCustomerAccounts" >
+		<![CDATA[
+		from AccountTypeCustomer A 
+		where 1=1
+		and A.AccountOwner is not null
+		and A.AccountOwner.Key = :assetManagerId
+		and A.RemisierEmployee.Remisier.Key = :remisierId
+		and A.RemisierEmployee.Key = :remisierEmployeeId
+		and A.Lifecycle.Key = :lifecycleId
+		and A.ModelPortfolio.Key = :modelId
+		and A.Number like :accountNumber
+		and A.ShortName like :accountName
+		and A.ModelPortfolio is not null and 1= :accountsWithModelOnly
+		and A.TradeableStatus in (:tradeabilityOptions)
+		and A.Status in (:statuses)
+		and A.firstManagementStartDate <= :selectedEndDate and (A.ValuationsEndDate is null or A.ValuationsEndDate >= :selectedStartDate)
+		and A.accountType = :accountTypeCustomer
+		order by A.Number
+	]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Accounts.Account.GetAccountKeystoCloseFinancialYear" >
+		<![CDATA[
+			Select AI.Key
+			from AccountTypeInternal AI
+			where AI.Key in (
+				Select distinct A.Key		
+				from JournalEntryLine JEL
+				Left Join JEL.Parent P
+				left join JEL.GiroAccount A
+				where P.TransactionDate between :startDate and :endDate
+				and A.Key is not Null)
+			and AI.Key not in 
+				(Select distinct A.Key		
+				from JournalEntryLine JEL
+				Left Join JEL.Parent P
+				left join JEL.GiroAccount A
+				left join P.Journal J
+				where P.TransactionDate = :alreadyBooked
+				and J.IsAdminAccount = 1
+				and A.Key is Not Null)
+			and AI.Key not in
+				(Select C.GiroAccountID.Key
+				from ClientBookYearClosure C
+				left join C.ParentClosure P
+				left join P.BookYear B
+				where B.BookYear = :year)
+			order by AI.Number		
+		]]>
+	</query>
+
+	<!--<query name="B4F.TotalGiro.Accounts.Account.GetAccountKeysActiveinFinancialYear" >
+		<![CDATA[
+			Select Distinct AC.Key
+			from AccountTypeCustomer AC
+			where AC.Key in 
+				(Select ETV.Account.Key
+				from EndTermValue ETV
+				left join ETV.ReportingPeriod R
+				where R.EndTermDate = :lastFinancialYearDay
+				and ETV.ClosingValue.Quantity <> 0.00)
+			or AC.Key in 
+				(Select distinct P.Account.Key
+				from FundPositionTx PT
+				left Join PT.ParentTransaction T 
+				left Join PT.ParentPosition P
+				left Join P.Account A
+				where T.TransactionDate between :startDate and :endDate)
+			or AC.Key in 
+				(Select distinct A.Key
+				from JournalEntryLine JEL
+				left Join JEL.Parent P
+				left Join JEL.GiroAccount A
+				where P.TransactionDate between :startDate and :endDate
+				and JEL.GiroAccount is not null)
+		]]>
+	</query>-->
+
+	<query name="B4F.TotalGiro.Accounts.Account.GetCustomerAccountKeys" >
+		<![CDATA[
+			Select Distinct AC.Key
+			from AccountTypeCustomer AC
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Accounts.Account.GetAccountKeysWithStartingBalance" >
+		<![CDATA[
+			Select ETV.Account.Key
+			from EndTermValue ETV
+			left join ETV.ReportingPeriod R
+			where R.EndTermDate = :lastFinancialYearDay
+			and ETV.ClosingValue.Quantity <> 0.00		
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Accounts.Account.GetAccountKeyswithTransactionsinPeriod" >
+		<![CDATA[
+			Select distinct P.Account.Key
+			from FundPositionTx PT
+			left Join PT.ParentTransaction T
+			left Join PT.ParentPosition P
+			left Join P.Account A
+			where T.TransactionDate between :startDate and :endDate			
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Accounts.Account.GetAccountKeyswithGLbookingsinPeriod" >
+		<![CDATA[
+			Select distinct A.Key
+			from JournalEntryLine JEL
+			left Join JEL.Parent P
+			left Join JEL.GiroAccount A
+			where P.TransactionDate between :startDate and :endDate
+			and JEL.GiroAccount is not null
+	]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Accounts.Account.GetCustomerAccountKeysActiveforDividWEP" >
+		<![CDATA[
+			select AC.Key
+			from CustomerAccount AC
+			where AC.ReportToTax = 1
+			and AC.Key in
+				(Select E.Account.Key
+				from EndTermValue E
+				left Join E.ReportingPeriod R
+				where R.ReportingPeriod.EndTermYear = :endTermYear
+				and R.ReportingPeriod.TermType = :termType)
+		]]>
+	</query>
+
+
+
+</hibernate-mapping>

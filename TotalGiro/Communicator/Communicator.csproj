@@ -1,0 +1,283 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ACCBB2CE-D954-498A-83E1-3C984D59EFD4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.Communicator</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.Communicator</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Communicator.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/B4F.TotalGiro.Communicator/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\B4F.TotalGiro.Communicator.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\NHibernate2_1_2\Framework20\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BelastingDienst\DividWepFile.cs" />
+    <Compile Include="BelastingDienst\DividWepFileMapper.cs" />
+    <Compile Include="BelastingDienst\DividWepRecord.cs" />
+    <Compile Include="BelastingDienst\DividWepRecordCollection.cs" />
+    <Compile Include="BelastingDienst\DividWepRecordMapper.cs" />
+    <Compile Include="Binck\BinckPosition.cs" />
+    <Compile Include="Currencies\ECBatesMapper.cs" />
+    <Compile Include="Currencies\ECBRates.cs" />
+    <Compile Include="Currencies\ExRateDate.cs" />
+    <Compile Include="Currencies\ExRateUpdate.cs" />
+    <Compile Include="Currencies\XeNetImport.cs" />
+    <Compile Include="Exact\ExactAccount.cs" />
+    <Compile Include="Exact\ExactExternalBooking.cs" />
+    <Compile Include="Exact\ExactExternalBookingMapper.cs" />
+    <Compile Include="Exact\ExactFormatter.cs" />
+    <Compile Include="Exact\ExactJournal.cs" />
+    <Compile Include="Exact\ExactJournalMapper.cs" />
+    <Compile Include="Exact\ExportedLedgerFile.cs" />
+    <Compile Include="Exact\ExportedLedgerFileMapper.cs" />
+    <Compile Include="Exact\Formatters\DateFormatter.cs" />
+    <Compile Include="Exact\Formatters\EmptyFormatter.cs" />
+    <Compile Include="Exact\Formatters\NumericFormatter.cs" />
+    <Compile Include="Exact\Formatters\AlphanumFormatter.cs" />
+    <Compile Include="Exact\JournalEntryLineCollection.cs" />
+    <Compile Include="Exact\ImportedBankBalance.cs" />
+    <Compile Include="Exact\ImportedBankBalanceMapper.cs" />
+    <Compile Include="Exact\ImportedBankMovement.cs" />
+    <Compile Include="Exact\ImportedBankMovementMapper.cs" />
+    <Compile Include="Exact\LedgerEntry.cs" />
+    <Compile Include="Exact\Formatters\ObjectFormatter.cs" />
+    <Compile Include="Exact\LedgerEntryCollection.cs" />
+    <Compile Include="Exact\LedgerEntryMapper.cs" />
+    <Compile Include="Exact\ExactEntryGrouping.cs" />
+    <Compile Include="Exact\LedgerType.cs" />
+    <Compile Include="Exact\SubledgerEntry.cs" />
+    <Compile Include="Exact\SubledgerEntryCollection.cs" />
+    <Compile Include="Exact\SubledgerEntryMapper.cs" />
+    <Compile Include="ExtCustodians\ExtCustodian.cs" />
+    <Compile Include="ExtCustodians\ExtCustodianMapper.cs" />
+    <Compile Include="ExtCustodians\Positions\ExtCustodianPosition.cs" />
+    <Compile Include="ExternalInterfaces\ExternalInterface.cs" />
+    <Compile Include="ExternalInterfaces\ExternalInterfaceMapper.cs" />
+    <Compile Include="FundSettle\FSExportedOrderList.cs" />
+    <Compile Include="FundSettle\FSExportFile.cs" />
+    <Compile Include="FundSettle\FSExportFileMapper.cs" />
+    <Compile Include="ImportedBankFiles\CSVFile.cs" />
+    <Compile Include="ImportedBankFiles\FileBinckPosition.cs" />
+    <Compile Include="ImportedBankFiles\FileBinckPositionPam.cs" />
+    <Compile Include="ImportedBankFiles\FileEFFMTX.cs" />
+    <Compile Include="ImportedBankFiles\FileFNDSTT.cs" />
+    <Compile Include="ImportedBankFiles\FileFNDSTX.cs" />
+    <Compile Include="ImportedBankFiles\FileGLDMTX.cs" />
+    <Compile Include="ImportedBankFiles\FileGLDSAL.cs" />
+    <Compile Include="ImportedBankFiles\Files\ImportedFile.cs" />
+    <Compile Include="ImportedBankFiles\Files\ImportedFileCollection.cs" />
+    <Compile Include="ImportedBankFiles\Files\ImportedFileMapper.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\BinckRecord.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\BinckRecordPam.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\EFFMTX.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\FNDSTT.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\FNDSTXRecord.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\GLDMTX.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\GLDSAL.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\ImportedRecord.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\ImportedRecordCollection.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\ImportFormatter.cs" />
+    <Compile Include="ImportedBankFiles\Files\Records\TradeReconRecord.cs" />
+    <Compile Include="ImportedBankFiles\FileToImport.cs" />
+    <Compile Include="ImportedBankFiles\FileToImportMapper.cs" />
+    <Compile Include="ImportedBankFiles\FileTradeRecon.cs" />
+    <Compile Include="ImportedBankFiles\FixedWidth.cs" />
+    <Compile Include="KasBank\GLDSTD.cs" />
+    <Compile Include="KasBank\GLDSTDCollection.cs" />
+    <Compile Include="KasBank\GLDSTDFile.cs" />
+    <Compile Include="KasBank\GLDSTDFileMapper.cs" />
+    <Compile Include="KasBank\GLDSTDMapper.cs" />
+    <Compile Include="Reconciliation\CashReconciliation.cs" />
+    <Compile Include="Reconciliation\CashReconciliationMapper.cs" />
+    <Compile Include="Symbols\Instruments\InstrumentSymbol.cs" />
+    <Compile Include="Symbols\Symbol.cs" />
+    <Compile Include="Symbols\SymbolMapper.cs" />
+    <Compile Include="TBM\MissingHistoricalPrice.cs" />
+    <Compile Include="TBM\TBMIssueDetails.cs" />
+    <Compile Include="TBM\TBMMapper.cs" />
+    <Compile Include="TBM\TBMRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PaerelLeven\PaerelLevenMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Communicator.snk" />
+    <None Include="ReferenceFiles\REFXFExport.dbf" />
+    <EmbeddedResource Include="ReferenceFiles\REFPRExport.DBF" />
+    <EmbeddedResource Include="ReferenceFiles\schema.ini" />
+    <EmbeddedResource Include="ReferenceFiles\REFTXExport.DBF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{B8880639-F591-41D0-A811-D832A36A8064}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Instrument\Instruments.csproj">
+      <Project>{B6D55091-F990-42AB-A294-72E6560ED5DD}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orders\Orders.csproj">
+      <Project>{A8682060-DBB0-4965-A8EF-5F8908D34789}</Project>
+      <Name>Orders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StaticData\StaticData.csproj">
+      <Project>{ED2055BB-79F9-464C-B937-232D29FD4CB1}</Project>
+      <Name>StaticData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FundSettle\FSExportFile.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TBM\TBMIssueDetails.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TBM\MissingHistoricalPrice.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExtCustodians\Positions\ExtCustodianPosition.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExtCustodians\ExtCustodian.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exact\LedgerEntry.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exact\LedgerType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exact\SubledgerEntry.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exact\ExportedLedgerFile.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exact\ImportedBankBalance.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exact\ImportedBankMovement.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="KasBank\GLDSTD.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="KasBank\GLDSTDFile.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BelastingDienst\DividWepFile.hbm.xml" />
+    <EmbeddedResource Include="BelastingDienst\DividWepRecord.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exact\ExactJournal.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exact\ExactAccount.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Symbols\Symbol.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExternalInterfaces\ExternalInterface.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Exact\ExactExternalBooking.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ImportedBankFiles\Files\ImportedFile.hbm.xml" />
+    <EmbeddedResource Include="ImportedBankFiles\Files\Records\ImportedRecord.hbm.xml" />
+    <EmbeddedResource Include="ImportedBankFiles\FileToImport.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

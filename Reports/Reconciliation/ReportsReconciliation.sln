@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "ReportsReconciliation", "ReportsReconciliation.rptproj", "{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://b4f-tfs:8080/
+		SccProjectUniqueName0 = ReportsReconciliation.rptproj
+		SccProjectName0 = .
+		SccAuxPath0 = http://b4f-tfs:8080
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Production|Default = Production|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}.Debug|Default.ActiveCfg = Debug
+		{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}.Debug|Default.Build.0 = DebugLocal
+		{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}.Debug|Default.Deploy.0 = DebugLocal
+		{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}.DebugLocal|Default.Build.0 = DebugLocal
+		{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}.Production|Default.ActiveCfg = Production
+		{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}.Production|Default.Build.0 = Production
+		{29F84D2E-0096-4316-AA19-AD4BF5CF6A72}.Production|Default.Deploy.0 = Production
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

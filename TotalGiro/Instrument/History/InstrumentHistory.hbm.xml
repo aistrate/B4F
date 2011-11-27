@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Instruments.History.InstrumentHistory, B4F.TotalGiro.Instruments"
+		   table="InstrumentsHistory"
+		   dynamic-update="true"
+		   proxy="B4F.TotalGiro.Instruments.History.IInstrumentHistory, B4F.TotalGiro.Interfaces">
+    <id name="Key" column="InstrumentsHistoryID" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp name="LastUpdated" column="LastUpdated"  />
+    <many-to-one name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+    <property name="changeDate" column="ChangeDate" type="Date" access="field" />
+    <property name="creationDate" column="CreationDate" access="field"  type="Date" insert="false" update="false" />
+    <!--<property name="lastUpdated" column="LastUpdated" access="field"  type="Date" />-->
+    <property name="executionDate" column="ExecutionDate" access="field"  type="Date" />
+    <property name="IsInitialised" column="IsInitialised" />
+    <property name="IsExecuted" column="IsExecuted" />
+    <!--<bag name="corporateActions" access="field" generic="true" lazy="true" cascade="all"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.Transactions.ICorporateAction, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.History.CorporateActionCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+      <key column="InstrumentsHistoryid" foreign-key="InstrumentsHistoryid" />
+      <one-to-many class="B4F.TotalGiro.Orders.Transactions.CorporateAction, B4F.TotalGiro.Orders" />
+    </bag>-->
+    <joined-subclass name="B4F.TotalGiro.Instruments.History.InstrumentsHistoryConversion, B4F.TotalGiro.Instruments"
+				table="InstrumentsHistoryConversions"
+				dynamic-update="true"
+				proxy="B4F.TotalGiro.Instruments.History.IInstrumentsHistoryConversion, B4F.TotalGiro.Interfaces">
+      <key column="InstrumentsHistoryID" />
+      <many-to-one name="NewInstrument" column="NewInstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+      <property name="OldChildRatio" column="ChildRatio" />
+      <property name="NewParentRatio" column="ParentRatio" />
+      <property name="IsSpinOff" column="IsSpinOff" />
+      <bag name="conversions" access="field" generic="true" lazy="true" cascade="all"
+         collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.Transactions.IInstrumentConversion, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.History.InstrumentConversionCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+        <key column="InstrumentsHistoryID" />
+        <one-to-many class="B4F.TotalGiro.Orders.Transactions.InstrumentConversion, B4F.TotalGiro.Orders" />
+      </bag>
+    </joined-subclass>
+    
+    <!--<joined-subclass name="B4F.TotalGiro.Instruments.History.InstrumentHistoryBonusDistribution, B4F.TotalGiro.Instruments"
+				 table="InstrumentHistoryBonusDistribution"
+				  dynamic-update="true"
+				 proxy="B4F.TotalGiro.Instruments.History.IInstrumentHistoryBonusDistribution, B4F.TotalGiro.Interfaces">
+      <key column="InstrumentsHistoryID" />
+      <many-to-one name="CounterAccount" column="CounterAccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none" />
+      <component name="TotalHoldingsAtDate" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+        <property name="Quantity" column="TotalHoldingsAtDateSize" />
+        <many-to-one name="Underlying" column="TotalHoldingsAtDateID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+      </component>
+      <component name="SizeToDistribute" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+        <property name="Quantity" column="SizeToDistributeSize" />
+        <many-to-one name="Underlying" column="SizeToDistributeID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+      </component>
+      <component name="TotalSizeDistributed" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+        <property name="Quantity" column="TotalSizeDistributedSize" />
+        <many-to-one name="Underlying" column="TotalSizeDistributedID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+      </component>
+    </joined-subclass>-->
+  </class>
+
+  <query name="B4F.TotalGiro.Instruments.History.GetInstrumentConversions" >
+    <![CDATA[
+		from InstrumentsHistoryConversion C
+		left join fetch C.Instrument I
+		where 1 = 1
+		and I.secCategoryID in (select S.key from SecCategory S where S.SecCategoryType = :secCategoryType )
+		and I.Isin like :isin
+		and I.Name like :instrumentName
+		and I.secCategoryID = :secCategoryId
+		and I.CurrencyNominal.Key = :currencyNominalId
+		order by I.Name
+	]]>
+  </query>
+
+
+</hibernate-mapping>

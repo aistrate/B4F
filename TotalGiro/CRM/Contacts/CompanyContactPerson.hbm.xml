@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.CRM.CompanyContactPerson, B4F.TotalGiro.CRM" table="ContactsCompanyContactPerson"
+		 proxy="B4F.TotalGiro.CRM.Contacts.ICompanyContactPerson, B4F.TotalGiro.Interfaces">
+	  <id name="Key" column="ContactsCompanyContactPersonID" unsaved-value="0">
+		  <generator class="identity"/>
+	  </id>
+	  <many-to-one name="ContactPerson" column="ContactsPersonID" class="B4F.TotalGiro.CRM.ContactPerson, B4F.TotalGiro.CRM"  />
+	  <many-to-one name="Company" column="ContactsCompanyID" class="B4F.TotalGiro.CRM.ContactCompany, B4F.TotalGiro.CRM"  />
+	  <property name="AuthorizedSignature" column="AuthorizedSignature" />
+  </class>
+</hibernate-mapping>
+
+  

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Fees.FeeRules.FeeRule, B4F.TotalGiro.Fees" 
+		   table="FeeRules" where="(IsInActive = 0)" >
+		<id name="Key" column="FeeRuleID" unsaved-value="0" >
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<many-to-one name="FeeCalculation" column="FeeCalcID" class="B4F.TotalGiro.Fees.FeeCalculations.FeeCalc, B4F.TotalGiro.Fees" cascade="none" />
+		<property name="StartPeriod" column="StartPeriod"/>
+		<property name="EndPeriod" column="EndPeriod"/>
+		<many-to-one name="AssetManager" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" column="ManagementCompanyID" cascade="none" not-null="true" />
+		<property name="IsDefault" column="IsDefault"/>
+		<many-to-one name="ModelPortfolio" column="ModelID" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.Account, B4F.TotalGiro.Accounts" cascade="none" />
+		<property name="ExecutionOnly" column="ExecutionOnly"/>
+		<property name="HasEmployerRelation" column="HasEmployerRelation"/>
+		<property name="SendByPost" column="SendByPost"/>
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+	</class>
+
+	<query name="B4F.TotalGiro.Fees.FeeRules.ModelFeeRules" >
+		<![CDATA[
+        from FeeRule R 
+        where R.ModelPortfolio.Key = :modelID
+    ]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Fees.FeeRules.AccountFeeRules" >
+		<![CDATA[
+        from FeeRule R 
+        where R.Account.Key = :accountID
+    ]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Fees.FeeRules.GetFeeRules" >
+		<![CDATA[
+        from FeeRule R 
+        where 1=1
+		and R.AssetManager.Key = :companyId
+        and R.FeeCalculation.Key = :feeCalcId
+        and R.ModelPortfolio.Key = :modelId
+		and R.Account.Key = :accountId
+		and R.IsDefault = :isDefault
+		and R.StartPeriod <= :startPeriod and (R.EndPeriod >= :startPeriod or IsNull(R.EndPeriod, 0) = 0)
+        and R.EndPeriod <= :endPeriod
+		and R.HasEmployerRelation = :hasEmployerRelation
+		and R.ExecutionOnly = :executionOnly
+		and R.SendByPost = :sendByPost
+    ]]>
+	</query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalPolis", "TotalPolis\TotalPolis.csproj", "{FE0BA407-5A36-4B68-A9D8-05E836ECEE04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALInterfaces", "..\..\DALInterfaces\DALInterfaces.csproj", "{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://b4f-tfs:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TotalPolis\\TotalPolis.csproj
+		SccProjectName1 = TotalPolis
+		SccLocalPath1 = TotalPolis
+		SccProjectUniqueName2 = ..\\..\\DALInterfaces\\DALInterfaces.csproj
+		SccProjectName2 = ../../DALInterfaces
+		SccLocalPath2 = ..\\..\\DALInterfaces
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE0BA407-5A36-4B68-A9D8-05E836ECEE04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE0BA407-5A36-4B68-A9D8-05E836ECEE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE0BA407-5A36-4B68-A9D8-05E836ECEE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE0BA407-5A36-4B68-A9D8-05E836ECEE04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

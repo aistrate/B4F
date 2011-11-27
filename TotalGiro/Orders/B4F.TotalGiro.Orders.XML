@@ -1,0 +1,1601 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Orders</name>
+    </assembly>
+    <members>
+        <member name="M:B4F.TotalGiro.Orders.Transactions.Transaction.Storno(B4F.TotalGiro.Stichting.Login.IEmployee,B4F.TotalGiro.Accounts.IAccount,System.String)">
+            <summary>
+            This method stornoes the trade
+            </summary>
+            <param name="stornoAccount">The account that takes the original trade is booked to</param>
+            <returns>True when successfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Transactions.Transaction.Clone">
+            <summary>
+            This method returns a shallow copy of the Transaction 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Transactions.TransactionOrder.CrumbleTransactions">
+            <summary>
+            The transactions that belong to this order.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderCollection">
+            <summary>
+            Holds an collection of <see cref="T:B4F.TotalGiro.Orders.Order">Order</see> objects.
+            Implements basic Collection class behaviour.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderCollection.#ctor(System.Collections.IList,B4F.TotalGiro.Orders.Order)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="bagOfOrders">List of orders</param>
+            <param name="parent">Parent order</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderCollection.Filter(B4F.TotalGiro.Instruments.IInstrument,B4F.TotalGiro.Orders.OrderSideFilter)">
+            <summary>
+            This method returns a filtered order collection in a specific instrument.
+            It is also possible to return these orders depending on the instrument and the <see cref="T:B4F.TotalGiro.Orders.Side">side</see> of the order. 
+            </summary>
+            <param name="tradedInstrument">The instrument of interest</param>
+            <param name="sideFilter">Value determines which orders are included depending on the <see cref="T:B4F.TotalGiro.Orders.Side">side</see> of the order</param>
+            <returns>A filtered collection of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderCollection.Exclude(System.Collections.Generic.IList{B4F.TotalGiro.Instruments.IInstrument})">
+            <summary>
+            This method returns a order collection without the instruments to exclude
+            </summary>
+            <param name="excludedInstruments">The instruments to exclude from the result</param>
+            <returns>A filtered collection of orders</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderCollection.ParentOrder">
+            <summary>
+            Gets/sets the parent order for this collection or orders.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.AggregateAmtOrder">
+            <summary>
+            This class holds aggregated amount-based orders
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderAmountBased">
+            <summary>
+            Amount based order. This is an order that has to be filled with the requested amount of the order.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.SecurityOrder">
+            <summary>
+            Abstract class to hold implementation for security order, inherits from Order
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Order">
+            <summary>
+            Abstract class describing the general functionality for an order object
+            </summary>
+            <summary>
+            Abstract class describing the general functionality for an order object
+            </summary>
+            <summary>
+            Abstract class describing the general functionality for an order object
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.Fill(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.Price,System.Decimal,B4F.TotalGiro.Accounts.IAccount,System.DateTime,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Fills an order by setting the agreed size and price, exchange rate, counter party and transaction date.
+            </summary>
+            <param name="size">Size of the instrument</param>
+            <param name="price">Price of the instrument</param>
+            <param name="exRate">Exchange rate for this instrument</param>
+            <param name="counterParty">The counter party of the transaction</param>
+            <param name="transactionDate">The transaction date</param>
+            <param name="serviceCharge">The service charge of the transaction</param>
+            <returns>Order execution information</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.Fill(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Money,System.Decimal,B4F.TotalGiro.Accounts.IAccount,System.DateTime,System.Boolean,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Fills an order by setting the agreed size, price, amount, exchange rate, counter party and transaction date.
+            In this method it is possible to fill the order completely without any checking in the order object
+            </summary>
+            <param name="size">Size of the instrument</param>
+            <param name="price">Price of the instrument</param>
+            <param name="amount">The amount of the transaction</param>
+            <param name="exRate">Exchange rate for this instrument</param>
+            <param name="counterParty">The counter party of the transaction</param>
+            <param name="transactionDate">The transaction date</param>
+            <param name="isCompleteFill">Is the order completely filled?</param>
+            <param name="serviceCharge">The service charge of the transaction</param>
+            <returns>Order execution information</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.Allocate(B4F.TotalGiro.Orders.Transactions.IOrderExecution,B4F.TotalGiro.Fees.IFeeFactory)">
+            <summary>
+            Allocates the (aggregated) transaction to the children of the order.
+            </summary>
+            <param name="ExecutedTrade">Order execution information</param>
+            <param name="feeFactory">feeFactory containing rules for calculating costs</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.GetAllocateableOrder">
+            <summary>
+            This order through a IAllocatable interface
+            </summary>
+            <returns>This order through a IAllocatable interface</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.fillOrder(B4F.TotalGiro.Orders.Transactions.ITransactionOrder,B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Fills an order by setting the agreed size and price, exchange rate, counter party and transaction date.
+            </summary>
+            <param name="trade">The order to be filled</param>
+            <param name="size">Size of the instrument</param>
+            <param name="price">Agreed price of the instrument</param>
+            <param name="amount">Amount of the order (=size * price)</param>
+            <returns>True if it succeeded</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.DeAggregate">
+            <summary>
+            This method de-aggregates the aggregated order.
+            </summary>
+            <returns>True when successfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.DeAggregate(System.Boolean)">
+            <summary>
+            This method de-aggregates the aggregated order.
+            </summary>
+            <param name="unApproveChildren">Should the child orders be unapproved</param>
+            <returns>True when successfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.reset">
+            <summary>
+            This method resets a StgOrder
+            </summary>
+            <returns>True when successfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.Validate">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.Approve">
+            <summary>
+            Approves an order. The approves attribute is set to true and a check on the corresponding money order is done.
+            </summary>
+            <returns>True if approved else false</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.UnApprove">
+            <summary>
+            UnApproves an order when allowed
+            </summary>
+            <returns>True if UnApprove was successfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.SetNew">
+            <summary>
+            Sets the order status to New. Changes to the status are checked by the OrderStateMachine
+            </summary>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.Send">
+            <summary>
+            Sets the order status to Routed. Changes to the status are checked by the OrderStateMachine
+            </summary>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.Place">
+            <summary>
+            Sets the order status to Placed. Changes to the status are checked by the OrderStateMachine
+            </summary>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.Cancel">
+            <summary>
+            Sets the order status to Cancelled. Changes to the status are checked by the OrderStateMachine
+            </summary>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.Cancel(System.Boolean)">
+            <summary>
+            Sets the order status to Cancelled. Changes to the status are checked by the OrderStateMachine
+            </summary>
+            <param name="recursive">Propagate cancel to child orders</param>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.changeRoute(B4F.TotalGiro.Routes.IRoute)">
+            <summary>
+            Change the order route. This can only be done on stichting level aggregated orders which have the new status
+            </summary>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.SetExRate(System.Decimal)">
+            <summary>
+            Sets the exchange rate, propagating it to any child orders
+            </summary>
+            <param name="rate">Exchange rate</param>
+            <returns>true if succesfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Order.SetParentOrder(B4F.TotalGiro.Orders.IOrder)">
+            <summary>
+            Sets the parent order
+            </summary>
+            <param name="parent">Parent order</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Key">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.OrderID">
+            <summary>
+            Unique identifier, same as Key
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsSizeBased">
+            <summary>
+            Is the order size based?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsAmountBased">
+            <summary>
+            Is the order amount based?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsMonetary">
+            <summary>
+            Is it a monetary order?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsSecurity">
+            <summary>
+            Is it a security order?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsAggregateOrder">
+            <summary>
+            Is this order aggregated?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsStgOrder">
+            <summary>
+            Is this an order on stichting level?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsNetted">
+            <summary>
+            Has this order been netted?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.OrderType">
+            <summary>
+            Type of order (AmountBased or SizeBased)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.ActionType">
+            <summary>
+            Gets/sets the action that caused this order to be created
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.DisplayIsSizeBased">
+            <summary>
+            Returns the ordertype as a string for display purposes
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Account">
+            <summary>
+            User account
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Side">
+            <summary>
+            Returns the side of the order (Buy/Sell)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsCompleteFilled">
+            <summary>
+            Is the order completely filled by one transaction?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Value">
+            <summary>
+            Value indicates 
+            a) the Gross (Brutto) amount of the Order is an AmountBased Order
+            b) the Size of the Order if a Sized Based Order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Price">
+            <summary>
+            The price of the instrument of this order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.DisplayTradedInstrumentIsin">
+            <summary>
+            Gets the name of the traded instrument for display purposes
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.OrderCurrency">
+            <summary>
+            Currency in which the order is settled.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Commission">
+            <summary>
+            Commission to be paid for this order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.CommissionInfo">
+            <summary>
+            Description of the rules that generated the commission.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.ExRate">
+            <summary>
+            Exchange rate for the instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.ParentOrder">
+            <summary>
+            Returns parent order of this order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.TopParentOrder">
+            <summary>
+            Returns the TopMost order (being actually sent to the exchange) of the current order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.TopParentDisplayStatus">
+            <summary>
+            Returns the status of the top parent order as a string for display purposes.
+            When the top parent is null -> return empty string
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.MoneyOrder">
+            <summary>
+            Returns the corresponding money order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Status">
+            <summary>
+            The status of the order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.CancelStatus">
+            <summary>
+            The Cancel status of the order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.DisplayStatus">
+            <summary>
+            Returns the status of the order as a string for display purposes.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Approved">
+            <summary>
+            Has this order been approved?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.ApprovalDate">
+            <summary>
+            The Date/Time this order has been approved.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsUnApproveable">
+            <summary>
+            Is this order UnApproveable
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Transactions">
+            <summary>
+            The transactions that belong to this order.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsFillable">
+            <summary>
+            Determines if this order is fillable or not.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.FilledValue">
+            <summary>
+            Indicates the 
+            a) Total Filled Amount of the Order if a Amount Based Order
+            b) Total Filled Size of the Order if a Size Based Order.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.OpenValue">
+            <summary>
+            The value of the order that remains to be filled.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Err">
+            <summary>
+            Error code if one occurred during allocation
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.ErrDescription">
+            <summary>
+            Description of the order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.ExportFile">
+            <summary>
+            Export file that this order has been written to
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.Route">
+            <summary>
+            Route that this order follows (E.g. automatic or manual desk)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.BagOfTransactions">
+            <summary>
+            Transactions that belong to this order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.ChildOrders">
+            <summary>
+            Child orders of this order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.AllocationDate">
+            <summary>
+            The date/time that the allocation of this order has been done
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.CreationDate">
+            <summary>
+            Date/time this order was created
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.LastUpdated">
+            <summary>
+            Date/time when this order has last been updated
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.DateClosed">
+            <summary>
+            Date/time the order was closed
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.IsClosed">
+            <summary>
+            Is this order closed?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Order.RelevantInstrumentPositionSize">
+            <summary>
+            Is this order closed?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.SecurityOrder.IsSecurity">
+            <summary>
+            Is it a security order (always true)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.SecurityOrder.TradedInstrument">
+            <summary>
+            Gets/sets the traded instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.SecurityOrder.IsFsSendable">
+            <summary>
+            Gets a value indicating whether the order is sendable to Fund Settle.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderAmountBased.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.IInstrument,System.Boolean,B4F.TotalGiro.Fees.IFeeFactory)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Initial value</param>
+            <param name="tradedInstrument">Traded instrument</param>
+            <param name="isValueInclComm">Is in the value the commission included?</param>
+            <param name="feeFactory">Fee factory to use for calculating transaction costs</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderAmountBased.fillOrderValue(B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            The value added with the ServiceCharge
+            The following calculation has been used:
+            side  servCh value  fillOrderValue
+            ----  ---    -----  -----------
+            buy    -5   -100     -105
+            sell   -5    100      105
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderAmountBased.GetChildRatio">
+            <summary>
+            Overridden, calculates the ratio that has been filled against the total amount of the order.
+            </summary>
+            <returns>The fill ratio</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderAmountBased.IsAmountBased">
+            <summary>
+            Is the order amount based (always true)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderAmountBased.RequestedInstrument">
+            <summary>
+            Overridden, gets the requested instrument for this order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderAmountBased.Amount">
+            <summary>
+            Overridden, gets the amount for this order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderAmountBased.GrossAmount">
+            <summary>
+            Overridden, gets the gross amount for this order.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderAmountBased.OpenAmount">
+            <summary>
+            Overridden, gets the open amount for this order.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderAmountBased.ClientAmount">
+             <summary>
+             Gets the client amount, the following calculation has been used:
+             flag  side  req  com  value  clientvalue
+             ----  ----  ---  ---  -----  -----------
+             incl  buy   100    5    95      95
+             incl  sell  100    5   100      95
+             excl  buy   100    5   100     100
+             excl  sell  100    5   105     100
+            
+             When Value includes the commission:
+             Only subtract commission from value for buy orders 
+             For sell orders you need to sell the whole lot
+             When Value does not include the commission:
+             For sell orders you need to sell the whole lot + the commission
+             </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderAmountBased.IsValueInclComm">
+            <summary>
+            Is in the value the commission included?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderAmountBased.OpenValue">
+            <summary>
+            Overridden, Determines the open value for this order.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderAmountBased.IsFillable">
+            <summary>
+            Overridden, Is this order fillable (always true)
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.AggregateAmtOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            Constructor, initializes amount-based order class
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Value in money</param>
+            <param name="tradedInstrument">Traded instrument</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.AggregateAmtOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Orders.IOrderAmountBased)">
+            <summary>
+            Constructor, initializes amount-based order class
+            </summary>
+            <param name="account">User account</param>
+            <param name="childOrder">Amount-based child order</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.AggregateAmtOrder.TotalOpenValue">
+            <summary>
+            Calculates the value of the order that has not been filled yet.
+            </summary>
+            <returns>The total open value represented by a InstrumentSize</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.AggregateAmtOrder.IsAggregateOrder">
+            <summary>
+            Is this an aggregated order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.AggregateAmtOrder.IsFillable">
+            <summary>
+            Determines if this order is fillable depending on the state it is in.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderSizeBased">
+            <summary>
+            Size based order. This is an order that has to be filled with the exact size of the order.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderSizeBased.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.InstrumentSize,System.Boolean,B4F.TotalGiro.Fees.IFeeFactory)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Instrument size</param>
+            <param name="isClosure">Is this order closing a position.</param>
+            <param name="feeFactory">The set of rules to use for calculating transaction costs.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderSizeBased.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.InstrumentSize,System.Boolean,B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.Fees.IFeeFactory)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Instrument size</param>
+            <param name="isClosure">Is this order closing a position.</param>
+            <param name="price">Price of the instrument</param>
+            <param name="feeFactory">The set of rules to use for calculating transaction costs.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderSizeBased.GetChildRatio">
+            <summary>
+            Returns the fill ratio of this order which is calculated by dividing the value
+            of the order by the value of it's parent order.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderSizeBased.IsClosure">
+            <summary>
+            Is the order closing a position.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderSizeBased.IsSizeBased">
+            <summary>
+            Is the order size based (always true)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderSizeBased.OrderType">
+            <summary>
+            Returns order type (size based)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderSizeBased.RequestedInstrument">
+            <summary>
+            Returns the requested (or offered) instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderSizeBased.Amount">
+            <summary>
+            Returns the amount of the order. For a size based order, the price is multiplied
+            by the size of the instrument.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderSizeBased.GrossAmount">
+            <summary>
+            Returns the gross amount, that is the amount minus the commission.
+            In case of a sell, the amount is returned since the commission is part
+            of the amount.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderSizeBased.OpenAmount">
+            <summary>
+            Returns the amount of the order that has not been filled yet.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderSizeBased.IsFillable">
+            <summary>
+            Is the order fillable?
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.AggregateSizeOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.InstrumentSize,System.Boolean,B4F.TotalGiro.Instruments.Price)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Initial value for the order</param>
+            <param name="isClosure">Closure</param>
+            <param name="price">Price of the instrument</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.AggregateSizeOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Orders.IOrderSizeBased)">
+            <summary>
+            Constructor, creates an aggregated order from a child order
+            </summary>
+            <param name="account">User account</param>
+            <param name="childOrder">Child order</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.AggregateSizeOrder.TotalOpenValue">
+            <summary>
+            Returns the total value of the order that has not been filled.
+            </summary>
+            <returns>The total value of the order that has not been filled.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.AggregateSizeOrder.IsSizeBased">
+            <summary>
+            Is this order size based
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.AggregateSizeOrder.IsAggregateOrder">
+            <summary>
+            Is this an aggregated order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.AggregateSizeOrder.OrderType">
+            <summary>
+            Gets the order type. This is one of the enumeration <seealso cref="P:B4F.TotalGiro.Orders.AggregateSizeOrder.OrderType">OrderType</seealso>
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.AggregateSizeOrder.IsFillable">
+            <summary>
+            Determines if the order is fillable according to the state it is in.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.NonTradeMovement">
+            <summary>
+            Class to hold NonTradeMovement information, inherits from TransactionMovement
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.CrumbleTransaction">
+            <summary>
+            This class is used for transferring the leftovers of an allocation to the crumble (leftover) account
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.StgSizeOrder">
+            <summary>
+            Class to hold an aggregated sizebased order on Stichting level, inherits from AggregateSizeOrder
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgSizeOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.InstrumentSize,B4F.TotalGiro.Instruments.Price,B4F.TotalGiro.OrderRouteMapper.IOrderRouteMapper)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Value of the order</param>
+            <param name="price">Price for the instrument</param>
+            <param name="routeMapper">Route information</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgSizeOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Orders.IAggregateSizeOrder,B4F.TotalGiro.OrderRouteMapper.IOrderRouteMapper)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="childOrder">Child order to create for this stichting order</param>
+            <param name="routeMapper">Route information</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgSizeOrder.#ctor(B4F.TotalGiro.Orders.IStgSizeOrder)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="childOrder">Child order to create for this stichting order</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgSizeOrder.ChangeRoute(B4F.TotalGiro.Routes.IRoute)">
+            <summary>
+            Change the order route. This can only be done on stichting level aggregated orders which have the new status
+            </summary>
+            <returns>True if successful</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgSizeOrder.IsSizeBased">
+            <summary>
+            Is the order size based?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgSizeOrder.IsAggregateOrder">
+            <summary>
+            Is this order an aggregated order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgSizeOrder.IsStgOrder">
+            <summary>
+            Is this a stichting level order?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgSizeOrder.OrderType">
+            <summary>
+            Returns the order type
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgSizeOrder.IsFillable">
+            <summary>
+            Determines if this order is in a state that is fillable
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.StgMonetaryOrder">
+            <summary>
+            Class to hold an aggregated money order on Stichting level, inherits from AggregateMonetaryOrder
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.AggregateMonetaryOrder">
+            <summary>
+            This class holds aggregated monetary orders
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.MonetaryOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Fees.IFeeFactory)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Initial value for this order</param>
+            <param name="feeFactory">Fee factory to use for calculating transaction costs</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.MonetaryOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.ICurrency,B4F.TotalGiro.Fees.IFeeFactory)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Initial value for this order</param>
+            <param name="requestedCurrency">Currency that is requested</param>
+            <param name="feeFactory">Fee factory to use for calculating transaction costs</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.MonetaryOrder.#ctor(B4F.TotalGiro.Orders.IOrderAmountBased,B4F.TotalGiro.Fees.IFeeFactory)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parent">Parent order</param>
+            <param name="feeFactory">Fee factory to use for calculating transaction costs</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.MonetaryOrder.Cancel">
+            <summary>
+            Method to cancel MoneyOrders
+            </summary>
+            <returns>Returns true when cancelled </returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.MonetaryOrder.Fill(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Price,System.Decimal,B4F.TotalGiro.Accounts.IAccount,System.DateTime)">
+            <summary>
+            Overridden, fills the order.
+            </summary>
+            <param name="amount">Amount to fill order with</param>
+            <param name="price">The price of the instrument</param>
+            <param name="exRate">The exchange rate of the currency</param>
+            <param name="counterParty">Counter party</param>
+            <param name="transactionDate">Transaction date</param>
+            <returns>Order execution information object, implements IOrderExecution</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.MonetaryOrder.GetChildRatio">
+            <summary>
+            Overridden, Returns the ratio that needs to be filled against the total value for this order.
+            </summary>
+            <returns>The fill ratio for this order</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.RequestedCurrency">
+            <summary>
+            Gets the requested currency in the order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.MoneyParent">
+            <summary>
+            Gets the parent order for this order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.DisplayParent">
+            <summary>
+            Returns the name qualifier for the parent order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.IsMonetary">
+            <summary>
+            Overridden, Is this order a monetary order?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.IsFillable">
+            <summary>
+            Overridden, Is this order fillable?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.IsSizeBased">
+            <summary>
+            Overridden, Is this order size based?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.IsAmountBased">
+            <summary>
+            Overridden, Is this order amount based?
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.Amount">
+            <summary>
+            Overridden, Returns the amount of money for this order.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.GrossAmount">
+            <summary>
+            Overridden, Returns the gross amount of money for this order.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.OpenAmount">
+            <summary>
+            Overridden, Returns the gross amount of money for this order.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.RequestedInstrument">
+            <summary>
+            Overridden, Returns the requested instrument for this order.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.MonetaryOrder.OrderType">
+            <summary>
+            Overridden, Returns the order type for this order.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.AggregateMonetaryOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Initial value of the order</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.AggregateMonetaryOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Orders.IMonetaryOrder)">
+            <summary>
+            Constructor, creates an aggregated order from a child order
+            </summary>
+            <param name="account">User account</param>
+            <param name="childOrder">Child order</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.AggregateMonetaryOrder.TotalOpenValue">
+            <summary>
+            Total open values for this order. That is the value that has not been filled.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.AggregateMonetaryOrder.IsAggregateOrder">
+            <summary>
+            Is this an aggregated order
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.AggregateMonetaryOrder.IsFillable">
+            <summary>
+            Checks the status of the order to see if it is fillable.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgMonetaryOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.OrderRouteMapper.IOrderRouteMapper)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Value of the order</param>
+            <param name="routeMapper">Route information</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgMonetaryOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Orders.IAggregateMonetaryOrder,B4F.TotalGiro.OrderRouteMapper.IOrderRouteMapper)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="childOrder">Child order to create for this stichting order</param>
+            <param name="routeMapper">Route information</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgMonetaryOrder.#ctor(B4F.TotalGiro.Orders.IStgMonetaryOrder)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="childOrder">Child order to create for this stichting order</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgMonetaryOrder.IsAggregateOrder">
+            <summary>
+            Is this an aggregated order (true)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgMonetaryOrder.IsStgOrder">
+            <summary>
+            Is this a stichting order (true)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgMonetaryOrder.IsFillable">
+            <summary>
+            Is this order fillable
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.StgAmtOrder">
+            <summary>
+            Class to hold an aggregated amount order on Stichting level, inherits from AggregateAmtOrder
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgAmtOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.IInstrument,B4F.TotalGiro.OrderRouteMapper.IOrderRouteMapper)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="value">Value of the order</param>
+            <param name="tradedInstrument">The traded instrument</param>
+            <param name="routeMapper">Route information</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgAmtOrder.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Orders.IAggregateAmtOrder,B4F.TotalGiro.OrderRouteMapper.IOrderRouteMapper)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="account">User account</param>
+            <param name="childOrder">Child order to create for this stichting order</param>
+            <param name="routeMapper">Route information</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgAmtOrder.#ctor(B4F.TotalGiro.Orders.IStgAmtOrder)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="childOrder">Child order to create for this stichting order</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.StgAmtOrder.ChangeRoute(B4F.TotalGiro.Routes.IRoute)">
+            <summary>
+            Change the order route. This can only be done on stichting level aggregated orders which have the new status
+            </summary>
+            <returns>True if successful</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgAmtOrder.IsAggregateOrder">
+            <summary>
+            Is this an aggregated order (true)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgAmtOrder.IsStgOrder">
+            <summary>
+            Is this a stichting order? (true)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.StgAmtOrder.IsFillable">
+            <summary>
+            Is the order fillable
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderReturnClass">
+            <summary>
+            Enumeration that specifies which type of orders you want.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderReturnClass.SecurityOrder">
+            <summary>
+            Security Order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderReturnClass.AmountBasedOrder">
+            <summary>
+            Amount based order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderReturnClass.SizeBasedOrder">
+            <summary>
+            Size based order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderReturnClass.MonetaryOrder">
+            <summary>
+            Monetary order
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.MonetaryOrderReturnClass">
+            <summary>
+            Enumeration used for identifying amount/size based or all orders. Used for filtering orders.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.MonetaryOrderReturnClass.All">
+            <summary>
+            Amount and size based orders
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:B4F.TotalGiro.Orders.MonetaryOrderReturnClass.AmountBased" -->
+        <member name="F:B4F.TotalGiro.Orders.MonetaryOrderReturnClass.SizeBased">
+            <summary>
+            Size based orders
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderAggregationLevel">
+            <summary>
+            Enumeration used for identifying the aggregation level of the orders. Used for filtering orders.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderAggregationLevel.All">
+            <summary>
+            All orders
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderAggregationLevel.None">
+            <summary>
+            The order is not aggregated
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderAggregationLevel.AssetManager">
+            <summary>
+            The order is aggregated on assetmanager level
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderAggregationLevel.Stichting">
+            <summary>
+            The order is aggregated on stichting level
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderAggregationLevel.StichtingNetted">
+            <summary>
+            The order is aggregated and netted on stichting level
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.ApprovalState">
+            <summary>
+            Enumeration that specifies the approval state of an order.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.ApprovalState.All">
+            <summary>
+            All orders
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.ApprovalState.Approved">
+            <summary>
+            Orders that have been approved
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.ApprovalState.UnApproved">
+            <summary>
+            Orders that have not been approved
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.ParentalState">
+            <summary>
+            Enumeration to indicate the state of the parent of the order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.ParentalState.All">
+            <summary>
+            All orders
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.ParentalState.Null">
+            <summary>
+            Orders that have a parent order
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.ParentalState.NotNull">
+            <summary>
+            Orders that do not have a parent order
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.ActiveClosedState">
+            <summary>
+            Enumeration used for identifying the active or closed state of the orders. Used for filtering orders.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.ActiveClosedState.All">
+            <summary>
+            Return all orders independent whether their either active or closed
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.ActiveClosedState.Active">
+            <summary>
+            Only return active orders
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.ActiveClosedState.Closed">
+            <summary>
+            Only return closed orders
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderStatusFilterOptions">
+            <summary>
+            Enumeration for order status filter options
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStatusFilterOptions.None">
+            <summary>
+            No filter
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStatusFilterOptions.NoClosedStati">
+            <summary>
+            Exclude Closed Stati
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Orders.OrderStatusFilterOptions.IncludeClosedStatiToday">
+            <summary>
+            Include Closed Stati
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderStatusFilter">
+            <summary>
+            Class to manage the status filter for order queries.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderStatusFilter.#ctor(B4F.TotalGiro.Orders.OrderStati[])">
+            <summary>
+            Set order status filter by passing an array of OrderStati objects.
+            </summary>
+            <param name="orderStati">Array of OrderStati objects</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderStatusFilter.#ctor(B4F.TotalGiro.Orders.OrderStatusFilterOptions)">
+            <summary>
+            Set order status filter by passing an OrderStatusFilterOptions
+            </summary>
+            <param name="filterOption">filter option</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderStatusFilter.Stati">
+            <summary>
+            Gets/sets order stati
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderStatusFilter.FilterOption">
+            <summary>
+            Gets/sets filter option
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderMapper">
+            <summary>
+            This class is used to instantiate Order objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrder(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Returns an Order object through the order id (key)
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="orderID">Order Id</param>
+            <returns>Order object</returns>      
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrder(B4F.TotalGiro.Dal.IDalSession,System.Int32,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions)">
+            <summary>
+            Returns an Order object through the order id (key) and checks for security info. The
+            order list is filtered by the company and roles the user belongs to
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="orderID">Order Id</param>
+            <param name="option">Security info</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetMonetaryOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.MonetaryOrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState)">
+            <summary>
+            Returns monetary orders, based on a variety of criteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <returns>List of monetary orders that comply to the filter parameters</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetMonetaryOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.MonetaryOrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,B4F.TotalGiro.Orders.OrderStatusFilter)">
+            <summary>
+            Returns monetary orders, based on a variety of criteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="orderStatusFilter">Order status</param>
+            <returns>List of monetary orders that comply to the filter parameters</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetMonetaryOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.MonetaryOrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,System.Collections.Generic.List{NHibernate.Expression.ICriterion})">
+            <summary>
+            Returns monetary orders, based on a variety of criteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="expressions">HQL Criterion list</param>
+            <returns>List of monetary orders that comply to the filter parameters</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetMonetaryOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.MonetaryOrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,System.Collections.Generic.List{NHibernate.Expression.ICriterion},B4F.TotalGiro.Orders.OrderStatusFilter)">
+            <summary>
+            Returns monetary orders, based on a variety of criteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="expressions">HQL Criterion list</param>
+            <param name="orderStatusFilter">Order status filter</param>
+            <returns>List of monetary orders that comply to the filter parameters</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetMonetaryOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.MonetaryOrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,System.Collections.Generic.List{NHibernate.Expression.ICriterion},B4F.TotalGiro.Orders.OrderStatusFilter,System.Int32,System.String,System.String)">
+            <summary>
+            Returns monetary orders, based on a variety of criteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="orderStatusFilter">Order status filter</param>
+            <param name="assetManagerId">Asset manager</param>
+            <param name="accountNumber">Account number</param>
+            <param name="accountName">Account name</param>
+            <returns>List of monetary orders that comply to the filter parameters</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,System.Int32[])">
+            <summary>
+            Returns a list of orders, based on their key
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="orderIDs">List of order id's (Key)</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,System.Int32[],System.Boolean)">
+            <summary>
+            Returns a list of orders, based on their key, with the option of bypassing security. 
+            If security is bypassed, all orders will be returned regardless the rights the current user has.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="orderIDs">List of order id's (Key)</param>
+            <param name="bypassSecurity">Are we bypassing security</param>
+            <returns>A list or orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState)">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,B4F.TotalGiro.Orders.OrderStatusFilter)">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="orderStatusFilter">Order status filter</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,System.Int32[])">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="routes">Route information</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,B4F.TotalGiro.Orders.OrderStatusFilter,System.Int32[])">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="orderStatusFilter">Order status filter</param>
+            <param name="routes">Route information</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,System.Int32,System.String,System.String)">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="assetManagerId">Asset manager</param>
+            <param name="accountNumber">Account number</param>
+            <param name="accountName">Account name</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,B4F.TotalGiro.Orders.OrderStatusFilter,System.Int32[],System.Collections.Generic.List{NHibernate.Expression.ICriterion},System.Int32,System.String,System.String,B4F.TotalGiro.Orders.ActiveClosedState,System.String,System.String,B4F.TotalGiro.Instruments.SecCategories,System.Int32)">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="orderStatusFilter">Order status filter</param>
+            <param name="routes">Route information</param>
+            <param name="expressions">HQL Criterion list</param>
+            <param name="assetManagerId">Asset manager</param>
+            <param name="accountNumber">Account number</param>
+            <param name="accountName">Account name</param>
+            <param name="activeClosedState">Active state of the order</param>
+            <param name="isin">Isin of the instrument</param>
+            <param name="instrumentName">Name of the instrument</param>
+            <param name="secCategoryId">SecCategory of the instrument</param>
+            <param name="currencyNominalId">Nominal currency of the instrument to be ordered</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Orders.OrderAggregationLevel,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Stichting.Login.SecurityInfoOptions,B4F.TotalGiro.Orders.ParentalState,B4F.TotalGiro.Orders.OrderStatusFilter,System.Int32[],System.Collections.Generic.List{NHibernate.Expression.ICriterion},System.Int32,System.String,System.String,B4F.TotalGiro.Orders.ActiveClosedState,System.String,System.String,B4F.TotalGiro.Instruments.SecCategories,System.Int32,System.DateTime,System.DateTime)">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="aggLevel">Aggregation level</param>
+            <param name="state">Approval state</param>
+            <param name="option">Security info option</param>
+            <param name="familyState">State of the parent</param>
+            <param name="orderStatusFilter">Order status filter</param>
+            <param name="routes">Route information</param>
+            <param name="expressions">HQL Criterion list</param>
+            <param name="assetManagerId">Asset manager</param>
+            <param name="accountNumber">Account number</param>
+            <param name="accountName">Account name</param>
+            <param name="activeClosedState">Active state of the order</param>
+            <param name="isin">Isin of the instrument</param>
+            <param name="instrumentName">Name of the instrument</param>
+            <param name="secCategoryId">SecCategory of the instrument</param>
+            <param name="currencyNominalId">Nominal currency of the instrument to be ordered</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Accounts.IAccountTypeInternal)">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="account">User account</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Orders.ApprovalState,B4F.TotalGiro.Accounts.IAccountTypeInternal)">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="state">Approval state</param>
+            <param name="account">User account</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Accounts.Instructions.IInstruction)">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="instruction">User account</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrders(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.OrderReturnClass,B4F.TotalGiro.Orders.ApprovalState,System.Int32[])">
+            <summary>
+            Get orders, based on some filtercriteria
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="retClass">Class describing if it is amount based or size based.</param>
+            <param name="state">Approval state</param>
+            <param name="accountKeys">Array of account keys</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetChildOrders(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Returns an order's child orders.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="parentOrderID">Order ID (Key) of the parent order</param>
+            <returns>A list of child orders belonging to the given parent</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetChildOrders(B4F.TotalGiro.Dal.IDalSession,System.Int32,System.Boolean)">
+            <summary>
+            Returns an order's child orders with the option of bypassing security. 
+            If security is bypassed, all orders will be returned regardless the rights the current user has.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="parentOrderID">Order ID (Key) of the parent order</param>
+            <param name="bypassSecurity">Are we bypassing security?</param>
+            <returns>A list of child orders belonging to the given parent</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetUnAggregatedGroupedOrders(B4F.TotalGiro.Dal.IDalSession,System.Boolean)">
+            <summary>
+            Gets a list of accounts with the number of orders and the total amount of commission involved.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="approved">Filter approved orders</param>
+            <returns>A list of account with summarized order info</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetGroupedOrders(B4F.TotalGiro.Dal.IDalSession,System.String,System.String,System.Boolean)">
+            <summary>
+            Gets a list of accounts with the number of orders and the total amount of commission involved.
+            Also, a filter can be given on approvement, account name and number
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="accountNumber">(Part of) Account number</param>
+            <param name="accountName">(Part of) Account name</param>
+            <param name="approved">Filter approved orders</param>
+            <returns>A list of account with summarized order info</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.GetOrdersPerExportFile(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Returns a list of orders that have been exported in an export file
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="fileid">Idenitfier of the export file</param>
+            <returns>Returns the orders that were in the export file with key fileid.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.ApproveOrdersPerAccount(B4F.TotalGiro.Dal.IDalSession,System.Int32[])">
+            <summary>
+            Approve all orders that belong to the given accounts
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="accountKeys">Array of account keys</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.ApproveOrders(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            Approve all orders in a given list
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="orders">A list of orders</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.ApproveMoneyOrders(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            Approve money orders. Approving them also does a send and place.
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="orders">A list of orders that have to be approved</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.CancelOrdersPerAccount(B4F.TotalGiro.Dal.IDalSession,System.Int32[])">
+            <summary>
+            Cancel all orders for specific accounts
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="accountKeys">A list of account numbers</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.Insert(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.IOrder)">
+            <summary>
+            Creates a new object in the database
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">Object of type Order</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.Insert(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            Creates new Order objects in the database
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="list">A list of orders</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Orders.IOrder)">
+            <summary>
+            Updates an Order object. Saves the data of the object to the database.
+            </summary>
+            <param name="DataSession">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="obj">Order object</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.Update(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            Updates a list of objects, saves their data to the database
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="list">A list of objects</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.OrderMapper.SaveAggregatedOrders(B4F.TotalGiro.Dal.IDalSession,System.Collections.IList)">
+            <summary>
+            Stores order objects in the database by inserting/updating the orders objects
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <param name="orders">List of orders to save to the database.</param>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.CashTransaction">
+            <summary>
+            Class to hold cash transaction information, inherits from TransactionMovement
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Orders.Transactions.CashTransaction.#ctor(B4F.TotalGiro.Accounts.IAccountTypeInternal,B4F.TotalGiro.Instruments.InstrumentSize,System.DateTime,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="AcctA">User account</param>
+            <param name="CashAmount">Cash amount</param>
+            <param name="TransactionDate">Transaction date</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Transactions.CashTransaction.CashTransactionType">
+            <summary>
+            Cash Transaction Type
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.Transactions.CashTransaction.IsCashTransaction">
+            <summary>
+            Is this transaction a cash transaction?
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.OrderCancelStatus">
+            <summary>
+            Class to hold all stati when the order has been cancelled
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Orders.OrderCancelStatus.Key">
+            <summary>
+            Unique key, readonly
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Orders.Transactions.StornoTransaction">
+            <summary>
+            Class to hold storno transaction information, inherits from Transaction
+            </summary>
+        </member>
+    </members>
+</doc>

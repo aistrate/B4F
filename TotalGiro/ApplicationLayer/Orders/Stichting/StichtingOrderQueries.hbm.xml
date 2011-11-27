@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<query name="B4F.TotalGiro.ApplicationLayer.Orders.Stichting.UnApprovedExecutions" >
+		<![CDATA[
+        from OrderExecution O 
+		left join fetch O.AccountB 
+		left join fetch O.ValueSize.Underlying 
+		left join fetch O.Price.Underlying
+		left join fetch O.Price.Instrument 
+		where O.Approved = 0 or O.IsAllocated = 0
+    ]]>
+	</query>
+
+</hibernate-mapping>

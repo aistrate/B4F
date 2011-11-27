@@ -1,0 +1,597 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.Interfaces</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.Interfaces</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Interfaces.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/B4F.TotalGiro.Interfaces/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunFxCop>false</RunFxCop>
+    <DocumentationFile>bin\Debug\B4F.TotalGiro.Interfaces.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rdParty\NHibernate2_1_2\Framework20\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AccountInstructions\Exclusions\IRebalanceExcludedInstrument.cs" />
+    <Compile Include="Account\AccountInstructions\Exclusions\IRebalanceExcludedModel.cs" />
+    <Compile Include="Account\AccountInstructions\Exclusions\IRebalanceExclusion.cs" />
+    <Compile Include="Account\AccountInstructions\Exclusions\IRebalanceExclusionCollection.cs" />
+    <Compile Include="Account\AccountInstructions\IBuyModelInstruction.cs" />
+    <Compile Include="Account\AccountInstructions\ICashTransferCollection.cs" />
+    <Compile Include="Account\AccountInstructions\ICashWithdrawalInstruction.cs" />
+    <Compile Include="Account\AccountInstructions\ICashWithdrawalInstructionCollection.cs" />
+    <Compile Include="Account\AccountInstructions\IClientDepartureInstruction.cs" />
+    <Compile Include="Account\AccountInstructions\IInstruction.cs" />
+    <Compile Include="Account\AccountInstructions\IInstructionCollection.cs" />
+    <Compile Include="Account\AccountInstructions\IInstructionEngine.cs" />
+    <Compile Include="Account\AccountInstructions\IInstructionTypeRebalance.cs" />
+    <Compile Include="Account\AccountInstructions\IInstructionOrderCollection.cs" />
+    <Compile Include="Account\AccountInstructions\IRebalanceInstruction.cs" />
+    <Compile Include="Account\AccountWithdrawals\IWithdrawalRule.cs" />
+    <Compile Include="Account\AccountWithdrawals\IWithdrawalRuleCollection.cs" />
+    <Compile Include="Account\AccountWithdrawals\WithdrawalRuleRegularity.cs" />
+    <Compile Include="Account\IAccountFinancialTarget.cs" />
+    <Compile Include="Account\IAccountFinancialTargetCollection.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashMutationView.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashMutationViewGop.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashMutationViewTX.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashPortfolio.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashPortfolioHistorical.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashPosition.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashPositionHistorical.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashSubPosition.cs" />
+    <Compile Include="Account\IAccount.cs" />
+    <Compile Include="Account\IAccountFamily.cs" />
+    <Compile Include="Account\ICompanyAccount.cs" />
+    <Compile Include="Account\AccountHolders\IAccountHolder.cs" />
+    <Compile Include="Account\AccountHolders\IAccountAccountHoldersCollection.cs" />
+    <Compile Include="Account\IAccountTypeCustomer.cs" />
+    <Compile Include="Account\IAccountTypeExternal.cs" />
+    <Compile Include="Account\IAccountTypeInternal.cs" />
+    <Compile Include="Account\CounterAccounts\ICounterAccount.cs" />
+    <Compile Include="Account\IAccountTypeSystem.cs" />
+    <Compile Include="Account\ICommissionAccount.cs" />
+    <Compile Include="Account\ICounterPartyAccount.cs" />
+    <Compile Include="Account\ICustodyAccount.cs" />
+    <Compile Include="Account\ICustomerAccount.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashSubPositionSettled.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashSubPositionUnSettled.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashSubPositionUnSettledCollection.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\ICashSubPositionUnSettledType.cs" />
+    <Compile Include="Account\Portfolios\CashPositions\IGLJournalEntryLineCollection.cs" />
+    <Compile Include="Account\INostroAccount.cs" />
+    <Compile Include="Account\ICrumbleAccount.cs" />
+    <Compile Include="Account\IAccountOrderCollection.cs" />
+    <Compile Include="Account\IOwnAccount.cs" />
+    <Compile Include="Account\ITradingAccount.cs" />
+    <Compile Include="Account\Portfolios\FundPositions\IBondCouponPaymentCollection.cs" />
+    <Compile Include="Account\Portfolios\FundPositions\IFundPortfolioHistorical.cs" />
+    <Compile Include="Account\Portfolios\FundPositions\IFundPositionHistorical.cs" />
+    <Compile Include="Account\Portfolios\ICommonPosition.cs" />
+    <Compile Include="Account\Portfolios\ICommonPositionHistorical.cs" />
+    <Compile Include="Account\Portfolios\IPortfolio.cs" />
+    <Compile Include="Account\Portfolios\FundPositions\IFundPosition.cs" />
+    <Compile Include="Account\Portfolios\FundPositions\IFundPositionTx.cs" />
+    <Compile Include="Account\Portfolios\FundPositions\IFundPositionTxCollection.cs" />
+    <Compile Include="Account\Portfolios\FundPositions\IFundPortfolio.cs" />
+    <Compile Include="Account\Portfolios\IPortfolioHistorical.cs" />
+    <Compile Include="Account\Portfolios\ISubPortfolioHistorical.cs" />
+    <Compile Include="Account\VirtualFundHoldingsAccount.cs" />
+    <Compile Include="Account\IVirtualFundTradingAccount.cs" />
+    <Compile Include="Account\ManagementPeriods\IManagementPeriod.cs" />
+    <Compile Include="Account\ManagementPeriods\IManagementPeriodCollection.cs" />
+    <Compile Include="Base\ITotalGiroBase.cs" />
+    <Compile Include="Base\TotalGiroBase.cs" />
+    <Compile Include="Communicator\Belastindienst\IDividWepFile.cs" />
+    <Compile Include="Communicator\Belastindienst\IDividWepRecord.cs" />
+    <Compile Include="Communicator\Belastindienst\IDividWepRecordCollection.cs" />
+    <Compile Include="Communicator\Exact\IExactAccount.cs" />
+    <Compile Include="Communicator\Exact\IExactExternalBooking.cs" />
+    <Compile Include="Communicator\Exact\IExactJournal.cs" />
+    <Compile Include="Communicator\ExternalInterfaces\IExternalInterface.cs" />
+    <Compile Include="DataMigration\ICleoJournalEntryLine.cs" />
+    <Compile Include="DataMigration\ICleopatraTX.cs" />
+    <Compile Include="DataMigration\IInitialPosition.cs" />
+    <Compile Include="DataMigration\IInitialStornoPosition.cs" />
+    <Compile Include="DataMigration\INewAcctForCleopatra.cs" />
+    <Compile Include="GeneralLedger\Bookings\IBondCouponPayment.cs" />
+    <Compile Include="GeneralLedger\Bookings\IBondCouponPaymentDailyCalculation.cs" />
+    <Compile Include="GeneralLedger\Bookings\IBondCouponPaymentDailyCalculationCollection.cs" />
+    <Compile Include="GeneralLedger\Bookings\ICashDividend.cs" />
+    <Compile Include="GeneralLedger\Bookings\ICashDividendComponent.cs" />
+    <Compile Include="GeneralLedger\Bookings\ICashTransfer.cs" />
+    <Compile Include="GeneralLedger\Bookings\ICashTransferComponent.cs" />
+    <Compile Include="GeneralLedger\Bookings\IForeignExchange.cs" />
+    <Compile Include="GeneralLedger\Bookings\IForeignExchangeComponent.cs" />
+    <Compile Include="GeneralLedger\Bookings\IGeneralOperationsBooking.cs" />
+    <Compile Include="GeneralLedger\Bookings\IGeneralOperationsBookingTaxeable.cs" />
+    <Compile Include="GeneralLedger\Bookings\IGeneralOperationsComponent.cs" />
+    <Compile Include="GeneralLedger\Bookings\IBookingComponentParent.cs" />
+    <Compile Include="GeneralLedger\Bookings\IBookingLineCollection.cs" />
+    <Compile Include="GeneralLedger\Bookings\IGeneralOperationsComponentCollection.cs" />
+    <Compile Include="GeneralLedger\Bookings\IGLBookYear.cs" />
+    <Compile Include="GeneralLedger\Bookings\IManagementFeeComponent.cs" />
+    <Compile Include="GeneralLedger\Bookings\ITransactionComponent.cs" />
+    <Compile Include="GeneralLedger\Bookings\IBookingComponent.cs" />
+    <Compile Include="GeneralLedger\IBankStatement.cs" />
+    <Compile Include="GeneralLedger\Bookings\IBondCouponPaymentComponent.cs" />
+    <Compile Include="GeneralLedger\IClientBookYearClosures.cs" />
+    <Compile Include="GeneralLedger\IExternalSettlement.cs" />
+    <Compile Include="GeneralLedger\IExternalSettlementJournalEntriesCollection.cs" />
+    <Compile Include="GeneralLedger\IExternalSettlementJournalLinesCollection.cs" />
+    <Compile Include="GeneralLedger\IGLBookingType.cs" />
+    <Compile Include="GeneralLedger\IGLClass.cs" />
+    <Compile Include="GeneralLedger\IGLLookupRecord.cs" />
+    <Compile Include="GeneralLedger\IGLLookupRecords.cs" />
+    <Compile Include="GeneralLedger\IJournalEntryLine.cs" />
+    <Compile Include="GeneralLedger\IJournalEntryLineCollection.cs" />
+    <Compile Include="GeneralLedger\IGLAccount.cs" />
+    <Compile Include="GeneralLedger\IJournal.cs" />
+    <Compile Include="GeneralLedger\IJournalEntry.cs" />
+    <Compile Include="GeneralLedger\Bookings\IManagementFee.cs" />
+    <Compile Include="GeneralLedger\ICashPresentation.cs" />
+    <Compile Include="GeneralLedger\IMemorialBooking.cs" />
+    <Compile Include="GeneralLedger\IGlTradeTransaction.cs" />
+    <Compile Include="BackOffice\IMoneyTransferOrder.cs" />
+    <Compile Include="BackOffice\IMoneyTransferOrderStatus.cs" />
+    <Compile Include="GeneralLedger\ITradingJournalEntry.cs" />
+    <Compile Include="Collections\Persistence\DomainCollectionFactory.cs" />
+    <Compile Include="Collections\GenericDictionary.cs" />
+    <Compile Include="Collections\Persistence\IDomainCollection.cs" />
+    <Compile Include="Collections\Persistence\PersistentDomainCollection.cs" />
+    <Compile Include="Collections\Persistence\TransientDomainCollection.cs" />
+    <Compile Include="Fees\IFeeCalcLine.cs" />
+    <Compile Include="Fees\IFeeCalcLineCollection.cs" />
+    <Compile Include="Fees\IFeeCalcVersionFlat.cs" />
+    <Compile Include="Fees\IFeeCalcVersionSimple.cs" />
+    <Compile Include="Fees\IMgtFeeBreakupLineFee.cs" />
+    <Compile Include="Communicator\Exact\IJournalEntryLineCollection.cs" />
+    <Compile Include="Communicator\Exact\ILedgerEntryCollection.cs" />
+    <Compile Include="CRM\Contacts\ContactsFormatterDelegate.cs" />
+    <Compile Include="CRM\Contacts\IContactDelegate.cs" />
+    <Compile Include="GeneralLedger\Maintenance\IBookYearClosure.cs" />
+    <Compile Include="GeneralLedger\Maintenance\IClientBookYearClosure.cs" />
+    <Compile Include="GeneralLedger\Maintenance\IClientBookYearClosureCollection.cs" />
+    <Compile Include="GeneralLedger\Reporting\IClientCashPositionFromGLLedger.cs" />
+    <Compile Include="GeneralLedger\Reporting\IClientCashPositionFromGLLedgerRecord.cs" />
+    <Compile Include="GeneralLedger\Reporting\IClientCashPositionFromGLLedgerRecordCollection.cs" />
+    <Compile Include="Account\IEndTermValueCollection.cs" />
+    <Compile Include="Instrument\BondStuff\IBondCouponRateHistory.cs" />
+    <Compile Include="Instrument\BondStuff\IBondCouponRateHistoryCollection.cs" />
+    <Compile Include="Instrument\Classification\IAssetClass.cs" />
+    <Compile Include="Instrument\Classification\IInstrumentsCategories.cs" />
+    <Compile Include="Instrument\Classification\IRegionClass.cs" />
+    <Compile Include="Instrument\Classification\ISectorClass.cs" />
+    <Compile Include="Collections\IDateTimeCollection.cs" />
+    <Compile Include="Collections\IGenericCollection.cs" />
+    <Compile Include="Collections\IGenericDictionary.cs" />
+    <Compile Include="Communicator\Exact\ExactFieldCollection.cs" />
+    <Compile Include="Communicator\Exact\IExactFormatterSource.cs" />
+    <Compile Include="Communicator\Exact\IExportedLedgerFile.cs" />
+    <Compile Include="Communicator\Exact\IImportedBankBalance.cs" />
+    <Compile Include="Communicator\Exact\IImportedBankMovement.cs" />
+    <Compile Include="Communicator\Exact\ILedgerEntry.cs" />
+    <Compile Include="Communicator\Exact\ILedgerType.cs" />
+    <Compile Include="Communicator\Exact\ISubledgerEntry.cs" />
+    <Compile Include="Communicator\Exact\ISubledgerEntryCollection.cs" />
+    <Compile Include="Communicator\KasBank\IGLDSTD.cs" />
+    <Compile Include="Communicator\KasBank\IGLDSTDCollection.cs" />
+    <Compile Include="Communicator\KasBank\IGLDSTDFile.cs" />
+    <Compile Include="CRM\Contacts\ContactsFormatter.cs" />
+    <Compile Include="CRM\Contacts\ContactsFormatterCompany.cs" />
+    <Compile Include="CRM\Contacts\ContactsFormatterPerson.cs" />
+    <Compile Include="CRM\Contacts\IContactSendingOption.cs" />
+    <Compile Include="CRM\Contacts\IContactSendingOptionCollection.cs" />
+    <Compile Include="CRM\Contacts\ICounterAccountCollection.cs" />
+    <Compile Include="EffectenGiro\IEGAanvraag.cs" />
+    <Compile Include="EffectenGiro\IEGAccount.cs" />
+    <Compile Include="Instrument\CorporateAction\ICorporateActionHistory.cs" />
+    <Compile Include="Instrument\CorporateAction\ICouponHistory.cs" />
+    <Compile Include="Instrument\CorporateAction\ICashDividendCollection.cs" />
+    <Compile Include="Instrument\CorporateAction\IStockDividendCollection.cs" />
+    <Compile Include="Instrument\Exchange\IExchangeHolidayCollection.cs" />
+    <Compile Include="Fees\IFeeCalc.cs" />
+    <Compile Include="Fees\IFeeCalcVersion.cs" />
+    <Compile Include="Fees\IFeeCalcVersionCollection.cs" />
+    <Compile Include="Fees\IFeeRule.cs" />
+    <Compile Include="Fees\IFeeRuleCollection.cs" />
+    <Compile Include="Instrument\History\IInstrumentConversionCollection.cs" />
+    <Compile Include="Instrument\ICouponHistoryCollection.cs" />
+    <Compile Include="Instrument\IDerivative.cs" />
+    <Compile Include="Instrument\IDividend.cs" />
+    <Compile Include="Instrument\IInstrumentCorporateAction.cs" />
+    <Compile Include="Instrument\IInstrumentSymbolCollection.cs" />
+    <Compile Include="Instrument\InstrumentComparer.cs" />
+    <Compile Include="Instrument\CorporateAction\IInstrumentHistoryBonusDistribution.cs" />
+    <Compile Include="Instrument\CorporateAction\IBonusDistributionCollection.cs" />
+    <Compile Include="Instrument\IOption.cs" />
+    <Compile Include="Instrument\IStockDividend.cs" />
+    <Compile Include="Instrument\IInstrumentCorporateActionCollection.cs.cs" />
+    <Compile Include="Instrument\ITurbo.cs" />
+    <Compile Include="Instrument\IVirtualFund.cs" />
+    <Compile Include="Instrument\IDerivativeMaster.cs" />
+    <Compile Include="Instrument\ISecurity.cs" />
+    <Compile Include="Instrument\Lifecycle\ILifecycle.cs" />
+    <Compile Include="Instrument\Lifecycle\ILifecycleLine.cs" />
+    <Compile Include="Instrument\Lifecycle\ILifecycleLineCollection.cs" />
+    <Compile Include="Instrument\Model\IBenchMarkModel.cs" />
+    <Compile Include="Instrument\Model\IModelComponentCollection.cs" />
+    <Compile Include="Instrument\Model\IModelDetail.cs" />
+    <Compile Include="Instrument\Model\IModelHierarchy.cs" />
+    <Compile Include="Instrument\Model\IModelPerformance.cs" />
+    <Compile Include="Instrument\Model\IModelPerformanceCollection.cs" />
+    <Compile Include="Instrument\Model\IModelVersionCollection.cs" />
+    <Compile Include="Instrument\Model\IPortfolioModel.cs" />
+    <Compile Include="Instrument\Price\IHistoricalPrice.cs" />
+    <Compile Include="Instrument\SizeAndPrice\InstrumentSizeExtensions.cs" />
+    <Compile Include="Instrument\SizeAndPrice\MoneyExtensions.cs" />
+    <Compile Include="Instrument\Nav\INavCalculation.cs" />
+    <Compile Include="Instrument\Nav\INavCalculationCollection.cs" />
+    <Compile Include="Instrument\Nav\INavCalculationOrder.cs" />
+    <Compile Include="Instrument\Nav\INavCashPosition.cs" />
+    <Compile Include="Instrument\Nav\INavFundPosition.cs" />
+    <Compile Include="Instrument\Nav\INavPortfolio.cs" />
+    <Compile Include="Instrument\Nav\INavPosition.cs" />
+    <Compile Include="Instrument\Nav\INavCalculationOrderCollection.cs" />
+    <Compile Include="Instrument\TaxRate\IHistoricalTaxRate.cs" />
+    <Compile Include="MIS\Positions\IHistoricalPosition.cs" />
+    <Compile Include="Nota\INotaAccount.cs" />
+    <Compile Include="Nota\INotaGeneralOperationsBooking.cs" />
+    <Compile Include="Nota\INotaGeneralOperationsBookingTaxeable.cs" />
+    <Compile Include="Nota\INotaTransactionBase.cs" />
+    <Compile Include="Notification\IAccountNotificationsCollection.cs" />
+    <Compile Include="Notification\IContactNotificationsCollection.cs" />
+    <Compile Include="Notification\Notification.cs" />
+    <Compile Include="Account\RemisierHistory\IRemisierHistory.cs" />
+    <Compile Include="Account\RemisierHistory\IRemisierHistoryCollection.cs" />
+    <Compile Include="Order\IOrderFormulaDetails.cs" />
+    <Compile Include="Order\ITransactionOrderCollection.cs" />
+    <Compile Include="Reports\IDocument.cs" />
+    <Compile Include="Reports\IFinancialReportDocument.cs" />
+    <Compile Include="Reports\INotaDocument.cs" />
+    <Compile Include="Reports\IReport.cs" />
+    <Compile Include="Reports\IReportEOY.cs" />
+    <Compile Include="Reports\IReportLetter.cs" />
+    <Compile Include="Reports\IReportQuarter.cs" />
+    <Compile Include="Reports\IReportSetting.cs" />
+    <Compile Include="CRM\Contacts\IContactCompany.cs" />
+    <Compile Include="CRM\Contacts\ICompanyContactPerson.cs" />
+    <Compile Include="CRM\Contacts\IContact.cs" />
+    <Compile Include="CRM\Contacts\IContactAccountHoldersCollection.cs" />
+    <Compile Include="CRM\Contacts\IContactCollection.cs" />
+    <Compile Include="CRM\Contacts\ICompanyContactPersonCollection.cs" />
+    <Compile Include="CRM\Contacts\IContactsIntroducer.cs" />
+    <Compile Include="CRM\Contacts\IContactsIntroducersCollection.cs" />
+    <Compile Include="CRM\Contacts\IContactsNAW.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CRM\Contacts\IContactsNAWCollection.cs" />
+    <Compile Include="CRM\Contacts\IIdentification.cs" />
+    <Compile Include="Instrument\CorporateAction\IDividendHistory.cs" />
+    <Compile Include="Fees\CommissionBreakupLine.cs" />
+    <Compile Include="Fees\Commission.cs" />
+    <Compile Include="Fees\CommissionBreakupLineCollection.cs" />
+    <Compile Include="Fees\FeeType.cs" />
+    <Compile Include="Fees\ICommissionParent.cs" />
+    <Compile Include="Fees\ICommClient.cs" />
+    <Compile Include="Instrument\IBenchMark.cs" />
+    <Compile Include="Fees\MgtFee.cs" />
+    <Compile Include="Fees\MgtFeeBreakupLine.cs" />
+    <Compile Include="Fees\MgtFeeBreakupLineCollection.cs" />
+    <Compile Include="Fees\MgtFeeBreakupLineFeeCollection.cs" />
+    <Compile Include="Instrument\History\IInstrumentsHistoryConversion.cs" />
+    <Compile Include="Instrument\IInstrumentsWithPrices.cs" />
+    <Compile Include="Instrument\SizeAndPrice\MoneyMath.cs" />
+    <Compile Include="StaticData\Address.cs" />
+    <Compile Include="StaticData\IBank.cs" />
+    <Compile Include="StaticData\IBankDetails.cs" />
+    <Compile Include="StaticData\IContactDetails.cs" />
+    <Compile Include="StaticData\ICountry.cs" />
+    <Compile Include="StaticData\ICountryHolidayCollection.cs" />
+    <Compile Include="StaticData\IIdentificationType.cs" />
+    <Compile Include="StaticData\INationality.cs" />
+    <Compile Include="StaticData\IPandHouder.cs" />
+    <Compile Include="StaticData\IVerpandSoort.cs" />
+    <Compile Include="StaticData\Person.cs" />
+    <Compile Include="StaticData\TelephoneNumber.cs" />
+    <Compile Include="Stichting\IAssetManagerInstrument.cs" />
+    <Compile Include="Stichting\IAssetManagerInstrumentCollection.cs" />
+    <Compile Include="Stichting\Login\CustomerLoginPerson.cs" />
+    <Compile Include="Stichting\Login\IAssetManagerEmployeeLogin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stichting\Login\IComplianceEmployeeLogin.cs" />
+    <Compile Include="Stichting\Login\ICustomerLogin.cs" />
+    <Compile Include="Job\IJobHistory.cs" />
+    <Compile Include="Job\IJobNotification.cs" />
+    <Compile Include="Job\RemoteJobManager.cs" />
+    <Compile Include="Stichting\Login\IExternalLogin.cs" />
+    <Compile Include="Stichting\Login\IRemisierEmployeeLogin.cs" />
+    <Compile Include="Job\AgentWorker.cs" />
+    <Compile Include="Job\IJobManager.cs" />
+    <Compile Include="Job\WorkerResult.cs" />
+    <Compile Include="Stichting\Login\IStichtingEmployeeLogin.cs" />
+    <Compile Include="Instrument\Model\IModelComponent.cs" />
+    <Compile Include="Instrument\Model\IModelModel.cs" />
+    <Compile Include="Nota\INotaInstrumentConversion.cs" />
+    <Compile Include="Nota\INotaDeposit.cs" />
+    <Compile Include="Nota\INotaDividend.cs" />
+    <Compile Include="Nota\INotaFees.cs" />
+    <Compile Include="Nota\INotaTransfer.cs" />
+    <Compile Include="Instrument\HistoricalInstrumentDataKey.cs" />
+    <Compile Include="Reports\IReportTemplate.cs" />
+    <Compile Include="CRM\Contacts\IContactPerson.cs" />
+    <Compile Include="Instrument\ExRates\IHistoricalExRate.cs" />
+    <Compile Include="Instrument\ExRates\IExRateCollection.cs" />
+    <Compile Include="Instrument\IBond.cs" />
+    <Compile Include="Instrument\IInstrumentCollection.cs" />
+    <Compile Include="Instrument\InstrumentExchange\IInstrumentExchange.cs" />
+    <Compile Include="Instrument\InstrumentExchange\IInstrumentExchangeCollection.cs" />
+    <Compile Include="Instrument\History\IInstrumentHistory.cs" />
+    <Compile Include="Instrument\IStock.cs" />
+    <Compile Include="Instrument\SizeAndPrice\PredictedSize.cs" />
+    <Compile Include="Stichting\Login\ILogin.cs" />
+    <Compile Include="Account\ModelHistory\IModelHistory.cs" />
+    <Compile Include="Account\ModelHistory\IModelHistoryCollection.cs" />
+    <Compile Include="Nota\INota.cs" />
+    <Compile Include="Nota\INotaTransaction.cs" />
+    <Compile Include="Order\IAllocateableOrder.cs" />
+    <Compile Include="Order\IStgAmtOrder.cs" />
+    <Compile Include="Order\IStgMonetaryOrder.cs" />
+    <Compile Include="Order\IStgOrder.cs" />
+    <Compile Include="Order\IStgSizeOrder.cs" />
+    <Compile Include="Order\OrderValidationResult.cs" />
+    <Compile Include="Stichting\IAccountCategory.cs" />
+    <Compile Include="Stichting\IAccountCategoryCollection.cs" />
+    <Compile Include="Stichting\IAssetManager.cs" />
+    <Compile Include="Instrument\Exchange\IExchange.cs" />
+    <Compile Include="Instrument\ExRates\IExRate.cs" />
+    <Compile Include="Fees\ICommCalc.cs" />
+    <Compile Include="Fees\IFeeFactory.cs" />
+    <Compile Include="Fees\ICommRule.cs" />
+    <Compile Include="FSExportFile\IFSExportFile.cs" />
+    <Compile Include="Instrument\ICashManagementFund.cs" />
+    <Compile Include="Instrument\ICurrency.cs" />
+    <Compile Include="Instrument\IInstrument.cs" />
+    <Compile Include="Instrument\IMutualFund.cs" />
+    <Compile Include="Instrument\SizeAndPrice\InstrumentSize.cs" />
+    <Compile Include="Instrument\ISecCategory.cs" />
+    <Compile Include="Instrument\ITradeableInstrument.cs" />
+    <Compile Include="Instrument\SizeAndPrice\Money.cs" />
+    <Compile Include="Instrument\SizeAndPrice\Price.cs" />
+    <Compile Include="Instrument\Model\IModelBase.cs" />
+    <Compile Include="Instrument\Model\IModelInstrument.cs" />
+    <Compile Include="Instrument\Model\IModelInstrumentCollection.cs" />
+    <Compile Include="Instrument\Model\IModelVersion.cs" />
+    <Compile Include="MIS\StoredPositions\IStoredPositionTransaction.cs" />
+    <Compile Include="Order\IAggregateAmtOrder.cs" />
+    <Compile Include="Order\IAggregatedOrder.cs" />
+    <Compile Include="Order\IAggregateMonetaryOrder.cs" />
+    <Compile Include="Order\IAggregateSizeOrder.cs" />
+    <Compile Include="Order\IMonetaryOrder.cs" />
+    <Compile Include="Order\IOrder.cs" />
+    <Compile Include="Order\IOrderAmountBased.cs" />
+    <Compile Include="Order\IOrderCollection.cs" />
+    <Compile Include="Order\IOrderSizeBased.cs" />
+    <Compile Include="Order\ISecurityOrder.cs" />
+    <Compile Include="OrderRouteMapper\IOrderRouteMapper.cs" />
+    <Compile Include="Instrument\Price\IPriceDetailCollection.cs" />
+    <Compile Include="Instrument\Price\IPriceDetail.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Instrument\Route\IRoute.cs" />
+    <Compile Include="Stichting\IAssetManagerCollection.cs" />
+    <Compile Include="Stichting\IEffectenGiro.cs" />
+    <Compile Include="Stichting\Login\IInternalEmployeeLogin.cs" />
+    <Compile Include="Stichting\IManagementCompany.cs" />
+    <Compile Include="Stichting\IRemisierCollection.cs" />
+    <Compile Include="Stichting\IRemisierEmployee.cs" />
+    <Compile Include="Stichting\IRemisierEmployeesCollection.cs" />
+    <Compile Include="Stichting\IRemisier.cs" />
+    <Compile Include="Stichting\Login\IUserLogEntry.cs" />
+    <Compile Include="Stichting\Login\LoginPerson.cs" />
+    <Compile Include="Stichting\Login\RemisierEmployeeLoginPerson.cs" />
+    <Compile Include="Communicator\Symbol\IInstrumentSymbol.cs" />
+    <Compile Include="Communicator\Symbol\ISymbol.cs" />
+    <Compile Include="Transactions\ICorporateActionExecution.cs" />
+    <Compile Include="Transactions\ICorporateActionStockDividend.cs" />
+    <Compile Include="Transactions\ITransaction.cs" />
+    <Compile Include="Transactions\IBonusDistribution.cs" />
+    <Compile Include="Transactions\ICorporateAction.cs" />
+    <Compile Include="Transactions\IInstrumentConversion.cs" />
+    <Compile Include="Transactions\ICrumbleTransaction.cs" />
+    <Compile Include="Transactions\IOrderAllocation.cs" />
+    <Compile Include="Transactions\IOrderExecutionChildCollection.cs" />
+    <Compile Include="Transactions\IOrderExecution.cs" />
+    <Compile Include="Transactions\ITransactionComponentCollection.cs" />
+    <Compile Include="Transactions\ITransactionMigration.cs" />
+    <Compile Include="Transactions\ITransactionNTM.cs" />
+    <Compile Include="Transactions\ITransactionOrder.cs" />
+    <Compile Include="Transactions\IOrderExecutionChild.cs" />
+    <Compile Include="Transactions\ITransactionTrading.cs" />
+    <Compile Include="Transactions\ITxPositionTxCollection.cs" />
+    <Compile Include="Transactions\ITransactionType.cs" />
+    <Compile Include="Transfers\IPositionTransfer.cs" />
+    <Compile Include="Transfers\IPositionTransferDetail.cs" />
+    <Compile Include="Transfers\IPositionTransferDetailCollection.cs" />
+    <Compile Include="Transfers\IPositionTransferPortfolio.cs" />
+    <Compile Include="Transfers\IPositionTransferPosition.cs" />
+    <Compile Include="Transfers\IPositionTransferPositionCollection.cs" />
+    <Compile Include="Transfers\Reporting\IPositionTransferReportPositionCollection.cs" />
+    <Compile Include="Transfers\Reporting\IPositionTransferReportPortfolio.cs" />
+    <Compile Include="Transfers\Reporting\IPositionTransferReportPosition.cs" />
+    <Compile Include="Transfers\ITransactionNTMCollection.cs" />
+    <Compile Include="Utils\BatchExecutionResults.cs" />
+    <Compile Include="Utils\BatchExecutionResults2.cs" />
+    <Compile Include="Utils\ConfigSettingsInfo.cs" />
+    <Compile Include="Collections\GenericCollection.cs" />
+    <Compile Include="Utils\DateTimeUnit.cs" />
+    <Compile Include="Utils\DynamicXmlObjectLoader.cs" />
+    <Compile Include="Utils\EnumComparer.cs" />
+    <Compile Include="Utils\FinancialMath.cs" />
+    <Compile Include="Utils\HashCodeCombiner.cs" />
+    <Compile Include="Utils\Linq\EnumerableExtensions.cs" />
+    <Compile Include="Utils\EnumExtensions.cs" />
+    <Compile Include="Utils\IStateMachineClient.cs" />
+    <Compile Include="Utils\Linq\ExpressionExtensions.cs" />
+    <Compile Include="Utils\Linq\KeyValueEqualityComparer.cs" />
+    <Compile Include="Utils\NullGetterExtensions.cs" />
+    <Compile Include="Utils\NumExtensions.cs" />
+    <Compile Include="Utils\SmallSetComparer.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
+    <Compile Include="Utils\Tuple\Tuple.cs" />
+    <Compile Include="Utils\Tuple\Tuple1.cs" />
+    <Compile Include="Utils\Tuple\Tuple2.cs" />
+    <Compile Include="Utils\Tuple\Tuple3.cs" />
+    <Compile Include="Utils\Tuple\Tuple4.cs" />
+    <Compile Include="Utils\Util.cs" />
+    <Compile Include="Utils\XMLStateMachine.cs" />
+    <Compile Include="Valuation\AverageHolding\IAverageHolding.cs" />
+    <Compile Include="Valuation\AverageHolding\IAverageHoldingCollection.cs" />
+    <Compile Include="Valuation\IAverageHoldingFee.cs" />
+    <Compile Include="Valuation\IAverageHoldingFeeCollection.cs" />
+    <Compile Include="Valuation\IDepositWithdrawal.cs" />
+    <Compile Include="Valuation\IJournalEntryLineValuationMapping.cs" />
+    <Compile Include="Valuation\ILastValuationCashMutationCollection.cs" />
+    <Compile Include="Valuation\ILastValuationCashMutationHolder.cs" />
+    <Compile Include="Valuation\IMonetaryValuationMutation.cs" />
+    <Compile Include="Valuation\IJournalEntryLineValuationCashMapping.cs" />
+    <Compile Include="Valuation\IPositionTxValuationMapping.cs" />
+    <Compile Include="Valuation\ISecurityValuationMutation.cs" />
+    <Compile Include="Valuation\ISecurityValuationMutationCashMutationCollection.cs" />
+    <Compile Include="Valuation\IValuation.cs" />
+    <Compile Include="Valuation\IValuationCashMutation.cs" />
+    <Compile Include="Valuation\IValuationCashType.cs" />
+    <Compile Include="Valuation\IValuationMutation.cs" />
+    <Compile Include="Valuation\IValuationTotalPortfolio.cs" />
+    <Compile Include="Valuation\ManagementPeriodUnit\IManagementPeriodUnit.cs" />
+    <Compile Include="Valuation\ManagementPeriodUnit\IManagementPeriodUnitCollection.cs" />
+    <Compile Include="Valuation\ManagementPeriodUnit\IManagementPeriodUnitCorrection.cs" />
+    <Compile Include="Valuation\ManagementPeriodUnit\IManagementPeriodUnitFee.cs" />
+    <Compile Include="Valuation\ManagementPeriodUnit\IManagementPeriodUnitFeeCollection.cs" />
+    <Compile Include="Valuation\ManagementPeriodUnit\IManagementPeriodUnitParent.cs" />
+    <Compile Include="Valuation\ReportData\IKickBackExport.cs" />
+    <Compile Include="Valuation\ReportedData\IEndTermValue.cs" />
+    <Compile Include="Valuation\ReportedData\IEndTermValueCollection.cs" />
+    <Compile Include="Valuation\ReportedData\IPeriodicReporting.cs" />
+    <Compile Include="Valuation\ReportedData\ReportingPeriod.cs" />
+    <Compile Include="Valuation\ReportedData\Reports\IEndTermDividWepComparison.cs" />
+    <Compile Include="Valuation\ReportedData\Reports\IEndTermDividWepComparisonCollection.cs" />
+    <Compile Include="Valuation\ReportedData\Reports\IReportEndTermDividWep.cs" />
+    <Compile Include="Valuation\ValuationCashMutationKey.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Interfaces.snk" />
+    <None Include="Order\OrderInterfaces.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Account\AccountInterfaces.cd" />
+    <None Include="GeneralLedger\Bookings\BookingComponents.cd" />
+    <None Include="Instrument\InstrumentInterface.cd" />
+    <None Include="StaticData\Person.hbm.xml.bak" />
+    <None Include="Stichting\StichtingInterfaces.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fees\CommissionBreakupLine.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fees\MgtFeeBreakupLine.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fees\FeeType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TotalGiro\DAL\DAL.csproj">
+      <Project>{B8880639-F591-41D0-A811-D832A36A8064}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Account\AccountWithdrawals\WithdrawalRuleRegularity.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Notification\Notification.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AssetManager\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

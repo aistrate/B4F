@@ -1,0 +1,61 @@
+﻿h5
+{
+    margin-top: 18px;
+    margin-bottom: 4px;
+    margin-left: 5px;
+    margin-right: 5px;
+    
+    padding: 0px;
+    line-height: 18px;
+    font-size: 1.15em;
+}
+h6
+{
+    margin-top: 12px;
+    margin-bottom: 4px;
+    margin-left: 22px;
+    margin-right: 5px;
+    
+    padding: 0px;
+    line-height: 18px;
+    font-size: 1.15em;
+}
+p
+{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-left: 23px;
+    margin-right: 5px;
+    
+    padding: 0px;
+    line-height: 18px;
+    font-size: 1.05em;
+    text-align: left;
+    width: 600px;
+}
+a.ArrowsLinkButton
+{
+	margin-left: 10px;
+    font-size: 1.05em;
+}
+hr
+{
+	margin-top: 5px;
+	margin-bottom: 50px;
+}
+img
+{
+	margin-left: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #313457;
+}
+q
+{
+	text-decoration: underline;
+	color: #3333CC;
+}
+q:before, q:after
+{
+	content: "";
+}

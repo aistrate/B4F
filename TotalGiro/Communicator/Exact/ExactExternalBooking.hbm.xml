@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Communicator.Exact.ExactExternalBooking, B4F.TotalGiro.Communicator" 
+         table="ExactExternalBookings"
+         proxy="B4F.TotalGiro.Communicator.Exact.IExactExternalBooking, B4F.TotalGiro.Interfaces" 
+         mutable="false"  >
+    <id name="Key" column="ExactExternalBookingsID" unsaved-value="0">
+      <generator class="assigned" />
+    </id>
+    <property name="BookDate" column="BookDate" />
+    <property name="BookingNumber" column="BookingNumber" />
+    <property name="Journal" column="Journal" />
+    <property name="LineNumber" column="LineNumber" />
+    <property name="GeneralLedgerAccount" column="GeneralLedgerAccount" />
+    <component name="ExactAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" >
+      <property name="Quantity" column="ExactAmount" />
+      <many-to-one name="Underlying" column="ExactAmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+    </component>
+  </class>
+</hibernate-mapping>

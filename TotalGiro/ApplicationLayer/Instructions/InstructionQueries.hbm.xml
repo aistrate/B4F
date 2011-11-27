@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<query name="B4F.TotalGiro.ApplicationLayer.Instructions.InstrumentsToExclude" >
+		<![CDATA[
+        from TradeableInstrument I
+		where I.Key not in (select CF.Key from CashManagementFund CF)
+		and I.Name like :name 
+		and I.Isin like :isin
+		and I.Key not in (:keys)
+		and I.Key in (select AI.Instrument.Key from AssetManagerInstrument AI where AI.AssetManager.Key = :managementCompanyID and AI.IsActive = 1)
+		and I.Key not in (:excludedKeys)
+		order by I.Name
+    ]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.ApplicationLayer.Instructions.ModelsToExclude" >
+		<![CDATA[
+		from PortfolioModel M
+		where M.IsActive = 1
+		and M.ModelName like :name 
+		and M.AssetManager.Key = :managementCompanyID
+		and M.Key not in (:excludedKeys)
+		order by M.ModelName
+    ]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.ApplicationLayer.Instructions.InstrumentsFromInstructions" >
+		<![CDATA[
+		from TradeableInstrument I 
+        where I.Key in (
+            select P.Size.Underlying.Key 
+            from FundPosition P 
+            where P.Size.Quantity != 0 
+            and P.Account.Key in (
+                select A.Key 
+                from Instruction Isc 
+                join Isc.Account A 
+                where Isc.Key in (:keys)
+                )
+            )
+        or I.Key in (
+            select O.TradedInstrument
+            from SecurityOrder as O 
+            where O.Status in (
+                select OS.key 
+                from OrderStatus OS 
+                where OS.IsOpen = 1
+                ) 
+            and O.Account.Key in ( 
+                select A.Key 
+                from Instruction Isc 
+                join Isc.Account A 
+                where Isc.Key in (:keys)
+                )
+            )
+    ]]>
+	</query>
+
+</hibernate-mapping>

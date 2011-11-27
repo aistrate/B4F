@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashPosition, B4F.TotalGiro.Accounts" 
+		   table="GLPositions" 
+		   proxy ="B4F.TotalGiro.Accounts.Portfolios.CashPositions.ICashPosition, B4F.TotalGiro.Interfaces"
+		   dynamic-update="true">
+		<id name="Key" column="GLPositionID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" />
+		<many-to-one name="PositionCurrency" column="PositionCurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" />
+		<many-to-one name="SettledPosition" column="SettledPositionID" class="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPositionSettled, B4F.TotalGiro.Accounts"  cascade="all"/>
+		<!--<many-to-one name="UnSettledPosition" column="UnSettledPositionID" class="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPosition, B4F.TotalGiro.Accounts" cascade="all"/>-->
+		<bag name="unSettledPositions" access="field" generic="true" lazy="true" cascade="save-update"
+			where="SettledStatusID=0"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Accounts.Portfolios.CashPositions.ICashSubPositionUnSettled, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPositionUnSettledCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+			<key column="GLPositionID" foreign-key="GLPositionID" />
+			<one-to-many class="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPositionUnSettled, B4F.TotalGiro.Accounts" />
+		</bag>
+		<many-to-one name="LastMutation" column="ValuationMutationID" class="B4F.TotalGiro.Valuations.ValuationMutation, B4F.TotalGiro.Valuations" cascade="save-update" />
+		<property name="openDate" column="OpenDate" access="field" type="Date"/>
+		<many-to-one name="LastValuation" column="LastValuationID" class="B4F.TotalGiro.Valuations.Valuation, B4F.TotalGiro.Valuations" cascade="none" insert="false" update="false" />
+		<property name="creationDate" column="CreationDate" access="field" type="Date"/>
+	</class>
+</hibernate-mapping>

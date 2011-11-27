@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.FSInterface.FSExportFile, B4F.TotalGiro.Communicator" table="FSExportFile" lazy="true">
+		<id name="Key" column="FileID" unsaved-value="0">
+			<generator class="assigned" />
+		</id>
+		<property name="FileName" column="Name" />
+    <property name="FileExt" column="Ext" />
+    <property name="FilePath" column="Path" />
+		<property name="FSNumber" column="FSNumber" />
+		<property name="CreationDate" column="CreationDate" type="DateTime"/>
+		<property name="SentDate" column="SentDate" type="Date" />
+		<bag name="Orders" table="Orders" cascade="save-update" inverse="true" lazy="true">
+			<key column="FSExportFileID" />
+			<one-to-many class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" />
+		</bag>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.StaticData.IdentificationType, B4F.TotalGiro.StaticData" table="LegitimatieSoorten" mutable="false"
+		proxy="B4F.TotalGiro.StaticData.IIdentificationType, B4F.TotalGiro.Interfaces">
+		<cache usage="read-only" />
+		<id name="Key" column="LegitimatieSoortID" unsaved-value="0">
+			<generator class="assigned" />
+		</id>
+		<property name="IdType" column="LegitimatieSoort" />
+	</class>
+</hibernate-mapping>

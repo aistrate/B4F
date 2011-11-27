@@ -1,0 +1,60 @@
+<asp:GridView runat="server" 
+    CssClass="gridview"
+    Width="770px"
+    GridLines="None"
+    CellSpacing="0"
+    CellPadding="4"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row multiline" horizontalalign="Left" />
+    <RowStyle CssClass="gridview-row multiline" />
+    <AlternatingRowStyle BackColor="#E9EEF3" />
+    <SelectedRowStyle BackColor="#D8D8D8" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0">
+            <tr><td style="height: 17px"></td></tr>
+            <tr><td style="height: 17px"></td></tr>
+            <tr><td style="height: 17px"></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</asp:GridView>
+
+<asp:GridView runat="server" 
+    SkinID="custom-width" 
+    CssClass="gridview"
+    GridLines="None"
+    CellSpacing="0"
+    CellPadding="4"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row multiline" horizontalalign="Left" />
+    <RowStyle CssClass="gridview-row multiline" />
+    <AlternatingRowStyle BackColor="#E9EEF3" />
+    <SelectedRowStyle BackColor="#D8D8D8" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0">
+            <tr><td style="height: 17px"></td></tr>
+            <tr><td style="height: 17px"></td></tr>
+            <tr><td style="height: 17px"></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</asp:GridView>
+
+<asp:GridView runat="server"
+    SkinID="no-stripes"
+    CssClass="gridview"
+    GridLines="None"
+    CellSpacing="0"
+    CellPadding="3"
+    CaptionAlign="Top">
+    <HeaderStyle CssClass="gridview-row multiline" horizontalalign="Left" />
+    <RowStyle CssClass="gridview-row multiline" />
+    <PagerStyle CssClass="gridview-pager" BackColor="#CDD7DC" />
+    <EmptyDataTemplate>
+        <table cellpadding="0" cellspacing="0">
+            <tr><td style="height: 17px"></td></tr>
+            <tr><td style="height: 17px"></td></tr>
+            <tr><td style="height: 17px"></td></tr>
+        </table>
+    </EmptyDataTemplate>
+</asp:GridView>

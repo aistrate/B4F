@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmR3ZD0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9EYXRhV2FyZWhvdXNlL0Rlc2lnbmVyLzEuMCI+DQogIDxFbmFibGVkPnRydWU8L0VuYWJsZWQ+DQogIDxQcm9qZWN0TmFtZT5TQUs8L1Byb2plY3ROYW1lPg0KICA8QXV4UGF0aD5TQUs8L0F1eFBhdGg+DQogIDxMb2NhbFBhdGg+U0FLPC9Mb2NhbFBhdGg+DQogIDxQcm92aWRlcj5TQUs8L1Byb3ZpZGVyPg0KPC9Tb3VyY2VDb250cm9sSW5mbz4=</State>
+  <DataSources>
+    <ProjectItem>
+      <Name>TotalGiroLive.rds</Name>
+      <FullPath>TotalGiroLive.rds</FullPath>
+    </ProjectItem>
+  </DataSources>
+  <Reports>
+    <ProjectItem>
+      <Name>ReconCurrent.rdl</Name>
+      <FullPath>ReconCurrent.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>ReconExternal.rdl</Name>
+      <FullPath>ReconExternal.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>ReconInvest.rdl</Name>
+      <FullPath>ReconInvest.rdl</FullPath>
+    </ProjectItem>
+  </Reports>
+  <Configurations>
+    <Configuration>
+      <Name>Debug</Name>
+      <Platform>Win32</Platform>
+      <Options>
+        <TargetServerURL>http://145.7.20.129/ReportServer</TargetServerURL>
+        <TargetFolder>ReconCurrent/</TargetFolder>
+        <TargetDataSourceFolder>Data Sources/</TargetDataSourceFolder>
+        <OverwriteDataSources>true</OverwriteDataSources>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>DebugLocal</Name>
+      <Platform>Win32</Platform>
+      <Options>
+        <TargetFolder>ReportsReconciliation</TargetFolder>
+        <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>Production</Name>
+      <Platform>Win32</Platform>
+      <Options>
+        <TargetServerURL>http://145.7.20.129/reportserver</TargetServerURL>
+        <TargetFolder>ReportsReconciliation</TargetFolder>
+        <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
+        <OverwriteDataSources>true</OverwriteDataSources>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>PreProduction</Name>
+      <Options>
+        <TargetServerURL>http://145.7.20.130/reportserver</TargetServerURL>
+        <TargetFolder>ReportsReconciliation</TargetFolder>
+        <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
+        <OverwriteDataSources>true</OverwriteDataSources>
+      </Options>
+    </Configuration>
+  </Configurations>
+</Project>

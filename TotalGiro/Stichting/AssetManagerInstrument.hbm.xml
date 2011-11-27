@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Stichting.AssetManagerInstrument, B4F.TotalGiro.Stichting" table="AssetManagerInstruments" proxy="B4F.TotalGiro.Stichting.IAssetManagerInstrument, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="AssetManagerInstrumentID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="AssetManager" column="AssetManagerID" class="B4F.TotalGiro.Stichting.AssetManager, B4F.TotalGiro.Stichting" />
+		<many-to-one name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.TradeableInstrument, B4F.TotalGiro.Instruments" />
+		<many-to-one name="AssetClass" column="AssetClassID" class="B4F.TotalGiro.Instruments.Classification.AssetClass, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="RegionClass" column="RegionClassID" class="B4F.TotalGiro.Instruments.Classification.RegionClass, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="SectorClass" column="SectorClassID" class="B4F.TotalGiro.Instruments.Classification.SectorClass, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="InstrumentsCategories" column="InstrumentCategoryID" class="B4F.TotalGiro.Instruments.Classification.InstrumentsCategories, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="MaxWithdrawalAmountPercentage" column="MaxWithdrawalAmountPercentage" />
+		<property name="IsActive" column="IsActive" />
+	</class>
+</hibernate-mapping>

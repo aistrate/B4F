@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" table="Orders" 
+		   proxy="B4F.TotalGiro.Orders.IOrder, B4F.TotalGiro.Interfaces" dynamic-update="true">
+		<id name="Key" column="OrderID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<discriminator column="OrderTypeID" />
+		<!--OrderTypeID determines the subclassed Order class to instantiate-->
+		<!--OrderTypeID: 1 is a Normal Amount Based Order-->
+		<!--OrderTypeID: 2 is a Normal SizeBased Order-->
+		<!--OrderTypeID: 3 is an Normal Monetary Amount Order-->
+		<!--OrderTypeID: 11 is an Aggregate Amount Base Order-->
+		<!--OrderTypeID: 12 is an Aggregate Size Based Order-->
+		<!--OrderTypeID: 13 is an Aggregated Monetary Amount Order-->
+		<!--OrderTypeID: 21 is an Aggregate Amount Base Order-->
+		<!--OrderTypeID: 22 is an Aggregate Size Based Order-->
+		<!--OrderTypeID: 23 is an Aggregated Monetary Amount Order-->
+		<!--OrderTypeID: 99 is a Security Order-->
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" />
+		<many-to-one name="Route" column="RouteID" class="B4F.TotalGiro.Routes.Route, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="ExportFile" column="FSExportFileID" class="B4F.TotalGiro.Communicator.FSInterface.FSExportFile, B4F.TotalGiro.Communicator" cascade="none" />
+		<property name="Side" column="Side" />
+    <property name="OrderOpenClose" column="OrderOpenClose" type="B4F.TotalGiro.Orders.OpenClose, B4F.TotalGiro.Interfaces" />
+		<property name="IsCompleteFilled" column="IsCompleteFilled" />
+		<property name="Status" column="OrderStatusID" type="B4F.TotalGiro.Orders.OrderStati, B4F.TotalGiro.Interfaces" />
+		<property name="CancelStatus" column="CancelStatusID" type="B4F.TotalGiro.Orders.OrderCancelStati, B4F.TotalGiro.Interfaces"/>
+		<property name="Approved" column="Approved" />
+		<property name="approvalDate" column="ApprovalDate" type="Date" access="field"/>
+		<property name="CommissionInfo" column="CommissionInfo" />
+		<property name="exRate" access="field" column="ExRate" />
+		<property name="allocationDate" column="AllocationDate" type="Date" access="field"/>
+		<property name="dateClosed" column="DateClosed" type="Date" access="field" />
+		<property name="CreationDate" column="CreationDate" insert="false" update="false" type="DateTime"/>
+		<many-to-one name="ParentOrder" column="ParentOrderID" class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" cascade="all-delete-orphan" outer-join="true"/>
+		<one-to-one name="formulaDetails" class="B4F.TotalGiro.Orders.OrderFormulaDetails , B4F.TotalGiro.Orders" access="field" />
+		<!--<many-to-one name="topParentOrder" column="TopParentOrderIDNull"  access="field" class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" cascade="none" outer-join="true" insert="false" update="false"/>-->
+		<!--<bag name="bagOfTransactions" table="TransactionsOrder" access="field" cascade="all" inverse="true" lazy="true">
+			<key column="OrderID" />
+			<one-to-many class="B4F.TotalGiro.Orders.OldTransactions.ObsoleteTransactionOrder, B4F.TotalGiro.Orders" />
+		</bag>-->
+		<bag name="transactions" access="field" generic="true" lazy="true" cascade="all"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.Transactions.ITransactionOrder, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Orders.TransactionOrderCollection, B4F.TotalGiro.Orders]], B4F.TotalGiro.Interfaces">
+			<key column="OrderID" foreign-key="OrderID" />
+			<one-to-many class="B4F.TotalGiro.Orders.Transactions.TransactionOrder, B4F.TotalGiro.Orders" />
+		</bag>
+		<component name="Value" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces" >
+			<property name="Quantity" column="OrderValue" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="OrderValueID" cascade="none"/>
+		</component>
+		<component name="Price" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="OrderPrice" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="OrderPriceID" cascade="none" />
+			<many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="OrderPriceInstrumentID" cascade="none" />
+		</component>
+		<component name="FilledValue" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="FilledValue" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="FilledValueID" cascade="none" />
+		</component>
+		<!--<component name="Commission" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Commission" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="CommissionID" cascade="none"/>
+		</component>-->
+		<component name="CommissionDetails" class="B4F.TotalGiro.Fees.Commission, B4F.TotalGiro.Interfaces">
+			<parent name="Parent"/>
+			<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="Commission" />
+				<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="CommissionID" cascade="none" />
+			</component>
+			<bag name="lines" access="field" table="CommValueBreakup" cascade="all-delete-orphan" >
+				<key column="OrderID" />
+				<one-to-many class="B4F.TotalGiro.Fees.CommissionBreakupLine, B4F.TotalGiro.Interfaces" />
+			</bag>
+		</component>
+		<property name="DoNotChargeCommission" column="DoNotChargeCommission" />
+		<property name="Err" column="ErrorID" type="B4F.TotalGiro.Orders.OrderErrors, B4F.TotalGiro.Interfaces" />
+		<property name="ErrDescription" column="ErrDescription" />
+		<property name="ActionType" column="ActionTypeID" type="B4F.TotalGiro.Orders.OrderActionTypes, B4F.TotalGiro.Interfaces" />
+		<!--<bag name="bagOfChildOrders" table="tblOrders" access="field" cascade="none" lazy="true">
+			<key column="ParentOrderID" />
+			<one-to-many class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" />
+		</bag>-->
+		<bag name="childOrders" access="field" generic="true" lazy="true" cascade="all"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.IOrder, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Orders.OrderCollection, B4F.TotalGiro.Orders]], B4F.TotalGiro.Interfaces">
+			<key column="ParentOrderID" foreign-key="OrderID" />
+			<one-to-many class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" />
+		</bag>
+		<!--<many-to-one name="MoneyOrder" column="MoneyOrderID" class="B4F.TotalGiro.Orders.MonetaryOrder, B4F.TotalGiro.Orders" cascade="all" />-->
+		<property name="IsNetted" column="IsNetted"/>
+		<property name="IsTypeConverted" column="IsTypeConverted" />
+		<property name="valueToBuy" column="ValueToBuy" access="field"/>
+		<property name="valueToSell" column="ValueToSell" access="field"/>
+		<property name="serviceChargeForBuy" column="ServiceChargeForBuy" access="field"/>
+		<property name="serviceChargeForSell" column="ServiceChargeForSell" access="field"/>
+		<many-to-one name="Instruction" column="AccountInstructionID" class="B4F.TotalGiro.Accounts.Instructions.Instruction, B4F.TotalGiro.Accounts" cascade="all" />
+		<property name="OrderInfo" column="OrderInfo"/>
+		<component name="placedValue" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces" access="field" >
+			<property name="Quantity" column="PlacedValue" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="PlacedValueID" cascade="none" />
+		</component>
+		<many-to-one name="requestedInstrument" column="RequestedInstrumentID" access="field"   class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" insert="false" update="false" />
+		<subclass name="B4F.TotalGiro.Orders.SecurityOrder, B4F.TotalGiro.Orders" 
+			proxy="B4F.TotalGiro.Orders.ISecurityOrder, B4F.TotalGiro.Interfaces" 
+			discriminator-value="99"
+			dynamic-update="true">
+			<many-to-one name="TradedInstrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.TradeableInstrument, B4F.TotalGiro.Instruments" cascade="none" />
+			<component name="ServiceCharge" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="ServiceCharge" />
+				<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="ServiceChargeID" cascade="none"/>
+			</component>
+			<component name="AccruedInterest" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" >
+				<property name="Quantity" column="AccruedInterest" />
+				<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="AccruedInterestID" cascade="none"/>
+			</component>
+			<subclass name="B4F.TotalGiro.Orders.OrderAmountBased, B4F.TotalGiro.Orders" 
+					  discriminator-value="1" 
+					  proxy="B4F.TotalGiro.Orders.IOrderAmountBased, B4F.TotalGiro.Interfaces"
+					  dynamic-update="true">
+				<property name="IsValueInclComm" column="IsValueInclComm" />
+				<subclass name="B4F.TotalGiro.Orders.AggregateAmtOrder, B4F.TotalGiro.Orders" 
+						  discriminator-value="11" 
+						  proxy="B4F.TotalGiro.Orders.IAggregateAmtOrder, B4F.TotalGiro.Interfaces"
+						  dynamic-update="true">
+					<subclass name="B4F.TotalGiro.Orders.StgAmtOrder, B4F.TotalGiro.Orders" 
+							  discriminator-value="21" 
+							  proxy="B4F.TotalGiro.Orders.IStgAmtOrder, B4F.TotalGiro.Interfaces"
+							  dynamic-update="true">
+						<property name="IsCurrencyConverted" column="IsConverted" />
+					</subclass>
+				</subclass>
+			</subclass>
+			<subclass name="B4F.TotalGiro.Orders.OrderSizeBased, B4F.TotalGiro.Orders" 
+					  discriminator-value="2" 
+					  proxy="B4F.TotalGiro.Orders.IOrderSizeBased, B4F.TotalGiro.Interfaces"
+					  dynamic-update="true">
+				<property name="IsClosure" column="IsClosure" />
+				<subclass name="B4F.TotalGiro.Orders.AggregateSizeOrder, B4F.TotalGiro.Orders" 
+						  discriminator-value="12" 
+						  proxy="B4F.TotalGiro.Orders.IAggregateSizeOrder, B4F.TotalGiro.Interfaces"
+						  dynamic-update="true">
+					<subclass name="B4F.TotalGiro.Orders.StgSizeOrder, B4F.TotalGiro.Orders" 
+							  discriminator-value="22" 
+							  proxy="B4F.TotalGiro.Orders.IStgSizeOrder, B4F.TotalGiro.Interfaces"
+							  dynamic-update="true">
+					</subclass>
+				</subclass>
+			</subclass>
+		</subclass>
+		<subclass name="B4F.TotalGiro.Orders.MonetaryOrder, B4F.TotalGiro.Orders" 
+				  discriminator-value="3" 
+				  proxy="B4F.TotalGiro.Orders.IMonetaryOrder, B4F.TotalGiro.Interfaces"
+				 dynamic-update="true">
+			<many-to-one name="requestedCurrency" column="RequestedCurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" access="field" cascade="save-update" />
+			<many-to-one name="moneyParent" column="MoneyParentID" class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" access="field" cascade="save-update" />
+			<!--<bag name="childOrders" table="tblOrders" access="field" cascade="none">
+				<key column="ParentOrderID" />
+				<one-to-many class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Accounts" />
+			</bag>-->
+			<subclass name="B4F.TotalGiro.Orders.AggregateMonetaryOrder, B4F.TotalGiro.Orders" 
+					  discriminator-value="13" 
+					  proxy="B4F.TotalGiro.Orders.IAggregateMonetaryOrder, B4F.TotalGiro.Interfaces"
+					  dynamic-update="true">
+				<subclass name="B4F.TotalGiro.Orders.StgMonetaryOrder, B4F.TotalGiro.Orders" 
+						  discriminator-value="23" 
+						  proxy="B4F.TotalGiro.Orders.IStgMonetaryOrder, B4F.TotalGiro.Interfaces"
+						  dynamic-update="true">
+				</subclass>
+			</subclass>
+		</subclass>
+	</class>
+
+	<sql-query name="B4F.TotalGiro.Orders.GetChildFillableOrderKeys" >
+		<query-param name="orderId" type="System.Int32"/>
+		<![CDATA[
+        With OrderTree( OrderID, AccountID, OrderStatusID ) as
+		(
+			select O.OrderID, O.AccountID, O.OrderStatusID
+			from Orders O
+			where O.ParentOrderID = :orderId
+			union all
+			select O.OrderID, O.AccountID, O.OrderStatusID 
+			from Orders O
+			inner join OrderTree T on O.ParentOrderID = T.OrderID
+		)
+		select T.OrderID
+		from OrderTree T
+		inner join Accounts A on A.AccountID = T.AccountID 
+		where A.AccountTypeID in (15, 25, 30, 85, 90)
+		and T.OrderStatusID = 1
+		order by T.OrderID
+    ]]>
+	</sql-query>
+	
+	<sql-query name="B4F.TotalGiro.Orders.GetChildOrderCount" >
+		<return-scalar column="Total" type="System.Int32" />
+		<query-param name="orderId" type="System.Int32"/>
+		<![CDATA[
+        With OrderTree( OrderID, AccountID, OrderStatusID ) as
+		(
+			select O.OrderID, O.AccountID, O.OrderStatusID
+			from Orders O
+			where O.ParentOrderID = :orderId
+			union all
+			select O.OrderID, O.AccountID, O.OrderStatusID 
+			from Orders O
+			inner join OrderTree T on O.ParentOrderID = T.OrderID
+		)
+		select count(T.OrderID) as Total
+		from OrderTree T
+		inner join Accounts A on A.AccountID = T.AccountID 
+		where A.AccountTypeID in (15, 25, 30, 85, 90)
+    ]]>
+	</sql-query>
+
+	<!--<query name="B4F.TotalGiro.Orders.GetChildFillableOrderKeys" >
+		<![CDATA[
+		select O.Key
+		from Order O
+		join O.topParentOrder T
+		join O.Account A
+		where T.Key = :Key
+		and A.Key in (Select G.Key from AccountTypeCustomer G )
+		and O.Status in (1, 3, 4, 5)
+		]]>
+	</query>-->
+	
+	<query name="B4F.TotalGiro.Orders.GetNotarizableOrderIds" >
+		<![CDATA[
+		select O.Key
+		from SecurityOrder O
+		left join O.transactions T
+		left join O.Account A
+		where O.Status = :status
+		and O in (
+			select TA.Order 
+			from OrderAllocation TA 
+			where TA.TxNota is null
+			and IsNull(TA.NotaMigrated, 0) = 0 
+			and TA.StornoTransaction is null)
+		and A in (
+			select CA from CustomerAccount CA)
+		and A.AccountOwner.Key = :managementCompanyId
+		and A.Key = :accountId
+		order by A.Number, T.TransactionDate, O.Key
+		]]>
+	</query>
+
+</hibernate-mapping>

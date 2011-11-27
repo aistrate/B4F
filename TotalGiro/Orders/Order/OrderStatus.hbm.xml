@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="field">
+	<class name="B4F.TotalGiro.Orders.OrderStatus, B4F.TotalGiro.Orders" table="OrderStatus" >
+		<id name="key" column="OrderStatusID" unsaved-value="0">
+			<generator class="assigned" />
+		</id>
+		<property name="Name" column="OrderStatus" />
+		<property name="IsOpen" column="IsOpen" />
+		<property name="IsEditable" column="IsEditable" />
+		<property name="IsFillable" column="IsFillable" />
+	</class>
+</hibernate-mapping>

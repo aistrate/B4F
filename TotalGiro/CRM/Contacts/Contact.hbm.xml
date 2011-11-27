@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.CRM.Contact, B4F.TotalGiro.CRM" table="Contacts" 
+		proxy="B4F.TotalGiro.CRM.IContact, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ContactID">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<property name="InternetEnabled" column="InternetEnabled" type="B4F.TotalGiro.CRM.InternetEnabled, B4F.TotalGiro.Interfaces"/>
+		<property name="IsActive" column="IsActive" />
+		<property name="ResidentialState" column="ResidentialState" type="B4F.TotalGiro.CRM.ResidentStatus, B4F.TotalGiro.Interfaces"/>
+		<property name="StatusNAR" column="StatusNAR" type="B4F.TotalGiro.CRM.EnumStatusNAR, B4F.TotalGiro.Interfaces"/>
+		<many-to-one name="CurrentNAW" column="ContactsNawID" class="B4F.TotalGiro.CRM.ContactsNAW, B4F.TotalGiro.CRM" cascade="none"  />
+		<many-to-one name="CurrentIntroducer" column="IntroducerID" class="B4F.TotalGiro.CRM.ContactsIntroducer, B4F.TotalGiro.CRM" cascade="none"  />
+		<many-to-one name="AssetManager" column="AssetManagerID" class="B4F.TotalGiro.Stichting.AssetManager, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="CreationDate" column="CreationDate" type="DateTime" insert="false" update="false" />
+		<one-to-one name="Login" property-ref="Contact" class="B4F.TotalGiro.Stichting.Login.CustomerLogin, B4F.TotalGiro.Stichting" 
+                cascade="none" />
+		<component name="ContactDetails" class="B4F.TotalGiro.StaticData.ContactDetails, B4F.TotalGiro.StaticData">
+			<component name="Telephone" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="Telephone"/>
+			</component>
+			<component name="TelephoneAH" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="TelephoneAH"/>
+			</component> 
+			<component name="Mobile" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="Mobile"/>
+			</component>
+			<component name="Fax" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="Fax"/>
+			</component>
+			<property name="Email" column="Email"/>
+			<property name="SendNewsItem" column="SendNewsItem"/>
+		</component>
+    <bag name="accountHolders" access="field" generic="true" lazy="true" cascade="all" fetch="subselect"
+					collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Accounts.IAccountHolder, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.CRM.ContactAccountHoldersCollection, B4F.TotalGiro.CRM]], B4F.TotalGiro.Interfaces">
+      <key column="ContactID" foreign-key="ContactID" />
+      <one-to-many class="B4F.TotalGiro.Accounts.AccountHolder, B4F.TotalGiro.Accounts" />
+    </bag>
+		<bag name="bagOfCounterAccounts" access="field" table="ContactsCounterAccounts" cascade="all" lazy="true">
+			<key column="ContactID"  />
+			<many-to-many column="CounterAccountID" class="B4F.TotalGiro.Accounts.CounterAccount, B4F.TotalGiro.Accounts"/>
+		</bag>
+		<bag name="bagOfContactsNAWs" table="ContactsNAW" access="field" cascade="all"  order-by="CreationDate DESC" lazy="true">
+			<key column="ContactID" />
+			<one-to-many class="B4F.TotalGiro.CRM.ContactsNAW, B4F.TotalGiro.CRM" />
+		</bag>
+		<bag name="bagOfContactsIntroducers" table="ContactsIntroducerHistory" access="field" cascade="all" order-by="CreationDate DESC" lazy="true">
+			<key column="ContactID" />
+			<one-to-many class="B4F.TotalGiro.CRM.ContactsIntroducer, B4F.TotalGiro.CRM" />
+		</bag>
+    <bag name="notifications" access="field" generic="true" lazy="true" cascade="none" table="NotificationRelations"
+      collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Notifications.Notification, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.CRM.Contacts.ContactNotificationsCollection, B4F.TotalGiro.CRM]], B4F.TotalGiro.Interfaces">
+      <key column="ContactID" foreign-key="ContactID" />
+      <many-to-many column="NotificationID" class="B4F.TotalGiro.Notifications.Notification, B4F.TotalGiro.Interfaces" />
+    </bag>
+    <bag name="contactSendingOptions" access="field" inverse="true" cascade="all-delete-orphan" generic="true" lazy="true"
+			 order-by="SendableDocumentCategoryID, SendingOptionID"
+			 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.CRM.IContactSendingOption, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.CRM.ContactSendingOptionCollection, B4F.TotalGiro.CRM]], B4F.TotalGiro.Interfaces">
+			<key column="ContactID" />
+			<one-to-many class="B4F.TotalGiro.CRM.ContactSendingOption, B4F.TotalGiro.CRM" />
+		</bag>
+		<joined-subclass name="B4F.TotalGiro.CRM.ContactPerson, B4F.TotalGiro.CRM" table="ContactsPerson"
+	  				     proxy ="B4F.TotalGiro.CRM.IContactPerson, B4F.TotalGiro.Interfaces" >
+			<key column="ContactID"/>
+			<property name="HasMinimumData" column="HasMinimumData"/>
+			<property name="Title" column="Titel"/>
+			<property name="FirstName" column="Voorletters"/>
+			<property name="MiddleName" column="TussenVoegsels"/>
+			<property name="Gender" column="Geslacht" type="B4F.TotalGiro.StaticData.Gender, B4F.TotalGiro.Interfaces"/>
+			<many-to-one name="Nationality" column="NationalityID" class="B4F.TotalGiro.StaticData.Nationality, B4F.TotalGiro.StaticData" cascade="none" />
+			<property name="BurgerServiceNummer" column="SofiNummer"/>
+			<property name="DateOfBirth" column="DateOfBirth" type="Date" />
+			<component name="Identification" class="B4F.TotalGiro.CRM.Identification, B4F.TotalGiro.CRM">
+				<many-to-one name="IdentificationType" column="LegitimatieSoortID" class="B4F.TotalGiro.StaticData.IdentificationType, B4F.TotalGiro.StaticData" cascade="none" />
+				<property name="Number" column="LegitimatieNummer"/>
+				<property name="ValidityPeriod" column="LegitimatieGeldigTot" type="Date" />
+			</component>
+			<bag name="bagOfCompanies" table="ContactsCompanyContactPerson" access="field" cascade="all-delete-orphan" lazy="true">
+				<key column="ContactsPersonID" />
+				<one-to-many class="B4F.TotalGiro.CRM.CompanyContactPerson, B4F.TotalGiro.CRM" />
+			</bag>
+		</joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.CRM.ContactCompany, B4F.TotalGiro.CRM" table="ContactsCompany"
+						 proxy ="B4F.TotalGiro.CRM.IContactCompany, B4F.TotalGiro.Interfaces" >
+			<key column="ContactID"/>
+			<property name="DateOfFounding" column="DatumOprichting" type="Date" />
+			<property name="KvKNumber" column="KVK"/>
+			<bag name="bagOfContactPerson" table="ContactsCompanyContactPerson" access="field" cascade="all" inverse="true" lazy="true">
+				<key column="ContactsCompanyID" />
+				<one-to-many class="B4F.TotalGiro.CRM.CompanyContactPerson, B4F.TotalGiro.CRM" />
+			</bag>
+		</joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.CRM.ContactDelegate, B4F.TotalGiro.CRM" table="ContactsDelegate"
+						 proxy ="B4F.TotalGiro.CRM.IContactDelegate, B4F.TotalGiro.Interfaces" >
+			<key column="ContactID"/>
+			<property name="DateOfFounding" column="DatumOprichting" type="Date" />
+			<property name="KvKNumber" column="KVK"/>
+		</joined-subclass>
+	</class>
+
+	<query name="B4F.TotalGiro.CRM.Contact.CheckBSNIsUnique" >
+		<![CDATA[
+		select count(*)
+		from ContactPerson P
+		where P.BurgerServiceNummer = :bsn
+		and P.AssetManager.Key = :companyId
+		and P.Key != :personId
+	]]>
+	</query>
+
+</hibernate-mapping>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting"
+		   table="ManagementCompanies"
+       dynamic-update="true"  
+		   proxy="B4F.TotalGiro.Stichting.IManagementCompany, B4F.TotalGiro.Interfaces">
+    <id name="Key" column="ManagementCompanyID" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="CompanyName" column="Name" />
+    <many-to-one name="TradingAccount" column="TradingAccountID" class="B4F.TotalGiro.Accounts.TradingAccount, B4F.TotalGiro.Accounts" cascade="all" />
+    <property name="tradingAccountKey" column="TradingAccountID" access="field" insert="false" update="false" />
+    <many-to-one name="OwnAccount" column="OwnAccountID" class="B4F.TotalGiro.Accounts.NostroAccount, B4F.TotalGiro.Accounts" cascade="all" />
+    <many-to-one name="DefaultAccountforTransfer" column="TransferAccount" class="B4F.TotalGiro.Accounts.AccountTypeExternal, B4F.TotalGiro.Accounts" />
+    <many-to-one name="BaseCurrency" column="BaseCurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" />
+    <many-to-one name="ManagementFeeIncomeAccount" column="ManagementFeeIncomeID" class="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger"/>
+    <many-to-one name="ManagementFeeFixedCostsAccount" column="ManagementFeeFixedCostsID" class="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger"/>
+    <many-to-one name="StichtingDetails" column="StichtingDetailsID" class="B4F.TotalGiro.Stichting.EffectenGiro, B4F.TotalGiro.Stichting"/>
+    <property name="PdfReportsFolder" column="PdfReportsFolder" />
+    <property name="Initials" column="Initials" />
+    <property name="ShowLogoByDefault" column="ShowLogoByDefault" />
+    <property name="InitialClientUserRoles" column="InitialClientUserRoles" />
+    <joined-subclass name="B4F.TotalGiro.Stichting.AssetManager, B4F.TotalGiro.Stichting"
+						 table="AssetManagers"
+             dynamic-update="true"
+						 proxy="B4F.TotalGiro.Stichting.IAssetManager, B4F.TotalGiro.Interfaces" >
+      <key column="ManagementCompanyID"/>
+      <property name="BoSymbol" column="BOSymbol" />
+      <bag name="remisiers" access="field" generic="true" lazy="true" cascade="none" order-by="Naam"
+				 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Stichting.Remisier.IRemisier, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Stichting.Remisier.RemisierCollection, B4F.TotalGiro.Stichting]], B4F.TotalGiro.Interfaces">
+        <key column="AssetManagerID" />
+        <one-to-many class="B4F.TotalGiro.Stichting.Remisier.Remisier, B4F.TotalGiro.Stichting" />
+      </bag>
+      <bag name="instruments" access="field" generic="true" lazy="true" cascade="none"
+				 order-by="InstrumentID" table="AssetManagerInstruments"
+				 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.ITradeableInstrument, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Stichting.TradeableInstrumentCollection, B4F.TotalGiro.Stichting]], B4F.TotalGiro.Interfaces">
+        <key column="AssetManagerID" />
+        <many-to-many class="B4F.TotalGiro.Instruments.TradeableInstrument, B4F.TotalGiro.Instruments" column="InstrumentID" />
+      </bag>
+      <bag name="assetManagerInstruments" access="field" generic="true" lazy="true" cascade="save-update"
+				 order-by="InstrumentID" table="AssetManagerInstruments"
+				 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Stichting.IAssetManagerInstrument, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Stichting.AssetManagerInstrumentCollection, B4F.TotalGiro.Stichting]], B4F.TotalGiro.Interfaces">
+        <key column="AssetManagerID" />
+        <one-to-many class="B4F.TotalGiro.Stichting.AssetManagerInstrument, B4F.TotalGiro.Stichting"  />
+      </bag>
+      <bag name="bagOfAccountCategories" table="AssetManagerAccountCategory" access="field" cascade="all" lazy="true">
+        <key column="ManagementCompanyID" />
+        <many-to-many class="B4F.TotalGiro.Stichting.AccountCategory, B4F.TotalGiro.Stichting" column="AssetManagerID"/>
+      </bag>
+      <many-to-one name="CashManagementFund" column="CashFundID" class="B4F.TotalGiro.Instruments.CashManagementFund, B4F.TotalGiro.Instruments" />
+      <many-to-one name="ClosedModelPortfolio" column="ClosedModelID" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" cascade="none" />
+      <property name="MgtFeeDescription" column="MgtFeeDescription" />
+      <property name="MgtFeeFinalDescription" column="MgtFeeFinalDescription" />
+      <property name="MgtFeeThreshold" column="MgtFeeThreshold" />
+      <property name="DoNotChargeCommissionWithdrawals" column="DoNotChargeCommissionWithdrawals" />
+      <property name="IsActive" column="IsActive" />
+      <property name="SupportLifecycles" column="SupportLifecycles" />
+    </joined-subclass>
+    <joined-subclass name="B4F.TotalGiro.Stichting.EffectenGiro, B4F.TotalGiro.Stichting"
+						 table="EffectenGiroDetails"
+             dynamic-update="true"
+						 proxy="B4F.TotalGiro.Stichting.IEffectenGiro, B4F.TotalGiro.Interfaces" >
+      <key column="ManagementCompanyID"/>
+      <many-to-one name="CrumbleAccount" column="CrumbleAccountID" class="B4F.TotalGiro.Accounts.CrumbleAccount, B4F.TotalGiro.Accounts" />
+      <many-to-one name="Country" column="CountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+      <many-to-one name="DefaultWithdrawJournal" column="DefaultWithdrawJournalID" class="B4F.TotalGiro.GeneralLedger.Static.Journal, B4F.TotalGiro.GeneralLedger" cascade="none" />
+      <many-to-one name="CurrentBookYear" column="CurrentBookYearID" class="B4F.TotalGiro.GeneralLedger.Static.GLBookYear, B4F.TotalGiro.GeneralLedger" cascade="All"/>
+      <property name="StichtingName" column="StichtingName" />
+      <property name="ClientWebsiteUrl" column="ClientWebsiteUrl" />
+      <component name="ResidentialAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+        <property name="Street" column="ResidentialStraat"/>
+        <property name="HouseNumber" column="ResidentialHuisNummer"/>
+        <property name="HouseNumberSuffix" column="ResidentialHuisNummerToevoeging"/>
+        <property name="PostalCode" column="ResidentialPostCode"/>
+        <property name="City" column="ResidentialPlaats"/>
+        <many-to-one name="Country" column="ResidentialCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+      </component>
+      <bag name="assetManagers" access="field" generic="true" lazy="true" cascade="save-update" inverse="true" table="ManagementCompanies" where="(ManagementCompanyID != 1)"
+				 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Stichting.IAssetManager, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Stichting.AssetManagerCollection, B4F.TotalGiro.Stichting]], B4F.TotalGiro.Interfaces">
+        <key column="StichtingDetailsID" />
+        <many-to-many class="B4F.TotalGiro.Stichting.AssetManager, B4F.TotalGiro.Stichting" column="ManagementCompanyID" />
+      </bag>
+
+    </joined-subclass>
+  </class>
+</hibernate-mapping>

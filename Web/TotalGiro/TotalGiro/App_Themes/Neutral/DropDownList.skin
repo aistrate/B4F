@@ -1,0 +1,17 @@
+<asp:DropDownList 
+    Height="19px"
+    Width="150px"
+    Font-Size="11px"
+    runat="server" />
+<asp:DropDownList 
+    SkinID="custom-width"
+    Height="19px"
+    Font-Size="11px"
+    runat="server" />
+<asp:DropDownList 
+    SkinID="broad"
+    Height="19px"
+    Width="250px"
+    Font-Size="11px"
+    runat="server" />    
+

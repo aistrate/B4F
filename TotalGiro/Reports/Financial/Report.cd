@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="B4F.TotalGiro.Reports.Financial.Report">
+    <Position X="2.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QQAABACAgAAEQAQAAAIGAAAAAAAAAAACAAAAAAAAAEA=</HashCode>
+      <FileName>Financial\Report.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Reports.Financial.ReportEOY">
+    <Position X="0.5" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Financial\ReportEOY.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Reports.Financial.ReportQuarter">
+    <Position X="5.25" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Financial\ReportQuarter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

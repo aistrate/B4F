@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Stichting.AccountCategory, B4F.TotalGiro.Stichting" table="AssetManagerAccountCategory" 
+			proxy="B4F.TotalGiro.Stichting.IAccountCategory, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="AssetManagerAccountCategoryID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="AssetManager" column="AssetManagerID" class="B4F.TotalGiro.Stichting.AssetManager, B4F.TotalGiro.Stichting" />
+		<property name="AccountNrPrefix" column="AccountNrPrefix" />
+		<property name="AccountNrLength" column="AccountNrLength" />
+		<property name="CustomerType" column="CustomerType" />
+		<property name="AccountNrFountain" column="AccountNrFountain" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,275 @@
+﻿body
+{
+	font-family: Trebuchet MS, Arial, Sans-Serif;
+	font-size: 12px;
+	color: #313457;
+}
+select
+{
+	font-family: Trebuchet MS, Arial, Sans-Serif;
+	font-size: 1em;
+	color: #313457;
+	height: 20px;
+}
+input
+{
+	font-family: Trebuchet MS, Arial, Sans-Serif;
+	font-size: 1em;
+	color: #313457;
+	padding: 0px;
+}
+hr
+{
+     margin-top: 9px !important;
+     margin-bottom: 10px !important;
+     margin-top: 2px;
+     margin-bottom: 3px;
+}
+input.push-button
+{
+	font-size: 1.15em;
+	padding: 0px;
+}
+table.button-list td
+{
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 0px;
+	padding-right: 20px;
+	margin-left: 0px;
+	margin-right: 0px;
+	vertical-align: middle;
+}
+span.checkbox
+{
+	vertical-align: middle;
+}
+table.button-list input, table.button-list label, .checkbox input, .checkbox label
+{
+	float: left;
+	padding-left: 0px;
+	padding-right: 0px;
+	line-height: 20px;
+	vertical-align: middle;
+}
+table.button-list input, .checkbox input
+{
+	margin-left: 5px;
+	margin-right: 0px;
+	width: 13px;
+    vertical-align: middle;
+}
+table.button-list label, .checkbox label
+{
+	margin-left: 5px;
+	margin-right: 5px;
+	clear: right;
+	white-space: nowrap;
+}
+table .gridview
+{
+    border: Solid 1px #313457;
+    border-top: None;
+}
+table .gridview caption
+{
+	caption-side: top;
+	padding-top: 1px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #AAB9C2;
+	font-weight: bold;
+	text-align: left;
+	border: Solid 1px #313457;
+}
+th, td
+{
+	vertical-align: middle;
+}
+tr .gridview-row th
+{
+	background-color: #CDD7DC;
+}
+tr .gridview-row th, tr .gridview-row td
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	vertical-align: top;
+}
+tr .gridview-row th a
+{
+	text-decoration: none;
+}
+tr .gridview-row th a:hover
+{
+	text-decoration: underline;
+}
+tr .gridview-row td span
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+tr .gridview-pager td
+{
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 15px;
+}
+tr .gridview-pager td span
+{
+	padding-left: 0px;
+	padding-right: 0px;
+	font-weight: bold;
+}
+tr.multiline th
+{
+	padding-top: 2px;
+	padding-bottom: 1px;
+	line-height: 17px;
+}
+tr.multiline td
+{
+	padding-top: 1px;
+	padding-bottom: 2px;
+	line-height: 17px;
+}
+tr.multiline-multigv th
+{
+	padding-top: 2px;
+	padding-bottom: 1px;
+	line-height: 18px;
+}
+tr.multiline-multigv td
+{
+	padding-top: 1px;
+	padding-bottom: 3px;
+	line-height: 18px;
+}
+tr.multiline-multigv th.checkbox-col, tr.multiline-multigv td.checkbox-col
+{
+	padding-top: 4px;
+	padding-bottom: 0px;
+}
+tr.multiline-multigv th.checkbox-col input, tr.multiline-multigv td.checkbox-col input
+{
+	vertical-align: text-top;
+	margin: 0px;
+	width: 13px;
+	height: 13px;
+}
+.padding
+{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.largepadding
+{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.bigrightpadding
+{
+	padding-right: 15px;
+}
+.alignleft
+{
+	text-align: left;
+}
+.alignright
+{
+	text-align: right;
+}
+.aligncenter
+{
+	text-align: center;
+}
+.commandrow
+{
+	height: 25px;
+	padding-bottom: 3px;
+}
+a
+{
+	color: #3333CC;
+}
+a.ArrowsLinkButton
+{
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.ArrowsLinkButton:hover
+{
+	text-decoration: underline;
+}
+img.no-margin
+{
+	margin: 0px;
+}
+img.plain
+{
+    margin-bottom: -5px;
+}
+input.plain
+{
+    margin-bottom: -5px;
+}
+p.info
+{
+    margin-top: 0px;
+    margin-bottom: 11px;
+    margin-left: 5px;
+    margin-right: 5px;
+    
+    font-size: 1em;
+    padding: 0px;
+	line-height: 20px;
+    text-align: left;
+    width: 660px;
+}
+.ajax__tab_xp .ajax__tab_tab
+{
+    width: 150px;
+	font-family: Trebuchet MS, Arial, Sans-Serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+/* for Firefox only */
+.ajax__tab_xp .ajax__tab_tab
+{
+    -moz-box-orient: vertical;
+    display: -moz-inline-box;
+}
+.ajax__tab_xp .ajax__tab_body .ajax__tab_panel
+{
+	font-family: Trebuchet MS, Arial, Sans-Serif;
+	font-size: 12px;
+	padding-top: 10px;
+}
+tr td .no-padding
+{
+    padding: 0px;
+}
+tr td .treeview
+{
+    padding-left: 3px;
+    padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 3px;
+}
+tr td .treeview-text
+{
+    padding-left: 3px;
+}
+.print-only
+{
+    display: none;
+}
+@media print
+{
+    .print-only
+    {
+        display: block;
+    }
+}

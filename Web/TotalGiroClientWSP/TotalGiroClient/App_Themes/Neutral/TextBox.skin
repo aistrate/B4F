@@ -1,0 +1,13 @@
+<asp:TextBox
+    Width="145px"
+    Height="16px"
+    Font-Size="1em"
+    runat="server">
+</asp:TextBox>
+
+<asp:TextBox
+    SkinID="custom-width"
+    Height="16px"
+    Font-Size="1em"
+    runat="server">
+</asp:TextBox>

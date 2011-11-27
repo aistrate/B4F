@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="field">
+	<class name="B4F.TotalGiro.Valuations.ValuationCashType, B4F.TotalGiro.Valuations" 
+	   table="ValuationCashTypes"
+	   proxy ="B4F.TotalGiro.Valuations.IValuationCashType, B4F.TotalGiro.Interfaces" >
+		<id name="key" column="ValuationCashTypeID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="cashType" column="ValuationCashType"/>
+		<property name="description" column="ValuationCashTypeDescription"/>
+		<property name="sign" column="Sign"/>
+		<property name="isSettled" column="IsSettled"/>
+	</class>
+</hibernate-mapping>

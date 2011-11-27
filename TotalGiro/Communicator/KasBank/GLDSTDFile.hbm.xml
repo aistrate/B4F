@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.KasBank.GLDSTDFile, B4F.TotalGiro.Communicator" table="GLDSTDFile">
+		<id name="Key" column="GLDSTDFileID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="CreationDate" column="CreationDate" type="DateTime"/>
+		<property name="ExportPath" column="ExportPath" />
+		<property name="FullFileName" column="FullFileName" />
+		<property name="KasMailID" column="KasMailID" />
+		<bag name="bagOfRecords" table="GLDSTD" access="field" cascade="all" inverse="true" lazy="true" >
+			<key column="GLDSTDFileID"  />			
+			<one-to-many class="B4F.TotalGiro.Communicator.KasBank.GLDSTD, B4F.TotalGiro.Communicator" />
+		</bag>
+	</class>
+</hibernate-mapping>

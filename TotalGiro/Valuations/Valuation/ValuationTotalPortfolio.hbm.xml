@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Valuations.ValuationTotalPortfolio, B4F.TotalGiro.Valuations" table="vweValuationsTotalPortfolio" proxy ="B4F.TotalGiro.Valuations.IValuationTotalPortfolio, B4F.TotalGiro.Interfaces" mutable="false" >
+		<id name="Key" column="ValuationID">
+			<generator class="assigned"/>
+		</id>
+		<many-to-one name="account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none" access="field" />
+		<property name="date" column="Date" access="field" type="Date" />
+		<component name="totalValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" access="field">
+			<property name="Quantity" column="TotalValue" />
+			<many-to-one name="Underlying" column="TotalValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+	</class>
+</hibernate-mapping>

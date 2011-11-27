@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Jobs.Manager.Notifier.JobNotification, B4F.TotalGiro.Jobs.Manager" table="JobNotifications" proxy="B4F.TotalGiro.Jobs.Manager.Notifier.IJobNotification, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="JobNotificationID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="ManagementCompanyID" column="ManagementCompanyID" />
+		<property name="NotificationDate" column="NotificationDate" type="Date" />
+		<property name="Status" column="NotificationStatus" type="B4F.TotalGiro.Jobs.WorkerResultStatus, B4F.TotalGiro.Interfaces" />
+		<property name="Details" column="NotificationDetails" />
+		<property name="ErrorDetails" column="ErrorDetails" />
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+	</class>
+</hibernate-mapping>

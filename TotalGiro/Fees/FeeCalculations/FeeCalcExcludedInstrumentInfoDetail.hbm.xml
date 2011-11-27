@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+	<class name="B4F.TotalGiro.Fees.FeeCalculations.FeeCalcExcludedInstrumentInfoDetail, B4F.TotalGiro.Fees" table="FeeCalcInstrumentExceptionDetails" lazy="true">
+		<id name="Key" column="FeeCalcInstrumentExceptionDetailID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Parent" class="B4F.TotalGiro.Fees.FeeCalculations.FeeCalcExcludedInstrumentInfo, B4F.TotalGiro.Fees" column="FeeCalcInstrumentExceptionID" cascade="none"/>
+		<many-to-one name="SecCategory" column="SecCategoryID" class="B4F.TotalGiro.Instruments.SecCategory, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="SignValue" column="SignValue" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPosition, B4F.TotalGiro.Accounts"
+		   table="GLSubPositions"
+		   proxy ="B4F.TotalGiro.Accounts.Portfolios.CashPositions.ICashSubPosition, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="GLSubPositionID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<discriminator column="SettledStatusID" />
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<many-to-one name="ParentPosition" column="GLPositionID" class="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashPosition, B4F.TotalGiro.Accounts" />
+		<property name="SettledFlag" column="SettledStatusID" type="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashPositionSettleStatus, B4F.TotalGiro.Interfaces" insert="false" update="false" />
+		<component name="Size" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="ValueSize" />
+			<many-to-one name="Underlying" column="ValueSizeID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<property name="creationDate" column="CreationDate" type="Date" access="field"/>
+		<bag name="journalLines" access="field" generic="true" lazy="true" cascade="save-update"
+			 where="GLSubPositionID in (SELECT S.GLSubPositionID FROM GLSubPositions S WHERE S.GLPositionID in (SELECT P.GLPositionID FROM GLPositions P WHERE P.AccountID in (SELECT A.AccountID From Accounts A WHERE A.AccountTypeID in (SELECT T.AccountTypeID From AccountTypes T WHERE T.IsCustomerBase = 1))))"
+			 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.IJournalEntryLine, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.Portfolios.CashPositions.GLJournalEntryLineCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+			<key column="GLSubPositionID" foreign-key="GLSubPositionID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+		<subclass name="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPositionSettled, B4F.TotalGiro.Accounts"
+				  proxy="B4F.TotalGiro.Accounts.Portfolios.CashPositions.ICashSubPositionSettled, B4F.TotalGiro.Interfaces"
+				  discriminator-value="1"
+				  dynamic-update="true">
+		</subclass>
+		<subclass name="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPositionUnSettled, B4F.TotalGiro.Accounts"
+				  proxy="B4F.TotalGiro.Accounts.Portfolios.CashPositions.ICashSubPositionUnSettled, B4F.TotalGiro.Interfaces"
+				  discriminator-value="0"
+				  dynamic-update="true">
+			<many-to-one name="UnSettledType" column="GLSubPositionsUnSettledTypeID" class="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashSubPositionUnSettledType, B4F.TotalGiro.Accounts" />
+		</subclass>
+	</class>
+</hibernate-mapping>

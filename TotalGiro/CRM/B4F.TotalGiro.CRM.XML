@@ -1,0 +1,430 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.CRM</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.CRM.Address">
+            <summary>
+            Class holds address data
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Address.#ctor(System.String,System.String,System.String,System.String,System.String,B4F.TotalGiro.StaticData.ICountry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.CRM.Address">Address</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Address.ToString">
+            <summary>
+            Overriding composition of name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Address.Street">
+            <summary>
+            Get/set street
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Address.HouseNumber">
+            <summary>
+            Get/set housenumber
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Address.HouseNumberSuffix">
+            <summary>
+            Get/set housenumber suffix
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Address.PostalCode">
+            <summary>
+            Get/set postal code
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Address.City">
+            <summary>
+            Get/set city
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Address.Country">
+            <summary>
+            Get/set country
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.CRM.Company">
+            <summary>
+            Class representing company specific information about a contact object
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.CRM.Contact">
+            <summary>
+            Class holds common data about a contact object
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Contact.op_Equality(B4F.TotalGiro.CRM.Contact,B4F.TotalGiro.CRM.Contact)">
+            <summary>
+            Overriden equality operator
+            </summary>
+            <param name="lhs">First contact object</param>
+            <param name="rhs">Second contact object</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Contact.op_Inequality(B4F.TotalGiro.CRM.Contact,B4F.TotalGiro.CRM.Contact)">
+            <summary>
+            Overriden unequality operator
+            </summary>
+            <param name="lhs">First contact object</param>
+            <param name="rhs">Second contact object</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Contact.Equals(System.Object)">
+            <summary>
+            Overriden Equals method
+            </summary>
+            <param name="obj">Object to compare with</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Contact.GetHashCode">
+            <summary>
+            Overriden hashcode composition
+            </summary>
+            <returns>Hashcode number</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Contact.Introducer">
+            <summary>
+            This is the owner of a contact.
+            Contacts with NAW should be managed by AssetManagers or Remisiers
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Contact.Key">
+            <summary>
+            Get/set identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Contact.ContactsNAWs">
+            <summary>
+            The collection of Naam-Adres-Woonplaats belonging to contact
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Contact.InternetEnabled">
+            <summary>
+            Flag if contact has internet provider
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Contact.ContactType">
+            <summary>
+            Get Contact Type (class)
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Contact.IsActive">
+            <summary>
+            Is contact an active participant of the Effectengiro
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.#ctor(B4F.TotalGiro.CRM.Contacts.IAddress,B4F.TotalGiro.CRM.Contacts.IAddress,B4F.TotalGiro.CRM.Contacts.IContactDetails,System.DateTime,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.CRM.Company">Company</see> class.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.CRM.Company.dateOfFounding">
+            <summary>
+            Overriding name composition
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Company.DateOfFounding">
+            <summary>
+            Get/set date of founding
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Company.KvKNumber">
+            <summary>
+            Get/set Dutch chamber of commerce number
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Company.CompanyContacts">
+            <summary>
+            Get/set collection of contacts within a company
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Company.Contacts">
+            <summary>
+            Get/set internal collection of company contacts
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.CRM.Company.CompanyContactList">
+            <summary>
+            Class holds collection of company contacts
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.#ctor(System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.CRM.Company.CompanyContactList">CompanyContactList</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.checkforDuplicates(B4F.TotalGiro.CRM.Person)">
+            <summary>
+            Check if person is not duplicate
+            </summary>
+            <param name="p">Person</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.checkforPrimary">
+            <summary>
+            Check if person is primary contact
+            </summary>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.SetPrimaryContact(System.Int32)">
+            <summary>
+            Set person as primary contact
+            </summary>
+            <param name="Index">Numer in collection</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.IndexOf(B4F.TotalGiro.CRM.CompanyContact)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.Insert(System.Int32,B4F.TotalGiro.CRM.CompanyContact)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.RemoveAt(System.Int32)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.Add(B4F.TotalGiro.CRM.CompanyContact)">
+            <summary>
+            collection of company contacts
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.Clear">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.Contains(B4F.TotalGiro.CRM.CompanyContact)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.CopyTo(B4F.TotalGiro.CRM.CompanyContact[],System.Int32)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.Remove(B4F.TotalGiro.CRM.CompanyContact)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.GetEnumerator">
+            <moduleiscollection>
+            </moduleiscollection>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Company.CompanyContactList.System#Collections#IEnumerable#GetEnumerator">
+            <moduleiscollection>
+            </moduleiscollection>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Company.CompanyContactList.Item(System.Int32)">
+            <summary>
+            Keyword this overload
+            </summary>
+            <param name="index">Index number</param>
+            <returns>CompanyContact object</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Company.CompanyContactList.Count">
+            <summary>
+            count number of company contacts elements in collection
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Company.CompanyContactList.IsReadOnly">
+            <exclude/>
+        </member>
+        <member name="T:B4F.TotalGiro.CRM.Identification">
+            <summary>
+            Class holding identification information
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Identification.#ctor(B4F.TotalGiro.StaticData.IIdentificationType,System.DateTime,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.CRM.Identification">Identification</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Identification.Number">
+            <summary>
+            Get/set identification object number
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Identification.ValidityPeriod">
+            <summary>
+            Get/set time period identification is valid
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Identification.IdentificationType">
+            <summary>
+            Get/set identification type
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.CRM.ContactsMapper">
+            <summary>
+            This class is used to instantiate Contact objects. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:B4F.TotalGiro.CRM.ContactsMapper.GetContacts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.IAssetManager,B4F.TotalGiro.Instruments.IModel,System.String,System.String,System.Boolean,System.Nullable{System.Boolean})" -->
+        <!-- Badly formed XML comment ignored for member "M:B4F.TotalGiro.CRM.ContactsMapper.GetContacts(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.IAssetManager,B4F.TotalGiro.Instruments.IModel,System.String,System.String,System.Boolean)" -->
+        <member name="M:B4F.TotalGiro.CRM.ContactsMapper.GetContacts(B4F.TotalGiro.Dal.IDalSession,System.String)">
+            <summary>
+            Retrieves a list of all <b>Contact</b> objects in the system.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="accountName">AccountName</param>
+            <returns>A list of all <b>Contacts</b> objects in the system.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.ContactsMapper.GetContact(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get Contact by ID
+            </summary>
+            <param name="Session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="ContactID">ID</param>
+            <returns>Contact object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.ContactsMapper.GetContactType(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="contactID">Identifier contact object</param>
+            <returns>Description of type contact</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.ContactsMapper.Insert(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.CRM.IContact)">
+            <summary>
+            Inserts a <b>Contact</b> object into the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="obj">The <b>Contact</b> object to insert into the database.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.ContactsMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.CRM.IContact)">
+            <summary>
+            Updates a <b>Contact</b> object to the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="obj">The <b>Contact</b> object to update into the database.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.ContactsMapper.Delete(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.CRM.IContact)">
+            <summary>
+            Deletes a <b>Contact</b> object from the database.
+            </summary>
+            <param name="session">An instance of the Data Access Library (see class <see cref="!:B4F.TotalGiro.DAL.NHSession">NHSession</see>).</param>
+            <param name="obj">The <b>Contact</b> object to delete from the database.</param>
+        </member>
+        <member name="T:B4F.TotalGiro.CRM.Person">
+            <summary>
+            Class representing person specific information about a contact object
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.Person.#ctor(System.String,System.String,System.String,B4F.TotalGiro.CRM.Contacts.IAddress,B4F.TotalGiro.CRM.Contacts.IAddress,B4F.TotalGiro.CRM.Contacts.IContactDetails,B4F.TotalGiro.CRM.Gender,B4F.TotalGiro.StaticData.INationality)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.CRM.Person">Person</see> class.
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.CRM.Person.title">
+            <summary>
+            Overriding name composition
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Person.Title">
+            <summary>
+            Get/set title
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Person.FirstName">
+            <summary>
+            Get/set first name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Person.MiddleName">
+            <summary>
+            Get/set middle name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Person.Gender">
+            <summary>
+            Get/set gender
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Person.Nationality">
+            <summary>
+            Get/set nationality
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Person.SofiNumber">
+            <summary>
+            Get/set sofinumber
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Person.DateOfBirth">
+            <summary>
+            Get/set date of birth
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.Person.Identification">
+            <summary>
+            Get/set identification object
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.CRM.ContactDetails">
+            <summary>
+            Class holding communication means
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.ContactDetails.#ctor(B4F.TotalGiro.CRM.Contacts.ITelephoneNumber,B4F.TotalGiro.CRM.Contacts.ITelephoneNumber,B4F.TotalGiro.CRM.Contacts.ITelephoneNumber,B4F.TotalGiro.CRM.Contacts.ITelephoneNumber,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.CRM.ContactDetails">ContactDetails</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.ContactDetails.ToString">
+            <summary>
+            Overriden string composition
+            </summary>
+            <returns>Telephone number</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.ContactDetails.EmailAddress">
+            <summary>
+            Get/set emailaddress
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.ContactDetails.Fax">
+            <summary>
+            Get/set fax number
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.ContactDetails.Telephone">
+            <summary>
+            Get/set telephone
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.ContactDetails.Mobile">
+            <summary>
+            Get/set mobile number
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.ContactDetails.TelephoneAH">
+            <summary>
+            Get/set telephone after hours
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.CRM.CompanyContact">
+            <summary>
+            Class represents person responsible for a company
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.CRM.CompanyContact.#ctor(B4F.TotalGiro.CRM.Person)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.CRM.CompanyContact">CompanyContact</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.CompanyContact.IsPrimaryContact">
+            <summary>
+            Get/set primary contact flag
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.CRM.CompanyContact.Person">
+            <summary>
+            Get/set person responsible
+            </summary>
+        </member>
+    </members>
+</doc>

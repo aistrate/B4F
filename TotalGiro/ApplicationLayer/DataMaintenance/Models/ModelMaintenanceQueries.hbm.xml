@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+
+	<query name="B4F.TotalGiro.ApplicationLayer.DataMaintenance.ModelOnActiveCustomers" >
+		<![CDATA[
+        select count(A.Key)
+		from AccountTypeCustomer A
+		where A.ModelPortfolio.Key = :modelId
+		and A.Status = 1
+    ]]>
+	</query>
+
+</hibernate-mapping>

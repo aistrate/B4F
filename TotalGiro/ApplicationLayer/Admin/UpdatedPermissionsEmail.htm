@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div style="font-family: Trebuchet MS; font-size: 13px">
+            <option-role-with-users>
+                Permissions for role <i>'<%PermissionParent%>'</i> have been changed. 
+                Below is the list of users that are now in this role.
+                Users added to the role are shown like <%FormattedAdd%>;
+                users removed from the role look like <%FormattedRemove%>;
+                the rest are unchanged users:
+            </option-role-with-users>
+            <option-user-with-roles>
+                Permissions for user <i>'<%PermissionParent%>'</i> have been changed. 
+                Below is the list of roles that this user now belongs to.
+                Roles added to the user are shown like <%FormattedAdd%>;
+                roles removed from the user look like <%FormattedRemove%>;
+                the rest are unchanged roles:
+            </option-user-with-roles>
+            <br />
+            <br />
+            <%PermissionChildren%>
+        </div>
+    </body>
+</html>

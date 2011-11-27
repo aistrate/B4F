@@ -1,0 +1,7 @@
+<asp:DropDownList 
+    Width="150px"
+    runat="server" />
+
+<asp:DropDownList 
+    SkinID="custom-width"
+    runat="server" />

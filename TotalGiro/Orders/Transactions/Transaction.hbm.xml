@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.Orders.Transactions.Transaction, B4F.TotalGiro.Orders"
+		   table="TGTransactions"
+		   proxy="B4F.TotalGiro.Orders.Transactions.ITransaction, B4F.TotalGiro.Interfaces" 
+       dynamic-update="true"  >
+		<id name="Key" column="TGTransactionID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<discriminator column="TGTransactionTypeID"  />
+		<timestamp name="LastUpdated" column="LastUpdated"/>
+		<property name="TransactionDate" column="TransactionDate" type="Date"/>
+		<property name="TransactionDateTime" column="TransactionDateTime" type="DateTime"/>
+		<property name="ServiceChargePercentage" column="ServiceChargePercentage" />
+		<property name="contractualSettlementDate" column="ContractualSettlementDate" type="Date" access="field"/>
+		<property name="approvalDate" column="ApprovalDate" type="Date" access="field"/>
+		<property name="Description" column="Description"/>
+		<property name="TempMigrationFlag" column="TempMigrationFlag"/>
+		<property name="StornoReason" column="StornoReason"/>
+		<property name="ExchangeRate" column="ExchangeRate"/>
+		<many-to-one name="AccountA" column="AccountAID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none"/>
+		<many-to-one name="AccountB" column="AccountBID" class="B4F.TotalGiro.Accounts.Account, B4F.TotalGiro.Accounts" cascade="none" />
+		<component name="ValueSize" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="ValueSize" />
+			<many-to-one name="Underlying" column="ValueSizeID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<component name="Price" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Price" />
+			<many-to-one name="Underlying" column="PriceID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<many-to-one name="Instrument" column="PriceInstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<!--Obsolete Money Data to be deleted after "Shadow administration-->
+		<component name="ObsoleteCounterValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="aCvalueSize" />
+			<many-to-one name="Underlying" column="aCValueInstrumentid" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="ObsoleteCommission" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="aCommission" />
+			<many-to-one name="Underlying" column="aCommissionid" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="ObsoleteServiceCharge" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="aServiceCharge" />
+			<many-to-one name="Underlying" column="aServiceChargeid" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<!--Obsolete Money Data to be deleted after "Shadow administration-->
+		<many-to-one name="Exchange" column="ExchangeID" class="B4F.TotalGiro.Instruments.Exchange, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="Approved" column="IsApproved" />
+		<many-to-one name="TradingJournalEntry" column="JournalEntryID" class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntry, B4F.TotalGiro.GeneralLedger" cascade="all-delete-orphan" />
+		<many-to-one name="StornoTransaction" column="StornoTransactionID" class="B4F.TotalGiro.Orders.Transactions.Transaction, B4F.TotalGiro.Orders" cascade="all" />
+		<property name="IsStorno" column="IsStorno" />
+		<many-to-one name="OriginalTransaction" column="OriginalTransactionID" class="B4F.TotalGiro.Orders.Transactions.Transaction, B4F.TotalGiro.Orders" cascade="all" />
+		<property name="TxSide" column="TxSideID" />
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false" />
+		<property name="CreatedBy" column="CreatedBy" />
+		<property name="ApprovedBy" column="ApprovedBy" />
+		<property name="MigratedTradeKey" column="MigratedTradeKey" />
+		<many-to-one name="TradeType" column="TGTransactionTypeID" class="B4F.TotalGiro.Orders.Transactions.TransactionType, B4F.TotalGiro.Orders" cascade="none" insert="false" update="false" />
+		<many-to-one name="TxNota" column="NotaID" class="B4F.TotalGiro.Notas.Nota, B4F.TotalGiro.Notas" cascade="all" />
+		<property name="NotaMigrated" column="NotaMigrated" />
+		<bag name="components" access="field" generic="true" lazy="true" cascade="all-delete-orphan" inverse="true"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.Bookings.ITransactionComponent, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Orders.Transactions.TransactionComponentCollection, B4F.TotalGiro.Orders]], B4F.TotalGiro.Interfaces">
+			<key column="TGTransactionID" foreign-key="TGTransactionID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.TransactionComponent, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+		<bag name="positionTransactions" access="field" generic="true" lazy="true" cascade="all"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Accounts.Portfolios.FundPositions.IFundPositionTx, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Orders.Transactions.TxPositionTxCollection, B4F.TotalGiro.Orders]], B4F.TotalGiro.Interfaces">
+			<key column="TGTransactionID" foreign-key="TGTransactionID" />
+			<one-to-many class="B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPositionTx, B4F.TotalGiro.Accounts" />
+		</bag>
+		<subclass name="B4F.TotalGiro.Orders.Transactions.TransactionNTM, B4F.TotalGiro.Orders"
+			  dynamic-update="true"
+			  discriminator-value="128"
+			  proxy="B4F.TotalGiro.Orders.Transactions.ITransactionNTM, B4F.TotalGiro.Interfaces">
+			<many-to-one name="TransferDetail" column="TransferDetailID" class="B4F.TotalGiro.Orders.Transfers.PositionTransferDetail, B4F.TotalGiro.Orders" cascade="all"/>
+		</subclass>
+		<subclass name="B4F.TotalGiro.Orders.Transactions.CorporateAction, B4F.TotalGiro.Orders"
+					dynamic-update="true"
+					discriminator-value="256"
+					proxy="B4F.TotalGiro.Orders.Transactions.ICorporateAction, B4F.TotalGiro.Interfaces">
+			<property name="CorporateActionType" column="CorporateActionTypeID" type="B4F.TotalGiro.Orders.Transactions.CorporateActionTypes, B4F.TotalGiro.Interfaces" />
+      <!--<property name="CorporateActionDescription" column="CorporateActionDescription" />-->
+      <many-to-one name="CorporateActionDetails" column="CorporateActionHistoryID" class="B4F.TotalGiro.Instruments.CorporateAction.DividendHistory, B4F.TotalGiro.Instruments" cascade="none"/>
+      <component name="PreviousSize" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="PreviousSize" />
+				<many-to-one name="Underlying" column="PreviousSizeID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+			</component>
+			<subclass name="B4F.TotalGiro.Orders.Transactions.InstrumentConversion, B4F.TotalGiro.Orders"
+				dynamic-update="true"
+				discriminator-value="512"
+				proxy="B4F.TotalGiro.Orders.Transactions.IInstrumentConversion, B4F.TotalGiro.Interfaces">
+				<component name="ConvertedInstrumentSize" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+					<property name="Quantity" column="ConvertedInstrumentSize" />
+					<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="ConvertedInstrumentSizeID" cascade="none" />
+				</component>
+        <many-to-one name="InstrumentTransformation" column="InstrumentsHistoryID" class="B4F.TotalGiro.Instruments.History.InstrumentHistory, B4F.TotalGiro.Instruments" cascade="none"/>
+			</subclass>
+			<subclass name="B4F.TotalGiro.Orders.Transactions.BonusDistribution, B4F.TotalGiro.Orders"
+				dynamic-update="true"
+				discriminator-value="1024"
+				proxy="B4F.TotalGiro.Orders.Transactions.IBonusDistribution, B4F.TotalGiro.Interfaces">
+				<property name="BonusPercentage" column="BonusPercentage" />				
+			</subclass>
+			<subclass name="B4F.TotalGiro.Orders.Transactions.CorporateActionStockDividend, B4F.TotalGiro.Orders"
+				dynamic-update="true"
+				discriminator-value="2048"
+				proxy="B4F.TotalGiro.Orders.Transactions.ICorporateActionStockDividend, B4F.TotalGiro.Interfaces">
+        <property name="IsGelicht" column="IsGelicht" />
+      </subclass>
+		</subclass>
+		<subclass name="B4F.TotalGiro.Orders.Transactions.CorporateActionExecution, B4F.TotalGiro.Orders"
+			  dynamic-update="true"
+			  discriminator-value="4096"
+			  proxy="B4F.TotalGiro.Orders.Transactions.ICorporateActionExecution, B4F.TotalGiro.Interfaces">
+      <many-to-one name="CorporateActionDetails" column="CorporateActionHistoryID" class="B4F.TotalGiro.Instruments.CorporateAction.DividendHistory, B4F.TotalGiro.Instruments" cascade="none"/>
+      <many-to-one name="CounterTransaction" column="CounterTransactionID" class="B4F.TotalGiro.Orders.Transactions.TransactionNTM, B4F.TotalGiro.Orders" cascade="all"/>
+      <many-to-one name="CounterBooking" column="CounterBookingID" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBooking , B4F.TotalGiro.GeneralLedger" cascade="all"/>
+    </subclass>
+		<subclass name="B4F.TotalGiro.Orders.Transactions.TransactionTrading, B4F.TotalGiro.Orders"
+		  dynamic-update="true"
+		  discriminator-value="1"
+		  proxy="B4F.TotalGiro.Orders.Transactions.ITransactionTrading, B4F.TotalGiro.Interfaces">
+			<property name="IsClientSettled" column="IsClientSettled"/>
+			<property name="clientSettlementDate" column="ClientSettledDate" type="Date" access="field"/>
+			<subclass name="B4F.TotalGiro.Orders.Transactions.TransactionOrder, B4F.TotalGiro.Orders"
+					  dynamic-update="true"
+					  discriminator-value="2"
+					  proxy="B4F.TotalGiro.Orders.Transactions.ITransactionOrder, B4F.TotalGiro.Interfaces">
+				<property name="FillRatio" column="FillRatio" />
+				<many-to-one name="Order" column="OrderID" class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" cascade="all" />
+				<subclass name="B4F.TotalGiro.Orders.Transactions.OrderExecutionChild, B4F.TotalGiro.Orders"
+						  dynamic-update="true"
+						  discriminator-value="4"
+						  proxy="B4F.TotalGiro.Orders.Transactions.IOrderExecutionChild, B4F.TotalGiro.Interfaces">
+					<many-to-one name="ParentExecution" column="ParentExecutionID" class="B4F.TotalGiro.Orders.Transactions.OrderExecution, B4F.TotalGiro.Orders" cascade="all" />
+					<subclass name="B4F.TotalGiro.Orders.Transactions.OrderAllocation, B4F.TotalGiro.Orders"
+							  dynamic-update="true"
+							  discriminator-value="8"
+							  proxy="B4F.TotalGiro.Orders.Transactions.IOrderAllocation, B4F.TotalGiro.Interfaces">
+					</subclass>
+					<subclass name="B4F.TotalGiro.Orders.Transactions.CrumbleTransaction, B4F.TotalGiro.Orders"
+							  dynamic-update="true"
+							  discriminator-value="16"
+							  proxy="B4F.TotalGiro.Orders.Transactions.ICrumbleTransaction, B4F.TotalGiro.Interfaces">
+					</subclass>
+				</subclass>
+				<subclass name="B4F.TotalGiro.Orders.Transactions.OrderExecution, B4F.TotalGiro.Orders"
+							dynamic-update="true"
+							discriminator-value="32"
+							proxy="B4F.TotalGiro.Orders.Transactions.IOrderExecution, B4F.TotalGiro.Interfaces">
+					<property name="IsAllocated" column="IsAllocated" />
+					<property name="allocationDate" column="AllocationDate"  type="Date" access="field"/>
+					<property name="IsSettled" column="IsSettled" />
+					<property name="actualSettlementDate" column="ActualSettlementDate" type="Date" access="field"/>
+					<bag name="allocations" access="field" generic="true" lazy="true" cascade="all"
+						collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+											[B4F.TotalGiro.Orders.Transactions.IOrderExecutionChild, B4F.TotalGiro.Interfaces],
+											[B4F.TotalGiro.Orders.Transactions.OrderExecutionChildCollection, B4F.TotalGiro.Orders]], B4F.TotalGiro.Interfaces">
+						<key column="ParentExecutionID" foreign-key="ID"  />
+						<one-to-many class="B4F.TotalGiro.Orders.Transactions.OrderExecutionChild, B4F.TotalGiro.Orders" />
+					</bag>
+				</subclass>
+			</subclass>
+			<subclass name="B4F.TotalGiro.Orders.Transactions.TransactionMigration, B4F.TotalGiro.Orders"
+				dynamic-update="true"
+				discriminator-value="64"
+				proxy="B4F.TotalGiro.Orders.Transactions.ITransactionMigration, B4F.TotalGiro.Interfaces">
+			</subclass>
+		</subclass>
+	</class>
+
+	<query name="B4F.TotalGiro.Orders.Transactions.GetNotarizableTransactionIds" >
+		<![CDATA[
+		select T.Key from Transaction T
+		left join T.AccountA A
+		where T.Approved = 1
+		and T.TxNota is null
+		and IsNull(T.NotaMigrated, 0) = 0
+		and A in (select CA from CustomerAccount CA)
+		and T.TradeType.Key = :tradeTypeId
+		and A.AccountOwner.Key = :managementCompanyId
+		and A.Key = :accountId
+		order by A.Number, T.TransactionDate, T.Key
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Orders.Transactions.Transaction.GetUnsettledExecutions" >
+		<![CDATA[
+        from OrderExecution E
+		where E.IsSettled = 0
+		and E.Approved = 1
+		and E.TransactionDate >= :startDate
+		and E.TransactionDate <= :endDate
+		order by E.TransactionDate
+		]]>
+	</query>
+	<query name="B4F.TotalGiro.Orders.Transactions.Transaction.GetUnsettledExecutionsById" >
+		<![CDATA[
+        from OrderExecution E
+		where E.IsSettled = 0
+		and E.Approved = 1
+		and E.Key in (:ids)
+		order by E.TransactionDate
+		]]>
+	</query>
+	<query name="B4F.TotalGiro.Orders.Transactions.Transaction.GetUnApprovedStornoes" >
+		<![CDATA[
+        from Transaction T
+		where T.IsStorno = 1
+		and T.Approved = 0
+		order by T.TransactionDate
+		]]>
+	</query>
+
+</hibernate-mapping>

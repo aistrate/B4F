@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Fees.CommCalculations.CommCalc, B4F.TotalGiro.Fees" table="CommCalculation">
+		<id name="key" column="CalcID" unsaved-value="0" access="field">
+			<generator class="identity" />
+		</id>
+		<discriminator column="FeeCalcTypeID" />
+		<!--FeeCalcTypeID determines the subclassed Commission class to instantiate-->
+		<!--FeeCalcTypeID: 1 is a Flat Commission Class-->
+		<!--FeeCalcTypeID: 2 is a Slab Commission Class-->
+		<!--FeeCalcTypeID: 3 is a Simple Commission Class -->
+		<property name="Name" column="CalcName" />
+		<many-to-one name="CommCurrency" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="CommCurrencyID" cascade="none"/>
+		<component name="MinValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="MinValue" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="MinValueCurrencyID" cascade="none"/>
+		</component>
+		<component name="MaxValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="MaxValue" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="MaxValueCurrencyID" cascade="none"/>
+		</component>
+		<component name="FixedSetup" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="FixedSetup" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="FixedSetupCurrencyID" cascade="none"/>
+		</component>
+		<many-to-one name="AssetManager" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" column="ManagementCompanyID" cascade="none"/>
+		<!--<property name="CalcType" column="FeeCalcTypeID" />-->
+    <list name="lines" access="field" generic="true" lazy="true" cascade="all-delete-orphan" inverse="true"
+      collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Fees.CommCalculations.CommCalcLine, B4F.TotalGiro.Fees],
+									[B4F.TotalGiro.Fees.CommCalculations.CommCalcLineCollection, B4F.TotalGiro.Fees]], B4F.TotalGiro.Interfaces">
+      <key column="CalcID" foreign-key="CalcID" />
+      <index column="SerialNo" />
+      <one-to-many class="B4F.TotalGiro.Fees.CommCalculations.CommCalcLine, B4F.TotalGiro.Fees" />
+    </list>
+    <subclass name="B4F.TotalGiro.Fees.CommCalculations.CommCalcFlat, B4F.TotalGiro.Fees" discriminator-value="1" lazy="true" >
+		</subclass>
+		<subclass name="B4F.TotalGiro.Fees.CommCalculations.CommCalcSlab, B4F.TotalGiro.Fees" discriminator-value="2" lazy="true" >
+		</subclass>
+    <subclass name="B4F.TotalGiro.Fees.CommCalculations.CommCalcSimple, B4F.TotalGiro.Fees" discriminator-value="3" lazy="true" >
+    </subclass>
+    <subclass name="B4F.TotalGiro.Fees.CommCalculations.CommCalcFlatSizeBased, B4F.TotalGiro.Fees" discriminator-value="4" lazy="true" >
+    </subclass>
+  </class>
+</hibernate-mapping>

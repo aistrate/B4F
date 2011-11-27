@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.TBM.MissingHistoricalPrice, B4F.TotalGiro.Communicator" table="MissingHistoricalPrices" lazy="false">
+		<id name="HistoricalPositionId" column="HistoricalPositionId" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="ISINCode" column="ISINCode" />
+		<property name="PriceDate" column="PriceDate" type="Date" />
+	</class>
+</hibernate-mapping>

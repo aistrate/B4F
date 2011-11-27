@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="B4F.TotalGiro.BackOffice.Orders.MoneyTransferOrderStatus, B4F.TotalGiro.BackOffice" table="MoneyTransferOrderStatus" >
+		<id name="key" column="OrderStatusID" unsaved-value="0" access="field">
+			<generator class="identity"/>
+		</id>
+		<property name="Name" column="OrderStatus" />
+		<property name="IsOpen" column="IsOpen" />
+		<property name="IsEditable" column="IsEditable" />
+	</class>
+</hibernate-mapping>

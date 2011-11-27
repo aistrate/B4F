@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.DataMigration.EffectenGiro.EGAanvraag, B4F.DataMigration" table="tblEgAanvraag"  >
+		<id name="Key" column="id" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<!--<timestamp name="lastUpdated" column="LastUpdated" access="field" />-->
+		<property name="DatumTijd" column="DatumTijd" type="DateTime" />
+		<property name="LoginId" column="LoginId" />
+		<property name="AanvraagCompleet" column="AanvraagCompleet" />
+		<property name="FormOntvangen" column="FormOntvangen" />
+		<property name="DatumFormOntvangen" column="DatumFormOntvangen" type="Date" />
+		
+		<property name="BedragOntvangen" column="BedragOntvangen" />
+		<property name="DatumBedragOntvangen" column="DatumBedragOntvangen" type="Date" />
+		<property name="FormVolledig" column="FormVolledig" />
+		<property name="IngevoerdKasweb" column="IngevoerdKasweb" />
+		<property name="Verified" column="Verified" />
+		
+		<property name="KasbankBevestigd" column="KasbankBevestigd" />
+		<property name="KasbankStorting" column="KasbankStorting" />
+		<property name="Geactiveerd" column="Geactiveerd" />
+
+		<property name="TegenRekening" column="TegenRekening" />
+		<property name="TegenRekeningTNV" column="TegenRekeningTNV" />
+		<property name="TegenRekeningPlaats" column="TegenRekeningPlaats" />
+		<property name="TegenRekeningBank" column="TegenRekeningBank" />
+		<many-to-one name="Bank" column="BankID" class="B4F.TotalGiro.StaticData.Bank, B4F.TotalGiro.StaticData" cascade="none" />
+
+		<!--Contact Person 1 Details-->
+		<property name="Titel" column="Titel" />
+		<property name="Naam" column="Naam" />
+		<property name="Tussenvoegsels" column="Tussenvoegsels" />
+		<property name="Voorletters" column="Voorletters" />
+		<property name="Geslacht" column="Geslacht" />
+		<property name="Nationaliteit" column="Nationaliteit" />
+		<many-to-one name="Nationality1" column="NationalityID1" class="B4F.TotalGiro.StaticData.Nationality, B4F.TotalGiro.StaticData" cascade="none" />
+		<component name="PostalAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="PostStraat"/>
+			<property name="HouseNumber" column="PostHuisNummer"/>
+			<property name="HouseNumberSuffix" column="PostHuisNummerToevoeging"/>
+			<property name="PostalCode" column="PostPostCode"/>
+			<property name="City" column="PostWoonplaats"/>
+			<many-to-one name="Country" column="PostCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<component name="ResidentialAddress1" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="Straat"/>
+			<property name="HouseNumber" column="HuisNummer"/>
+			<property name="HouseNumberSuffix" column="HuisNummerToevoeging"/>
+			<property name="PostalCode" column="PostCode"/>
+			<property name="City" column="Woonplaats"/>
+			<many-to-one name="Country" column="CountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<component name="ContactDetails1" class="B4F.TotalGiro.StaticData.ContactDetails, B4F.TotalGiro.StaticData">
+			<component name="Telephone" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="Telefoon"/>
+			</component>
+			<component name="TelephoneAH" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="TelefoonAvond"/>
+			</component>
+			<component name="Mobile" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="Mobiel"/>
+			</component>
+			<component name="Fax" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="Fax"/>
+			</component>
+			<property name="Email" column="Email"/>
+		</component>
+		<property name="Land" column="Land" />
+		<property name="PostLand" column="PostLand" />
+		<property name="Geboortedatum" column="Geboortedatum" type="Date" />
+		<property name="SOFI" column="SOFI" />
+		<component name="Identification1" class="B4F.TotalGiro.CRM.Identification, B4F.TotalGiro.CRM">
+			<many-to-one name="IdentificationType" column="LegitimatieSoortID" class="B4F.TotalGiro.StaticData.IdentificationType, B4F.TotalGiro.StaticData" cascade="none" />
+			<property name="Number" column="LegitimatieNummer"/>
+			<property name="ValidityPeriod" column="LegitimatieGeldigTot"  type="Date"/>		
+		</component>
+		
+		<property name="IsDualAccount" column="DualAccount" />
+
+		<property name="PTitel" column="PTitel" />
+		<property name="PNaam" column="PNaam" />
+		<property name="PTussenvoegsels" column="PTussenvoegsels" />
+		<property name="PVoorletters" column="PVoorletters" />
+		<property name="PGeslacht" column="PGeslacht" />
+		<component name="ResidentialAddress2" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="PStraat"/>
+			<property name="HouseNumber" column="PHuisNummer"/>
+			<property name="HouseNumberSuffix" column="PHuisNummerToevoeging"/>
+			<property name="PostalCode" column="PPostCode"/>
+			<property name="City" column="PWoonplaats"/>
+			<many-to-one name="Country" column="PCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<component name="ContactDetails2" class="B4F.TotalGiro.StaticData.ContactDetails, B4F.TotalGiro.StaticData">
+			<component name="Telephone" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="PTelefoon"/>
+			</component>
+			<component name="TelephoneAH" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="PTelefoonAvond"/>
+			</component>
+			<component name="Mobile" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="PMobiel"/>
+			</component>
+			<component name="Fax" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="PFax"/>
+			</component>
+			<property name="Email" column="PEmail"/>
+		</component>
+		<component name="Identification2" class="B4F.TotalGiro.CRM.Identification, B4F.TotalGiro.CRM">
+			<many-to-one name="IdentificationType" column="PLegitimatieSoortID" class="B4F.TotalGiro.StaticData.IdentificationType, B4F.TotalGiro.StaticData" cascade="none" />
+			<property name="Number" column="PLegitimatieNummer"/>
+			<property name="ValidityPeriod" column="PLegitimatieGeldigTot"  type="Date"/>
+		</component>
+
+		<property name="PGeboortedatum" column="PGeboortedatum" type="Date" />
+		<property name="PSOFI" column="PSOFI" />
+		<property name="Onttrekking" column="Onttrekking" />
+		<property name="OnttrekkingBedrag" column="OnttrekkingBedrag" />
+
+		<property name="VerpandSoort" column="VerpandSoort" />
+		<property name="Pandhouder" column="Pandhouder" />
+		<property name="EersteInleg" column="EersteInleg" />
+
+		<property name="BNaam" column="BNaam" />
+		<property name="DatumOprichting" column="DatumOprichting" type="Date" />
+		<property name="KVK" column="KVK" />
+
+		<component name="BAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="BStraat"/>
+			<property name="HouseNumber" column="BHuisnummer"/>
+			<property name="HouseNumberSuffix" column="BHuisnummerToevoeging"/>
+			<property name="PostalCode" column="BPostcode"/>
+			<property name="City" column="BPlaats"/>
+			<many-to-one name="Country" column="BCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<component name="BContactDetails" class="B4F.TotalGiro.StaticData.ContactDetails, B4F.TotalGiro.StaticData">
+			<component name="Telephone" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="BTelefoon"/>
+			</component>
+			<component name="TelephoneAH" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="BTelefoonAvond"/>
+			</component>
+			<component name="Mobile" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="BMobiel"/>
+			</component>
+			<component name="Fax" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="BFax"/>
+			</component>
+			<property name="Email" column="BEmail"/>
+		</component>
+
+		<property name="BRekHouderTitel1" column="BRekHouderTitel1" />
+		<property name="BRekHouder1" column="BRekHouder1" />
+		<property name="BRekHouderTussenv1" column="BRekHouderTussenv1" />
+		<property name="BRekHouderVoorl1" column="BRekHouderVoorl1" />
+		<property name="BRekHouderGeslacht1" column="BRekHouderGeslacht1" />
+
+		<property name="BBevoegdheid1" column="BBevoegdheid1" />
+		<property name="BRekHouderTitel2" column="BRekHouderTitel2" />
+		<property name="BRekHouder2" column="BRekHouder2" />
+		<property name="BRekHouderTussenv2" column="BRekHouderTussenv2" />
+		<property name="BRekHouderVoorl2" column="BRekHouderVoorl2" />
+
+		<property name="BRekHouderGeslacht2" column="BRekHouderGeslacht2" />
+		<property name="BBevoegdheid2" column="BBevoegdheid2" />
+
+		<many-to-one name="ModelPortfolio" column="ModPortfId" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments"   cascade="none"   />
+		<property name="BRechtsvorm" column="BRechtsvorm" />
+		
+		<property name="PeriodiekeInleg" column="PeriodiekeInleg" />
+		<property name="PeriodeInleg" column="PeriodeInleg" />
+		<property name="VierlanderImport" column="VierlanderImport" />
+		<property name="IsExecutionOnly" column="InputFromExecutionOnly" />
+
+		<!--<property name="Straat" column="Straat" />
+		<property name="Huisnummer" column="Huisnummer" />
+		<property name="HuisnummerToevoeging" column="HuisnummerToevoeging" />
+		<property name="Postcode" column="Postcode" />
+		<property name="Woonplaats" column="Woonplaats" />-->
+
+		<!--<property name="PostStraat" column="PostStraat" />
+		<property name="PostHuisnummer" column="PostHuisnummer" />		
+		<property name="PostHuisnummerToevoeging" column="PostHuisnummerToevoeging" />
+		<property name="PostPostcode" column="PostPostcode" />
+		<property name="PostWoonplaats" column="PostWoonplaats" />-->
+
+		<!--<property name="Telefoon" column="Telefoon" />
+		<property name="TelefoonAvond" column="TelefoonAvond" />
+		<property name="Mobiel" column="Mobiel" />
+
+		<property name="Fax" column="Fax" />
+		<property name="Email" column="Email" />-->
+
+		<!--<property name="LegitimatieSoort" column="LegitimatieSoort" />
+		<property name="LegitimatieNummer" column="LegitimatieNummer" />
+		<property name="LegitimatieGeldigTot" column="LegitimatieGeldigTot"  type="Date"/>-->
+
+		<!--<property name="PStraat" column="PStraat" />
+		<property name="PHuisnummer" column="PHuisnummer" />
+		<property name="PHuisnummerToevoeging" column="PHuisnummerToevoeging" />
+		<property name="PPostcode" column="PPostcode" />
+		<property name="PWoonplaats" column="PWoonplaats" />-->
+
+		<!--<property name="PTelefoon" column="PTelefoon" />
+		<property name="PTelefoonAvond" column="PTelefoonAvond" />
+		<property name="PMobiel" column="PMobiel" />
+		<property name="PFax" column="PFax" />
+		<property name="PEmail" column="PEmail" />-->
+
+		<!--<property name="PLegitimatieSoort" column="pLegitimatieSoort" />
+		<property name="PLegitimatieNummer" column="PLegitimatieNummer" />
+		<property name="PNationaliteit" column="PNationaliteit" />
+		<property name="PLegitimatieGeldigTot" column="PLegitimatieGeldigTot"  type="Date"/>-->
+
+		<!--<property name="BStraat" column="BStraat" />
+		<property name="BHuisnummer" column="BHuisnummer" />
+		<property name="BHuisnummerToevoeging" column="BHuisnummerToevoeging" />
+		<property name="BPostcode" column="BPostcode" />
+		<property name="BPlaats" column="BPlaats" />
+		<property name="BLand" column="BLand" />-->
+
+		<!--<property name="BTelefoon" column="BTelefoon" />
+		<property name="BTelefoonAvond" column="BTelefoonAvond" />
+		<property name="BMobiel" column="BMobiel" />
+		<property name="BFax" column="BFax" />
+		<property name="BEmail" column="BEmail" />-->
+
+	</class>
+</hibernate-mapping>

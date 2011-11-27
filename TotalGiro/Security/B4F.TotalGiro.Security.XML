@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Security</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.Security.InMemorySecurityProvider">
+            <summary>
+            Security provider that takes security data from inside itself (no external data source is used). 
+            Used only when running unit tests (NOT to be used in production). Helpful when users and roles need to be controlled inside unit tests.
+            Specify that this security provider is the one to be used by calling 
+            <see cref="M:B4F.TotalGiro.Security.SecurityManager.Initialize(B4F.TotalGiro.Security.SecuritySetupType)">SecurityManager.Initialize</see>() before the unit test.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Security.SecurityProvider">
+            <summary>
+            Abstract class used as a template for concrete security provider classes.
+            Security providers actually do the work that class <see cref="T:B4F.TotalGiro.Security.SecurityManager">SecurityManager</see>
+            exposes an interface for to the outside world. Unlike <b>SecurityManager</b>, this is not a <i>static</i> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SecurityProvider.SetUser(System.String,System.String)">
+            <summary>
+            Sets the current user for the application.
+            </summary>
+            <param name="userName">The user to become the current one.</param>
+            <param name="roleNameList">The roles the current user will be in.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SecurityProvider.IsCurrentUserInRole(System.String)">
+            <summary>
+            Checks if the current user is in the role specified. 
+            </summary>
+            <param name="roleName">A role name.</param>
+            <returns><b>true</b> if the current user is in the specified role; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SecurityProvider.GetAllUserNames">
+            <summary>
+            Gets all user names in the system.
+            </summary>
+            <returns>An array of user names.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Security.SecurityProvider.CurrentUser">
+            <summary>
+            Gets the current user in the application.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.InMemorySecurityProvider.SetUser(System.String,System.String)">
+            <summary>
+            Sets the current user and his/her associated roles. This information is local to an instance of this class
+            (it's not persisted to the database). Only to be used inside unit tests.
+            </summary>
+            <param name="userName">The user to become the current one.</param>
+            <param name="roleNameList">The roles the current user will be in.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.InMemorySecurityProvider.IsCurrentUserInRole(System.String)">
+            <summary>
+            Checks if the current user is in the role specified.
+            </summary>
+            <param name="roleName">A role name.</param>
+            <returns><b>true</b> if the current user is in the specified role; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.InMemorySecurityProvider.GetAllUserNames">
+            <summary>
+            Gets an array with the one user name previously set by 
+            method <see cref="M:B4F.TotalGiro.Security.InMemorySecurityProvider.SetUser(System.String,System.String)">SetUser</see>.
+            </summary>
+            <returns>An array with one user name.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Security.InMemorySecurityProvider.CurrentUser">
+            <summary>
+            Gets the current user. This user is the one set previously with 
+            method <see cref="M:B4F.TotalGiro.Security.InMemorySecurityProvider.SetUser(System.String,System.String)">SetUser</see>.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Security.SqlSecurityProvider">
+            <summary>
+            Security provider that takes security data from the HTTP context of ASP.NET, and the current membership and role providers 
+            set for the application (in <i>Web.Config</i>).
+            Used when running code in production (live on a web server). This is the <b>default</b> security provider used by 
+            <see cref="T:B4F.TotalGiro.Security.SecurityManager">SecurityManager</see>.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SqlSecurityProvider.SetUser(System.String,System.String)">
+            <summary>
+            Normally this would set the current user for the application, but for this particular security provider it just throws an exception.
+            That is because the currently logged-in user in a production environment shouldn't be changeable programatically.
+            </summary>
+            <param name="userName">The user to become the current one (ignored).</param>
+            <param name="roleNameList">The roles the current user will be in (ignored).</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SqlSecurityProvider.IsCurrentUserInRole(System.String)">
+            <summary>
+            Checks if the currently logged-in user is in the role specified. 
+            It uses the role provider set for the application (in <i>Web.Config</i>).
+            </summary>
+            <param name="roleName">A role name.</param>
+            <returns><b>true</b> if the current user is in the specified role; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SqlSecurityProvider.GetAllUserNames">
+            <summary>
+            Gets all user names in the system. It uses the membership provider set for the application (in <i>Web.Config</i>).
+            </summary>
+            <returns>An array of user names.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Security.SqlSecurityProvider.CurrentUser">
+            <summary>
+            Gets the currently logged-in user from the HTTP context.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Security.TestOnlySqlSecurityProvider">
+            <summary>
+            Security provider that takes security data from a manually-created HTTP context, and the current membership and role providers 
+            set for the application (in <i>Web.Config</i>). Used only when running unit tests (NOT to be used in production).
+            Specify that this security provider is the one to be used by calling 
+            <see cref="M:B4F.TotalGiro.Security.SecurityManager.Initialize(B4F.TotalGiro.Security.SecuritySetupType)">SecurityManager.Initialize</see>() before the unit test.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.TestOnlySqlSecurityProvider.SetUser(System.String,System.String)">
+            <summary>
+            Sets the current user for unit tests. 
+            </summary>
+            <param name="userName">The user to become the current one.</param>
+            <param name="roleNameList">The roles the current user will be in. The parameter is ignored by this security provider; 
+            the role provider set for the application (in <i>Web.Config</i>) will be used to retrieve roles.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.TestOnlySqlSecurityProvider.IsCurrentUserInRole(System.String)">
+            <summary>
+            Checks if the current user 
+            (set previously with <see cref="M:B4F.TotalGiro.Security.TestOnlySqlSecurityProvider.SetUser(System.String,System.String)">SetUser</see>) is in the role specified. 
+            It uses the role provider set for the application (in <i>Web.Config</i>).
+            </summary>
+            <param name="roleName">A role name.</param>
+            <returns><b>true</b> if the current user is in the specified role; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Security.SecuritySetupType">
+            <summary>
+            Specifies the security provider used by the application, that is, the source of security data (users and roles, as well as the current user).
+            Used as a parameter for <see cref="M:B4F.TotalGiro.Security.SecurityManager.Initialize(B4F.TotalGiro.Security.SecuritySetupType)">SecurityManager.Initialize</see>().
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Security.SecuritySetupType.LiveWebWithSqlProvider">
+            <summary>
+            Specifies <see cref="T:B4F.TotalGiro.Security.SqlSecurityProvider">SqlSecurityProvider</see> as a security provider.
+            Security data is coming from the HTTP context of ASP.NET, and the current membership and role providers 
+            set for the application (in <i>Web.Config</i>).
+            Used when running code in production (live on a web server).
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Security.SecuritySetupType.TestOnlyWithSqlProvider">
+            <summary>
+            Specifies <see cref="T:B4F.TotalGiro.Security.TestOnlySqlSecurityProvider">TestOnlySqlSecurityProvider</see> as a security provider.
+            Security data is coming from a manually-created HTTP context, and the current membership and role providers 
+            set for the application (in <i>Web.Config</i>).
+            Used only when running unit tests (NOT to be used in production).
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Security.SecuritySetupType.InMemory">
+            <summary>
+            Specifies <see cref="T:B4F.TotalGiro.Security.InMemorySecurityProvider">InMemorySecurityProvider</see> as a security provider.
+            Security data is coming from inside this class itself (no external data source is used). 
+            Used only when running unit tests (NOT to be used in production). Helpful when users and roles need to be controlled inside unit tests.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Security.SecurityManager">
+            <summary>
+            The <b>main entry point</b> for security-related operations inside the application.
+            It uses one of the security providers, and offers a provider-neutral interface for security operations.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SecurityManager.Initialize(B4F.TotalGiro.Security.SecuritySetupType)">
+            <summary>
+            Only used in unit tests, enabling them to control the current user, and/or the available users and roles.
+            If not called, the default value will be 
+            <b>SecuritySetupType.</b><see cref="F:B4F.TotalGiro.Security.SecuritySetupType.LiveWebWithSqlProvider">LiveWebWithSqlProvider</see>,
+            which is what is used in production (live on a web server). Can be called repeatedy inside a test, with different values.
+            </summary>
+            <param name="setupType">Specifies the security provider to be used. 
+            See <see cref="T:B4F.TotalGiro.Security.SecuritySetupType">SecuritySetupType</see> 
+            for the available choices.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SecurityManager.SetUser(System.String,System.String)">
+            <summary>
+            Sets the current user for the application (retrievable later through property 
+            <see cref="P:B4F.TotalGiro.Security.SecurityManager.CurrentUser">CurrentUser</see>). 
+            Only to be used in unit tests.
+            </summary>
+            <param name="userName">The user to become the current one.</param>
+            <param name="roleNameList">The roles the current user will be in. Used only if the security provider is in-memory 
+            (see <b>SecuritySetupType.</b><see cref="F:B4F.TotalGiro.Security.SecuritySetupType.InMemory">InMemory</see>); 
+            otherwise is ignored, and the role provider set for the application (in <i>Web.Config</i>) will be used to retrieve roles.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SecurityManager.IsCurrentUserInRole(System.String)">
+            <summary>
+            Checks if <see cref="P:B4F.TotalGiro.Security.SecurityManager.CurrentUser">CurrentUser</see> is in the role specified. 
+            It uses the role provider set for the application (in <i>Web.Config</i>), unless the security provider is in-memory 
+            (see <b>SecuritySetupType.</b><see cref="F:B4F.TotalGiro.Security.SecuritySetupType.InMemory">InMemory</see>).
+            </summary>
+            <param name="roleName">A role name.</param>
+            <returns><b>true</b> if the current user is in the specified role; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Security.SecurityManager.GetAllUserNames">
+            <summary>
+            Gets all user names in the system. It uses the membership provider set for the application (in <i>Web.Config</i>),
+            unless the security provider is in-memory 
+            (see <b>SecuritySetupType.</b><see cref="F:B4F.TotalGiro.Security.SecuritySetupType.InMemory">InMemory</see>).
+            </summary>
+            <returns>An array of user names.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Security.SecurityManager.CurrentUser">
+            <summary>
+            Gets the current user in the application. The source of this information depends on the current security provider 
+            (see <see cref="M:B4F.TotalGiro.Security.SecurityManager.Initialize(B4F.TotalGiro.Security.SecuritySetupType)">SecurityManager.Initialize</see>).
+            In production (live on a web server), this is the currently logged-on user. In unit tests, it is the user previously set with 
+            method <see cref="M:B4F.TotalGiro.Security.SecurityManager.SetUser(System.String,System.String)">SetUser</see>.
+            </summary>
+        </member>
+    </members>
+</doc>

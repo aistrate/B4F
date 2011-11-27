@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.ModelComponent, B4F.TotalGiro.Instruments" table="ModelComponents" proxy="B4F.TotalGiro.Instruments.IModelComponent, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ModelComponentID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<property name="Allocation" column="Target" />
+		<many-to-one name="ParentVersion" column="ModelVersionID" class="B4F.TotalGiro.Instruments.ModelVersion, B4F.TotalGiro.Instruments" cascade="save-update"  />
+		<joined-subclass name="B4F.TotalGiro.Instruments.ModelInstrument, B4F.TotalGiro.Instruments" table="ModelComponentsInstrument" proxy="B4F.TotalGiro.Instruments.IModelInstrument, B4F.TotalGiro.Interfaces">
+			<key column="ModelComponentID" />
+			<many-to-one name="Component" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" outer-join="true" />
+		</joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.Instruments.ModelModel, B4F.TotalGiro.Instruments" table="ModelComponentsModel"  proxy="B4F.TotalGiro.Instruments.IModelModel, B4F.TotalGiro.Interfaces">
+			<key column="ModelComponentID" />
+			<many-to-one name="Version" column="AttachedModelVersionID" class="B4F.TotalGiro.Instruments.ModelVersion, B4F.TotalGiro.Instruments" cascade="none" outer-join="true" />
+		</joined-subclass>
+	</class>
+
+	<query name="B4F.TotalGiro.Instruments.ModelComponent.GetModelComponentsLatestVersion" >
+		<![CDATA[
+		from ModelComponent MC
+		where MC.ParentVersion in (
+			Select M.LatestVersion from ModelBase M where M.Key = :modelID)
+	]]>
+	</query>
+</hibernate-mapping>

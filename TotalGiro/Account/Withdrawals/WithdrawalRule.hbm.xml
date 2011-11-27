@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.Withdrawals.WithdrawalRule, B4F.TotalGiro.Accounts" table="WithdrawalRule">
+		<id name="Key" column="WithdrawalRuleID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field" />
+		<property name="firstDateWithdrawal" column="FirstDateWithdrawal" type="Date" not-null="true" access="field" />
+		<property name="endDateWithdrawal" column="EndDateWithdrawal" type="Date" access="field" />
+		<property name="IsActive" column="IsActive" />
+		<!--<property name="lastWithdrawalDate" formula="dbo.GetNextDate( FirstDateWithdrawal, EndDateWithdrawal, RegularityID, 0 )" access="field"/>-->
+		<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Amount" not-null="true" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="AmountID" cascade="none" not-null="true" />
+		</component>
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+		<property name="CreatedBy" column="CreatedBy" />
+		<many-to-one name="Regularity" column="RegularityID" class="B4F.TotalGiro.Accounts.Withdrawals.WithdrawalRuleRegularity, B4F.TotalGiro.Interfaces" not-null="true" />
+		<property name="DoNotChargeCommission" column="DoNotChargeCommission" />
+		<property name="TransferDescription" column="TransferDescription" />
+		<property name="PandhouderPermission" column="PandhouderPermission" type="B4F.TotalGiro.Accounts.Withdrawals.PandhouderPermissions, B4F.TotalGiro.Interfaces"/>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeCustomer, B4F.TotalGiro.Accounts" cascade="none" not-null="true" />
+		<many-to-one name="CounterAccount" column="CounterAccountID" class="B4F.TotalGiro.Accounts.CounterAccount, B4F.TotalGiro.Accounts" cascade="none" />
+		<bag name="bagOfWithdrawalInstructions" table="AccountInstructionsCashWithdrawals" access="field" cascade="none" lazy="true">
+			<key column="WithdrawalRuleID" />
+			<one-to-many class="B4F.TotalGiro.Accounts.Instructions.CashWithdrawalInstruction, B4F.TotalGiro.Accounts" />
+		</bag>
+	</class>
+
+  <query name="B4F.TotalGiro.Accounts.Withdrawals.GetWithdrawalRules" >
+    <![CDATA[
+			from WithdrawalRule W
+      left join fetch W.Account A
+      left join fetch A.ModelPortfolio M
+      where W.IsActive = 1
+      and A.Status = 1
+      and A.AccountOwner = :assetManagerId
+      and M.Key = :modelPortfolioId
+      and A.Number like :accountNumber
+      and A.ShortName like :accountName
+		]]>
+  </query>
+  
+  <query name="B4F.TotalGiro.Accounts.Withdrawals.GetWithdrawalRuleKeys" >
+    <![CDATA[
+      select W.Key
+			from WithdrawalRule W
+      left join W.Account A
+      where W.IsActive = 1
+      and A.Status = 1
+      and A.AccountOwner = :assetManagerId
+      and IsNull(W.endDateWithdrawal, DATEADD(year,1,CONVERT(DATE,GETDATE()))) >= CONVERT(DATE,GETDATE())
+		]]>
+  </query>
+  
+  <query name="B4F.TotalGiro.Accounts.Withdrawals.GetWithdrawalRule" >
+    <![CDATA[
+    from WithdrawalRule W
+    left join fetch W.Account A
+    where W.Key = :withdrawalRuleId		
+    ]]>
+  </query>
+
+</hibernate-mapping>

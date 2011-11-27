@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+  <class name="B4F.TotalGiro.Communicator.ExternalInterfaces.ExternalInterface, B4F.TotalGiro.Communicator" 
+         proxy="B4F.TotalGiro.Communicator.ExternalInterfaces.IExternalInterface, B4F.TotalGiro.Interfaces" 
+         table="InterfacesExternals" mutable="false" >
+    <id name="Key" column="InterfacesExternalID" unsaved-value="0" >
+      <generator class="identity"/>
+    </id>
+    <property name="Name" column="InterfacesExternal"/>
+    <property name="Description" column="InterfacesExternalDesc"/>
+  </class>
+  <query name="B4F.TotalGiro.Communicator.ExternalInterfaces.ExternalInterface.GetIntrumentExternalInterfaces" >
+    <![CDATA[
+		from ExternalInterface E
+    where E.Key in (
+    Select distinct S.ExternalInterface.Key
+    from InstrumentSymbol S)
+    Order By E.Name
+		]]>
+  </query>
+</hibernate-mapping>

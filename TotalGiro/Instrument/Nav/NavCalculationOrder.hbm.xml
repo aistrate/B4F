@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="true" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.Nav.NavCalculationOrder, B4F.TotalGiro.Instruments"
+		table="NavCalculationOrders" proxy="B4F.TotalGiro.Instruments.Nav.INavCalculationOrder, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="Order" column="OrderID" class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders"  cascade="none" />
+		<many-to-one name="Parent" column="NavCalculationID" class="B4F.TotalGiro.Instruments.Nav.NavCalculation, B4F.TotalGiro.Instruments"  cascade="none" />
+	</class>
+	<query name="B4F.TotalGiro.Instruments.Nav.NewOrdersForFund" >
+		<![CDATA[
+		From StgAmtOrder K
+		where K.Key in (
+						Select O.Key
+						FROM StgAmtOrder O
+						WHERE O.requestedInstrument.Key = :VirtualFundID
+						and O.Status = :Status
+						and O.Key not in (Select O.Key
+											From NavCalculationOrder N
+											join N.Order O)
+						and O.approvalDate <= :ApprovalDate)
+	]]>
+	</query>
+	<query name="B4F.TotalGiro.Instruments.Nav.OrdersForFund" >
+		<![CDATA[
+		From StgAmtOrder K
+		where K.Key in (Select O.Key
+						from NavCalculationOrder N
+						join N.Parent P
+						join N.Order O
+						where P.Key = :CalcID)
+	]]>
+	</query>
+</hibernate-mapping>

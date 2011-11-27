@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{944F656B-A825-461D-90F8-F48359E08527}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.GeneralLedger</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.GeneralLedger</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>GeneralLedger.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\NHibernate2_1_2\Framework20\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Journal\Balances\BalanceRecord.cs" />
+    <Compile Include="Journal\Balances\ExactBalanceRecord.cs" />
+    <Compile Include="Journal\Bookings\BondCouponPaymentComponent.cs" />
+    <Compile Include="Journal\Bookings\BondCouponPaymentDailyCalculation.cs" />
+    <Compile Include="Journal\Bookings\BondCouponPaymentDailyCalculationCollection.cs" />
+    <Compile Include="Journal\Bookings\BookingComponentParent.cs" />
+    <Compile Include="Journal\Bookings\CashDividend.cs" />
+    <Compile Include="Journal\Bookings\CashDividendComponent.cs" />
+    <Compile Include="Journal\Bookings\CashTransfer.cs" />
+    <Compile Include="Journal\Bookings\CashTransferComponent.cs" />
+    <Compile Include="Journal\Bookings\DisplayView\BookingDisplayView.cs" />
+    <Compile Include="Journal\Bookings\DisplayView\ManagementFeeDisplayView.cs" />
+    <Compile Include="Journal\Bookings\ForeignExchange.cs" />
+    <Compile Include="Journal\Bookings\ForeignExchangeComponent.cs" />
+    <Compile Include="Journal\Bookings\GeneralOperationsBooking.cs" />
+    <Compile Include="Journal\Bookings\GeneralOperationsBookingMapper.cs" />
+    <Compile Include="Journal\Bookings\GeneralOperationsComponent.cs" />
+    <Compile Include="Journal\Bookings\BookingComponent.cs" />
+    <Compile Include="Journal\Bookings\BookingLineCollection.cs" />
+    <Compile Include="Journal\BankStatement.cs" />
+    <Compile Include="Journal\Bookings\GeneralOperationsComponentCollection.cs" />
+    <Compile Include="Journal\Bookings\BondCouponPayment.cs" />
+    <Compile Include="Journal\Bookings\ManagementFee.cs" />
+    <Compile Include="Journal\Bookings\ManagementFeeComponent.cs" />
+    <Compile Include="Journal\Bookings\GeneralOperationsBookingTaxeable.cs" />
+    <Compile Include="Journal\Bookings\TransactionComponent.cs" />
+    <Compile Include="Journal\ExternalSettlement.cs" />
+    <Compile Include="Journal\ExternalSettlementJournalEntriesCollection.cs" />
+    <Compile Include="Journal\ExternalSettlementJournalLinesCollection.cs" />
+    <Compile Include="Journal\JournalEntry.cs" />
+    <Compile Include="Journal\JournalEntryLine.cs" />
+    <Compile Include="Journal\JournalEntryLineCollection.cs" />
+    <Compile Include="Journal\JournalEntryMapper.cs" />
+    <Compile Include="Journal\Maintenance\BookYearClosureMapper.cs" />
+    <Compile Include="Journal\Maintenance\ClientBookYearClosure.cs" />
+    <Compile Include="Journal\Maintenance\ClientBookYearClosureCollection.cs" />
+    <Compile Include="Journal\Maintenance\BookYearClosure.cs" />
+    <Compile Include="Journal\MemorialBooking.cs" />
+    <Compile Include="Journal\Reporting\ClientCashPositionFromGLLedger.cs" />
+    <Compile Include="Journal\Reporting\ClientCashPositionFromGLLedgerMapper.cs" />
+    <Compile Include="Journal\Reporting\ClientCashPositionFromGLLedgerRecord.cs" />
+    <Compile Include="Journal\Reporting\ClientCashPositionFromGLLedgerRecordCollection.cs" />
+    <Compile Include="Journal\TradingJournalEntry.cs" />
+    <Compile Include="Journal\Balances\TrialBalance.cs" />
+    <Compile Include="Journal\Balances\TrialBalanceMapper.cs" />
+    <Compile Include="Journal\Balances\TrialBalanceRecord.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Static\GLAccount.cs" />
+    <Compile Include="Static\GLAccountMapper.cs" />
+    <Compile Include="Static\GLBookingType.cs" />
+    <Compile Include="Static\GLBookYear.cs" />
+    <Compile Include="Static\GLClass.cs" />
+    <Compile Include="Static\GLLookupRecord.cs" />
+    <Compile Include="Static\GlLookupRecordMapper.cs" />
+    <Compile Include="Static\GLLookupRecords.cs" />
+    <Compile Include="Static\Journal.cs" />
+    <Compile Include="Static\JournalMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Static\GLAccount.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Static\GLClass.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Static\GLLookupRecord.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Static\Journal.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\JournalEntry.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\JournalEntryLine.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\Balances\TrialBalance.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\Balances\TrialBalanceRecord.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GeneralLedger.snk" />
+    <None Include="Journal\Bookings\Bookings.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{B8880639-F591-41D0-A811-D832A36A8064}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Instrument\Instruments.csproj">
+      <Project>{B6D55091-F990-42AB-A294-72E6560ED5DD}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notas\Notas.csproj">
+      <Project>{B680B731-224C-4AB2-ADC0-59B0576279E8}</Project>
+      <Name>Notas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{920CD10C-E485-47AF-A47D-23DC299F762B}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\Bookings\BookingComponent.hbm.xml" />
+    <EmbeddedResource Include="Journal\Bookings\BookingComponentParent.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\Bookings\GeneralOperationsBooking.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Static\GLBookingType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\ExternalSettlement.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Static\GLBookYear.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\Reporting\ClientCashPositionFromGLLedgerRecord.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\Reporting\ClientCashPositionFromGLLedger.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\Maintenance\ClientBookYearClosure.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\Maintenance\BookYearClosure.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Journal\Bookings\BondCouponPaymentDailyCalculation.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+  <class name="B4F.TotalGiro.Accounts.Portfolios.PortfolioExtendedProperties, B4F.TotalGiro.Accounts" table="Accounts"
+		   lazy="true" mutable="false" >
+    <cache usage="read-only" />
+    <id name="Key" unsaved-value="0">
+      <column name="AccountID"/>
+      <generator class="identity"/>
+    </id>
+      <property name="LastTransactionDate" formula="(select MAX(T.TransactionDate) from TGTransactions T where T.IsApproved = 1 and T.AccountAID = AccountID)" />
+      <!--<property name="LastCashTransactionDate" formula="(select MAX(L.BookDate)
+        from GLJournalEntryLines L
+        inner join GLSubPositions SP on L.GLSubPositionID = SP.GLSubPositionID
+        where L.Status = 4
+        and SP.SettledStatusID = 1
+        and L.GiroAccountID = AccountID)" />-->
+  </class>
+</hibernate-mapping>

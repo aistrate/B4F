@@ -1,0 +1,11 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/TotalGiroClient.master" 
+           Inherits="B4F.TotalGiro.Client.Web.Help.Help" Codebehind="Help.master.cs" %>
+         
+<asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" Runat="Server">
+    <b4f:ArrowsLinkButton ID="lnkHelpContents" runat="server"
+                          PostBackUrl="~/Help/HelpContents.aspx">Overzichten gebruikershandleidingen</b4f:ArrowsLinkButton>
+    <p>&nbsp;</p>
+    
+    <asp:contentplaceholder ID="helpBodyContentPlaceHolder" runat="server" />
+    
+</asp:Content>

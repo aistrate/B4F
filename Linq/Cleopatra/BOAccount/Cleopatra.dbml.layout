@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Cleopatra">
+  <DataContextMoniker Name="/CleopatraDataContext" />
+  <nestedChildShapes>
+    <classShape Id="5ff6245f-c3fc-4fcf-88fe-9e5ee0714522" absoluteBounds="4, 0.875, 2, 3.23266845703125">
+      <DataClassMoniker Name="/CleopatraDataContext/BADGE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="702a8596-f76e-47d9-8005-0a111ed14507" absoluteBounds="4.015, 1.335, 1.9700000000000002, 2.67266845703125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

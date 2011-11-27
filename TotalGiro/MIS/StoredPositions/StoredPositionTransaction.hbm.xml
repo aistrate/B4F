@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.MIS.StoredPositions.StoredPositionTransaction, B4F.TotalGiro.MIS"
+		   table="TGPositionsTransactions"
+		   proxy="B4F.TotalGiro.MIS.StoredPositions.IStoredPositionTransaction, B4F.TotalGiro.Interfaces"
+		   dynamic-update="true"  >
+		<id name="Key" column="PosTxId" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="FundPosition" column="TGPositionID" class="B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPosition, B4F.TotalGiro.Accounts" cascade="none"/>
+		<many-to-one name="FundPositionTransaction" column="TGPositionsTXID" class="B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPositionTx, B4F.TotalGiro.Accounts" cascade="none"/>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none"/>
+		<many-to-one name="OriginalTransaction" column="TGTransactionID" class="B4F.TotalGiro.Orders.Transactions.Transaction, B4F.TotalGiro.Orders" cascade="none"/>
+		<component name="Size" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="TradeSize" />
+			<many-to-one name="Underlying" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<property name="TransactionDate" column="TransactionDate" />
+		<property name="CreationDate" column="CreationDate" type="Date" insert="false" update="false" />
+	</class>
+	<query name="B4F.TotalGiro.MIS.StoredPositions.StoredPositionTransaction.GetAccountsWithPosition" >
+		<![CDATA[
+        From AccountTypeInternal A
+		Where A.Key in (
+		Select S.Account.Key
+		From StoredPositionTransaction S
+		where S.TransactionDate <= :reportDate
+		and S.Size.Underlying.Key = :instrumentKey
+		Group by S.Account.Key
+		Having sum(S.Size.Quantity) <> 0.000000)
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.MIS.StoredPositions.StoredPositionTransaction.GetPositionValueForAccount" >
+		<![CDATA[
+        Select sum(S.Size.Quantity) as Total
+		From StoredPositionTransaction S
+		where S.TransactionDate <= :reportDate
+		and S.Size.Underlying.Key = :instrumentKey
+		and S.Account.Key = :accountid
+		]]>
+	</query>
+</hibernate-mapping>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.Exact.SubledgerEntry, B4F.TotalGiro.Communicator" table="LedgerSubEntries" lazy="true"
+		   proxy="B4F.TotalGiro.Communicator.Exact.ISubledgerEntry, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="LedgerSubEntryID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Parent" column="LedgerID" class="B4F.TotalGiro.Communicator.Exact.LedgerEntry, B4F.TotalGiro.Communicator" 
+			         cascade="all"   />
+		<property name="LineNumber" column="LineNumber" />
+		<property name="Description" column="Description" />
+		<property name="GeneralLedgerAccount" column="GeneralLedgerAccount" />
+		<property name="Debitor" column="Debitor" />
+		<property name="Amount" column="Amount" />
+		<property name="Currency" column="Currency" />
+		<property name="exRate" column="ExRate"  access="field"/>
+		<!--<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Amount" />
+			<many-to-one name="Underlying" column="AmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<many-to-one name="XRateCurrency" column="AmountXRateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<property name="Xrate" column="AmountXRate" />
+		</component>-->
+		<property name="BtwCode" column="BtwCode" />
+		<property name="BtwAmount" column="BtwAmount" />
+		<!--<component name="BtwAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="BtwAmount" />
+			<many-to-one name="Underlying" column="BtwAmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<many-to-one name="XRateCurrency" column="BtwAmountXRateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<property name="Xrate" column="BtwAmountXRate" />
+		</component>-->
+		<property name="KostendragerCode" column="KostendragerCode" />
+		<property name="StornoBooking" column="StornoBooking" />
+		<bag name="journalEntryLines" access="field" generic="true" lazy="true" cascade="all" inverse="true"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.IJournalEntryLine, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Communicator.Exact.JournalEntryLineCollection, B4F.TotalGiro.Communicator]], B4F.TotalGiro.Interfaces">
+			<key column="LedgerSubEntryID" foreign-key="LedgerSubEntryID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+	</class>
+	<query name="B4F.TotalGiro.Communicator.Exact.SubledgerEntry.GetJournalEntryGroupsToExport" >		
+		<![CDATA[
+			Select DISTINCT E.Key, JEL.bookDate
+			from JournalEntryLine JEL
+			left join JEL.Parent JE
+			left join JE.Journal J
+			left join JEL.GLAccount G
+			left join J.ExactJournal E
+			where JEL.SubledgerEntry is NULL
+			and G.AccountinExact is not null
+			and JEL.DoNotExport = 0
+			and JEL.bookDate <= :transactionDate
+		]]>
+	</query>
+	
+	
+	<query name="B4F.TotalGiro.Communicator.Exact.SubledgerEntry.GetJournalEntriesToExport" >
+		<![CDATA[	
+			from 
+			JournalEntryLine JEL
+			join fetch JEL.Parent JE
+			join fetch JE.Journal J
+			join fetch JEL.GLAccount G
+			join fetch J.ExactJournal E
+			where JEL.SubledgerEntry is NULL
+			and E.Key = :exactJournalID
+			and JEL.bookDate = :transactionDate
+			and JEL.DoNotExport = 0
+			and G.AccountinExact is not null
+			]]>
+</query>
+
+	
+</hibernate-mapping>

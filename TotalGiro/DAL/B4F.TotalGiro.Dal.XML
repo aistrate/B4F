@@ -1,0 +1,534 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Dal</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.Dal.NHSession">
+            <summary>
+            Wrapper around an <i>NHibernate</i> session. An <i>NHibernate</i> session is the main runtime interface between 
+            an application and <i>NHibernate</i>, the central API class abstracting the notion of a persistence service.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetDataSet(System.String,System.String)">
+            <summary>
+            Creates a <b>DataSet</b> (both schema and data) by performing the HQL (Hibernate Query Language) query passed in as the first parameter.
+            </summary>
+            <param name="hql">The HQL (Hibernate Query Language) query to perform.</param>
+            <param name="propertyList">A list of property names, which will become table columns in the <b>DataSet</b>.</param>
+            <returns>A <b>DataSet</b> containing a table with one column for each property in <i>propertyList</i>,
+            and one row for each row in the result set of the HQL (Hibernate Query Language) query.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetObjectInstance(System.Type,System.Object)">
+            <summary>
+            Returns the persistent instance of the given entity class with the given identifier, assuming that the instance exists.
+            </summary>
+            <param name="type">A persistent class.</param>
+            <param name="ID">A valid identifier of an existing persistent instance of the class.</param>
+            <returns>The persistent instance or proxy.</returns>
+            <remarks>
+            You should not use this method to determine if an instance exists 
+            (use <see cref="M:B4F.TotalGiro.Dal.NHSession.GetList(System.String)">NHSession.GetList()</see> instead). 
+            Use this only to retrieve an instance that you assume exists, where non-existence would be an actual error.
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetListbySQLQuery(System.String,System.String,System.Type)">
+            <summary>
+            Executes a SQL query.
+            </summary>
+            <param name="query">A query expressed in SQL.</param>
+            <param name="tableAlias">A table alias that appears inside {} in the SQL string.</param>
+            <param name="type">The persistent class to be returned.</param>
+            <returns>A list of objects of type <i>type</i>.</returns>
+            <example> This examples shows how to call the GetListbySQLQuery method.
+            <code>
+                1)
+                string szQuery = "SELECT CountryID {Country.Key}, CountryName {Country.CountryName}, Iso2 {Country.Iso2}, Iso3 {Country.Iso3}, Iso3NumCode {Country.Iso3NumCode}, CountryNameInternational {Country.InternationalName} FROM Countries"; 
+                IList result = session.GetListbySQLQuery(szQuery, "Country", typeof(Country)); 
+            
+                2)
+                string szQuery = "SELECT {Position.*} FROM vwePositions {Position} where AccountID = " + accountId.ToString();
+                IList positions = session.GetListbySQLQuery(szQuery, "Position", typeof(Position)); 
+            </code>
+            </example>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetList(System.Type)">
+            <summary>
+            Gets a list of all objects of a given type.
+            </summary>
+            <param name="type">The type of objects to get.</param>
+            <returns>A list of objects of type <i>type</i>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetList(System.Type,System.Collections.Generic.List{NHibernate.Expression.ICriterion})">
+            <summary>
+            Gets a list of objects of a given type, filtered by the given criteria.
+            </summary>
+            <param name="type">The type of objects to get.</param>
+            <param name="expressions">Filtering criteria.</param>
+            <returns>A list of objects of type <i>type</i>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetList(System.Type,System.Collections.Generic.List{NHibernate.Expression.ICriterion},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Gets a list of objects of a given type, filtered by the given criteria, and sorted as specified.
+            </summary>
+            <param name="type">The type of objects to get.</param>
+            <param name="expressions">Filtering criteria.</param>
+            <param name="maximumRows">Maximum number of objects to return in the list.</param>
+            <param name="startRowIndex">Start Row to return. Only when maximumRows is not null.</param>
+            <returns>A list of objects of type <i>type</i>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetList(System.Type,System.Collections.Generic.List{NHibernate.Expression.ICriterion},System.Collections.Generic.List{NHibernate.Expression.Order})">
+            <summary>
+            Gets a list of objects of a given type, filtered by the given criteria, and sorted as specified.
+            </summary>
+            <param name="type">The type of objects to get.</param>
+            <param name="expressions">Filtering criteria.</param>
+            <param name="orderings">Sorting specification.</param>
+            <returns>A list of objects of type <i>type</i>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetList(System.Type,System.Collections.Generic.List{NHibernate.Expression.ICriterion},System.Collections.Generic.List{NHibernate.Expression.Order},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Gets a list of objects of a given type, filtered by the given criteria, and sorted as specified.
+            </summary>
+            <param name="type">The type of objects to get.</param>
+            <param name="expressions">Filtering criteria.</param>
+            <param name="orderings">Sorting specification.</param>
+            <param name="maximumRows">Maximum number of objects to return in the list.</param>
+            <param name="startRowIndex">Start Row to return. Only when maximumRows is not null.</param>
+            <returns>A list of objects of type <i>type</i>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetList(System.String)">
+            <summary>
+            Executes an HQL (Hibernate Query Language) query.
+            </summary>
+            <param name="query">The HQL (Hibernate Query Language) query to perform.</param>
+            <returns>An HQL result set, which is a list of lists of primitive types (string, int, DateTime, etc.).
+            Every list in the primary-level list represents a row in the record set, and the primitive-type values are field values 
+            inside the row.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.GetList(System.String,System.Collections.Hashtable)">
+            <summary>
+            Executes a named query (HQL or SQL) defined in the mapping file.
+            </summary>
+            <param name="queryName">The name of a query defined in the mapping file.</param>
+            <param name="parameters">Parameters for the named query (name/value pairs).</param>
+            <returns>An NHibernate result set, which is a list of lists of primitive types (string, int, DateTime, etc.).
+            Every list in the primary-level list represents a row in the record set, and the primitive-type values are field values 
+            inside the row.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.ExecuteStoredProcedure(System.String,System.Collections.Hashtable)">
+            <summary>
+            Call a stored procedure
+            </summary>
+            <param name="sqlStoredProc">
+            The sql of the stored procedure.
+            It can look like EXEC [uspGetEmployeeManagers] @EmployeeID = :employeeID
+            </param>
+            <param name="parameters">The optional parameters passed to the sp</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.BeginTransaction">
+            <summary>
+            Begins a unit of work.
+            </summary>
+            <returns><b>true</b> if transaction begun successfully, <b>false</b> if not.</returns>
+            <remarks>
+            If a new underlying transaction is required, begin the transaction. 
+            Otherwise, continue the new work in the context of the existing underlying transaction.
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.CommitTransaction">
+            <summary>
+            Flushes the associated <i>NHibernate</i> session and ends the unit of work.
+            </summary>
+            <returns><b>true</b> if the transaction was successfully commited, <b>false</b> if it was rolled back.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Insert(System.Object)">
+            <summary>
+            Persists the given transient instance, first assigning a generated identifier.
+            </summary>
+            <param name="obj">A transient instance of a persistent class.</param>
+            <returns><b>true</b> if operation was successful, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Insert(System.Collections.IList)">
+            <summary>
+            Persists a given list of transient instances, first assigning each a generated identifier.
+            </summary>
+            <param name="list">A given list of transient instances of a persistent class.</param>
+            <returns><b>true</b> if operation was successful, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Update(System.Object)">
+            <summary>
+            Updates the persistent instance having the identifier of the given transient instance.
+            </summary>
+            <param name="obj">A transient instance containing updated state.</param>
+            <returns><b>true</b> if operation was successful, <b>false</b> if not.</returns>
+            <remarks>
+            If the given transient instance has a null identifier, an exception will be thrown.
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Update(System.Collections.IList)">
+            <summary>
+            Updates the persistent instances having the identifiers of the given list of transient instances.
+            </summary>
+            <param name="list">A list of transient instances containing updated state.</param>
+            <returns><b>true</b> if operation was successful, <b>false</b> if not.</returns>
+            <remarks>
+            If any of the given transient instances has a null identifier, an exception will be thrown.
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Delete(System.Object)">
+            <summary>
+            Remove a persistent instance from the datastore.
+            </summary>
+            <param name="obj">The instance to be removed.</param>
+            <returns><b>true</b> if operation was successful, <b>false</b> if not.</returns>
+            <remarks>
+            The argument may be a new transient instance, or a transient instance with an identifier associated with existing persistent state.
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Delete(System.Collections.IList)">
+            <summary>
+            Remove a given list of persistent instances from the datastore.
+            </summary>
+            <param name="list">A list of instances to be removed.</param>
+            <returns><b>true</b> if operation was successful, <b>false</b> if not.</returns>
+            <remarks>
+            Objects in the list may be new transient instances, or transient instances with identifiers associated with existing persistent state.
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.InsertOrUpdate(System.Object)">
+            <summary>
+            Either insert or update the given instance, depending upon the value of its identifier property.
+            </summary>
+            <param name="obj">A transient instance containing new or updated state.</param>
+            <returns><b>true</b> if operation was successful, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.InsertOrUpdate(System.Collections.IList)">
+            <summary>
+            Either insert or update the instances in the given list, depending upon the values of their identifier property.
+            </summary>
+            <param name="list">A list of transient instances containing new or updated state.</param>
+            <returns><b>true</b> if operation was successful, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Close">
+            <summary>
+            Ends the <i>NHibernate</i> session by disconnecting from the ADO.NET connection and cleaning up.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Disconnect">
+            <summary>
+            Disconnects the <i>NHibernate</i> session from the current ADO.NET connection.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Reconnect">
+            <summary>
+            Obtains a new ADO.NET connection.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSession.Refresh(System.Object)">
+            <summary>
+            Re-reads the state of the given object from the underlying database.
+            </summary>
+            <param name="obj">The object for which to re-read the state from the underlying database.</param>
+            <remarks>
+            It is inadvisable to use this to implement long-running sessions that span many business tasks. 
+            This method is, however, useful in certain special circumstances. 
+            For example, when a database trigger alters the object state upon insert or update;
+            or, after executing direct SQL (eg. a mass update) in the same session; or, after inserting a BLOB or CLOB.
+            </remarks>
+        </member>
+        <member name="P:B4F.TotalGiro.Dal.NHSession.Session">
+            <summary>
+            Gets the associated <i>NHibernate</i> session.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Dal.NHSession.IsConnected">
+            <summary>
+            Gets a value indicating whether the <i>NHibernate</i> session is currently connected.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Dal.NHSession.IsOpen">
+            <summary>
+            Gets a value indicating whether the <i>NHibernate</i> session is still open.
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Dal.AdoNet.AdoDataConnect">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.AdoNet.AdoDataConnect.#ctor(B4F.TotalGiro.Dal.IDalSession)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.AdoNet.AdoDataConnect.#ctor(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <exclude/>
+        </member>
+        <member name="P:B4F.TotalGiro.Dal.AdoNet.AdoDataConnect.CurrentConnection">
+            <exclude/>
+        </member>
+        <member name="T:B4F.TotalGiro.Dal.DataSetGenericBuilder`1">
+            <summary>
+            Class that creates a <b>DataSet</b> (both schema and data) from a list of objects.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.DataSetGenericBuilder`1.CreateDataSetFromBusinessObjectList(System.Collections.Generic.IList{`0},System.String)">
+            <summary>
+            Creates a <b>DataSet</b> (both schema and data) from a list of <i>business objects</i>, that is, 
+            objects from the Business Layer (orders, accounts, instruments etc.).
+            </summary>
+            <param name="objectList">A list of <i>business objects</i>, that is, 
+            objects from the Business Layer (orders, accounts, instruments etc.).</param>
+            <param name="propertyList">A list of property names, which will become table columns in the <b>DataSet</b>.</param>
+            <returns>A <b>DataSet</b> containing a table with one column for each property in <i>propertyList</i>,
+            and one row for each business object in <i>objectList</i>. 
+            If <i>objectList</i> is empty, the table will have no rows and no columns.</returns>
+            <remarks>
+            All properties in <i>propertyList</i> should be available on every object in the business object list.
+            A property name should represent the <i>same</i> property across all business objects, even if two objects may belong to 
+            two different classes deriving from the same root class, or implementing a common interface -- 
+            in those cases the property should belong the the root class, or to the common interface, respectively.
+            Properties can be <i>nested</i>, e.g. <i>Value.Quantity</i> for an <i>objectList</i> that contains account objects.<br/><br/>
+            For property names that contain dots (nested property names), the corresponding column names will be formed by replacing 
+            the dots with underscore characters (e.g. property <i>Value.Quantity</i> becomes column <i>Value_Quantity</i> in the <b>DataSet</b>).
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.DataSetGenericBuilder`1.CreateDataSetFromHibernateList(System.Collections.Generic.IList{`0},System.String)">
+            <summary>
+            Creates a <b>DataSet</b> (both schema and data) from a <i>Hibernate list</i>, which is a list of lists of primitive types (string,
+            int, DateTime, etc.). Such a list is typically the result of calling 
+            <see cref="M:B4F.TotalGiro.Dal.NHSession.GetList(System.String)">NHSession.GetList()</see> with an 
+            HQL (Hibernate Query Language) query string as the first parameter.
+            </summary>
+            <param name="objectList">A <i>Hibernate list</i>, which is a list of lists of primitive types (string, int, DateTime, etc.).</param>
+            <param name="propertyList">A list of property names, which will become table columns in the <b>DataSet</b>.</param>
+            <returns>A <b>DataSet</b> containing a table with one column for each property in <i>propertyList</i>,
+            and one row for each secondary-level list in <i>objectList</i>. 
+            If <i>objectList</i> is empty, the table will have no rows and no columns.</returns>
+            <remarks>
+            A <i>Hibernate list</i>, or list of lists of primitive-type values, is the HQL (Hibernate Query Language) equivalent of an SQL result set. 
+            Every list in the primary-level list represents a row in the record set, and the primitive-type values are field values 
+            inside the row.<br/><br/>
+            The property names in <i>propertyList</i> are just names that will be assigned to the columns in the <b>DataSet</b> 
+            (they don't have to exist as properties in a class). 
+            The maximum number of property names in <i>propertyList</i> is the number of primitive-type values in 
+            secondary-level lists in <i>objectList</i>.
+            </remarks>
+        </member>
+        <member name="T:B4F.TotalGiro.Dal.DataSetBuilder">
+            <summary>
+            Class that creates a <b>DataSet</b> (both schema and data) from a list of objects.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.DataSetBuilder.CreateDataSetFromBusinessObjectList(System.Collections.IList,System.String)">
+            <summary>
+            Creates a <b>DataSet</b> (both schema and data) from a list of <i>business objects</i>, that is, 
+            objects from the Business Layer (orders, accounts, instruments etc.).
+            </summary>
+            <param name="objectList">A list of <i>business objects</i>, that is, 
+            objects from the Business Layer (orders, accounts, instruments etc.).</param>
+            <param name="propertyList">A list of property names, which will become table columns in the <b>DataSet</b>.</param>
+            <returns>A <b>DataSet</b> containing a table with one column for each property in <i>propertyList</i>,
+            and one row for each business object in <i>objectList</i>. 
+            If <i>objectList</i> is empty, the table will have no rows and no columns.</returns>
+            <remarks>
+            All properties in <i>propertyList</i> should be available on every object in the business object list.
+            A property name should represent the <i>same</i> property across all business objects, even if two objects may belong to 
+            two different classes deriving from the same root class, or implementing a common interface -- 
+            in those cases the property should belong the the root class, or to the common interface, respectively.
+            Properties can be <i>nested</i>, e.g. <i>Value.Quantity</i> for an <i>objectList</i> that contains account objects.<br/><br/>
+            For property names that contain dots (nested property names), the corresponding column names will be formed by replacing 
+            the dots with underscore characters (e.g. property <i>Value.Quantity</i> becomes column <i>Value_Quantity</i> in the <b>DataSet</b>).
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.DataSetBuilder.CreateDataSetFromBusinessObjectList(System.Collections.IList,System.String,System.String)">
+            <summary>
+            Creates a <b>DataSet</b> (both schema and data) from a list of <i>business objects</i>, that is, 
+            objects from the Business Layer (orders, accounts, instruments etc.).
+            </summary>
+            <param name="objectList">A list of <i>business objects</i>, that is, 
+            objects from the Business Layer (orders, accounts, instruments etc.).</param>
+            <param name="propertyList">A list of property names, which will become table columns in the <b>DataSet</b>.</param>
+            <param name="dataTableName">The name of the first (and only) <b>DataTable</b> in the returned <b>DataSet</b>.</param>
+            <returns>A <b>DataSet</b> containing a table with one column for each property in <i>propertyList</i>,
+            and one row for each business object in <i>objectList</i>. 
+            If <i>objectList</i> is empty, the table will have no rows and no columns.</returns>
+            <remarks>
+            All properties in <i>propertyList</i> should be available on every object in the business object list.
+            A property name should represent the <i>same</i> property across all business objects, even if two objects may belong to 
+            two different classes deriving from the same root class, or implementing a common interface -- 
+            in those cases the property should belong the the root class, or to the common interface, respectively.
+            Properties can be <i>nested</i>, e.g. <i>Value.Quantity</i> for an <i>objectList</i> that contains account objects.<br/><br/>
+            For property names that contain dots (nested property names), the corresponding column names will be formed by replacing 
+            the dots with underscore characters (e.g. property <i>Value.Quantity</i> becomes column <i>Value_Quantity</i> in the <b>DataSet</b>).
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.DataSetBuilder.CreateDataTableFromBusinessObjectList(System.Collections.IList,System.String,System.String)">
+            <summary>
+            Creates a <b>DataTable</b> (both schema and data) from a list of <i>business objects</i>, that is, 
+            objects from the Business Layer (orders, accounts, instruments etc.).
+            </summary>
+            <param name="objectList">A list of <i>business objects</i>, that is, 
+            objects from the Business Layer (orders, accounts, instruments etc.).</param>
+            <param name="propertyList">A list of property names, which will become columns in the <b>DataTable</b>.</param>
+            <param name="dataTableName">The name of the <b>DataTable</b>.</param>
+            <returns>A <b>DataTable</b> with one column for each property in <i>propertyList</i>,
+            and one row for each business object in <i>objectList</i>. 
+            If <i>objectList</i> is empty, the table will have no rows and no columns.</returns>
+            <remarks>
+            All properties in <i>propertyList</i> should be available on every object in the business object list.
+            A property name should represent the <i>same</i> property across all business objects, even if two objects may belong to 
+            two different classes deriving from the same root class, or implementing a common interface -- 
+            in those cases the property should belong the the root class, or to the common interface, respectively.
+            Properties can be <i>nested</i>, e.g. <i>Value.Quantity</i> for an <i>objectList</i> that contains account objects.<br/><br/>
+            For property names that contain dots (nested property names), the corresponding column names will be formed by replacing 
+            the dots with underscore characters (e.g. property <i>Value.Quantity</i> becomes column <i>Value_Quantity</i> in the <b>DataTable</b>).
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.DataSetBuilder.CreateDataSetFromHibernateList(System.Collections.IList,System.String)">
+            <summary>
+            Creates a <b>DataSet</b> (both schema and data) from a <i>Hibernate list</i>, which is a list of lists of primitive types (string,
+            int, DateTime, etc.). Such a list is typically the result of calling 
+            <see cref="M:B4F.TotalGiro.Dal.NHSession.GetList(System.String)">NHSession.GetList()</see> with an 
+            HQL (Hibernate Query Language) query string as the first parameter.
+            </summary>
+            <param name="objectList">A <i>Hibernate list</i>, which is a list of lists of primitive types (string, int, DateTime, etc.).</param>
+            <param name="propertyList">A list of property names, which will become table columns in the <b>DataSet</b>.</param>
+            <returns>A <b>DataSet</b> containing a table with one column for each property in <i>propertyList</i>,
+            and one row for each secondary-level list in <i>objectList</i>. 
+            If <i>objectList</i> is empty, the table will have no rows and no columns.</returns>
+            <remarks>
+            A <i>Hibernate list</i>, or list of lists of primitive-type values, is the HQL (Hibernate Query Language) equivalent of an SQL result set. 
+            Every list in the primary-level list represents a row in the record set, and the primitive-type values are field values 
+            inside the row.<br/><br/>
+            The property names in <i>propertyList</i> are just names that will be assigned to the columns in the <b>DataSet</b> 
+            (they don't have to exist as properties in a class). 
+            The maximum number of property names in <i>propertyList</i> is the number of primitive-type values in 
+            secondary-level lists in <i>objectList</i>.
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.DataSetBuilder.CreateDataSetFromHibernateList(System.Collections.IList,System.String,System.String)">
+            <summary>
+            Creates a <b>DataSet</b> (both schema and data) from a <i>Hibernate list</i>, which is a list of lists of primitive types (string,
+            int, DateTime, etc.). Such a list is typically the result of calling 
+            <see cref="M:B4F.TotalGiro.Dal.NHSession.GetList(System.String)">NHSession.GetList()</see> with an 
+            HQL (Hibernate Query Language) query string as the first parameter.
+            </summary>
+            <param name="objectList">A <i>Hibernate list</i>, which is a list of lists of primitive types (string, int, DateTime, etc.).</param>
+            <param name="propertyList">A list of property names, which will become table columns in the <b>DataSet</b>.</param>
+            <param name="dataTableName">The name of the first (and only) <b>DataTable</b> in the returned <b>DataSet</b>.</param>
+            <returns>A <b>DataSet</b> containing a table with one column for each property in <i>propertyList</i>,
+            and one row for each secondary-level list in <i>objectList</i>. 
+            If <i>objectList</i> is empty, the table will have no rows and no columns.</returns>
+            <remarks>
+            A <i>Hibernate list</i>, or list of lists of primitive-type values, is the HQL (Hibernate Query Language) equivalent of an SQL result set. 
+            Every list in the primary-level list represents a row in the record set, and the primitive-type values are field values 
+            inside the row.<br/><br/>
+            The property names in <i>propertyList</i> are just names that will be assigned to the columns in the <b>DataSet</b> 
+            (they don't have to exist as properties in a class). 
+            The maximum number of property names in <i>propertyList</i> is the number of primitive-type values in 
+            secondary-level lists in <i>objectList</i>.
+            </remarks>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.DataSetBuilder.CreateDataTableFromHibernateList(System.Collections.IList,System.String,System.String)">
+            <summary>
+            Creates a <b>DataTable</b> (both schema and data) from a <i>Hibernate list</i>, which is a list of lists of primitive types (string,
+            int, DateTime, etc.). Such a list is typically the result of calling 
+            <see cref="M:B4F.TotalGiro.Dal.NHSession.GetList(System.String)">NHSession.GetList()</see> with an 
+            HQL (Hibernate Query Language) query string as the first parameter.
+            </summary>
+            <param name="objectList">A <i>Hibernate list</i>, which is a list of lists of primitive types (string, int, DateTime, etc.).</param>
+            <param name="propertyList">A list of property names, which will become columns in the <b>DataTable</b>.</param>
+            <param name="dataTableName">The name of the <b>DataTable</b>.</param>
+            <returns>A <b>DataTable</b> with one column for each property in <i>propertyList</i>,
+            and one row for each secondary-level list in <i>objectList</i>. 
+            If <i>objectList</i> is empty, the table will have no rows and no columns.</returns>
+            <remarks>
+            A <i>Hibernate list</i>, or list of lists of primitive-type values, is the HQL (Hibernate Query Language) equivalent of an SQL result set. 
+            Every list in the primary-level list represents a row in the record set, and the primitive-type values are field values 
+            inside the row.<br/><br/>
+            The property names in <i>propertyList</i> are just names that will be assigned to the columns in the <b>DataTable</b> 
+            (they don't have to exist as properties in a class). 
+            The maximum number of property names in <i>propertyList</i> is the number of primitive-type values in 
+            secondary-level lists in <i>objectList</i>.
+            </remarks>
+        </member>
+        <member name="T:B4F.TotalGiro.Dal.NHSessionFactory">
+            <summary>
+            Provides <i>NHibernate</i> sessions and the possibility to register additional classes with <i>NHibernate</i> by modules.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.GetInstance">
+            <summary>
+            Gets the one instance of the <b>NHSessionFactory</b>. This is done with a Singleton so that we don't have
+            to register mappings etc. with every request.
+            </summary>
+            <returns>The one instance of <b>NHSessionFactory</b>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.GetInstance(System.String[])">
+            <summary>
+            Gets the one instance of the <b>NHSessionFactory</b>. This is done with a Singleton so that we don't have
+            to register mappings etc. with every request. It also registers the given assemblies with <i>NHibernate</i>.
+            </summary>
+            <param name="assemblies">Names of assemblies to register with <i>NHibernate</i>.</param>
+            <returns>The one instance of <b>NHSessionFactory</b>.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.GetNHibernateFactory">
+            <summary>
+            GetNHibernateFactory returns the current <i>NHibernate</i> ISessionFactory.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.GetSession">
+            <summary>
+            Get a new <i>NHibernate</i> session.
+            An instance version of <see cref="M:B4F.TotalGiro.Dal.NHSessionFactory.CreateSession">CreateSession</see> 
+            (preferably you should use the latter).
+            </summary>
+            <returns>A new <i>NHibernate</i> session.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.CreateSession">
+            <summary>
+            Get a new <i>NHibernate</i> session. 
+            A <i>static</i> version of <see cref="M:B4F.TotalGiro.Dal.NHSessionFactory.GetSession">GetSession</see>.
+            </summary>
+            <returns>A new <i>NHibernate</i> session.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.GetSessionFromProxy(System.Object)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.IsProxyInitialised(System.Object)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.RegisterPersistentClass(System.Type)">
+            <summary>
+            Add a class to the <i>NHibernate</i> mappings and rebuild the <i>NHibernate</i> SessionFactory. 
+            If the class is already mapped, nothing will happen. Call RefreshFactory() after
+            adding classes. They are not automatically added because of possible dependencies
+            between the classes.
+            </summary>
+            <param name="type">The class to add to <i>NHibernate</i> mappings.</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.RegisterCallingAssembly(System.Reflection.Assembly)">
+            <summary>
+            Registers the given assembly with <i>NHibernate</i> (loads its class-to-database mapping file into memory).
+            </summary>
+            <param name="assembly">The assembly to register.</param>
+            <returns><b>true</b> if registration successful, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.RegisterCallingAssembly(System.String)">
+            <summary>
+            Registers the given assembly with <i>NHibernate</i> (loads its class-to-database mapping file into memory).
+            </summary>
+            <param name="assemblyName">The name of the assembly to register.</param>
+            <returns><b>true</b> if registration successful, <b>false</b> if not.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Dal.NHSessionFactory.Rebuild">
+            <summary>
+            Rebuild the <i>NHibernate</i> ISessionFactory. Use it after registering new classes.
+            </summary>
+        </member>
+    </members>
+</doc>

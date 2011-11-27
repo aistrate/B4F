@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="B4F.TotalGiro.Fees.FeeCalculations.FeeCalc" Collapsed="true">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAAQEAQAAAAAAQEESAOAAUAAUAAAIEgAAACAAAAAEA=</HashCode>
+      <FileName>FeeCalculations\FeeCalc.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Fees.FeeCalculations.FeeCalcLine" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAREAAIEQMCAACBABIBAQAIAQAAEAAA=</HashCode>
+      <FileName>FeeCalculations\FeeCalcLine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Fees.FeeCalculations.FeeCalcLines" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQAEAAAAAAAABAAAAARAAAAAAAAABACAAAAABAAAA=</HashCode>
+      <FileName>FeeCalculations\FeeCalcLines.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B4F.TotalGiro.Fees.FeeCalculations.FeeCalcVersion" Collapsed="true">
+    <Position X="2" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QiMAwUIAAEACAETEAQBEQAEAACAIAYAwAAAAAAAgAAE=</HashCode>
+      <FileName>FeeCalculations\FeeCalcVersion.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="B4F.TotalGiro.Fees.FeeCalculations.FeeCalcVersionFlat" Collapsed="true">
+    <Position X="3.25" Y="2.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAEAAAAgEAAAIQAAQACIAACAwAAAgAAAUAAA=</HashCode>
+      <FileName>FeeCalculations\FeeCalcVersionFlat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B4F.TotalGiro.Fees.FeeCalculations.FeeCalcVersionSimple" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAACAAAAAwAAAAAAAAAAI=</HashCode>
+      <FileName>FeeCalculations\FeeCalcVersionSimple.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

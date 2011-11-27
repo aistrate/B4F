@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.Classification.RegionClass, B4F.TotalGiro.Instruments" table="RegionClass" proxy="B4F.TotalGiro.Instruments.Classification.IRegionClass, B4F.TotalGiro.Interfaces" mutable="false" >
+    <cache usage="read-only" />
+    <id name="Key" column="RegionClassID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="RegionName" column="RegionClass" />
+	</class>
+</hibernate-mapping>

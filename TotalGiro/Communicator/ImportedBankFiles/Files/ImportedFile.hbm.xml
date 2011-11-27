@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.ImportedFile, B4F.TotalGiro.Communicator"
+		   table="ImportedFiles" >
+    <id name="key" access="field" column="ImportedFileID" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <many-to-one name="Parent" column="TextFilesToImportID" class="B4F.TotalGiro.Communicator.ImportedBankFiles.FileToImport, B4F.TotalGiro.Communicator" cascade="all" />
+    <property name="FileName" column="ImportedFile" />
+    <property name="FileShortName" column="FileShortName" />
+    <property name="FileCreationDate" column="FileCreationDate" />
+    <property name="NumberOfRecords" column="NumberOfRecords" />
+    <property name="DateFileImported" column="DateFileImported" />
+    <bag name="bagOfRecords" table="ImportedFileRecords" access="field" cascade="all" lazy="true" >
+      <key column="ImportedFileID" />
+      <one-to-many class="B4F.TotalGiro.Communicator.ImportedBankFiles.Files.Records.ImportedRecord, B4F.TotalGiro.Communicator" />
+    </bag>
+  </class>
+</hibernate-mapping>

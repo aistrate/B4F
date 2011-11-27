@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>dsTotalGiro</Name>
+  <ConnectionProperties>
+    <Extension>DATASET</Extension>
+    <ConnectString />
+    <IntegratedSecurity>true</IntegratedSecurity>
+  </ConnectionProperties>
+  <DataSourceID>38f86880-4916-4c17-8230-d9d0ff978302</DataSourceID>
+</RptDataSource>

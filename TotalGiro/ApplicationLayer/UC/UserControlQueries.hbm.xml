@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <query name="B4F.TotalGiro.ApplicationLayer.UC.ContactsToSelect" >
+    <![CDATA[
+    from Contact C 
+    where C.AssetManager.Key = :assetManagerId
+		and C.Key not in (:excludedKeys)
+    and C.CurrentNAW.Name like :name
+    and (C.Key in (select CP.Key from ContactPerson CP where CP.BurgerServiceNummer like :number) or C.Key in (select CC.Key from ContactCompany CC where CC.KvKNumber like :number))
+		order by C.CurrentNAW.Name
+    ]]>
+  </query>
+
+  <query name="B4F.TotalGiro.ApplicationLayer.UC.AccountsToSelect" >
+    <![CDATA[
+    from AccountTypeCustomer A 
+    where A.AccountOwner.Key = :assetManagerId
+		and A.Key not in (:excludedKeys)
+    and A.Number like :number
+    and A.ShortName like :name
+		order by A.ShortName
+    ]]>
+  </query>
+
+</hibernate-mapping>

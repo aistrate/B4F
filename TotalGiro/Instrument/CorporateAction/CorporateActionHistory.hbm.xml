@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.CorporateAction.CorporateActionHistory, B4F.TotalGiro.Instruments"
+		table="InstrumentsCorporateActionHistory"
+		proxy="B4F.TotalGiro.Instruments.CorporateAction.ICorporateActionHistory, B4F.TotalGiro.Interfaces"
+		dynamic-update="true">
+		<id name="Key" column="CorporateActionHistoryID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.SecurityInstrument, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="Description" column="Description" />
+		<property name="TotalNumberOfUnits" column="TotalNumberOfUnits" />
+		<property name="CreationDate" column="CreationDate" insert="false" update="false" type="DateTime" />
+		<joined-subclass name="B4F.TotalGiro.Instruments.CorporateAction.DividendHistory, B4F.TotalGiro.Instruments" table="InstrumentsDividendHistory" proxy="B4F.TotalGiro.Instruments.CorporateAction.IDividendHistory, B4F.TotalGiro.Interfaces" >
+			<key column="CorporateActionHistoryID"/>
+			<property name="StockDivIsin" column="StockDivIsin" />
+		  <many-to-one name="StockDividend" column="StockDividendID" class="B4F.TotalGiro.Instruments.StockDividend, B4F.TotalGiro.Instruments" cascade="none" />
+			<property name="exDividendDate" column="ExDividendDate" type="Date" access="field"/>
+			<property name="settlementDate" column="SettlementDate" type="Date" access="field"/>
+			<property name="IsInitialised" column="IsInitialised"  />
+			<property name="IsExecuted" column="IsExecuted"  />
+			<property name="IsGelicht" column="IsGelicht"  />
+			<property name="TaxPercentage" column="TaxPercentage"  />
+			<property name="TypeOfDividendTax" column="TypeOfDividendTax" type="B4F.TotalGiro.Instruments.CorporateAction.DividendTaxStyle, B4F.TotalGiro.Interfaces" />
+      <property name="DividendType" column="DividendTypeID" type="B4F.TotalGiro.Instruments.CorporateAction.DividendTypes, B4F.TotalGiro.Interfaces" />
+			<property name="ScripRatio" column="ScripRatio"  />
+      <component name="UnitPrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="UnitPrice" />
+				<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="UnitPriceID" cascade="none" />
+				<many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="UnitPriceInstrumentID" cascade="none" />
+			</component>
+      <bag name="cashdividends" access="field" generic="true" lazy="true" cascade="all" inverse="true"
+				collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.Bookings.ICashDividend, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.CorporateAction.CashDividendCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+        <key column="CorporateActionHistoryID" foreign-key="CorporateActionHistoryID" />
+        <one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.CashDividend, B4F.TotalGiro.GeneralLedger" />
+      </bag>
+      <bag name="dividends" access="field" generic="true" lazy="true" cascade="all" inverse="true" where="(TGTransactionTypeID=2048)"
+				collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.Transactions.ICorporateActionStockDividend, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.CorporateAction.StockDividendCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+				<key column="CorporateActionHistoryID" foreign-key="CorporateActionHistoryID" />
+				<one-to-many class="B4F.TotalGiro.Orders.Transactions.CorporateActionStockDividend, B4F.TotalGiro.Orders" />
+			</bag>
+		</joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.Instruments.CorporateAction.CouponHistory, B4F.TotalGiro.Instruments" table="InstrumentsCouponHistory" proxy="B4F.TotalGiro.Instruments.CorporateAction.ICouponHistory, B4F.TotalGiro.Interfaces" >
+			<key column="CorporateActionHistoryID"/>
+			<property name="startAccrualDate" column="StartAccrualDate" type="Date" access="field" />
+			<property name="endAccrualDate" column="EndAccrualDate" type="Date"  access="field"/>
+			<property name="paymentDate" column="PaymentDate" type="Date"  access="field"/>
+		</joined-subclass>
+	</class>
+
+  <query name="B4F.TotalGiro.Instruments.CorporateAction.GetDividendHistories" >
+    <![CDATA[
+		from DividendHistory DH
+		where 1=1
+    and DH.Instrument.Key = :instrumentKey
+    and DH.exDividendDate >= :startdate
+    and DH.exDividendDate <= :endDate
+		]]>
+  </query>
+
+</hibernate-mapping>

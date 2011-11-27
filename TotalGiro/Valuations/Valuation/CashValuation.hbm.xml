@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0" default-access="property">
+	<class name="B4F.TotalGiro.Valuations.CashValuation, B4F.TotalGiro.Valuations" table="vweCashValuations" proxy ="B4F.TotalGiro.Valuations.ICashValuation, B4F.TotalGiro.Interfaces" mutable="false" >
+		<id name="Key" column="CashValuationID">
+			<generator class="assigned"/>
+		</id>
+		<many-to-one name="account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none" access="field" />
+		<many-to-one name="instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" access="field" />
+		<property name="valuationCashType" column="ValuationCashTypeID" type="B4F.TotalGiro.Valuations.ValuationCashTypes, B4F.TotalGiro.Interfaces" access="field"/>
+		<property name="date" column="ValuationDate" access="field"/>
+		<component name="amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" access="field">
+			<property name="Quantity" column="AmountToday" />
+			<many-to-one name="Underlying" column="AmountTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="amountToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" access="field">
+			<property name="Quantity" column="AmountToDate" />
+			<many-to-one name="Underlying" column="AmountToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="baseAmountToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" access="field">
+			<property name="Quantity" column="BaseAmountToDate" />
+			<many-to-one name="Underlying" column="BaseAmountToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<property name="marketRate" column="MarketRate" access="field"/>
+	</class>
+</hibernate-mapping>

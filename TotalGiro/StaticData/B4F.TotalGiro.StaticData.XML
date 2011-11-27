@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.StaticData</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.StaticData.Country">
+            <summary>
+            Class respresenting a country
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.Country.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes country object
+            </summary>
+            <param name="CountryName">Dutch Country Name</param>
+            <param name="Iso2">ISO two digit standard</param>
+            <param name="Iso3">ISO three digit standard</param>
+            <param name="Iso3NumCode">ISO numerical code</param>
+            <param name="InternationalName">International Country Name</param>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.Country.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.Country.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.Country.Equals(System.Object)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="obj">object to compare to</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.Country.Key">
+            <summary>
+            Get/set unique identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.Country.CountryName">
+            <summary>
+            Get/set name of country
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.Country.Iso2">
+            <summary>
+            Get/set ISO two digit standard
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.Country.Iso3">
+            <summary>
+            Get/set ISO two three standard
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.Country.InternationalName">
+            <summary>
+            Get/set international country name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.Country.Iso3NumCode">
+            <summary>
+            Get/set ISO numerical three digits standard
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.StaticData.Nationality">
+            <summary>
+            Class representing nationality
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.Nationality.#ctor(System.String)">
+            <summary>
+            Initializing nationality object
+            </summary>
+            <param name="description">Description of nationality</param>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.Nationality.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+            <returns>Name</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.Nationality.Key">
+            <summary>
+            Get/set unique identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.Nationality.Description">
+            <summary>
+            Get/set description of nationality
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.StaticData.IdentificationType">
+            <summary>
+            Class representing Client identification types
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.IdentificationType.#ctor(System.String)">
+            <summary>
+            Initializing new Type Identification
+            </summary>
+            <param name="idType">Name</param>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.IdentificationType.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+            <returns>Name</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.IdentificationType.Key">
+            <summary>
+            Get/set unique idtentifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.StaticData.IdentificationType.IdType">
+            <summary>
+            Get/set ID Name
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.StaticData.IdentificationTypeMapper">
+            <summary>
+            This class is used to instantiate Identification objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.IdentificationTypeMapper.GetIdentificationType(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get Identification object by ID
+            </summary>
+            <param name="session">Data Access object</param>
+            <param name="IdentificationTypeID">Unique identifier</param>
+            <returns>Identification object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.IdentificationTypeMapper.GetIdentificationType(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get collection of all system identification objects
+            </summary>
+            <param name="session">Data Access object</param>
+            <returns>Collection of identification objects</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.StaticData.NationalityMapper">
+            <summary>
+            This class is used to instantiate Nationality objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.NationalityMapper.GetNationality(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Gets Nationality by unique identifier
+            </summary>
+            <param name="session">Data Access object</param>
+            <param name="NationalityID">Unique identifier</param>
+            <returns>Nationality object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.NationalityMapper.GetNationalities(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get collection of all system nationalities
+            </summary>
+            <param name="session">Data Access object</param>
+            <returns></returns>
+        </member>
+        <member name="T:B4F.TotalGiro.StaticData.CountryMapper">
+            <summary>
+            This class is used to instantiate Country objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.CountryMapper.GetCountry(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get country object
+            </summary>
+            <param name="session">Data Access object</param>
+            <param name="countryID">Unique identifier</param>
+            <returns>Country object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.StaticData.CountryMapper.GetCountries(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get all countries in system
+            </summary>
+            <param name="session">Data Access object</param>
+            <returns>collection of countries</returns>
+        </member>
+    </members>
+</doc>

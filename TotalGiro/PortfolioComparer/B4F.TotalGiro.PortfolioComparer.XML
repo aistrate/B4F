@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.PortfolioComparer</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionEngineParameters">
+            <summary>
+            Parameters that are used during the rebalance
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionEngineParameters.IsOrderValueWithinTolerance(B4F.TotalGiro.Instruments.Money,B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Checks the value against the tolerance parameters (but only wheb they are set)
+            </summary>
+            <param name="orderValue">The value to check</param>
+            <param name="totalPortfolioValue">The total portfolio value</param>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.InstructionEngineParameters.MinimumRebalanceAmount">
+            <summary>
+            The minimum amount (either negative or positive) that an order has to match during the rebalance
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.InstructionEngineParameters.MinimumRebalancePercentage">
+            <summary>
+            The minum percentage (of the model) that an order must match
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Accounts.Instructions.InstructionEngineParameters.IsToleranceParameterSet">
+            <summary>
+            Are there any Tolerance parameters set?
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.PortfolioComparer.PortfolioComparer">
+            <summary>
+            The PortfolioComparer class is used to rebalance an account's portfolio
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.PortfolioComparer.PortfolioComparer.#ctor(B4F.TotalGiro.Accounts.IAccountTypeCustomer,B4F.TotalGiro.Fees.IFeeFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.PortfolioComparer.PortfolioComparer">PortfolioComparer</see> class.
+            </summary>
+            <param name="account">The <see cref="T:B4F.Accounts.AccountTypeCustomer">account</see> that should be rebalanced</param>
+            <param name="feeFactory">An instance of the <see cref="T:B4F.TotalGiro.Fees.FeeFactory">FeeFactory</see> class</param>
+        </member>
+        <member name="M:B4F.TotalGiro.PortfolioComparer.PortfolioComparer.CheckInstrumentsNotInModel(B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting)">
+            <summary>
+            This method checks whether instruments exist in the account's portfolio that are not in the account's model portfolio
+            </summary>
+            <param name="setting">This <see cref="T:B4F.TotalGiro.Fees.FeeFactory.PortfolioCompareSetting">argument</see> contains rebalance parameters</param>
+            <returns>True if the mismatched positions exist</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.PortfolioComparer.PortfolioComparer.CompareToModel(B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting,B4F.TotalGiro.PortfolioComparer.RebalanceResults@)">
+            <summary>
+            This method performs the actual rebalance on the account
+            </summary>
+            <param name="setting">This <see cref="T:B4F.TotalGiro.Fees.FeeFactory.PortfolioCompareSetting">argument</see> contains rebalance parameters</param>
+            <returns>An list of <see cref="T:B4F.TotalGiro.Orders.Order">orders</see></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.PortfolioComparer.PortfolioComparer.Account">
+            <summary>
+            The <see cref="T:B4F.Accounts.AccountTypeCustomer">account</see> that should be rebalanced
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.PortfolioComparer.PortfolioComparer.FeeFactory">
+            <summary>
+            An instance of the <see cref="T:B4F.TotalGiro.Fees.FeeFactory">FeeFactory</see> class
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.PortfolioComparer.PortfolioComparer.Setting">
+            <summary>
+            An instance of the <see cref="T:B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting">PortfolioCompareSetting</see> class
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionEvents">
+            <summary>
+            The possible events that can happen to an instruction
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionEvents.evNext">
+            <summary>
+            The event that takes an instruction to the next status
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionEvents.evCancel">
+            <summary>
+            The event that cancels the instruction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionConditions">
+            <summary>
+            The different conditions that an instruction are tested for during its lifetime
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionConditions.PendingOrdersOrSizeBasedClose">
+            <summary>
+            Check whether there are either pending orders or new size based closing orders need to be entered due to a restucture
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionConditions.PendingOrders">
+            <summary>
+            Check whether there are pending orders
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionConditions.PendingRebalance">
+            <summary>
+            Check whether there are pending (amount based) orders due to a rebalance
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionConditions.PendingCashFund">
+            <summary>
+            Check whether there are pending (monetary) orders
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionConditions.CheckCancel">
+            <summary>
+            Check whether it is possible to cancel the instruction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionActions">
+            <summary>
+            The different actions that an instruction can initiate during its lifetime
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionActions.SizeBasedCloseOrders">
+            <summary>
+            Create size based close orders due to a restructure of the modelportfolio
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionActions.Rebalance">
+            <summary>
+            The actual rebalance (bringing the portfolio back to the proportions of the model
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionActions.CashFundOrders">
+            <summary>
+            Placing cash fund orders to get rid of the cash
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionActions.Terminate">
+            <summary>
+            Terminate the instruction
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.Accounts.Instructions.InstructionActions.Cancel">
+            <summary>
+            Cancel the instruction
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionEngine">
+            <summary>
+            The InstructionEngine class is used to manage the Account Rebalance Instructions
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionEngine.#ctor(B4F.TotalGiro.Fees.IFeeFactory,B4F.TotalGiro.Accounts.Instructions.InstructionEngineParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Accounts.Instructions.InstructionEngine">InstructionEngine</see> class.
+            </summary>
+            <param name="feeFactory">An instance of the <see cref="T:B4F.TotalGiro.Fees.FeeFactory">FeeFactory</see> class</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionEngine.ProcessInstruction(B4F.TotalGiro.Accounts.Instructions.IInstruction,System.Collections.IList@)">
+            <summary>
+            This method processe the instruction to the next level until it is finished
+            </summary>
+            <param name="instruction">The <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">Instruction</see> to process</param>
+            <param name="newOrders">The new orders that might result from the processing</param>
+            <returns>true when succesfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionEngine.CheckInstructionInSyncWithModel(B4F.TotalGiro.Accounts.Instructions.IInstruction,System.Collections.IList@)">
+            <summary>
+            This method checks whether the portfolio is still insync with the model.  the instruction to the next level until it is finished
+            </summary>
+            <param name="instruction">The <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">Instruction</see> to process</param>
+            <param name="newOrders">The new orders that might result from the processing</param>
+            <returns>true when succesfull</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionEngine.CancelInstruction(B4F.TotalGiro.Accounts.Instructions.IInstruction,System.Collections.IList@)">
+            <summary>
+            This method tries to cancel the instruction (if allowed).
+            </summary>
+            <param name="instruction">The <see cref="T:B4F.TotalGiro.Accounts.Instructions.Instruction">Instruction</see> to process</param>
+            <param name="cancelOrders">The cancelled orders that might result from the processing</param>
+            <returns>true when succesfull</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Accounts.Instructions.InstructionEngineParametersMapper">
+            <summary>
+            This class is used to retrieve InstructionEngineParameters data. 
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Accounts.Instructions.InstructionEngineParametersMapper.GetParameters(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Retrieves the InstructionEngineParameters
+            </summary>
+            <param name="session">An instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class</param>
+            <returns>InstructionEngineParameters object</returns>      
+        </member>
+        <member name="T:B4F.TotalGiro.PortfolioComparer.PortfolioCompareAction">
+            <summary>
+            This enumeration lists the different type of actions that can be done in the portfolioComparer
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.PortfolioComparer.PortfolioCompareAction.CloseOrders">
+            <summary>
+            Place close orders only
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.PortfolioComparer.PortfolioCompareAction.Rebalance">
+            <summary>
+            Do a rebalance
+            </summary>
+        </member>
+        <member name="F:B4F.TotalGiro.PortfolioComparer.PortfolioCompareAction.CashFundOrders">
+            <summary>
+            Place Cash Fund Orders Only
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting">
+            <summary>
+            This class is used to pass rebalance parameters to the <see cref="M:B4F.TotalGiro.PortfolioComparer.PortfolioComparer(B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting)">rebalance method</see>
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting.#ctor(System.Boolean,B4F.TotalGiro.PortfolioComparer.PortfolioCompareAction,B4F.TotalGiro.Orders.OrderActionTypes,B4F.TotalGiro.Accounts.Instructions.IInstruction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting">PortfolioCompareSetting</see> class.
+            </summary>
+            <param name="useCashOnly">
+            When this argument is true the result is that only the cash is used to buy accordingly to the modelportfolio.
+            When the argument is false the account's total portfolio is compared with the modelportfolio
+            </param>
+            <param name="compareAction">
+            When this argument equals 'CloseOrders' it is checked whether positions exist that do not exist in the modelportfolio. 
+            When this is the case this will result in only sell close size based orders.
+            When the argument equals 'Rebalance' a normal rebalance is done.
+            However the method will generate an error when positions do exist that do not exist in the modelportfolio.
+            When the argument equals 'CashFundOrders' the remaining cash will be transferred to cash fund.
+            </param>
+            <param name="instruction">The instruction that generated the orders</param>
+            <param name="actionType">This is the <see cref="T:B4F.TotalGiro.Orders.OrderActionTypes">action</see> that caused the creation of the order</param>
+        </member>
+        <member name="M:B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting.IsInstrumentIncluded(B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            This method checks whether the instrument is excluded from the Rebalance.
+            </summary>
+            <typeparam name="instrument">The instrument being searched</typeparam>
+            <returns>True when the instrument is not excluded</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting.UseCashOnly">
+            <summary>
+            When this property is true the result is that only the cash is used to buy accordingly to the modelportfolio.
+            When the property is false the account's total portfolio is compared with the modelportfolio
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting.CompareAction">
+            <summary>
+            When this property is true it is checked whether positions exist that do not exist in the modelportfolio. 
+            When this is the case this will result in only sell close size based orders.
+            When the property is false a normal rebalance is done.
+            However the method will generate an error when positions do exist that do not exist in the modelportfolio.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.PortfolioComparer.PortfolioCompareSetting.ActionType">
+            <summary>
+            This is the <see cref="T:B4F.TotalGiro.Orders.OrderActionTypes">action</see> that caused the creation of the order
+            </summary>
+        </member>
+    </members>
+</doc>

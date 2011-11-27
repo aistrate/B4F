@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Routes.Route, B4F.TotalGiro.Instruments" table="Routes" proxy="B4F.TotalGiro.Routes.IRoute, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="RouteID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<property name="Name" column="ShortName" />
+		<property name="Type" column="RouteTypeID" type="B4F.TotalGiro.Routes.RouteTypes, B4F.TotalGiro.Interfaces" />
+		<property name="Description" column="Description" />
+		<property name="IsDefault" column="IsDefault" />
+		<property name="ApproveTransactions" column="ApproveTransactions" />
+    <many-to-one name="Exchange" column="ExchangeID" class="B4F.TotalGiro.Instruments.Exchange, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="ResendSecurityOrdersAllowed" column="ResendSecurityOrdersAllowed" />
+  </class>
+</hibernate-mapping>

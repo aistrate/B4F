@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.RemisierHistory.RemisierHistory, B4F.TotalGiro.Accounts" table="AccountsRemisierHistory" proxy="B4F.TotalGiro.Accounts.RemisierHistory.IRemisierHistory, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="AccountsRemisierHistoryID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeCustomer, B4F.TotalGiro.Accounts" cascade="none" />
+		<many-to-one name="RemisierEmployee" column="RemisierEmployeeID" class="B4F.TotalGiro.Stichting.Remisier.RemisierEmployee, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="KickBack" column="KickBack" />
+		<property name="IntroductionFee" column="IntroductionFee" />
+		<property name="SubsequentDepositFee" column="SubsequentDepositFee" />
+		<property name="IntroductionFeeReduction" column="IntroductionFeeReduction" />
+		<property name="SubsequentDepositFeeReduction" column="SubsequentDepositFeeReduction" />
+		<many-to-one name="Employee" column="EmployeeID" class="B4F.TotalGiro.Stichting.Login.InternalEmployeeLogin, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="ChangeDate" column="ChangeDate" type="Date" />
+		<property name="endDate" column="EndDate" access="field" insert="false" update="false" type="Date" />
+	</class>
+</hibernate-mapping>

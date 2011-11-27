@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" 
+         table="Instruments" 
+         proxy="B4F.TotalGiro.Instruments.IInstrument, B4F.TotalGiro.Interfaces"
+         dynamic-update="true">
+    <cache usage="read-write" />
+		<id name="Key" column="InstrumentID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="ParentInstrument" column="ParentInstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="save-update" />
+		<many-to-one name="topParentInstrument" column="TopParentInstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" access="field" cascade="none" insert="false" update="false" />
+		<bag name="bagOfInstruments" table="Instruments" access="field" cascade="none" lazy="true">
+			<key column="ParentInstrumentID" />
+			<many-to-many class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="InstrumentID" />
+		</bag>
+		<many-to-one name="Country" column="CountryId" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none"/>
+		<property name="inActiveDate" column="InActiveDate" type="Date" access="field" />
+		<property name="Name" column="Name" />
+		<many-to-one name="SecCategory" column="SecCategoryID" class="B4F.TotalGiro.Instruments.SecCategory, B4F.TotalGiro.Instruments" cascade="none" insert="false" update="false" />
+		<property name="secCategoryID" column="SecCategoryID" access="field" />
+		<property name="IsActive" column="Active"  />
+		<property name="DecimalPlaces" column="DecimalPlaces" type="Int32"/>
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false"  />
+		<property name="lastUpdated" column="LastUpdated" type="Date" access="field" insert="false"  />
+    <bag name="externalSymbols" access="field" generic="true" lazy="true" cascade="all" inverse="true"
+          collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Communicator.IInstrumentSymbol, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.InstrumentSymbolCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+      <key column="InstrumentID" foreign-key="InstrumentID" />
+      <one-to-many class="B4F.TotalGiro.Communicator.InstrumentSymbol, B4F.TotalGiro.Communicator" />
+    </bag>
+    <bag name="HistoricalTransformations" table="InstrumentsHistory" cascade="save-update" lazy="true" >
+			<key foreign-key="Instrument" column="InstrumentID" />
+			<one-to-many class="B4F.TotalGiro.Instruments.History.InstrumentHistory, B4F.TotalGiro.Instruments" />
+		</bag>
+		<joined-subclass name="B4F.TotalGiro.Instruments.InstrumentsWithPrices, B4F.TotalGiro.Instruments" 
+                     table="InstrumentsWithPrices" 
+                     proxy="B4F.TotalGiro.Instruments.IInstrumentsWithPrices, B4F.TotalGiro.Interfaces"
+                   dynamic-update="true">
+			<key column="InstrumentID"/>
+			<property name="Isin" column="Isin" />
+			<many-to-one name="CurrentPrice" column="CurrentPriceID" class="B4F.TotalGiro.Instruments.Prices.HistoricalPrice, B4F.TotalGiro.Instruments" cascade="none" />
+			<many-to-one  name="CurrencyNominal" column="CurrencyNominalID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			<property name="PriceType" column="PricingType" type="B4F.TotalGiro.Instruments.PricingTypes, B4F.TotalGiro.Interfaces" />
+			<bag name="historicalPrices" access="field" generic="true" lazy="true" cascade="save-update" 
+				 order-by="PriceDate DESC"
+				 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.Prices.IPriceDetail, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.Prices.HistoricalPriceCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+				<key column="InstrumentID" />
+				<one-to-many class="B4F.TotalGiro.Instruments.Prices.HistoricalPrice, B4F.TotalGiro.Instruments" />
+			</bag>
+			<joined-subclass name="B4F.TotalGiro.Instruments.TradeableInstrument, B4F.TotalGiro.Instruments" 
+                       table="InstrumentsTradeable" 
+                       proxy="B4F.TotalGiro.Instruments.ITradeableInstrument, B4F.TotalGiro.Interfaces"
+                       dynamic-update="true">
+				<key column="InstrumentID"/>
+				<property name="CompanyName" column="CompanyName" />
+				<property name="issueDate" column="IssueDate" type="Date" access="field" />
+				<many-to-one name="DefaultExchange" column="DefaultExchangeID" class="B4F.TotalGiro.Instruments.Exchange, B4F.TotalGiro.Instruments" cascade="none" />
+				<many-to-one name="HomeExchange" column="HomeExchangeID" class="B4F.TotalGiro.Instruments.Exchange, B4F.TotalGiro.Instruments" cascade="none" />
+				<many-to-one name="DefaultRoute" column="DefaultRouteID" class="B4F.TotalGiro.Routes.Route, B4F.TotalGiro.Instruments" cascade="none" />
+				<many-to-one name="SettlementDifferenceAccount" column="SettlementDifferenceAccountID" class="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger" cascade="none" />
+				<property name="AllowNetting" column="AllowNetting"/>
+				<bag name="instrumentExchanges" access="field" generic="true" lazy="true" cascade="save-update"
+					 order-by="ExchangeID"
+					 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.IInstrumentExchange, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.InstrumentExchangeCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+					<key column="InstrumentID" />
+					<one-to-many class="B4F.TotalGiro.Instruments.InstrumentExchange, B4F.TotalGiro.Instruments" />
+				</bag>
+				<joined-subclass name="B4F.TotalGiro.Instruments.SecurityInstrument, B4F.TotalGiro.Instruments" 
+                         table="InstrumentsSecurities" 
+                         proxy="B4F.TotalGiro.Instruments.ISecurityInstrument, B4F.TotalGiro.Interfaces"
+                         dynamic-update="true">
+					<key column="InstrumentID"/>
+					<property name="IsGreenFund" column="GreenFund" />
+					<property name="IsCultureFund" column="CultureFund" />
+          <bag name="corporateActions" access="field" generic="true" lazy="true" cascade="none" 
+            collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+							    [B4F.TotalGiro.Instruments.IInstrumentCorporateAction, B4F.TotalGiro.Interfaces],
+							    [B4F.TotalGiro.Instruments.InstrumentCorporateActionCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+            <key column="UnderlyingInstrumentID"  />
+            <one-to-many class="B4F.TotalGiro.Instruments.InstrumentCorporateAction, B4F.TotalGiro.Instruments" />
+          </bag>
+          <joined-subclass name="B4F.TotalGiro.Instruments.MutualFund, B4F.TotalGiro.Instruments" 
+                           table="MutualFundDetails"  
+                           proxy="B4F.TotalGiro.Instruments.IMutualFund, B4F.TotalGiro.Interfaces"
+                           dynamic-update="true">
+						<key column="InstrumentID"/>
+						<property name="AdminFee" column="AdminFee" />
+						<property name="BuyCost" column="BuyCost" />
+						<property name="SellCost" column="SellCost" />
+						<property name="CapitalisationCost" column="CapitalisationCost" />
+						<property name="RatingMS" column="RatingMS" />
+						<property name="Dividend" column="Dividend" />
+					</joined-subclass>
+					<joined-subclass name="B4F.TotalGiro.Instruments.CashManagementFund, B4F.TotalGiro.Instruments" 
+                           table="CashFundDetails" 
+                           proxy="B4F.TotalGiro.Instruments.ICashManagementFund, B4F.TotalGiro.Interfaces"
+                           dynamic-update="true">
+						<key column="InstrumentID"/>
+					</joined-subclass>
+					<joined-subclass name="B4F.TotalGiro.Instruments.Stock, B4F.TotalGiro.Instruments" 
+                           table="StockDetails" 
+                           proxy="B4F.TotalGiro.Instruments.IStock, B4F.TotalGiro.Interfaces"
+                         dynamic-update="true">
+						<key column="InstrumentID"/>
+					  </joined-subclass>
+					<joined-subclass name="B4F.TotalGiro.Instruments.VirtualFund, B4F.TotalGiro.Instruments" 
+                           table="VirtualFundDetails" 
+                           proxy="B4F.TotalGiro.Instruments.IVirtualFund, B4F.TotalGiro.Interfaces"
+                           dynamic-update="true">
+						<key column="InstrumentID"/>
+						<many-to-one name="HoldingsAccount" column="HoldingsAccountID" class="B4F.TotalGiro.Accounts.VirtualFundHoldingsAccount, B4F.TotalGiro.Accounts" cascade="save-update" />
+						<many-to-one name="TradingAccount" column="TradingAccountID" class="B4F.TotalGiro.Accounts.VirtualFundTradingAccount, B4F.TotalGiro.Accounts" cascade="save-update" />
+						<many-to-one name="LastNavCalculation" column="LastNavCalculationID" class="B4F.TotalGiro.Instruments.Nav.NavCalculation, B4F.TotalGiro.Instruments" cascade="none" />
+						<many-to-one name="JournalForFund" column="GLJournalID" class="B4F.TotalGiro.GeneralLedger.Static.Journal, B4F.TotalGiro.GeneralLedger" cascade="save-update" />
+						<component name="InitialNavPerUnit" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+							<property name="Quantity" column="InitialNavPerUnit" />
+							<many-to-one name="Underlying" column="InitialNavPerUnitInstrumentID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+							<many-to-one name="XRateCurrency" column="InitialNavPerUnitXRateInstrumentID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+							<property name="XRate" column="InitialNavPerUnitXRate" />
+						</component>
+						<bag name="calculations" access="field" generic="true" lazy="true"
+							collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.Nav.INavCalculation, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.Nav.NavCalculationCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+							<key column="Instrumentid" foreign-key="Instrumentid" />
+							<one-to-many class="B4F.TotalGiro.Instruments.Nav.NavCalculation, B4F.TotalGiro.Instruments" />
+						</bag>
+					</joined-subclass>
+					<joined-subclass name="B4F.TotalGiro.Instruments.Bond, B4F.TotalGiro.Instruments" 
+                           table="BondDetails" 
+                           proxy="B4F.TotalGiro.Instruments.IBond, B4F.TotalGiro.Interfaces"
+                           dynamic-update="true">
+						<key column="InstrumentID"/>
+						<component name="NominalValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" >
+						  <property name="Quantity" column="NominalValue" />
+						  <many-to-one name="Underlying" column="NominalValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none"/>
+						</component>
+						<property name="CouponRate" column="CouponRate" />
+						<property name="CouponFreq" column="CouponFreq" type="B4F.TotalGiro.Utils.Regularities, B4F.TotalGiro.Interfaces" />
+						<property name="MaturityDate" column="MaturityDate" type="Date" />
+						<property name="AccruedInterestCalcType" column="AccruedInterestCalcTypeID" type="B4F.TotalGiro.Instruments.AccruedInterestCalcTypes, B4F.TotalGiro.Interfaces"/>
+						<property name="firstCouponPaymntDate" column="FirstCouponPaymntDate" type="Date" access="field" />
+						<property name="UltimoDating" column="UltimoDating" />
+						<property name="IsPerpetual" column="IsPerpetual" />
+						<property name="IsFixedCouponRate" column="IsFixedCouponRate" />
+						<component name="RedemptionAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" >
+							<property name="Quantity" column="RedemptionAmount" />
+							<many-to-one name="Underlying" column="RedemptionAmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none"/>
+						</component>
+						<bag name="coupons" access="field" generic="true" lazy="true" cascade="save-update"
+							 order-by="CorporateActionHistoryID DESC"
+							 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.CorporateAction.ICouponHistory, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.CouponHistoryCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+							<key column="InstrumentID" />
+							<one-to-many class="B4F.TotalGiro.Instruments.CorporateAction.CorporateActionHistory, B4F.TotalGiro.Instruments" />
+						</bag>
+						<bag name="couponRates" access="field" generic="true" lazy="true" cascade="all-delete-orphan"
+							 order-by="BondCouponRateHistoryID DESC"
+							 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.IBondCouponRateHistory, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.BondCouponRateHistoryCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+							<key column="InstrumentID" />
+							<one-to-many class="B4F.TotalGiro.Instruments.BondCouponRateHistory, B4F.TotalGiro.Instruments" />
+						</bag>
+					</joined-subclass>
+        </joined-subclass>
+				<joined-subclass name="B4F.TotalGiro.Instruments.Derivative, B4F.TotalGiro.Instruments" 
+                         table="InstrumentsDerivatives" 
+                         proxy="B4F.TotalGiro.Instruments.IDerivative, B4F.TotalGiro.Interfaces"
+                       dynamic-update="true">
+					<key column="InstrumentID"/>
+					<many-to-one name="Master" column="DerivativeMasterID" class="B4F.TotalGiro.Instruments.DerivativeMaster, B4F.TotalGiro.Instruments" cascade="none" fetch="join" lazy="false" />
+					<joined-subclass name="B4F.TotalGiro.Instruments.Option, B4F.TotalGiro.Instruments" 
+                           table="InstrumentsOptionDetails" 
+                           proxy="B4F.TotalGiro.Instruments.IOption, B4F.TotalGiro.Interfaces"
+                           dynamic-update="true">
+						<key column="InstrumentID"/>
+						<property name="OptionType" column="OptionTypeID" type="B4F.TotalGiro.Instruments.OptionTypes, B4F.TotalGiro.Interfaces" />
+						<property name="ExpiryDate" column="ExpiryDate" type="Date" />
+						<component name="StrikePrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+							<property name="Quantity" column="StrikePrice" />
+						</component>
+					</joined-subclass>
+					<joined-subclass name="B4F.TotalGiro.Instruments.Turbo, B4F.TotalGiro.Instruments" 
+                           table="InstrumentsTurboDetails" 
+                           proxy="B4F.TotalGiro.Instruments.ITurbo, B4F.TotalGiro.Interfaces"
+                         dynamic-update="true">
+						<key column="InstrumentID"/>
+						<property name="Sign" column="Sign" type="B4F.TotalGiro.Accounts.Portfolios.IsLong, B4F.TotalGiro.Interfaces" />
+						<component name="StopLoss" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+							<property name="Quantity" column="StopLoss" />
+						</component>
+						<property name="Ratio" column="Ratio" />
+						<property name="Leverage" column="Leverage" />
+						<property name="FinanceLevel" column="FinanceLevel" />
+					</joined-subclass>
+        </joined-subclass>
+			</joined-subclass>
+      <joined-subclass name="B4F.TotalGiro.Instruments.InstrumentCorporateAction, B4F.TotalGiro.Instruments"
+          table="InstrumentsCorporateActions"
+          proxy="B4F.TotalGiro.Instruments.IInstrumentCorporateAction, B4F.TotalGiro.Interfaces"
+          dynamic-update="true">
+        <key column="InstrumentID"/>
+        <many-to-one name="Underlying" column="UnderlyingInstrumentID" class="B4F.TotalGiro.Instruments.SecurityInstrument, B4F.TotalGiro.Instruments" cascade="none"/>
+        <joined-subclass name="B4F.TotalGiro.Instruments.StockDividend, B4F.TotalGiro.Instruments"
+            table="InstrumentsStockDividend"
+            proxy="B4F.TotalGiro.Instruments.IStockDividend, B4F.TotalGiro.Interfaces"
+            dynamic-update="true">
+          <key column="InstrumentID"/>
+        </joined-subclass>
+      </joined-subclass>
+      <joined-subclass name="B4F.TotalGiro.Instruments.BenchMark, B4F.TotalGiro.Instruments" 
+                       table="BenchMarks" 
+                       proxy="B4F.TotalGiro.Instruments.IBenchMark, B4F.TotalGiro.Interfaces"
+                     dynamic-update="true">
+				<key column="InstrumentID"/>
+			</joined-subclass>
+		</joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" 
+                     table="CurrencyDetails" 
+                     proxy="B4F.TotalGiro.Instruments.ICurrency, B4F.TotalGiro.Interfaces"
+                   dynamic-update="true">
+			<key column="InstrumentID"/>
+			<property name="Symbol" column="Currency" />
+			<property name="AltSymbol" column="AltSymbol" />
+			<many-to-one name="AssetClass" column="AssetClassID" class="B4F.TotalGiro.Instruments.Classification.AssetClass, B4F.TotalGiro.Instruments" cascade="none" />
+			<many-to-one name="CountryOfOrigin" column="CountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+			<property name="EuroMember" column="EuroMember" />
+			<property name="LegacyExchangeRate" column="LegacyExchangeRate" />
+			<many-to-one  name="ExchangeRate" column="ExchangeRateID" class="B4F.TotalGiro.Instruments.ExRates.HistoricalExRate, B4F.TotalGiro.Instruments" cascade="none" />
+			<property name="settlementCurrencyID" access="field"  column="SettlementCurrencyID" />
+			<many-to-one  name="BaseCurrency" column="BaseCurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			<!--<many-to-one name="SettlementCurrency" column="SettlementCurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />-->
+			<bag name="historicalExRates" access="field" generic="true" lazy="true" cascade="save-update"
+				 order-by="RateDate DESC"
+				 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Instruments.ExRates.IExRate, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Instruments.ExRates.HistoricalExRateCollection, B4F.TotalGiro.Instruments]], B4F.TotalGiro.Interfaces">
+				<key column="InstrumentID" />
+				<one-to-many class="B4F.TotalGiro.Instruments.ExRates.HistoricalExRate, B4F.TotalGiro.Instruments" />
+			</bag>
+		</joined-subclass>
+	</class>
+
+	<query name="B4F.TotalGiro.Instruments.Instrument.GetTradeableInstruments" >
+		<![CDATA[
+		from TradeableInstrument I
+		where 1 = 1
+		and I.secCategoryID in (select S.key from SecCategory S where S.SecCategoryType = :secCategoryType )
+		and I.Isin like :isin
+		and I.Name like :instrumentName
+		and I.secCategoryID = :secCategoryId
+		and I.DefaultExchange.Key = :exchangeId
+		and I.CurrencyNominal.Key = :currencyNominalId
+		and I.IsActive = :isActive
+		and I.Key in (select AI.Instrument.Key from AssetManagerInstrument AI where AI.AssetManager.Key = :managementCompanyID and AI.IsActive = 1)
+		{0}
+		order by I.Name
+	]]>
+	</query>
+
+  <query name="B4F.TotalGiro.Instruments.Instrument.GetCorporateActions" >
+    <![CDATA[
+		from InstrumentCorporateAction I
+		where 1 = 1
+		and (I.Isin like :isin or I.Underlying.Isin like :isin)
+		and (I.Name like :instrumentName or I.Underlying.Name like :instrumentName)
+		and I.Underlying.DefaultExchange.Key = :exchangeId
+		and I.CurrencyNominal.Key = :currencyNominalId
+		order by I.Name
+	]]>
+  </query>
+
+
+  <query name="B4F.TotalGiro.Instruments.Instrument.GetBenchmarks" >
+		<![CDATA[
+		from BenchMark I
+		where 1 = 1
+		and I.Isin like :isin
+		and I.Name like :instrumentName
+		and I.CurrencyNominal.Key = :currencyNominalId
+		and I.IsActive = :isActive
+		order by I.Name
+	]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Instruments.Instrument.InstrumentsNotMappedByAssetManager" >
+		<![CDATA[
+		from TradeableInstrument I
+		where 1 = 1
+		and I.Key not in (select AI.Instrument.Key from AssetManagerInstrument AI where AI.AssetManager.Key = :managementCompanyID)
+		and I.Isin like :isin
+		and I.Name like :instrumentName
+		and I.secCategoryID = :secCategoryId
+		and I.CurrencyNominal.Key = :currencyNominalId
+	]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Instruments.Instrument.Derivatives" >
+		<![CDATA[
+		from Derivative D
+		left join fetch D.Master M
+		where 1 = 1
+		and D.Master.Key = :derivativeMasterId
+	]]>
+	</query>
+  
+	<query name="B4F.TotalGiro.Instruments.Instrument.GetNumberActivePositionsForInstrument" >
+		<![CDATA[
+    select count(P)
+    from FundPosition P
+    where P.Size.Underlying.Key = :instrumentId
+    and P.Size.Quantity != 0
+    and P.Account.accountType = :accountTypeId
+    ]]>
+	</query>
+</hibernate-mapping>

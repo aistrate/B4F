@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.Reporting.ClientCashPositionFromGLLedger, B4F.TotalGiro.GeneralLedger"
+		   table="vweClientCashPositionFromGLLedger">
+		<id name="Key" column="Bookdate" >
+			<generator class="assigned"/>
+		</id>
+		<bag name="records" access="field" generic="true" lazy="true" cascade="all" inverse="true"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.Reporting.IClientCashPositionFromGLLedgerRecord, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.GeneralLedger.Journal.Reporting.ClientCashPositionFromGLLedgerRecordCollection, B4F.TotalGiro.GeneralLedger]], B4F.TotalGiro.Interfaces">
+			<key column="Bookdate" foreign-key="Bookdate" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Reporting.ClientCashPositionFromGLLedgerRecord, B4F.TotalGiro.GeneralLedger" />
+			<loader query-ref="GetClientCashPositionFromGLLedger_SP"/>
+		</bag>		
+	</class>
+	<sql-query name="GetClientCashPositionFromGLLedger_SP">
+		<load-collection alias="records" role ="B4F.TotalGiro.GeneralLedger.Journal.Reporting.ClientCashPositionFromGLLedger.records"/>
+		exec TG_GetClientCashPositionFromGLLedger ?
+	</sql-query>
+</hibernate-mapping>

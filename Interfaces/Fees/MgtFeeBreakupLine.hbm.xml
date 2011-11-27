@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+	<class name="B4F.TotalGiro.Fees.MgtFeeBreakupLine, B4F.TotalGiro.Interfaces" table="TransactionsManagementFeeBreakup" lazy="true" >
+		<id name="Key" column="TransactionsManagementFeeBreakupID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="MgtFeeType" column="FeeTypeID" class="B4F.TotalGiro.Fees.FeeType, B4F.TotalGiro.Interfaces" not-null="true" />
+		<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Value" />
+			<many-to-one name="Underlying" column="ValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none"/>
+		</component>
+		<component name="Tax" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Tax" />
+			<many-to-one name="Underlying" column="TaxID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none"/>
+		</component>
+		<bag name="bagOfFees" table="AverageHoldingsFees" access="field" cascade="all" lazy="true" >
+			<!--inverse="true"-->
+			<key column="TransactionsManagementFeeBreakupID" />
+			<one-to-many class="B4F.TotalGiro.Valuations.AverageHoldings.AverageHoldingFee, B4F.TotalGiro.Valuations" />
+		</bag>
+	</class>
+</hibernate-mapping>

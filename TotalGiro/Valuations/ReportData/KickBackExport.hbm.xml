@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.ManagementPeriodUnits.ReportData.KickBackExport, B4F.TotalGiro.Valuations" table="KickBackExport" lazy="true" >
+		<id name="Key" column="KickBackExportID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="ParentRemisier" column="InkoopOrginisatieID" class="B4F.TotalGiro.Stichting.Remisier.Remisier, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="InkoopOrginisatie" column="InkoopOrginisatie" />
+		<many-to-one name="Remisier" column="KantoorID" class="B4F.TotalGiro.Stichting.Remisier.Remisier, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="Kantoor" column="Kantoor" />
+		<many-to-one name="RemisierEmployee" column="AdviseurID" class="B4F.TotalGiro.Stichting.Remisier.RemisierEmployee, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="Adviseur" column="Adviseur" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.CustomerAccount, B4F.TotalGiro.Accounts" cascade="none"  />
+		<property name="AccountNumber" column="AccountNumber" />
+		<property name="AccountShortName" column="AccountShortName" />
+		<property name="ManagementEndDate" column="ManagementEndDate" type="Date" />
+
+		<!--<many-to-one name="Unit" column="UnitID" class="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnit, B4F.TotalGiro.Valuations" cascade="none"  />-->
+		<property name="Period" column="Period" />
+		<many-to-one name="Model" column="ModelID" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="ModelName" column="ModelName" />
+		<property name="AvgValue" column="AvgValue" />
+		<property name="Kickback" column="Kickback" />
+		<property name="KickbackPercentage" column="KickbackPercentage" />
+		
+		<bag name="managementPeriodUnits" access="field" generic="true" lazy="true" inverse="true" cascade="save-update" batch-size="50" 
+			 order-by="ManagementPeriodUnitID"
+			 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.ManagementPeriodUnits.IManagementPeriodUnit, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnitCollection, B4F.TotalGiro.Valuations]], B4F.TotalGiro.Interfaces">
+			<key column="KickBackExportID" />
+			<one-to-many class="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnit, B4F.TotalGiro.Valuations" />
+		</bag>
+
+		<property name="CreationDate" column="CreationDate" type="Date" insert="false" update="false" />
+	</class>
+</hibernate-mapping>

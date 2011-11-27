@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Instruments.SecCategory, B4F.TotalGiro.Instruments" table="SecCategories" lazy="true">
+		<id name="key" access="field" column="SecCategoryID" unsaved-value="0">
+			<generator class="assigned" />
+		</id>
+		<property name="Name" column="SecCategory" />
+		<property name="Description" column="Description" />
+		<property name="IsSupported" column="IsSupported" />
+		<property name="IsCash" column="IsCash" />
+		<property name="SecCategoryType" column="SecCategoryTypeID" type="B4F.TotalGiro.Instruments.SecCategoryTypes, B4F.TotalGiro.Interfaces" />
+		<many-to-one name="DefaultRoute" column="DefaultRouteID" class="B4F.TotalGiro.Routes.Route, B4F.TotalGiro.Instruments" cascade="none" />
+	</class>
+
+	<query name="B4F.TotalGiro.Instruments.SecCategories" >
+		<![CDATA[
+        from SecCategory S 
+        where 1=1
+		and (S.SecCategoryType & :secCategoryFilter) <> 0
+        and S.IsSupported = :isSupported
+    ]]>
+	</query>
+</hibernate-mapping>

@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<query name="B4F.TotalGiro.Valuations.GetAccountKeysForRunValuationMutationsFromPositions" >
+		<![CDATA[
+		select A.Key 
+		from FundPositionTx P 
+		left join P.ParentPosition Pos 
+		left join P.ParentTransaction T 
+		left join Pos.Account A
+		where P.Key not in (select M.Key from PositionTxValuationMapping M)
+		and A.ValuationsRequired = 1 
+		and T.TransactionDate <= :maxDate
+		group by A.Key
+		order by A.Key
+	]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Valuations.GetAccountKeysForRunValuationMutationsFromJournal" >
+		<![CDATA[
+		select A.Key 
+		from JournalEntryLine L 
+		left join L.Parent E
+		left join L.GiroAccount A
+		left join E.Journal J
+		left join L.ParentSubPosition CSP
+		where A is not null
+		and A.ValuationsRequired = 1 
+		and J.IsAdminAccount = 0
+        and ((CSP.SettledFlag = :settledFlag and L.Key not in (select M.Key from JournalEntryLineValuationMapping M))
+		or (CSP.SettledFlag = :unSettledFlag and CSP.UnSettledType.IncludeBuyingPower = 1 and L.Key not in (select M.Key from JournalEntryLineValuationCashMapping M)))
+		and L.status = :statusBooked
+		and L.bookDate <= :maxDate
+		group by A.Key
+		order by A.Key
+	]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Valuations.GetAccountForRunValuationMutations" >
+		<![CDATA[
+		from AccountTypeCustomer A 
+		where A.Key = :accountID
+	]]>
+	</query>
+	<query name="B4F.TotalGiro.Valuations.GetFundPositionTxData" >
+		<![CDATA[
+		from FundPositionTx P 
+        left join fetch P.ParentPosition Pos 
+        left join fetch P.ParentTransaction Tx 
+        left join fetch Pos.Account 
+        where P.Key not in (select M.Key from PositionTxValuationMapping M) 
+        and Pos.Account.Key = :accountID
+        and Tx.TransactionDate <= :maxDate 
+        order by Pos.Account.Key, Tx.TransactionDate, Pos.Size.Underlying.Key, Tx.ConvertedInstrumentSize.Underlying.Key DESC, Tx.ValueSize.Quantity DESC, Tx.StornoTransaction DESC
+		]]>
+	</query>
+	<query name="B4F.TotalGiro.Valuations.GetJournalEntryLineData" >
+		<![CDATA[
+		from JournalEntryLine L 
+        left join fetch L.Parent E 
+        left join fetch L.GiroAccount G
+        left join fetch L.GLAccount GL 
+        left join fetch L.BookComponent B 
+        left join fetch L.ParentSubPosition CSP 
+        where ((CSP.SettledFlag = :settledFlag and L.Key not in (select M.Key from JournalEntryLineValuationMapping M))
+		or (CSP.SettledFlag = :unSettledFlag and CSP.UnSettledType.IncludeBuyingPower = 1 and L.Key not in (select M.Key from JournalEntryLineValuationCashMapping M)))
+		and E.Journal.IsAdminAccount = 0
+		and L.status = :statusBooked
+        and G.Key = :accountID
+        and L.bookDate <= :maxDate 
+        order by G.Key, L.bookDate, B.BookingComponentType
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Valuations.GetValuationMutationData" >
+		<![CDATA[
+		from ValuationMutation V 
+        left join fetch V.Account 
+        left join fetch V.Size.Underlying 
+        left join fetch V.BookPrice.Underlying 
+        left join fetch V.BookPrice.Instrument 
+        left join fetch V.BookValue.Underlying 
+        left join fetch V.BookChange.Underlying 
+        where V.Account.Key = :accountID 
+        order by V.Size.Underlying.Key, V.Date
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Valuations.GetSecurityValuationMutationData" >
+		<![CDATA[
+		from SecurityValuationMutation V 
+        left join fetch V.Account 
+        left join fetch V.Size.Underlying 
+        left join fetch V.BookPrice.Underlying 
+        left join fetch V.BookPrice.Instrument 
+        left join fetch V.BookValue.Underlying 
+        left join fetch V.BookChange.Underlying 
+        where V.Account.Key = :accountID 
+        and (V.Date >= :startDate 
+        and V.Date <= :endDate ) 
+        order by V.Size.Underlying.Key, V.Date
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Valuations.GetMonetaryValuationMutationData" >
+		<![CDATA[
+		from MonetaryValuationMutation V 
+        left join fetch V.Account 
+        left join fetch V.Size.Underlying 
+        left join fetch V.BookValue.Underlying 
+        left join fetch V.BookChange.Underlying 
+        where V.Account.Key = :accountID 
+        and (V.Date >= :startDate 
+        and V.Date <= :endDate ) 
+        order by V.Date
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Valuations.GetValuationCashMutationDataByDates" >
+		<![CDATA[
+		from ValuationCashMutation V 
+        left join fetch V.Account 
+        left join fetch V.Instrument 
+        where V.Account.Key = :accountID 
+        and V.Date in (:dates) 
+        order by V.Instrument.Key, V.Date
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Valuations.GetValuationCashMutationDataByStartEndDate" >
+		<![CDATA[
+		from ValuationCashMutation V 
+        left join fetch V.Account 
+        left join fetch V.Instrument 
+        where V.Account.Key = :accountID 
+        and (V.Date >= :startDate 
+        and V.Date <= :endDate ) 
+        order by V.Date		
+		]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Valuations.GetValuationData" >
+		<![CDATA[
+		from Valuation V 
+        left join fetch V.ValuationMutation VM
+        left join fetch V.Account A
+        left join fetch V.Instrument I
+        where A.Key = :accountID 
+        and (V.Date >= :startDate 
+        and V.Date <= :endDate ) 
+        and V.Date in (:dates) 
+		and VM.Size.Quantity != 0 and 1= :includeClosedPositions
+		and I.Key in (select S.Key from TradeableInstrument S) and 1= :instrumentFilterTradeableInstruments
+		and I.Key in (select C.Key from Currency C) and 1= :instrumentFilterCurrencies
+		order by I.Key, V.Date
+		]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Valuations.GetValuationTotalPortfolioData" >
+		<![CDATA[
+		from ValuationTotalPortfolio V 
+		where V.account.Key = :AccountId 
+		and V.date in (:Dates) 
+		order by V.date		
+		]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Valuations.GetDepositsWithdrawalData" >
+		<![CDATA[
+		from DepositWithdrawal D 
+        where D.account.Key = :accountID 
+        and (D.date between :startDate 
+        and :endDate ) 
+        order by D.date	
+		]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Valuations.GetNotCalculatedManagementPeriodUnits" >
+		<![CDATA[
+		select U.Key 
+		from ManagementPeriodUnit U 
+        where IsNull(U.FeesCalculated, 0) = 0
+	]]>
+	</query>
+
+</hibernate-mapping>

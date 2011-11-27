@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+	<class name="B4F.TotalGiro.Fees.CommissionBreakupLine, B4F.TotalGiro.Interfaces" table="CommValueBreakup">  <!--proxy="B4F.TotalGiro.Fees.CommCalculations.ICommValueBreakupLine, B4F.TotalGiro.Interfaces"-->
+		<id name="Key" column="CommValueBreakupID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="CommissionType" column="CalcType" type="B4F.TotalGiro.Fees.CommissionBreakupTypes, B4F.TotalGiro.Interfaces"/>
+		<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Value" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="ValueCurrencyID" cascade="none"/>
+		</component>
+		<property name="CommissionInfo" column="Info" />
+		<!--<many-to-one name="Transaction" column="TradeID" class="B4F.TotalGiro.Orders.OldTransactions.ObsoleteTransaction, B4F.TotalGiro.Orders" />-->
+		<many-to-one name="Order" column="OrderID" class="B4F.TotalGiro.Orders.Order, B4F.TotalGiro.Orders" />
+	</class>
+</hibernate-mapping>

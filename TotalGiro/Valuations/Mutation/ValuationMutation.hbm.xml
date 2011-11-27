@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Valuations.ValuationMutation, B4F.TotalGiro.Valuations" table="ValuationMutations" proxy ="B4F.TotalGiro.Valuations.IValuationMutation, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="ValuationMutationID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="PreviousMutation" column="PrevValuationMutationID" class="B4F.TotalGiro.Valuations.ValuationMutation, B4F.TotalGiro.Valuations" cascade="none" />
+		<many-to-one name="ConvertedMutation" column="ConvertedValuationMutationID" class="B4F.TotalGiro.Valuations.ValuationMutation, B4F.TotalGiro.Valuations" cascade="none" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none" />
+		<component name="Size" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="InstrumentSize" />
+			<many-to-one name="Underlying" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<property name="Date" column="ValuationDate" type="Date" />
+		<component name="BookValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="BookValue" />
+			<many-to-one name="Underlying" column="BookValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="BookChange" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="BookChangeToday" />
+			<many-to-one name="Underlying" column="BookChangeTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="BookValueIC" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="BookValueIC" />
+			<many-to-one name="Underlying" column="BookValueICID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="BookChangeIC" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="BookChangeICToday" />
+			<many-to-one name="Underlying" column="BookChangeICTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="realisedCurrencyGain" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" access="field">
+			<property name="Quantity" column="RealisedCurrencyGainToday" />
+			<many-to-one name="Underlying" column="RealisedCurrencyGainTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="RealisedCurrencyGainToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="RealisedCurrencyGainToDate" />
+			<many-to-one name="Underlying" column="RealisedCurrencyGainToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="TransferInToday" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="TransferInToday" />
+			<many-to-one name="Underlying" column="TransferInTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="TransferOutToday" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="TransferOutToday" />
+			<many-to-one name="Underlying" column="TransferOutTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<many-to-one name="InstrumentCurrency" column="InstrumentCurrencyID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="AvgOpenExRate" column="AvgOpenExRate"/>
+		<property name="IsValid" column="IsValid"/>
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+		<!--<many-to-one name="historicalExRate" class="B4F.TotalGiro.Instruments.ExRates.HistoricalExRateCompKey, B4F.TotalGiro.Instruments" access="field" cascade="none" insert="false" update="false" >
+			<column name="ValuationDate" />
+			<column name="InstrumentCurrencyID" />
+		</many-to-one>-->
+		<joined-subclass name="B4F.TotalGiro.Valuations.SecurityValuationMutation, B4F.TotalGiro.Valuations" table="ValuationMutationsSecurity" proxy="B4F.TotalGiro.Valuations.ISecurityValuationMutation, B4F.TotalGiro.Interfaces">
+			<key column="ValuationMutationID"/>
+			<many-to-one name="Position" column="TGPositionID" class="B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPosition, B4F.TotalGiro.Accounts" cascade="none" />
+			<component name="BookPrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="BookPrice" />
+				<many-to-one name="Underlying" column="BookPriceID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+				<many-to-one name="Instrument" column="BookPriceInstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+			</component>
+			<component name="CostPrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="CostPrice" />
+				<many-to-one name="Underlying" column="CostPriceID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+				<many-to-one name="Instrument" column="CostPriceInstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+			</component>
+			<component name="realisedAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" access="field">
+				<property name="Quantity" column="RealisedCapitalGainICToday" />
+				<many-to-one name="Underlying" column="RealisedCapitalGainICTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			</component>
+			<component name="RealisedAmountToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="RealisedCapitalGainICToDate" />
+				<many-to-one name="Underlying" column="RealisedCapitalGainICToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			</component>
+			<component name="baseRealisedAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" access="field">
+				<property name="Quantity" column="RealisedCapitalGainToday" />
+				<many-to-one name="Underlying" column="RealisedCapitalGainTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			</component>
+			<component name="BaseRealisedAmountToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="RealisedCapitalGainToDate" />
+				<many-to-one name="Underlying" column="RealisedCapitalGainToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			</component>
+			<bag name="bagOfCashMutations" table="vweValuationMutationsSecurityCashMutations" access="field" cascade="none" lazy="true">
+				<key column="ValuationMutationID" />
+				<many-to-many class="B4F.TotalGiro.Valuations.ValuationCashMutation, B4F.TotalGiro.Valuations" column="ValuationCashMutationID" />
+			</bag>
+			<bag name="mappings" access="field" inverse="true" cascade="all-delete-orphan" lazy="true" generic="true">
+				<key column="ValuationMutationID" />
+				<one-to-many class="B4F.TotalGiro.Valuations.Mapping.PositionTxValuationMapping, B4F.TotalGiro.Valuations" />
+			</bag>
+			<bag name="transactions" table="vweValuationMutationsTransactions" access="field" cascade="none" lazy="true" generic="true">
+				<key column="ValuationMutationID" />
+				<many-to-many class="B4F.TotalGiro.Orders.Transactions.Transaction, B4F.TotalGiro.Orders" column="TGTransactionID" />
+			</bag>
+		</joined-subclass>
+		<joined-subclass name="B4F.TotalGiro.Valuations.MonetaryValuationMutation, B4F.TotalGiro.Valuations" table="ValuationMutationsMonetary" proxy="B4F.TotalGiro.Valuations.IMonetaryValuationMutation, B4F.TotalGiro.Interfaces">
+			<key column="ValuationMutationID"/>
+			<many-to-one name="CashPosition" column="GLPositionID" class="B4F.TotalGiro.Accounts.Portfolios.CashPositions.CashPosition, B4F.TotalGiro.Accounts" cascade="none" />
+			<component name="DepositToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="DepositsToDate" />
+				<many-to-one name="Underlying" column="DepositsToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			</component>
+			<component name="WithDrawalToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+				<property name="Quantity" column="WithdrawalsToDate" />
+				<many-to-one name="Underlying" column="WithdrawalsToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+			</component>
+			<bag name="mappings" access="field" inverse="true" cascade="all-delete-orphan" lazy="true" generic="true">
+				<key column="ValuationMutationID" />
+				<one-to-many class="B4F.TotalGiro.Valuations.Mapping.JournalEntryLineValuationMapping, B4F.TotalGiro.Valuations" />
+			</bag>
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

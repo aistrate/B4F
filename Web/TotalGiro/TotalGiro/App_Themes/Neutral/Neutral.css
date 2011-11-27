@@ -1,0 +1,257 @@
+body
+{
+	font-size: 11px;
+	font-family: Verdana;
+}
+caption
+{
+	caption-side: top;
+	padding-top: 2px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #AAB9C2;
+	font-family: Verdana;
+	font-weight: bold;
+	text-align: left;
+	font-size: 11px;
+	border: Solid 1px Black;
+	margin-left: -1px;
+}
+tr
+{
+	height: 13px;
+}
+th
+{
+	padding-top: 2px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #CDD7DC;
+	vertical-align: middle;
+	text-align: left;
+	font-weight: bold;
+	font-size: 11px;
+	font-family: Verdana;
+}
+td
+{
+	vertical-align: middle;
+	border: 0px;
+}
+tr .gridview-row th
+{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+tr .gridview-row td
+{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+tr .gridview-row td span
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+tr .gridview-pager td
+{
+	padding-top: 0px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-right: 15px;
+}
+tr .gridview-pager td span
+{
+	padding-left: 0px;
+	padding-right: 0px;
+	font-weight: bold;
+}
+tr.multiline td
+{
+	padding-top: 1px;
+	padding-bottom: 3px;
+	vertical-align: top;
+	line-height: 18px;
+}
+tr.multiline-multigv td
+{
+	padding-top: 1px;
+	padding-bottom: 3px;
+	vertical-align: top;
+	line-height: 18px;
+}
+tr.multiline-multigv td.checkbox-col
+{
+	padding-top: 4px;
+	padding-bottom: 0px;
+}
+tr.multiline-multigv td.checkbox-col input
+{
+	margin: 0px;
+	height: 13px;
+}
+tr .with-border td
+{
+	border: 1px;
+	border-color: GrayText;
+}
+tr .with-border th
+{
+	border-color: GrayText;
+}
+.padding
+{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.largepadding
+{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.bigrightpadding
+{
+	padding-right: 15px;
+}
+.alignleft
+{
+	text-align: left;
+}
+.alignright
+{
+	text-align: right;
+}
+.aligncenter
+{
+	text-align: center;
+}
+.detailsviewheader
+{
+	text-align: right;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 3px;
+	font-weight: bold;
+	font-size: 11px;
+	background-color: #CDD7DC;
+	height: 25px;
+}
+.dvheadersmallerheight
+{
+	text-align: right;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 3px;
+	font-weight: bold;
+	font-size: 11px;
+	background-color: #CDD7DC;
+	height: 15px;
+}
+.commandrow
+{
+	height: 25px;
+	padding-bottom: 3px;
+}
+a.ArrowsLinkButton
+{
+	color: Blue;
+	text-decoration: none;
+}
+a.ArrowsLinkButton:hover
+{
+	text-decoration: underline;
+}
+.tblHeader
+{
+	padding-top: 2px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #CDD7DC;
+	vertical-align: middle;
+	text-align: left;
+	font-weight: bold;
+	font-size: 11px;
+	font-family: Verdana;
+	border-bottom: 1px Black;
+}
+.PanelCollapsible
+{
+    background-color: #AAB9C2;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top:1px solid black;
+    font-weight: bold;
+    height: 30px;
+}
+.PanelCollapsibleNoTopborder
+{
+    background-color: #AAB9C2;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    font-weight: bold;
+    height: 30px;
+}
+.PanelCollapsibleBottom
+{
+    background-color: #AAB9C2;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top:1px solid black;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    height: 30px;
+}
+.divPanelCollapsible
+{
+	padding: 6px;
+}
+.TabArea
+{
+    background-color: White;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top:1px solid black;
+    z-index: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    vertical-align: top;
+}
+.TabAreaTop
+{
+    background-color: White;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom:1px solid black;
+    z-index: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    vertical-align: top;
+}
+
+.gridview-calendar .ajax__calendar_days table tr td
+{
+	padding-right: 0px;
+}
+.gridview-calendar .ajax__calendar_month  
+{
+	height:40px;
+}
+.gridview-calendar .ajax__calendar_year  
+{
+	height:40px;
+}
+.gridview-calendar .ajax__calendar_body
+{
+	width: 215px; 
+}
+.gridview-calendar .ajax__calendar_container
+{
+	width: 215px;
+}

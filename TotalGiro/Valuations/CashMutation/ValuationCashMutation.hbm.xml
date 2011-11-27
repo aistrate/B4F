@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Valuations.ValuationCashMutation, B4F.TotalGiro.Valuations" table="ValuationCashMutations" proxy ="B4F.TotalGiro.Valuations.IValuationCashMutation, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="ValuationCashMutationID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="PreviousCashMutation" column="PrevValuationCashMutationID" class="B4F.TotalGiro.Valuations.ValuationCashMutation, B4F.TotalGiro.Valuations" cascade="none" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none" />
+		<many-to-one name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="Date" column="ValuationDate" type="Date" />
+		<component name="Amount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="AmountToday" />
+			<many-to-one name="Underlying" column="AmountTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="AmountToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="AmountToDate" />
+			<many-to-one name="Underlying" column="AmountToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="BaseAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="BaseAmountToday" />
+			<many-to-one name="Underlying" column="BaseAmountTodayID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="BaseAmountToDate" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="BaseAmountToDate" />
+			<many-to-one name="Underlying" column="BaseAmountToDateID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<property name="ValuationCashType" column="ValuationCashTypeID" type="B4F.TotalGiro.Valuations.ValuationCashTypes, B4F.TotalGiro.Interfaces"/>
+		<property name="IsValid" column="IsValid"/>
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+		<bag name="bagOfMappings" access="field" cascade="save-update" inverse="true" lazy="true">
+			<key column="ValuationCashMutationID" />
+			<one-to-many class="B4F.TotalGiro.Valuations.Mapping.JournalEntryLineValuationCashMapping, B4F.TotalGiro.Valuations" />
+		</bag>
+		<!--<many-to-one name="historicalExRate" class="B4F.TotalGiro.Instruments.ExRates.HistoricalExRateCompKey, B4F.TotalGiro.Instruments" access="field" cascade="none" insert="false" update="false" >
+			<column name="ValuationDate" />
+			<column name="AmountTodayID" />
+		</many-to-one>-->
+	</class>
+</hibernate-mapping>

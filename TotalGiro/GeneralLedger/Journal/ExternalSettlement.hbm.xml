@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.ExternalSettlement, B4F.TotalGiro.GeneralLedger"
+		   dynamic-update="true"
+		   table="SettlementsExternal"
+		   proxy ="B4F.TotalGiro.GeneralLedger.Journal.IExternalSettlement, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="SettlementDate" column="SettlementDate" type="Date" />
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false" />
+		<many-to-one name="MemorialBooking" column="JournalEntryID" cascade="all" class="B4F.TotalGiro.GeneralLedger.Journal.MemorialBooking, B4F.TotalGiro.GeneralLedger" />
+		<bag name="tradeStatements" access="field" generic="true" lazy="true" cascade="all" inverse="true"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.ITradingJournalEntry, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.GeneralLedger.Journal.ExternalSettlementJournalEntriesCollection, B4F.TotalGiro.GeneralLedger]], B4F.TotalGiro.Interfaces">
+			<key column="ID" foreign-key="ExternalSettlementID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.TradingJournalEntry, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+		<bag name="bankSettlements" access="field" generic="true" lazy="true" cascade="all" inverse="true"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.IJournalEntryLine, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.GeneralLedger.Journal.ExternalSettlementJournalLinesCollection, B4F.TotalGiro.GeneralLedger]], B4F.TotalGiro.Interfaces">
+			<key column="ID" foreign-key="ExternalSettlementID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntryLine, B4F.TotalGiro.GeneralLedger" />
+		</bag>		
+	</class>
+</hibernate-mapping>

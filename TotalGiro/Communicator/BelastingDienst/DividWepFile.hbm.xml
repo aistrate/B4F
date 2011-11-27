@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.BelastingDienst.DividWepFile, B4F.TotalGiro.Communicator" 
+		   table="DividWepFile"
+		   proxy="B4F.TotalGiro.Communicator.BelastingDienst.IDividWepFile, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="DividWepFileID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="FileName" column="FileName" />
+		<property name="Path" column="Path" />
+		<property name="FinancialYear" column="FinancialYear" />
+		<property name="NoOfRecords" column="NoOfRecords" />
+		<property name="SluitRecordType" column="SluitRecordType" />
+		<property name="TotalDividend" column="TotalDividend" />
+		<property name="TotalTax" column="TotalTax" />
+		<property name="CodeFinance" column="CodeFinance" />
+		<property name="TotalWep" column="TotalWep" />
+		<property name="InstelRecord" column="InstelRecord" />
+		<property name="SluitRecord" column="SluitRecord" />
+		<property name="creationDate" column="CreationDate" access="field" type="Date"/>
+		<bag name="records" access="field" generic="true" lazy="true" cascade="all-delete-orphan" inverse="true"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Communicator.BelastingDienst.IDividWepRecord, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Communicator.BelastingDienst.DividWepRecordCollection, B4F.TotalGiro.Communicator]], B4F.TotalGiro.Interfaces">
+			<key column="DividWepFileID" foreign-key="DividWepFileID" />
+			<one-to-many class="B4F.TotalGiro.Communicator.BelastingDienst.DividWepRecord, B4F.TotalGiro.Communicator" />
+		</bag>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="nosetter.camelcase">
+	<class name="B4F.TotalGiro.StaticData.Person, B4F.TotalGiro.StaticData" 
+			table="Persons" 
+			proxy="B4F.TotalGiro.StaticData.IPerson, B4F.TotalGiro.Interfaces"
+			lazy="true">
+		<id name="Key" column="PersonID" unsaved-value="0" access="property">
+			<generator class="identity"/>
+		</id>
+		<property name="Title" column="Title" />
+		<property name="Gender" column="Gender"  type="B4F.TotalGiro.StaticData.Gender, B4F.TotalGiro.Interfaces"/>
+		<property name="FirstName" column="FirstName" />
+		<property name="MiddleName" column="MiddleName" />
+		<property name="LastName" column="LastName" />
+		<component name="ResidentialAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="HomeStreet"/>
+			<property name="HouseNumber" column="HomeHouseNumber"/>
+			<property name="HouseNumberSuffix" column="HomeHouseNumberSuffix"/>
+			<property name="PostalCode" column="HomePostalCode"/>
+			<property name="City" column="HomeCity"/>
+			<many-to-one name="Country" column="HomeCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<component name="PostalAddress" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="PostalStreet"/>
+			<property name="HouseNumber" column="PostalHouseNumber"/>
+			<property name="HouseNumberSuffix" column="PostalHouseNumberSuffix"/>
+			<property name="PostalCode" column="PostalPostalCode"/>
+			<property name="City" column="PostalCity"/>
+			<many-to-one name="Country" column="PostalCountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<component name="Telephone" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+			<property name="CountryCode" column="TelephoneCountryCode"/>
+			<property name="AreaCode" column="TelephoneAreaCode"/>
+			<property name="LocalNumber" column="TelephoneLocalNumber"/>
+		</component>
+		<component name="TelephoneAH" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+			<property name="CountryCode" column="TelephoneAHCountryCode"/>
+			<property name="AreaCode" column="TelephoneAHAreaCode"/>
+			<property name="LocalNumber" column="TelephoneAHLocalNumber"/>
+		</component>
+		<component name="Mobile" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+			<property name="CountryCode" column="MobileCountryCode"/>
+			<property name="AreaCode" column="MobileAreaCode"/>
+			<property name="LocalNumber" column="MobileLocalNumber"/>
+		</component>
+		<property name="Email" column="Email" />
+	</class>
+</hibernate-mapping>

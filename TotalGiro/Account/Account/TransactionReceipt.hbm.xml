@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.TransactionReceipt, B4F.TotalGiro.Accounts" table="TransactionReceipts">
+		<id name="TransactionReceiptId" column="TransactionReceiptId" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="GiroAccount" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none" />
+		<property name="FileName" column="filename" />
+		<property name="FileContent" column="filecontent" type="BinaryBlob"/>
+		<property name="FileSize" column="filesize" />
+		<property name="FileDate" column="filedate" type="Date" />
+		<property name="ReceiptDate" column="receiptdate" type="Date" />
+		<property name="CreationDate" column="creationdate" type="DateTime" />
+	</class>
+</hibernate-mapping>
+

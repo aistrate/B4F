@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.Maintenance.ClientBookYearClosure, B4F.TotalGiro.GeneralLedger"
+		   dynamic-update="true"
+		   table="ClientBookYearClosures"
+		   proxy ="B4F.TotalGiro.GeneralLedger.Journal.Maintenance.IClientBookYearClosure, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="ClosureBooking" column="Journalentryid" cascade="all" class="B4F.TotalGiro.GeneralLedger.Journal.JournalEntry, B4F.TotalGiro.GeneralLedger" />
+		<many-to-one name="ParentClosure" column="BookYearClosureID" cascade="all" class="B4F.TotalGiro.GeneralLedger.Journal.Maintenance.BookYearClosure, B4F.TotalGiro.GeneralLedger" />
+		<many-to-one name="GiroAccountID" column="AccountID" cascade="all" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" />
+		<property name="ClosureNotRequired" column="ClosureNotRequired" />
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false" update="false" />
+	</class>
+</hibernate-mapping>

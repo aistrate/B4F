@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+	<class name="B4F.TotalGiro.Accounts.Withdrawals.WithdrawalRuleRegularity, B4F.TotalGiro.Interfaces" table="WithdrawalRuleRegularities" mutable="false" >
+		<id name="key" column="RegularityID" unsaved-value="0" access="field">
+			<generator class="identity"/>
+		</id>
+		<property name="Regularity" column="Regularity"/>
+		<property name="Description" column="Description"/>
+		<component name="DateUnitInclCashFund" class="B4F.TotalGiro.Utils.DateTimeUnit, B4F.TotalGiro.Interfaces" >
+			<property name="DatePart" column="DatePartInclCashFund" type="B4F.TotalGiro.Utils.DateParts, B4F.TotalGiro.Interfaces" />
+			<property name="Units" column="DateUnitsInclCashFund" />
+		</component>
+		<component name="DateUnitExclCashFund" class="B4F.TotalGiro.Utils.DateTimeUnit, B4F.TotalGiro.Interfaces" >
+			<property name="DatePart" column="DatePartExclCashFund" type="B4F.TotalGiro.Utils.DateParts, B4F.TotalGiro.Interfaces" />
+			<property name="Units" column="DateUnitsExclCashFund" />
+		</component>
+		<component name="DateUnitCashFundOnly" class="B4F.TotalGiro.Utils.DateTimeUnit, B4F.TotalGiro.Interfaces" >
+			<property name="DatePart" column="DatePartCashFundOnly" type="B4F.TotalGiro.Utils.DateParts, B4F.TotalGiro.Interfaces" />
+			<property name="Units" column="DateUnitsCashFundOnly" />
+		</component>
+	</class>
+</hibernate-mapping>

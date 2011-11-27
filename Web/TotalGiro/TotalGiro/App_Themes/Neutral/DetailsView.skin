@@ -1,0 +1,32 @@
+<asp:DetailsView
+        runat="server"
+        Height="50px" 
+        Font-Names="Verdana"
+        CssClass="largepadding"
+        CellPadding="0"
+        CellSpacing="0"
+        BorderWidth="1px"
+        Font-Size="11px"
+        BorderColor="Black"
+        FieldHeaderStyle-CssClass="detailsviewheader"
+        CommandRowStyle-CssClass="commandrow"  
+        BorderStyle="Solid" />
+<asp:DetailsView
+        SkinID="dvOrderDetails" 
+        runat="server"
+        Font-Names="Verdana"
+        CssClass="largepadding"
+        CellPadding="0"
+        CellSpacing="0"
+        BorderWidth="1px"
+        Font-Size="11px"
+        BorderColor="Black"
+        FieldHeaderStyle-CssClass="dvheadersmallerheight"
+        BorderStyle="Solid" />
+ <asp:DetailsView
+        SkinID="dvBare" 
+        runat="server"
+        Font-Names="Verdana"
+        BorderWidth="0"
+        GridLines="None"
+        Font-Size="11px" />

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Jobs.Manager.History.JobHistory, B4F.TotalGiro.Jobs.Manager" table="JobHistory" proxy="B4F.TotalGiro.Jobs.Manager.History.IJobHistory, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="JobHistoryID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="Job" column="Job" />
+		<property name="ManagementCompanyID" column="ManagementCompanyID" />
+		<property name="JobComponent" column="JobComponent" />
+		<property name="StartTime" column="StartTime" type="Date" />
+		<property name="EndTime" column="EndTime" type="Date" />
+		<property name="Status" column="JobStatus" type="B4F.TotalGiro.Jobs.WorkerResultStatus, B4F.TotalGiro.Interfaces" />
+		<property name="RetryCount" column="RetryCount" />
+		<property name="Details" column="JobDetails" />
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Static.GLBookYear, B4F.TotalGiro.GeneralLedger" table="GLBookYear"
+		   proxy ="B4F.TotalGiro.GeneralLedger.Static.IGLBookYear, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<property name="BookYear" column="BookYear" />
+	</class>
+</hibernate-mapping>

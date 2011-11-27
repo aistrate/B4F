@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.CRM.ContactsIntroducer, B4F.TotalGiro.CRM" table="ContactsIntroducerHistory" mutable="false"
+		proxy ="B4F.TotalGiro.CRM.IContactsIntroducer, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ContactsIntroducerHistoryID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Contact" column="ContactID" class="B4F.TotalGiro.CRM.Contact, B4F.TotalGiro.CRM" insert="false" update="false"/>
+		<many-to-one name="Remisier" column="RemisierID" class="B4F.TotalGiro.Stichting.Remisier.Remisier, B4F.TotalGiro.Stichting" cascade="none" />
+		<many-to-one name="RemisierEmployee" column="LoginIdRemisierEmployee" class="B4F.TotalGiro.Stichting.Remisier.RemisierEmployee, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+	</class>
+</hibernate-mapping>

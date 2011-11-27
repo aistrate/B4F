@@ -1,0 +1,34 @@
+<asp:Label 
+    Font-Names="Verdana" 
+    Font-Size="11px"
+    CssClass="padding"
+    runat="server" />
+<asp:Label
+    SkinID="custom-width"
+    Font-Names="Verdana" 
+    Font-Size="11px" 
+    runat="server" /> 
+<asp:Label
+    SkinID="no-padding"
+    Font-Names="Verdana" 
+    Font-Size="11px"
+    runat="server" />
+<asp:Label 
+    SkinID="Header"
+    Font-Names="Verdana"
+    Font-Underline="true" 
+    ForeColor="White"  
+    Font-Size="11px"
+    CssClass="padding"
+    runat="server" />
+<asp:Label 
+    SkinID="smallLabel"
+    Width="50px"
+    Font-Names="Verdana" 
+    Font-Size="11px"
+    CssClass="padding"
+    runat="server" /> 
+<asp:Label
+    SkinID="custom-fontsize"
+    Font-Names="Verdana" 
+    runat="server" />     

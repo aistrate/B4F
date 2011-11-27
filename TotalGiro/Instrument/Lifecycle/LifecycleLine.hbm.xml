@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+  <class name="B4F.TotalGiro.Instruments.LifecycleLine, B4F.TotalGiro.Instruments" table="LifecycleLines" proxy="B4F.TotalGiro.Instruments.ILifecycleLine, B4F.TotalGiro.Interfaces" >
+    <id name="Key" column="LifecycleLineID" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <timestamp name="lastUpdated" column="LastUpdated" access="field" />
+    <property name="SerialNo" column="SerialNo" />
+    <many-to-one name="Parent" class="B4F.TotalGiro.Instruments.Lifecycle, B4F.TotalGiro.Instruments" column="LifecycleID" cascade="none"/>
+    <property name="ageFrom" column="AgeFrom" access="field"/>
+    <many-to-one name="Model" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" column="ModelID" cascade="none"/>
+    <property name="CreatedBy" column="CreatedBy"/>
+    <property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+  </class>
+
+</hibernate-mapping>

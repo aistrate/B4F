@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" >
+	<class	name="B4F.TotalGiro.Orders.Transfers.PositionTransferPortfolio, B4F.TotalGiro.Orders"
+			table="PositionTransferPortfolios"
+			proxy="B4F.TotalGiro.Orders.Transfers.IPositionTransferPortfolio, B4F.TotalGiro.Interfaces"
+			dynamic-update="true">
+		<id name="Key" column="id" unsaved-value="0" access="property">
+			<generator class="identity"/>
+		</id>
+		<property name="PositionDate" column="PositionDate"/>
+		<many-to-one name="ParentTransfer" column="PositionTransferID" class="B4F.TotalGiro.Orders.Transfers.PositionTransfer, B4F.TotalGiro.Orders"  cascade="all"/>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts"  cascade="none"/>
+		<bag name="positions" access="field" generic="true" lazy="true" cascade="save-update"
+		collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.Transfers.IPositionTransferPosition, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Orders.Transfers.PositionTransferPositionCollection, B4F.TotalGiro.Orders]], B4F.TotalGiro.Interfaces">
+			<key column="PositionTransferPortfolioID" foreign-key="ID" />
+			<one-to-many class="B4F.TotalGiro.Orders.Transfers.PositionTransferPosition, B4F.TotalGiro.Orders" />
+		</bag>
+	
+	</class>
+</hibernate-mapping>

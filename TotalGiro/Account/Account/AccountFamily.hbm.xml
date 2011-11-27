@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property" >
+	<class name="B4F.TotalGiro.Accounts.AccountFamily, B4F.TotalGiro.Accounts" table="AccountFamily" 
+		   proxy="B4F.TotalGiro.Accounts.IAccountFamily, B4F.TotalGiro.Interfaces" mutable="false" >
+		<id name="Key" column="AccountFamilyID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="AssetManager" column="AssetManagerID" class="B4F.TotalGiro.Stichting.ManagementCompany, B4F.TotalGiro.Stichting" cascade="none"  />
+		<property name="AccountPrefix" column="AccountPrefix"/>
+		<property name="AccountSeed" column="AccountSeed"/>
+		<property name="managementTypesCharged" column="ManagementTypesCharged" access="field"/>
+		<property name="CreationDate" column="CreationDate" type="Date" insert="false" update="false"  />
+		<property name="ManagementFeeInstalment" column="ManagementFeeInstalment" type="B4F.TotalGiro.Accounts.AccountEmployerRelationship, B4F.TotalGiro.Interfaces" />
+	</class>
+</hibernate-mapping>

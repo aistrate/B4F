@@ -1,0 +1,1654 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Instruments</name>
+    </assembly>
+    <members>
+        <member name="T:B4F.TotalGiro.Instruments.Currency">
+            <summary>
+            Class representing a currency
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Instrument">
+            <summary>
+            Class representing an instrument
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Instrument.#ctor(System.String,B4F.TotalGiro.Instruments.SecCategories,System.Decimal,System.Int32,System.Boolean)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Instrument.op_Equality(B4F.TotalGiro.Instruments.Instrument,B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="lhs">First instrument</param>
+            <param name="rhs">Second instrument</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Instrument.op_Inequality(B4F.TotalGiro.Instruments.Instrument,B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            Overridden unequality operator
+            </summary>
+            <param name="lhs">First instrument</param>
+            <param name="rhs">Second instrument</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Instrument.Equals(System.Object)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="obj">Object</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Instrument.DisplayToString(System.Decimal)">
+            <summary>
+            Get screen representation
+            </summary>
+            <param name="Quantity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Instrument.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.ParentInstrument">
+            <summary>
+            The parent instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.TopParentInstrument">
+            <summary>
+            The top parent instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.TopParentRatio">
+            <summary>
+            The top parent ratio
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.Name">
+            <summary>
+            Get/set instrument name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.DisplayName">
+            <summary>
+            Get instrument name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.DisplayIsin">
+            <summary>
+            Get instrument Isin if applicable
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.Key">
+            <summary>
+            Get/set unique identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.SecCategory">
+            <summary>
+            Get/set category of the instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.RepoValue">
+            <summary>
+            Get/set margin value
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.ContractSize">
+            <summary>
+            Get/set number of underlying instrument involved in a transaction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.IsActive">
+            <summary>
+            Get/set activation in system
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.DefaultRoute">
+            <summary>
+            Get/set route for ordering
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.DecimalPlaces">
+            <summary>
+            Get/set number of decimals
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.AllowNetting">
+            <summary>
+            Flag to allow netting
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.CurrentPrice">
+            <summary>
+            Get/set price
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.CreationDate">
+            <summary>
+            Get/set creation date
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.LastUpdated">
+            <summary>
+            Get/set last update
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Instrument.PricePrecision">
+            <summary>
+            Get/set number of decimal palces
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Currency.#ctor(B4F.TotalGiro.Instruments.Currency)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Currency.#ctor(System.String,B4F.TotalGiro.StaticData.ICountry)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Currency.initialize">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Currency.PredictSize(B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Predicts size of instrument based on amount of money
+            </summary>
+            <param name="inputAmount">Amount</param>
+            <returns>PredictedSize object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Currency.GetHistoricalExRate(B4F.TotalGiro.Dal.IDalSession,System.DateTime)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Currency.GetExRate(B4F.TotalGiro.Orders.Side)">
+            <summary>
+            Get exchange rate by bid or ask
+            </summary>
+            <param name="side"></param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Currency.GetExRate(B4F.TotalGiro.Instruments.ICurrency,B4F.TotalGiro.Orders.Side)">
+            <summary>
+            Get exchange rate by currency and bid or ask
+            </summary>
+            <param name="toCurrency"></param>
+            <param name="side"></param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Currency.ToString">
+            <summary>
+            Overridden composition of name
+            </summary>
+            <returns>Name</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Currency.DisplayToString(System.Decimal)">
+            <summary>
+            Change screen format of a number
+            </summary>
+            <param name="Quantity">Quantity</param>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.Symbol">
+            <summary>
+            Get/set three-letter currency abbreviation
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.AltSymbol">
+            <summary>
+            Get/set currency symbol
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.CountryOfOrigin">
+            <summary>
+            Get/set country of origin
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.EuroMember">
+            <summary>
+            Get/set Euromembership true or false
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.BaseCurrency">
+            <summary>
+            Get/set default currency
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.IsBase">
+            <summary>
+            Overridden equality operator
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.ExchangeRate">
+            <summary>
+            Get/set exchange rate
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.SettlementCurrency">
+            <summary>
+            Get/set settlement currency
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.IsTradeable">
+            <summary>
+            Get tradeable flag
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.IsCash">
+            <summary>
+            Get cash flag
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.DecimalPlaces">
+            <summary>
+            Overridden get/set decimals of number
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Currency.HistoricalExRates">
+            <summary>
+            Get/set historical exchange rates
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Model">
+            <summary>
+            Class representing modelportfolio
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Model.ToString">
+            <summary>
+            Overridden composition of name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Model.op_Equality(B4F.TotalGiro.Instruments.Model,B4F.TotalGiro.Instruments.IModel)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="lhs">First model</param>
+            <param name="rhs">Second model</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Model.op_Inequality(B4F.TotalGiro.Instruments.Model,B4F.TotalGiro.Instruments.IModel)">
+            <summary>
+            Overridden unequality operator
+            </summary>
+            <param name="lhs">First model</param>
+            <param name="rhs">Second model</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Model.Equals(System.Object)">
+            <summary>
+            Overridden equality method
+            </summary>
+            <param name="obj">Object to compare with</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Model.GetHashCode">
+            <summary>
+            Overridding Hashcode composition
+            </summary>
+            <returns>Hashcode</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Model.GetModelVersions">
+            <exclude/>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Model.Key">
+            <summary>
+            Get/set identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Model.ModelName">
+            <summary>
+            Get/set name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Model.Description">
+            <summary>
+            Get/set description
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Model.IsActive">
+            <summary>
+            Get/set activity flag
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Model.CreationDate">
+            <summary>
+            Get/set creation date
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Model.LastUpdated">
+            <summary>
+            Get/set date last updated
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Model.ModelVersions">
+            <summary>
+            Get/set collection of other versions of model
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Model.LatestVersion">
+            <summary>
+            Get/set latest version of model
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Model.AssetManager">
+            <summary>
+            The assetmanager that invented and owns the model
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.InstrumentMapper">
+            <summary>
+            This class is used to instantiate Instrument objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetInstrument(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get instrument by ID
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="instrumentID">Identifier</param>
+            <returns>Instrument object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetInstruments(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get all system instruments
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>Collection of instruments</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetInstruments(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.ISecCategory)">
+            <summary>
+            Get instrumenst by category
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="secCategory">Category</param>
+            <returns>Collection of instruments</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetInstruments(B4F.TotalGiro.Dal.IDalSession,System.Int32[])">
+            <summary>
+            Get instrumenst by their keys
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="keys">the unique identifiers of the instruments</param>
+            <returns>Collection of instruments</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetFilteredTradeableInstruments(B4F.TotalGiro.Dal.IDalSession,System.String)">
+            <summary>
+            Get tradeable instruments by name filter
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="InstrumentFilter">Name filter</param>
+            <returns>collection of tradeable instruments</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetCurrency(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get currency by id
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="instrumentID">Identifier</param>
+            <returns>Currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetCurrencyByName(B4F.TotalGiro.Dal.IDalSession,System.String)">
+            <summary>
+            Get currency by name
+            </summary>
+            <param name="session">data access object</param>
+            <param name="currencyName">Name</param>
+            <returns>Currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetKnownCurrency(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.KnownCurrency)">
+            <summary>
+            Get currency by system ID
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="instrumentID">System ID</param>
+            <returns>Currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetCurrencies(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get all system currencies
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>Collection of currencies</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetBaseCurrency(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get system base currency
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>Currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetAmountInBaseCurrency(System.Decimal)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.Update(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            Persist instrument changes in system
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="instrument">Instrument</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetInstrumentByIsin(B4F.TotalGiro.Dal.IDalSession,System.String)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentMapper.GetTradeableInstrument(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="id">Identifier</param>
+            <returns>Collection of one instrument</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.SecCategoryMapper">
+            <summary>
+            This class is used to instantiate Category objects of securities
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.SecCategoryMapper.GetSecCategory(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.SecCategories)">
+            <summary>
+            Get Category by ID
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="SecCategoryID">Identifier</param>
+            <returns>Category</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.SecCategoryMapper.GetSecCategories(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get all system categories
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>Collection of categories</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Prices.HistoricalPriceCollection">
+            <summary>
+            Class representing collection of historical prices of instrument
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPriceCollection.#ctor(System.Collections.IList,B4F.TotalGiro.Instruments.TradeableInstrument)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Prices.HistoricalPriceCollection">HistoricalPriceCollection</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPriceCollection.IndexOf(B4F.TotalGiro.Instruments.Prices.IPriceDetail)">
+            <summary>
+            Get index of a pricedetail in the history. Match on date.
+            </summary>
+            <param name="item">PriceDeatil</param>
+            <returns>Index number</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPriceCollection.Add(B4F.TotalGiro.Instruments.Prices.IPriceDetail)">
+            <summary>
+            Add item to collection of historical prices
+            </summary>
+            <param name="item">HistoricalPrice object</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPriceCollection.Contains(B4F.TotalGiro.Instruments.Prices.IPriceDetail)">
+            <summary>
+            Does the historical price exist. Matches on date.
+            </summary>
+            <param name="item">HistoricalPrice</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Prices.HistoricalPriceCollection.LatestPrice">
+            <summary>
+            Get latest price
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Stock">
+            <summary>
+            Class representing a stock
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.TradeableInstrument">
+            <summary>
+            Class represents instrument tradeable on a exchange
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.TradeableInstrument.PredictSize(B4F.TotalGiro.Instruments.Money)">
+            <summary>
+            Get the educated guess of the size of a instrument for a amount of money
+            </summary>
+            <param name="inputAmount"></param>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.DayTradeable">
+            <summary>
+            Get/set flag tradeable within a day
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.CurrencyNominal">
+            <summary>
+            Get/set currency where instrument is traded in
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.CompanyName">
+            <summary>
+            Get/set name of company issuing the instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.DefaultExchange">
+            <summary>
+            Get/set default exchange for instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.Isin">
+            <summary>
+            Get/set ISIN-code
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.IssueDate">
+            <summary>
+            The date that the instrument was issued
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.CurrentPrice">
+            <summary>
+            Get/set most actual price
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.Symbols">
+            <summary>
+            Get symbols of instrument mapping to other systems
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.HistoricalPrices">
+            <summary>
+            Get collection of historical prices of instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.InstrumentExchanges">
+            <summary>
+            Get collection of exchanges where instrument is traded
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.IsTradeable">
+            <summary>
+            Get  is instrument tradeable flag
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.TradeableInstrument.IsCash">
+            <summary>
+            Get is instrument cash flag
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Stock.initialize">
+            <exclude/>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateMapper">
+            <summary>
+            This class is used to instantiate Historical Exchange Rates objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateMapper.GetHistoricalExRate(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.ICurrency,System.DateTime)">
+            <summary>
+            Gets historical exchange rate by currency and time
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="currency">Currency</param>
+            <param name="date">Date</param>
+            <returns>Historical exchange object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateMapper.GetHistoricalExRates(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.ICurrency)">
+            <summary>
+            Get collection of historical exchange rates by currency
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="currency">Currency</param>
+            <returns>collection of historical exchange rates</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateMapper.GetHistoricalExRates(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.ICurrency,System.DateTime,System.DateTime)">
+            <summary>
+            Get collection of historical exchange rates by currency and a period of time
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="currency">Currency</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>Collection of historical exchange rates</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateMapper.GetHistoricalExRates(B4F.TotalGiro.Dal.IDalSession,System.DateTime)">
+            <summary>
+            Get collection of historical exchange rates of known currency for one date
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="startDate">Price date</param>
+            <returns>Collection of historical exchange rates</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateMapper.GetMaxHistoricalExRateDate(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get latest historical exchange rate
+            </summary>
+            <param name="DataSession">Data access object</param>
+            <returns>Date</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Routes.Route">
+            <summary>
+            Class holds information about an order route
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Routes.Route.ToString">
+            <summary>
+            Overridden composition of name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Routes.Route.GetHashCode">
+            <summary>
+            Overridden hashcode composition
+            </summary>
+            <returns>Hashcode</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Routes.Route.Key">
+            <summary>
+            Get system order routes
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Routes.Route.Type">
+            <summary>
+            The specific route type of the route
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Routes.Route.Name">
+            <summary>
+            Get/set nameof route
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Routes.Route.Description">
+            <summary>
+            Get/set description of route
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Routes.Route.IsDefault">
+            <summary>
+            Get/set one system default route
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Routes.Route.ApproveTransactions">
+            <summary>
+            Get/set flag for transactions automatically approved
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ModelInstrument">
+            <summary>
+            Class holds allocation of a instrument of a model
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ModelComponent">
+            <summary>
+            Class holds the allocation of a component of a model.
+            A component is either an instrument or another model
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelComponent.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelComponent.#ctor(System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.ModelComponent">ModelComponent</see> class.
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelComponent.Allocation">
+            <summary>
+            Get/set allocation (percentages) of a model
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelComponent.Key">
+            <summary>
+            Get/set identifier
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrument.#ctor(B4F.TotalGiro.Instruments.IInstrument,System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.ModelInstrument">ModelInstrument</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrument.ToString">
+            <summary>
+            Overridden composition of name
+            </summary>
+            <returns>Name with allocation</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrument.GetHashCode">
+            <summary>
+            Overridden hashcode composition
+            </summary>
+            <returns>Number</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelInstrument.ModelComponentType">
+            <summary>
+            Returns type of modelcomponent
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelInstrument.Component">
+            <summary>
+            Get/set the instrument
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.CashManagementFund">
+            <summary>
+            Class representing mutual fund for cash positions
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.CashManagementFund.initialize">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.CashManagementFund.ToString">
+            <summary>
+            Overridden composition of the name of this class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.CashManagementFund.DisplayToString(System.Decimal)">
+            <summary>
+            Change screen format of a number
+            </summary>
+            <param name="Quantity">Quantity</param>
+            <returns>Formatted number</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.CashManagementFund.DecimalPlaces">
+            <summary>
+            Get/set number of decimals
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ModelModel">
+            <summary>
+            Class holds allocation of a whole model as a component of a (another) model
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelModel.#ctor(B4F.TotalGiro.Instruments.Model,System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.ModelModel">ModelModel</see> class.
+            </summary>        
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelModel.ToString">
+            <summary>
+            Overridden composition of name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelModel.Component">
+            <summary>
+            Get/set model
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelModel.ModelComponentType">
+            <summary>
+            Get ModelComponentType (=Model)
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Prices.HistoricalPrice">
+            <summary>
+            Class represents price of a instrument in time
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.#ctor(B4F.TotalGiro.Instruments.Price,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.Prices.HistoricalPrice">HistoricalPrice</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.CompareTo(System.Object)">
+            <summary>
+            Equality method implementation, returns greater, equal or smaller
+            </summary>
+            <param name="obj">Object to compare with</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.op_GreaterThan(B4F.TotalGiro.Instruments.Prices.HistoricalPrice,B4F.TotalGiro.Instruments.Prices.HistoricalPrice)">
+            <summary>
+            Greater than operator overload
+            </summary>
+            <param name="a">HistoricalPrice a</param>
+            <param name="b">HistoricalPrice b</param>
+            <returns>True is datetime of a is greater</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.op_LessThan(B4F.TotalGiro.Instruments.Prices.HistoricalPrice,B4F.TotalGiro.Instruments.Prices.HistoricalPrice)">
+            <summary>
+            Smaller than operator overload
+            </summary>
+            <param name="a">HistoricalPrice a</param>
+            <param name="b">HistoricalPrice b</param>
+            <returns>True is datetime of a is smaller</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.Key">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.Price">
+            <summary>
+            Get/set price
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.Date">
+            <summary>
+            Get/set date
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.OpenPrice">
+            <summary>
+            Get/set price when exchange opened
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.ClosedPrice">
+            <summary>
+            Get/set price when exchange closed
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.HighPrice">
+            <summary>
+            Get/set highest price of the day
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.LowPrice">
+            <summary>
+            Get/set lowest price of the day
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Prices.HistoricalPrice.IsOldDate">
+            <summary>
+            Price old flag
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.InstrumentExchangeCollection">
+            <summary>
+            This class holds collection of exchanges for one instrument
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentExchangeCollection.#ctor(System.Collections.IList,B4F.TotalGiro.Instruments.TradeableInstrument)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.InstrumentExchangeCollection">InstrumentExchangeCollection</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentExchangeCollection.GetItemByExchange(System.Int32)">
+            <summary>
+            Get InstrumentExchange by ID
+            </summary>
+            <param name="exchangeID">Identifier</param>
+            <returns>InstrumentExchange object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentExchangeCollection.GetDefault">
+            <summary>
+            Get the default InstrumentExchange (by default exchange)
+            </summary>
+            <returns>InstrumentExchange object</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.History.InstrumentHistory.Key">
+            <summary>
+            Identifier for the Historical instrument change
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.History.InstrumentHistory.OldInstrument">
+            <summary>
+            The old instrument that has been changed
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.History.InstrumentHistory.NewInstrument">
+            <summary>
+            The new instrument in what to the old instrument has changed
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.History.InstrumentHistory.ChangeDate">
+            <summary>
+            The date that the conversion took place
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.History.InstrumentHistory.OldChildRatio">
+            <summary>
+            The number of old instruments involved in the change to the new instrument -> for the ratio
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.History.InstrumentHistory.NewParentRatio">
+            <summary>
+            The number of new instruments that evolved from the old instrument -> for the ratio
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.History.InstrumentHistory.IsSpinOff">
+            <summary>
+            Is this a spinoff of an old instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.History.InstrumentHistory.CreationDate">
+            <summary>
+            The date this instrument conversion was done
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.History.InstrumentHistory.LastUpdated">
+            <summary>
+            The date the instrument conversion was changed
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ModelVersion">
+            <summary>
+            Class represents specific allocation of model in time
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelVersion.TotalAllocation">
+            <summary>
+            Calculate total of allocations
+            </summary>
+            <returns>Total amount</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelVersion.ToString">
+            <summary>
+            Overridden composition of anme
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelVersion.Key">
+            <summary>
+            Get/set identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelVersion.VersionNumber">
+            <summary>
+            Get/set identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelVersion.ModelComponents">
+            <summary>
+            Get/set ModelComponents
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelVersion.ModelInstruments">
+            <summary>
+            Get collection of ModelInstruments
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.SecCategory">
+            <summary>
+            Class holds the type of a security
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.SecCategory.ToString">
+            <summary>
+            Overridden method for convenience purpose
+            </summary>
+            <returns>Description of type</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.SecCategory.GetHashCode">
+            <summary>
+            Overridden composition of hashcode 
+            </summary>
+            <returns>Hashcode</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.SecCategory.op_Equality(B4F.TotalGiro.Instruments.SecCategory,B4F.TotalGiro.Instruments.SecCategory)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="lhs">First type</param>
+            <param name="rhs">Second type</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.SecCategory.op_Inequality(B4F.TotalGiro.Instruments.SecCategory,B4F.TotalGiro.Instruments.SecCategory)">
+            <summary>
+            Overridden unequality operator
+            </summary>
+            <param name="lhs">First type</param>
+            <param name="rhs">Secong type</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.SecCategory.Equals(System.Object)">
+            <summary>
+            Overridden equality method
+            </summary>
+            <param name="obj">Obect to compare with</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.SecCategory.Key">
+            <summary>
+            Get identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.SecCategory.Name">
+            <summary>
+            Get/set Name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.SecCategory.Description">
+            <summary>
+            Get/set description
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.SecCategory.IsCash">
+            <summary>
+            Get/set cash flag to distinguish Cash Funds from rest
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.SecCategory.DefaultRoute">
+            <summary>
+            Get/set default ordering route
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate">
+            <summary>
+            Class represents currency exchange rates relative to the system base currency through time
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.#ctor(B4F.TotalGiro.Instruments.ICurrency,System.Decimal,System.DateTime,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Initializes historical exchange rate
+            </summary>
+            <param name="currency">Currency</param>
+            <param name="rate">Rate relative to system base currency</param>
+            <param name="rateDate">Point in time</param>
+            <param name="bid">Percentage paid for commission</param>
+            <param name="ask">Percentage paid for commission</param>
+            <param name="priceFactor">Helper fraction</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.GetExRate">
+            <summary>
+            Get bid or ask-neutral rate
+            </summary>
+            <returns>Rate relative to base currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.GetExRate(B4F.TotalGiro.Orders.Side)">
+            <summary>
+            Get rate depending of bid or ask
+            </summary>
+            <param name="side">Bid or ask</param>
+            <returns>Rate relative to base currency</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode
+            </summary>
+            <returns>Number</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.ToString">
+            <summary>
+            Overridden composition of a name for an object of this class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.Equals(System.Object)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="obj">Object to compare with</param>
+            <returns>if true returns true else false</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.CompareTo(System.Object)">
+            <summary>
+            Overriden equality operator
+            </summary>
+            <param name="obj"></param>
+            <returns>if this.obj is equal to obj returns 0 
+            elseif this.obj is smaller returns negative number
+            else a positive number
+            </returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.op_GreaterThan(B4F.TotalGiro.Instruments.ExRates.HistoricalExRate,B4F.TotalGiro.Instruments.ExRates.HistoricalExRate)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="a">First historical exchange rate to compare</param>
+            <param name="b">Second historical exchange rate to compare</param>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.op_LessThan(B4F.TotalGiro.Instruments.ExRates.HistoricalExRate,B4F.TotalGiro.Instruments.ExRates.HistoricalExRate)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="a">First historical exchange rate to compare</param>
+            <param name="b">Second historical exchange rate to compare</param>
+            <returns>True or false</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.Key">
+            <summary>
+            Get/set unique identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.Currency">
+            <summary>
+            Get/set currency
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.Rate">
+            <summary>
+            Get/set rate
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.RateDate">
+            <summary>
+            Get/set date
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.Bid">
+            <summary>
+            Bid is the percentage which you add at the rate
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.Ask">
+            <summary>
+            Ask is the percentage which you add at the rate
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.PriceFactor">
+            <summary>
+            Helper fraction
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ExRates.HistoricalExRate.IsOldDate">
+            <summary>
+            Check if rate's date old
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.InstrumentExchange">
+            <summary>
+            Class holds information specific to exchange and instrument combination
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentExchange.Key">
+            <summary>
+            Identifier for combination instrument/exchange
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentExchange.Instrument">
+            <summary>
+            Get/set instrument
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentExchange.Exchange">
+            <summary>
+            Get/set exchange
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentExchange.NumberOfDecimals">
+            <summary>
+            Get/set number of decimals for instrument/exchange
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentExchange.CertificationRequired">
+            <summary>
+            Get/set certification required for instrument/exchange
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.InstrumentExchange.DefaultSettlementPeriod">
+            <summary>
+            Get/set default settlement period
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.InstrumentExchangeMapper">
+            This class is used to instantiate InstrumentExchange objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentExchangeMapper.GetInstrumentExchange(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get InstrumentExchange by ID
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="InstrumentExchangeID">Identifier</param>
+            <returns>InstrumentExchange</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.InstrumentExchangeMapper.GetInstrumentExchanges(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get collection of system InstrumentExchanges
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>Collection of InstrumentExchanges</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateCollection">
+            <summary>
+            Class hold collection of historical exchange rates
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateCollection.#ctor(System.Collections.IList)">
+            <summary>
+            Sets a collection  
+            </summary>
+            <param name="HistoricalExRates">Collection of historical rates</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateCollection.Add(B4F.TotalGiro.Instruments.ExRates.IHistoricalExRate)">
+            <summary>
+            Add historical exchange rate to collection
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ExRates.HistoricalExRateCollection.LatestRate">
+            <summary>
+            Get the latest rate in time
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Routes.RouteMapper">
+            This class is used to instantiate Route objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+        </member>
+        <member name="M:B4F.TotalGiro.Routes.RouteMapper.GetRoute(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get route by ID
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="RouteID">Identifier</param>
+            <returns></returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Routes.RouteMapper.GetRoutes(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get all system routes
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>Collection of routes</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Routes.RouteMapper.GetDefaultRoute(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get system default route
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>route object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Routes.RouteMapper.GetRouteByType(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Routes.RouteTypes)">
+            <summary>
+            Returns a route depending on its type
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="type">The route type of interest</param>
+            <returns>route object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Routes.RouteMapper.GetRouteByExchange(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.IExchange)">
+            <summary>
+            Returns a route depending on its link with a specific exchange
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="exchange">The exchange of interest</param>
+            <returns>route object</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ModelInstrumentCollection">
+            <summary>
+            This class holds collection of modelcomponents
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.#ctor(System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:B4F.TotalGiro.Instruments.ModelInstrumentCollection">ModelInstrumentCollection</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.ResolveInstruments(System.Collections.IList,System.Decimal)">
+            <summary>
+            Group instruments in
+            </summary>
+            <param name="modelComponents">Instruments or models</param>
+            <param name="Allocation">Allocation percentage</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.IndexOf(B4F.TotalGiro.Instruments.IModelInstrument)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.Insert(System.Int32,B4F.TotalGiro.Instruments.IModelInstrument)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.RemoveAt(System.Int32)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.Add(B4F.TotalGiro.Instruments.IModelInstrument)">
+            <summary>
+            Add ModelInstrument to collection
+            </summary>
+            <param name="item">ModelInstrument</param>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.Clear">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.Contains(B4F.TotalGiro.Instruments.IModelInstrument)">
+            <summary>
+            Item in collection flag
+            </summary>
+            <param name="item">ModelInstrument</param>
+            <returns>Flag</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.CopyTo(B4F.TotalGiro.Instruments.IModelInstrument[],System.Int32)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.Remove(B4F.TotalGiro.Instruments.IModelInstrument)">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.GetEnumerator">
+            <moduleiscollection>
+            </moduleiscollection>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelInstrumentCollection.System#Collections#IEnumerable#GetEnumerator">
+            <moduleiscollection>
+            </moduleiscollection>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelInstrumentCollection.Item(System.Int32)">
+            <summary>
+            Operator this overload
+            </summary>
+            <param name="index">Index number</param>
+            <returns>ModelInstrument</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelInstrumentCollection.Count">
+            <summary>
+            Count number of ModelInstruments
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.ModelInstrumentCollection.IsReadOnly">
+            <exclude/>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Prices.HistoricalPriceMapper">
+            This class is used to instantiate HistoricalPrice objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPriceMapper.GetHistoricalPrices(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.IInstrument)">
+            <summary>
+            Get all historical price by instrument
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="instrument">Instrument object</param>
+            <returns>Collection of historical prices</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Prices.HistoricalPriceMapper.GetHistoricalPrices(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Instruments.IInstrument,System.DateTime)">
+            <summary>
+            Get historical price of instrument at point in time
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="instrument">Instrument object</param>
+            <param name="date">Date</param>
+            <returns>Collection of historical prices</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.MutualFund">
+            <summary>
+            Class representing a Mutual fund
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.MutualFund.initialize">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.MutualFund.ToString">
+            <summary>
+            Get/set overridden composition of name
+            </summary>
+            <returns>Name</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.MutualFund.DisplayToString(System.Decimal)">
+            <summary>
+            Get/set screen format of numbers with much decimals
+            </summary>
+            <param name="Quantity"></param>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.MutualFund.SubscriptionDate">
+            <summary>
+            Date since when investors can subsrcibe
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.MutualFund.DisplayName">
+            <summary>
+            Get/set screen representation of name
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.MutualFund.AdminFee">
+            <summary>
+            Get/set administrative fee
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.MutualFund.BuyCost">
+            <summary>
+            Get/set administrative buying cost
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.MutualFund.SellCost">
+            <summary>
+            Get/set administrative selling cost
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.MutualFund.CapitalisationCost">
+            <summary>
+            Get/set tax amount paid buying a fund.
+            Tax is obsolete in Netherlands
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.MutualFund.Dividend">
+            <summary>
+            Get/set dividend flag
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.MutualFund.DecimalPlaces">
+            <summary>
+            Get/set number of decimals
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ModelMapper">
+            <summary>
+            This class is used to instantiate Model objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelMapper.GetModel(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get model by ID
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="id">Identifier</param>
+            <returns>Model object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelMapper.GetModelVersion(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get Model version by ID
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="versionID">Identifier</param>
+            <returns>ModelVersion object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelMapper.GetModelVersions(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get collection of modelversions of a model
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="modelID">Identifier</param>
+            <returns>Collection of modelversions</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelMapper.GetModels(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get all system models
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>Collection of models</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ModelMapper.GetModelsSorted(B4F.TotalGiro.Dal.IDalSession,B4F.TotalGiro.Stichting.IAssetManager)">
+            <summary>
+            Get all system models, sorted alphabetically
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>Collection of models</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.ExchangeMapper">
+            <summary>
+            This class is used to instantiate Exchange objects
+            The data is retrieved from the database using an instance of the Data Access Library <see cref="T:B4F.TotalGiro.DAL.NHSession">NHSession</see> class.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExchangeMapper.GetExchange(B4F.TotalGiro.Dal.IDalSession,System.Int32)">
+            <summary>
+            Get exchange by identifier
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="exchangeID">Unique identifier</param>
+            <returns>Exchange object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExchangeMapper.GetExchangeByName(B4F.TotalGiro.Dal.IDalSession,System.String)">
+            <summary>
+            Get exchange by its name
+            </summary>
+            <param name="session">Data access object</param>
+            <param name="exchangeName">The name of the exchange</param>
+            <returns>Exchange object</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.ExchangeMapper.GetExchanges(B4F.TotalGiro.Dal.IDalSession)">
+            <summary>
+            Get all exchanges in system
+            </summary>
+            <param name="session">Data access object</param>
+            <returns>collection of exchanges</returns>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Exchange">
+            <summary>
+            Class represents Exchange for stocks, mutual funds etc.
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Exchange.#ctor(System.String,B4F.TotalGiro.Instruments.ICurrency,B4F.TotalGiro.StaticData.ICountry,System.Int16)">
+            <summary>
+            Initializes Exchange object
+            </summary>
+            <param name="ExchangeName">Name</param>
+            <param name="defaultCurrency">Default currency</param>
+            <param name="defaultCountry">Default country</param>
+            <param name="defaultSettlementPeriod">Default settlement period</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:B4F.TotalGiro.Instruments.Exchange.ToString" -->
+        <member name="M:B4F.TotalGiro.Instruments.Exchange.GetHashCode">
+            <summary>
+            Overridden creation of a hashcode.
+            </summary>
+            <returns>Unique value</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Exchange.op_Equality(B4F.TotalGiro.Instruments.Exchange,B4F.TotalGiro.Instruments.Exchange)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="lhs">First exchange</param>
+            <param name="rhs">Second exchange</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Exchange.op_Inequality(B4F.TotalGiro.Instruments.Exchange,B4F.TotalGiro.Instruments.Exchange)">
+            <summary>
+            Overridden inequality operator
+            </summary>
+            <param name="lhs">First exchange</param>
+            <param name="rhs">Second exchange</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Exchange.Equals(System.Object)">
+            <summary>
+            Overridden equality operator
+            </summary>
+            <param name="obj">object to compare to</param>
+            <returns>true if equal, false if not equal.</returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Exchange.Key">
+            <summary>
+            Get/set unique identifier
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Exchange.DefaultCurrency">
+            <summary>
+            Get/set default currency
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Exchange.ExchangeName">
+            <summary>
+            Get/set name of exchange
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Exchange.DefaultCountry">
+            <summary>
+            Get/set default country
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Exchange.DefaultSettlementPeriod">
+            <summary>
+            Get/set default settlement period
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Exchange.DefaultNumberOfDecimals">
+            <summary>
+            Get/set number of decimals for the exchange
+            </summary>
+        </member>
+        <member name="T:B4F.TotalGiro.Instruments.Bond">
+            <summary>
+            Class representing a bond
+            </summary>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Bond.initialize">
+            <exclude/>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Bond.NextCouponDate(System.DateTime)">
+            <summary>
+            The next coupon payment relative to the passed in settlement date
+            </summary>
+            <param name="settlementDate">the passed in settlement date</param>
+            <returns>A date</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Bond.NextCouponPaymentDate(System.DateTime)">
+            <summary>
+            The actual next coupon payment. Coupon payment date maybe later then coupon date, this is depending on calender.
+            </summary>
+            <param name="settlementDate">the passed in settlement date</param>
+            <returns>A date</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Bond.LastCouponDate(System.DateTime)">
+            <summary>
+            The actual previous coupon payment. The previous coupon payment relative to the passed in settlement date
+            </summary>
+            <param name="settlementDate">the passed in settlement date</param>
+            <returns>A date</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Bond.CalculateLastCouponDate(System.DateTime,System.Int16,System.DateTime)">
+            <summary>
+            Method that calculates the last coupon payment date relative to the passed in settlementDate
+            </summary>
+            <param name="firstCouponDate">The First Coupon payment date</param>
+            <param name="freq">The coupon frequency</param>
+            <param name="settlementDate">The passed in settlement date</param>
+            <returns>A date</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Bond.AccruedInterest(B4F.TotalGiro.Instruments.Money,System.Int16,B4F.TotalGiro.Instruments.IExchange,System.DateTime)">
+            <summary>
+            Returns the interest which has accrued on a bond since it's last coupon date.
+            </summary>
+            <param name="volume">The Bond Volume of the order/trade</param>
+            <param name="settlementPeriod">The used settlement period</param>
+            <param name="exchange">The exchange the bond was traded on</param>
+            <param name="tradeDate">The date the bond was traded</param>
+            <returns>The accrued interest</returns>
+        </member>
+        <member name="M:B4F.TotalGiro.Instruments.Bond.AI_Factor(B4F.TotalGiro.Instruments.AccruedInterestCalcTypes,System.DateTime,System.DateTime,System.DateTime,System.Int16,System.DateTime)">
+            <summary>
+            Method to calculate the accrued interest factor
+            </summary>
+            <param name="accruedInterestCalcType"></param>
+            <param name="lastCouponPaymentDate"></param>
+            <param name="settlementDate"></param>
+            <param name="nextCouponPaymentDate"></param>
+            <param name="frequency"></param>
+            <param name="maturity"></param>
+            <returns></returns>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Bond.NominalValue">
+            <summary>
+            The Nominal value of the bond
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Bond.CouponRate">
+            <summary>
+            The coupon rate
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Bond.CouponFreq">
+            <summary>
+            The frequency of dividend payment per year
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Bond.MaturityDate">
+            <summary>
+            The date that the bond matures
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Bond.AccruedInterestCalcType">
+            <summary>
+            The type of calculation for accrued interest
+            </summary>
+        </member>
+        <member name="P:B4F.TotalGiro.Instruments.Bond.FirstCouponPaymntDate">
+            <summary>
+            The first coupon payment
+            </summary>
+        </member>
+    </members>
+</doc>

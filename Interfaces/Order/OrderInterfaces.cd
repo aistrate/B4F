@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Interface Name="B4F.TotalGiro.Orders.IOrder" Collapsed="true">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\IOrder.cs</FileName>
+      <HashCode>SiiiABEGQwDAhARUCyIJQAGAAADIWkghRDA2AgAETEA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IOrderAmountBased" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Order\IOrderAmountBased.cs</FileName>
+      <HashCode>AAgAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IOrderSizeBased" Collapsed="true">
+    <Position X="3.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\IOrderSizeBased.cs</FileName>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.ISecurityOrder" Collapsed="true">
+    <Position X="2" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\ISecurityOrder.cs</FileName>
+      <HashCode>AAAAAAAAEAAAAAACEAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IAggregatedOrder" Collapsed="true">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\IAggregatedOrder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IAggregateAmtOrder" Collapsed="true">
+    <Position X="0.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Order\IAggregateAmtOrder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IAggregateSizeOrder" Collapsed="true">
+    <Position X="3.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\IAggregateSizeOrder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IStgAmtOrder" Collapsed="true">
+    <Position X="0.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Order\IStgAmtOrder.cs</FileName>
+      <HashCode>AAQQAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IStgSizeOrder" Collapsed="true">
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\IStgSizeOrder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IStgOrder" Collapsed="true">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\IStgOrder.cs</FileName>
+      <HashCode>AgACAAIAAAgAJAAAAEAAIAAABAAAAAAAAEAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IMonetaryOrder" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\IMonetaryOrder.cs</FileName>
+      <HashCode>AAIAAAAAQAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAIAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IAggregateMonetaryOrder" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\IAggregateMonetaryOrder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="B4F.TotalGiro.Orders.IStgMonetaryOrder" Collapsed="true">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Order\IStgMonetaryOrder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+</ClassDiagram>

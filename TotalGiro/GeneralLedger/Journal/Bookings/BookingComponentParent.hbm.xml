@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponentParent, B4F.TotalGiro.GeneralLedger"
+		   table="BookingComponentsParent"
+		   proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBookingComponentParent, B4F.TotalGiro.Interfaces"
+			dynamic-update="true">
+		<id name="Key" column="BookingComponentParentID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<discriminator column="BookingComponentParentTypeID" />
+		<one-to-one name="Component" property-ref="Parent" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BookingComponent, B4F.TotalGiro.GeneralLedger" cascade="all-delete-orphan" />
+		<property name="creationDate" column="CreationDate" type="Date" access="field"/>
+		<property name="bookingComponentParentTypeId" column="BookingComponentParentTypeID" access="field" insert="false" update="false" />
+		<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.TransactionComponent, B4F.TotalGiro.GeneralLedger"
+		  dynamic-update="true"
+		  discriminator-value="0"
+		  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ITransactionComponent, B4F.TotalGiro.Interfaces">
+			<many-to-one name="ParentTransaction" column="TGTransactionID" class="B4F.TotalGiro.Orders.Transactions.Transaction, B4F.TotalGiro.Orders" cascade="all"/>
+		</subclass>
+
+		<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsComponent, B4F.TotalGiro.GeneralLedger"
+		  dynamic-update="true"
+		  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IGeneralOperationsComponent, B4F.TotalGiro.Interfaces">
+			<many-to-one name="ParentBooking" column="GeneralOperationsBookingID" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GeneralOperationsBooking, B4F.TotalGiro.GeneralLedger" cascade="all"/>
+
+			<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.CashDividendComponent, B4F.TotalGiro.GeneralLedger"
+			  dynamic-update="true"
+			  discriminator-value="1"
+			  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ICashDividendComponent, B4F.TotalGiro.Interfaces">
+			</subclass>
+
+			<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ManagementFeeComponent, B4F.TotalGiro.GeneralLedger"
+			  dynamic-update="true"
+			  discriminator-value="2"
+			  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IManagementFeeComponent, B4F.TotalGiro.Interfaces">
+				<many-to-one name="MgtFeeType" column="FeeTypeID" class="B4F.TotalGiro.Fees.FeeType, B4F.TotalGiro.Interfaces" />
+				<property name="Period" column="Period" />
+			</subclass>
+
+			<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.CashTransferComponent, B4F.TotalGiro.GeneralLedger"
+			  dynamic-update="true"
+			  discriminator-value="4"
+			  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ICashTransferComponent, B4F.TotalGiro.Interfaces">
+			</subclass>
+
+			<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ForeignExchangeComponent, B4F.TotalGiro.GeneralLedger"
+			  dynamic-update="true"
+			  discriminator-value="8"
+			  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IForeignExchangeComponent, B4F.TotalGiro.Interfaces">
+			</subclass>
+
+			<subclass name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPaymentComponent, B4F.TotalGiro.GeneralLedger"
+			  dynamic-update="true"
+			  discriminator-value="16"
+			  proxy="B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBondCouponPaymentComponent, B4F.TotalGiro.Interfaces">
+			</subclass>
+		</subclass>
+	</class>
+
+	<query name="B4F.TotalGiro.GeneralLedger.Journal.Bookings.GetBookingComponentParents" >
+		<![CDATA[
+		from BookingComponentParent P
+		left join fetch P.Component.journalLines L
+		left join fetch L.Parent JE
+		left join fetch JE.Journal J
+    where J.IsAdminAccount = 0
+    and L.ParentSubPosition.SettledFlag = :settledFlag
+		and L.ParentSubPosition.Key = :subPosId
+		and L.StornoedLine is null and not exists elements(L.bagStorno) and 1 = :hideStornos
+		and L.status = :statusBooked
+		and L.ParentSubPosition.Size.Underlying.Key = :baseCurrencyId
+		and L.GiroAccount.Key = :accountId
+		and L.Parent.TransactionDate between :beginDate and :endDate
+		and P.bookingComponentParentTypeId = :bookingTypeId
+	]]>
+	</query>
+
+
+</hibernate-mapping>

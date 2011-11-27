@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Cleopatra" Class="CleopatraDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=145.7.18.2;Initial Catalog=Cleopatra;Persist Security Info=True;User ID=remotebeheer" SettingsObjectName="B4F.TotalGiro.LINQ.BOAccounts.Properties.Settings" SettingsPropertyName="CleopatraConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BADGES" Member="BADGEs">
+    <Type Name="BADGE">
+      <Column Name="ACCNUMB" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="ACCTYPE" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="ACCSUB" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="NAAMKORT" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="CUSTGRP" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="BALANCYN" Type="System.Char" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="REKNUM" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="CLOSEACC" Type="System.Char" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="SOORTREL" Type="System.Char" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="SCFEEFLB" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="PFMFEE" Type="System.Char" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="BTWCODE" Type="System.Char" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="INPUSER" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="INPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="INPTIME" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

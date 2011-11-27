@@ -1,0 +1,4 @@
+﻿<asp:CheckBox
+    runat="server" 
+    CssClass="checkbox" >
+</asp:CheckBox>

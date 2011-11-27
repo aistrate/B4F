@@ -1,0 +1,475 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{485EB326-583E-4A45-8ECA-B95B50411DD0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.ApplicationLayer</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.ApplicationLayer</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/B4F.TotalGiro.ApplicationLayer/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\NHibernate2_1_2\Framework20\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\LinqToNHibernate\LinqToNHibernate1_0\NHibernate.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\RoleOverviewAdapter.cs" />
+    <Compile Include="Admin\UserEditAdapter.cs" />
+    <Compile Include="Admin\UserInsertAdapter.cs" />
+    <Compile Include="Admin\UserOverviewAdapter.cs" />
+    <Compile Include="Auditing\AuditLogAdapter.cs" />
+    <Compile Include="Auditing\AuditLogDetailsAdapter.cs" />
+    <Compile Include="BackOffice\BondCouponAccrualAdapter.cs" />
+    <Compile Include="BackOffice\CorporateActions\BonusDistributionAdapter.cs" />
+    <Compile Include="BackOffice\CorporateActions\DividendAdapter.cs" />
+    <Compile Include="BackOffice\CorporateActions\InstrumentConversionAdapter.cs" />
+    <Compile Include="Common\GridviewNoSelectionException.cs" />
+    <Compile Include="Communicator\BelastingdienstAdapter.cs" />
+    <Compile Include="Communicator\Export\PriceExportAdapter.cs" />
+    <Compile Include="DataMaintenance\Commission\TestCommissionRuleAdapter.cs" />
+    <Compile Include="DataMaintenance\Fee\FeeRuleOverviewAdapter.cs" />
+    <Compile Include="DataMaintenance\GeneralLedger\ExactJournalsAdapter.cs" />
+    <Compile Include="DataMaintenance\GeneralLedger\JournalsAdapter.cs" />
+    <Compile Include="DataMaintenance\InitialSettings\AssetManagerAdapter.cs" />
+    <Compile Include="DataMaintenance\Instruments\BondTestAdapter.cs" />
+    <Compile Include="DataMaintenance\Lifecycles\LifecycleMaintenanceAdapter.cs" />
+    <Compile Include="DataMaintenance\Notifications\NotificationDetails.cs" />
+    <Compile Include="DataMaintenance\Notifications\NotificationMaintenanceAdapter.cs" />
+    <Compile Include="DataMaintenance\Prices\ImportFundPricesAdapter.cs" />
+    <Compile Include="DataMaintenance\Prices\InstrumentPriceUpdateAdapter.cs" />
+    <Compile Include="DataMaintenance\Prices\XEConverterAdapter.cs" />
+    <Compile Include="GeneralLedger\BankStatementJournalsAdapter.cs" />
+    <Compile Include="BackOffice\GLDSTDExportOverviewAdapter.cs" />
+    <Compile Include="GeneralLedger\ClientCashPositionFromGLLedgerAdapter.cs" />
+    <Compile Include="GeneralLedger\EndYearManagementAdapter.cs" />
+    <Compile Include="GeneralLedger\GLBookingsAdapter.cs" />
+    <Compile Include="GeneralLedger\BankStatementLinesAdapter.cs" />
+    <Compile Include="GeneralLedger\BankStatementEditView.cs" />
+    <Compile Include="GeneralLedger\ManagementFeeAdapter.cs" />
+    <Compile Include="GeneralLedger\MemorialBookingEditView.cs" />
+    <Compile Include="GeneralLedger\MemorialBookingLinesAdapter.cs" />
+    <Compile Include="GeneralLedger\MemorialBookingsAdapter.cs" />
+    <Compile Include="GeneralLedger\MemorialJournalsAdapter.cs" />
+    <Compile Include="BackOffice\MoneyTransferOrderAdapter.cs" />
+    <Compile Include="BackOffice\MoneyTransferOrderOverviewAdapter.cs" />
+    <Compile Include="BackOffice\PredefinedBeneficiariesAdapter.cs" />
+    <Compile Include="GeneralLedger\TradingBookingsAdapter.cs" />
+    <Compile Include="GeneralLedger\TradingBookingsLinesAdapter.cs" />
+    <Compile Include="GeneralLedger\TradingJournalsAdapter.cs" />
+    <Compile Include="GeneralLedger\ManualSettlementMatchingAdapter.cs" />
+    <Compile Include="GeneralLedger\TrialBalanceAdapter.cs" />
+    <Compile Include="GeneralLedger\ExportExactAdapter.cs" />
+    <Compile Include="GeneralLedger\BankStatementsAdapter.cs" />
+    <Compile Include="DataMaintenance\Accounts\AccountEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Accounts\ImportAccountsAdapter.cs" />
+    <Compile Include="DataMaintenance\Contacts\AttachAccountToContactEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Contacts\AttachCounterAccountToContactEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Contacts\CompanyEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Contacts\ContactPersonEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Contacts\CompanyContactPersonEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Contacts\CounterAccountEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Fee\FeeCalculationsOverviewAdapter.cs" />
+    <Compile Include="DataMaintenance\Prices\CurrencyHistoricalRatesAdapter.cs" />
+    <Compile Include="DataMaintenance\Prices\CurrencyRateRowView.cs" />
+    <Compile Include="DataMaintenance\ExtCustodianPositionRowView.cs" />
+    <Compile Include="DataMaintenance\ExternalCastodianPositionEntryAdapter.cs" />
+    <Compile Include="DataMaintenance\Instruments\InstrumentEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Prices\InstrumentHistoricalPricesAdapter.cs" />
+    <Compile Include="DataMaintenance\Instruments\InstrumentPriceRowView.cs" />
+    <Compile Include="DataMaintenance\Instruments\AssetManagerInstrumentSelectionAdapter.cs" />
+    <Compile Include="DataMaintenance\JobConsoleAdapter.cs" />
+    <Compile Include="DataMaintenance\JobHistoryAdapter.cs" />
+    <Compile Include="DataMaintenance\Models\ModelMaintenanceAdapter.cs" />
+    <Compile Include="DataMaintenance\Remisers\RemisierEmployeeDetailsView.cs" />
+    <Compile Include="Fee\ManagementFeeCorrectionsAdapter.cs" />
+    <Compile Include="Fee\UnitFeeOverview.cs" />
+    <Compile Include="Fee\ManagementFeeOverviewAdapter.cs" />
+    <Compile Include="Instructions\CreatePeriodicWithdrawalInstructionsAdapter.cs" />
+    <Compile Include="Instructions\Engine\InstructionEngine.cs" />
+    <Compile Include="Instructions\WithdrawalInstructionManagementAdapter.cs" />
+    <Compile Include="Instructions\WithdrawalsTriggeringRebalanceInstructionsAdapter.cs" />
+    <Compile Include="MIS\StoredPositionTransactionAdapter.cs" />
+    <Compile Include="Portfolio\CashDetailLine.cs" />
+    <Compile Include="Portfolio\CashDetailLineCollection.cs" />
+    <Compile Include="Portfolio\CashDetailLineMapper.cs" />
+    <Compile Include="Portfolio\CashDetailsAdapter.cs" />
+    <Compile Include="Portfolio\CashPositionTransactionsAdapter.cs" />
+    <Compile Include="Portfolio\ClientsCashNoOrdersAdapter.cs" />
+    <Compile Include="Portfolio\HistoricalPositionAdapter.cs" />
+    <Compile Include="Portfolio\HistoricalPositionRowView.cs" />
+    <Compile Include="Reports\AccountDetailsReportAdapter.cs" />
+    <Compile Include="Reports\ManagementFeeReportAdapter.cs" />
+    <Compile Include="Reports\NTMTransferReportsAdapter.cs" />
+    <Compile Include="Reports\OperationalReportAdapter.cs" />
+    <Compile Include="Reports\ReportLetterEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Accounts\WithdrawalRuleEditAdapter.cs" />
+    <Compile Include="Instructions\InstructionEditView.cs" />
+    <Compile Include="Orders\Stichting\SinglePOSOrderAdapter.cs" />
+    <Compile Include="Portfolio\AccountDetailsView.cs" />
+    <Compile Include="BackOffice\TransferAdapter.cs" />
+    <Compile Include="DataMaintenance\Remisers\RemisierAdapter.cs" />
+    <Compile Include="DataMaintenance\Remisers\RemisierDetailsView.cs" />
+    <Compile Include="Reports\CreateNotasWorker.cs" />
+    <Compile Include="Reports\FinancialReportAdapter.cs" />
+    <Compile Include="Reports\PrintNotasAdapter.cs" />
+    <Compile Include="Compliance\ApproveStornosAdapter.cs" />
+    <Compile Include="Orders\Common\OrderDetailsAdapter.cs" />
+    <Compile Include="Orders\Stichting\CurrencySubtotalRowView.cs" />
+    <Compile Include="Orders\Stichting\OrderEditView.cs" />
+    <Compile Include="Portfolio\AccountsByInstrumentAdapter.cs" />
+    <Compile Include="Portfolio\AccountValuesAdapter.cs" />
+    <Compile Include="Portfolio\ClientPortfolioAdapter.cs" />
+    <Compile Include="Portfolio\ClosedPositionsAdapter.cs" />
+    <Compile Include="Portfolio\PositionRowView.cs" />
+    <Compile Include="DataMaintenance\Commission\CalculationsEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Commission\CalculationsOverviewAdapter.cs" />
+    <Compile Include="DataMaintenance\Commission\CommCalcView.cs" />
+    <Compile Include="DataMaintenance\Commission\RuleEditAdapter.cs" />
+    <Compile Include="DataMaintenance\Commission\RuleOverviewAdapter.cs" />
+    <Compile Include="CommonAdapter.cs" />
+    <Compile Include="DataMaintenance\Accounts\AccountOverviewAdapter.cs" />
+    <Compile Include="DataMaintenance\BOFilesOverviewAdapter.cs" />
+    <Compile Include="DataMaintenance\Contacts\ContactOverviewAdapter.cs" />
+    <Compile Include="Test\EditMutualFund.cs" />
+    <Compile Include="DataMaintenance\ImportFilesAdapter.cs" />
+    <Compile Include="DataMaintenance\Prices\InstrumentCurrentPricesAdapter.cs" />
+    <Compile Include="DataMaintenance\Contacts\PersonEditAdapter.cs" />
+    <Compile Include="Instructions\InstructionEntryAdapter.cs" />
+    <Compile Include="Orders\AssetManager\AggregateSendAdapter.cs" />
+    <Compile Include="Orders\AssetManager\ApproveOrdersAdapter.cs" />
+    <Compile Include="Orders\AssetManager\ApproveOrdersChildrenAdapter.cs" />
+    <Compile Include="Instructions\InstructionManagementAdapter.cs" />
+    <Compile Include="Orders\AssetManager\OrderBookAdapter.cs" />
+    <Compile Include="Orders\AssetManager\SingleOrderAdapter.cs" />
+    <Compile Include="Orders\AssetManager\NewPortfoliosAdapter.cs" />
+    <Compile Include="Portfolio\PositionTransactionsAdapter.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PrintNotasWorker.cs" />
+    <Compile Include="Reports\ReportResultsAdapter.cs" />
+    <Compile Include="Test\DumpDataSetsAdapter.cs" />
+    <Compile Include="Test\OrderCreationTestAdapter.cs" />
+    <Compile Include="Orders\Stichting\AggOrderChildrenAdapter.cs" />
+    <Compile Include="Orders\Stichting\AggregateSendAdapter.cs" />
+    <Compile Include="Test\CashTransactionPageAdapter.cs" />
+    <Compile Include="Orders\Stichting\FSDeskAdapter.cs" />
+    <Compile Include="Orders\Stichting\DownloadFSFileAdapter.cs" />
+    <Compile Include="Orders\Stichting\FSFileOverviewAdapter.cs" />
+    <Compile Include="Orders\Stichting\ManualDeskAdapter.cs" />
+    <Compile Include="Orders\Stichting\MidOfficeAdapter.cs" />
+    <Compile Include="Orders\Stichting\OrderBook.cs" />
+    <Compile Include="Orders\Stichting\OrderBookAdapter.cs" />
+    <Compile Include="DataMaintenance\TBMDataAdapter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\TestHQLAdapter.cs" />
+    <Compile Include="Test\TestManagementFeeAdapter.cs" />
+    <Compile Include="TGTransactions\TransactionAdapter.cs" />
+    <Compile Include="Tools\RebalanceIndicatorAdapter.cs" />
+    <Compile Include="UC\AccountFinderAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UC\AccountLabelAdapter.cs" />
+    <Compile Include="UC\AccountsContactsSelectorAdapter.cs" />
+    <Compile Include="UC\CounterAccountFinderAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UC\ErrorEventHandler.cs" />
+    <Compile Include="UC\JournalEntryFinderAdapter.cs" />
+    <Compile Include="UC\JournalEntryLineEditView.cs" />
+    <Compile Include="UC\JournalEntryLinesAdapter.cs" />
+    <Compile Include="UC\TransferPositionDetailsAdapter.cs" />
+    <Compile Include="UC\OrderFillAdapter.cs" />
+    <Compile Include="UC\OrderFillView.cs" />
+    <Compile Include="UC\OrderFillEventHandler.cs" />
+    <Compile Include="UC\TransferPositionDetailsEditView.cs" />
+    <Compile Include="UC\ucAccountsEditAdapter.cs" />
+    <Compile Include="UC\ContactDetailsAdapter.cs" />
+    <Compile Include="UC\InstrumentFinderAdapter.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="VirtualFunds\NavCalculationsOverviewAdapter.cs" />
+    <Compile Include="VirtualFunds\NavCalculationDetailsAdapter.cs" />
+    <Compile Include="VirtualFunds\VirtualFundNavOverviewAdapter.cs" />
+    <Compile Include="VirtualFunds\VirtualFundOverviewAdapter.cs" />
+    <Compile Include="Web References\ReportExecutionEngine\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataMigration\DataMigration.csproj">
+      <Project>{69BAF4B6-0C61-4A6B-A554-047136929691}</Project>
+      <Name>DataMigration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Jobs\JobManager\JobManager.csproj">
+      <Project>{D7F96095-5CD2-4719-A7B9-9E517A38E3DE}</Project>
+      <Name>JobManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Account\Accounts.csproj">
+      <Project>{70C20F7D-646F-4023-BD90-9812FF522284}</Project>
+      <Name>Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BackOffice\BackOffice.csproj">
+      <Project>{4A1B9DC0-5014-4492-81DF-EE43B7E70F28}</Project>
+      <Name>BackOffice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Communicator\Communicator.csproj">
+      <Project>{ACCBB2CE-D954-498A-83E1-3C984D59EFD4}</Project>
+      <Name>Communicator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRM\CRM.csproj">
+      <Project>{5EBA3D32-40DB-4496-BDD2-B1EA4DA07D45}</Project>
+      <Name>CRM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{B8880639-F591-41D0-A811-D832A36A8064}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fees\Fees.csproj">
+      <Project>{2114094E-08F6-4074-8AA0-E19D4FFC7924}</Project>
+      <Name>Fees</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeneralLedger\GeneralLedger.csproj">
+      <Project>{944F656B-A825-461D-90F8-F48359E08527}</Project>
+      <Name>GeneralLedger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Instrument\Instruments.csproj">
+      <Project>{B6D55091-F990-42AB-A294-72E6560ED5DD}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MIS\MIS.csproj">
+      <Project>{18CBA677-A0D8-4A3F-A973-ADA9FE30F2D4}</Project>
+      <Name>MIS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notas\Notas.csproj">
+      <Project>{B680B731-224C-4AB2-ADC0-59B0576279E8}</Project>
+      <Name>Notas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderRouteMapper\OrderRouteMapper.csproj">
+      <Project>{6C8D0947-6F93-4868-9824-30D534A855AF}</Project>
+      <Name>OrderRouteMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orders\Orders.csproj">
+      <Project>{A8682060-DBB0-4965-A8EF-5F8908D34789}</Project>
+      <Name>Orders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortfolioComparer\PortfolioComparer.csproj">
+      <Project>{029555AF-2A64-4885-8823-681E51C451AB}</Project>
+      <Name>PortfolioComparer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{F8A037ED-0E64-495B-8636-4397EB843EE7}</Project>
+      <Name>Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{920CD10C-E485-47AF-A47D-23DC299F762B}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StaticData\StaticData.csproj">
+      <Project>{ED2055BB-79F9-464C-B937-232D29FD4CB1}</Project>
+      <Name>StaticData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stichting\Stichting.csproj">
+      <Project>{05EA6D28-853D-455E-A323-0AB5F3FC3507}</Project>
+      <Name>Stichting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Valuations\Valuations.csproj">
+      <Project>{38DBACFE-BACC-49C3-870F-CFAA9C6721AD}</Project>
+      <Name>Valuations</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.0.0.34/ReportServer/ReportExecution2005.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ReportExecutionEngine\</RelPath>
+      <UpdateFromURL>http://10.0.0.34/ReportServer/ReportExecution2005.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>B4F_TotalGiro_ApplicationLayer_ReportExecutionEngine_ReportExecutionService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ReportExecutionEngine\DocumentMapNode.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ReportExecutionEngine\ExecutionInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ReportExecutionEngine\Extension.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ReportExecutionEngine\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ReportExecutionEngine\ReportExecution2005.wsdl" />
+    <None Include="Web References\ReportExecutionEngine\Warning.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\DocumentsCreatedEmail.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Admin\UpdatedPermissionsEmail.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fee\ManagementQueries.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Orders\AssetManager\AssetManagerOrderQueries.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataMaintenance\Models\ModelMaintenanceQueries.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Instructions\InstructionQueries.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Orders\Stichting\StichtingOrderQueries.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BackOffice\BondCouponQueries.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Instructions\Engine\StateMachineSchemas\BuyModelInstructionStates.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Instructions\Engine\StateMachineSchemas\CashWithdrawalInstructionStates.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Instructions\Engine\StateMachineSchemas\ClientDepartureInstructionStates.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Instructions\Engine\StateMachineSchemas\RebalanceInstructionStates.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UC\UserControlQueries.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Admin\PasswordEmail.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataMaintenance\Lifecycles\LifecycleMaintenanceQueries.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataMigration\" />
+    <Folder Include="Web References\RSWebServiceXS\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

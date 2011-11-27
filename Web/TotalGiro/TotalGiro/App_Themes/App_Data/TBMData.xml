@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TBMData version="3.5">
+  <MetaData>
+    <Event number="800" group="engine" type="statistics" severity="informational">Welcome to the TBXDS service. The current date and time are 2005/12/27 16:43:10. The current TBXDS Engine version is 3.5.1, extension-level 5.</Event>
+    <Event number="207" group="access" type="login" severity="informational">Temporary access granted for remote address '80.127.101.189'.</Event>
+    <Event number="801" group="engine" type="statistics" severity="informational">Your request was terminated at 2005/12/27 16:43:18. Goodbye.</Event>
+  </MetaData>
+  <Sector id="Insects.Financials EUR" type="PUB">
+    <Name language="nl" short="Financials EUR" long="Financials EUR"/>
+    <Organisation id="200" country="nl" primary-currency="EUR" price-factor="1">
+      <Name language="nl" short="ING Groep NV" long="ING Groep NV"/>
+      <PrimaryIssue ticker-type="TBMALFA" exchange="AEX" ticker="INGA"/>
+      <Information>
+        <Contact>
+          <MainAddress address="ING House" postal-code="1081 KL" city="Amsterdam" country="Netherlands"/>
+          <PostalAddress address="PO Box 810" postal-code="1000 AV" city="Amsterdam" country="Netherlands"/>
+          <Telephone number="+31 (0)20 541 5411            "/>
+          <Fax number="+31 (0)20 541 5444            "/>
+          <EMail address="ing@ing.com"/>
+          <Web address="www.ing.com                                       "/>
+        </Contact>
+        <Description language="nl" type="Business Summary/Flanders">ING Groep is een financiële instelling die actief is op het gebied van bankieren, verzekeren en vermogensbeheer.</Description>
+        <Description language="nl" type="Business Summary/NL HandBoek">Internationaal bank- en verzekeringsconcern</Description>
+        <Description language="nl" type="Commentary/memento">
+          &lt;B&gt;1998&lt;B&gt;: vanaf 3 juni tot 2 augustus, inschrijving: 1 nieuw aand. ING CF-stukken tegen 2 scripts.
+          &lt;\#9&gt;&lt;B&gt;1998&lt;B&gt;: vanaf 8 september tot 9 oktober, 520 coup. 2 onthecht van 1 aand van NLG 1 = 5 nieuwe aand. coup. 3 aangeh. (genot slordig. 98 en volg.) + betaling van een bedrag in contanten, nettoprov. van de verkoop van 0,03635 aand.
+        </Description>
+        <Description language="nl" type="mem activité/memento">financiële instelling, actief op het gebied van bankieren, verzekeren en vermogensbeheer in meer dan 60 landen.</Description>
+        <Description language="nl" type="mem historique/memento">
+          Vanaf 3 tot 17-12-1997 en vanaf 5-1 tot 23-1-1998, OBO: 6 cert. van gew. aand. ING Groep + 1 warr. call B aan 10 jaar + BEF 300 voor 1 BBL aand. coup. 7 aangeh.
+          Kapitaal in bezit op 19-12-1997: 98,60%.
+        </Description>
+        <Description language="nl" type="Remark/General">In mei 2000 werd het Amerikaanse levensverzekeraar ReliaStar overgenomen voor een bedrag van $ 6,1 mrd. In juni 2000 werd het 6,6% belang in Aegon verkocht voor € 3,3 mrd. De opbrengst wordt gebruikt ter financiering van ReliaStar. In juli 2000 werd bekend gemaakt dat de ING Groep de financiële- en buitenlandse activiteiten van het  Amerikaanse Aetna Life &amp; Casualty Co zal overnemen voor een bedrag van $7,7 mrd. Het Britse Charterhouse Securities werd in juli 2000 overgenomen van Credit Commercial de France (CCF) voor een bedrag van £127mln.</Description>
+        <Description language="nl" type="Spec. Ref. Index/Postbankboekje">AEX</Description>
+        <Persons>
+          <Person last-name="Ernst &amp; Young Accountants" function="Auditor"/>
+          <Person last-name="Geuze" first-name="H." title="drs." function="Investor Relations" telephone="++31 (0)20 541 54 09" fax="++31 (0)20 541 54 55"/>
+          <Person last-name="Maas" first-name="Cees" title="drs. ing." function="CFO"/>
+          <Person last-name="Tilmant" first-name="Michel" function="CEO"/>
+          <Person last-name="Maas" first-name="Cees" title="drs. ing." function="Member of the Management Board"/>
+          <Person last-name="Hommen" first-name="Jan" function="Member of the Management Board"/>
+          <Person last-name="Rinnooy Kan" first-name="Alexander" function="Member of the Management Board"/>
+          <Person last-name="Hubbell" first-name="Frederick" function="Member of the Management Board"/>
+          <Person last-name="Tilmant" first-name="Michel" function="Member of the Management Board"/>
+          <Person last-name="Boyer de la Giroday" first-name="Eric" function="Member of the Management Board"/>
+          <Person last-name="Leenaars" first-name="C." function="Member of the Management Board"/>
+          <Person last-name="Verkoren" first-name="H." function="Member of the Management Board"/>
+          <Person last-name="Maas" first-name="Cees" title="drs. ing." function="Vice President (Management Board)"/>
+          <Person last-name="Tilmant" first-name="Michel" function="President (Management Board)"/>
+          <Person last-name="Jacobs" first-name="Aad" title="drs." function="Member of Board of Directors"/>
+          <Person last-name="Lugt" first-name="Godfried" function="Member of Board of Directors"/>
+          <Person last-name="Herkströter RA" first-name="Cornelius" title="prof. drs." function="Member of Board of Directors"/>
+          <Person last-name="Heijden" first-name="Paul" title="prof. mr." function="Member of Board of Directors"/>
+          <Person last-name="Kok" first-name="Willem" title="drs. ing." function="Member of Board of Directors"/>
+          <Person last-name="Vuursteen" first-name="Karel" title="ir." function="Member of Board of Directors"/>
+          <Person last-name="Meester" first-name="Paul" title="prof. ir." function="Member of Board of Directors"/>
+          <Person last-name="Gross Goldberg" first-name="Luella" function="Member of Board of Directors"/>
+          <Person last-name="Bourdais de Charbonnière" first-name="Eric" function="Member of Board of Directors"/>
+          <Person last-name="Lagarde" first-name="Christine" function="Member of Board of Directors"/>
+          <Person last-name="Hoffmann" first-name="Claus Dieter" title="dr." function="Member of Board of Directors"/>
+          <Person last-name="Bourdais de Charbonnière" first-name="Eric" function="Vice Chairman (Board of Directors)"/>
+          <Person last-name="Herkströter RA" first-name="Cornelius" title="prof. drs." function="Chairman (Board of Directors)"/>
+        </Persons>
+      </Information>
+      <Fundamentals year="1998">
+        <CoreData>
+          <Indexes banking-result="100.00" insurance-result="100.00" total-premiums="100.00" income="100.00"/>
+          <Ratios interest="66.10" provisions="28.10" trading-income="5.80" banking-before-tax="30.70" insurance-before-tax="69.30" REV="9.20" ROA="0.70" equity="7.60" BIS="10.86" TIER1="7.14" TIER2="3.72"/>
+          <Premiums tech-result="6.00" share-equity="142.20"/>
+          <Shares volume="1892400.00" income="1.41" dividend="0.63" intrinsic-value="15.37" payout-ratio="44.30"/>
+          <Employees number="82750.00" results="42.30"/>
+        </CoreData>
+        <Assets tangible-intangible="1631.00" other="25595.00" prepayment="9567.00" total="394925.00">
+          <Banking cash="2338.00" due-from-banks="50999.00" due-from-customers="153714.00" debentures="38059.00" other-investments="2039.00" fixed="1260.00" total="246071.00"/>
+          <Insurance investments="88734.00" no-risk="20989.00" total="109723.00"/>
+        </Assets>
+        <Liabilities total="394925.00">
+          <Equity share="29077.00" minority="621.00" group="29698.00" subordinate-loans="485.00" total="30183.00"/>
+          <Banking due-to-banks="75986.00" savings="42549.00" other="86565.00" debt-certificates="35699.00" total="240799.00"/>
+          <Technical life="63591.00" no-risk="20989.00" total="84580.00"/>
+          <Insurance total="84580.00" provisions="2047.00"/>
+          <LongDebt accruals="13858.00" other="23458.00"/>
+        </Liabilities>
+        <ProfitLoss tax="788.00" minority="47.00" net-income="2669.00" result-non-tech="1196.00">
+          <Results current="3504.00" before-tax="3504.00"/>
+          <Interest various="295.00" income="18649.00" expenses="13471.00" total="5178.00"/>
+          <Banking net-commission="2323.00" net-trading="480.00" gross-income="8276.00" administrative-expenses="3821.00" operating-income="4455.00" provisions="908.00" other-income="-2471.00" insurance="2428.00" current="1076.00"/>
+          <Premiums total="20448.00"/>
+          <Technical total="1232.00"/>
+          <Insurance expenses="0.00"/>
+        </ProfitLoss>
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" profits="1.41" dividend="0.63"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1999">
+        <CoreData>
+          <Indexes banking-result="227.00" insurance-result="150.00" total-premiums="110.00" income="184.00"/>
+          <Ratios interest="59.10" provisions="28.80" trading-income="12.20" banking-before-tax="40.20" insurance-before-tax="59.80" REV="14.00" ROA="1.00" equity="7.40" BIS="10.38" TIER1="7.02" TIER2="3.36"/>
+          <Premiums tech-result="6.40" share-equity="154.20"/>
+          <Shares volume="1934000.00" income="2.54" dividend="0.82" intrinsic-value="17.87" payout-ratio="32.00"/>
+          <Employees number="86040.00" results="70.60"/>
+        </CoreData>
+        <Assets tangible-intangible="1937.00" other="28746.00" prepayment="14374.00" total="492815.00">
+          <Banking cash="4978.00" due-from-banks="41911.00" due-from-customers="201798.00" debentures="54950.00" other-investments="3370.00" fixed="3265.00" total="305294.00"/>
+          <Insurance investments="103964.00" no-risk="33522.00" total="137486.00"/>
+        </Assets>
+        <Liabilities total="492815.00">
+          <Equity share="34556.00" preferent="498.00" minority="971.00" group="36025.00" subordinate-loans="485.00" total="36510.00"/>
+          <Banking due-to-banks="75265.00" savings="46985.00" other="111915.00" debt-certificates="65906.00" total="300071.00"/>
+          <Technical life="73953.00" no-risk="33522.00" total="107475.00"/>
+          <Insurance total="107475.00" provisions="4525.00"/>
+          <LongDebt accruals="10347.00" other="33887.00"/>
+        </Liabilities>
+        <ProfitLoss tax="1059.00" minority="93.00" net-income="4922.00" result-non-tech="2194.00">
+          <Operational depreciation="436.00"/>
+          <Results current="6074.00" before-tax="6074.00"/>
+          <Interest various="239.00" income="18559.00" expenses="12931.00" total="5628.00"/>
+          <Banking net-commission="2856.00" net-trading="1210.00" gross-income="9933.00" administrative-expenses="4402.00" operating-income="5095.00" provisions="580.00" other-income="-2073.00" insurance="3632.00" current="2442.00"/>
+          <Premiums total="22412.00"/>
+          <Technical total="1438.00"/>
+          <Insurance expenses="0.00"/>
+        </ProfitLoss>
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" profits="2.55" dividend="0.82"/>
+        </Estimates>
+        <Interim>
+          <HalfYear first="1.73" total="1.73"/>
+        </Interim>
+      </Fundamentals>
+      <Fundamentals year="2000">
+        <CoreData>
+          <Indexes banking-result="242.00" insurance-result="130.00" total-premiums="142.00" income="449.00"/>
+          <Ratios interest="56.10" provisions="33.30" trading-income="10.60" banking-before-tax="43.50" insurance-before-tax="52.80" REV="43.30" ROA="1.90" equity="4.50" BIS="10.75" TIER1="7.21"/>
+          <Premiums tech-result="6.70" share-equity="86.80"/>
+          <Shares volume="1907800.00" income="6.28" dividend="1.13" dividend-rendement="2.66" intrinsic-value="13.25" payout-ratio="53.50"/>
+          <Price earnings="6.77" book-value="3.21" year-end="42.54"/>
+          <Employees number="92650.00" results="64.70"/>
+        </CoreData>
+        <Assets tangible-intangible="2129.00" other="46394.00" prepayment="24825.00" total="650172.00">
+          <Banking cash="6337.00" due-from-banks="44132.00" due-from-customers="246807.00" debentures="51189.00" equity="22152.00" other-investments="11015.00" fixed="2372.00" total="377667.00"/>
+          <Insurance investments="110873.00" no-risk="81947.00" total="192820.00"/>
+        </Assets>
+        <Liabilities total="650172.00">
+          <Equity share="25274.00" preferent="2419.00" minority="1288.00" group="28981.00" subordinate-loans="485.00" total="29466.00"/>
+          <Banking due-to-banks="94675.00" savings="52431.00" other="134133.00" debt-certificates="66252.00" total="347491.00"/>
+          <Technical life="118206.00" no-risk="81947.00" total="200153.00"/>
+          <Insurance total="200153.00" provisions="5440.00"/>
+          <LongDebt accruals="13349.00" other="54273.00"/>
+        </Liabilities>
+        <ProfitLoss tax="1838.00" minority="147.00" net-income="11984.00" result-non-tech="1203.00">
+          <Operational other="226.00" depreciation="503.00"/>
+          <Results current="5993.00" extraordinary="7976.00" before-tax="5993.00"/>
+          <Interest various="322.00" income="24285.00" expenses="18499.00" total="5786.00"/>
+          <Banking net-commission="3630.00" net-trading="1154.00" gross-income="10892.00" administrative-expenses="4945.00" operating-income="5444.00" provisions="400.00" other-income="-2439.00" insurance="3162.00" current="2605.00"/>
+          <Premiums total="29114.00"/>
+          <Technical total="1959.00"/>
+          <Insurance expenses="0.00"/>
+        </ProfitLoss>
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" profits="2.10" dividend="1.13" cash-flow="-4.30"/>
+          <Estimate source="JCF" currency="EUR" profits="2.09" dividend="0.94" cash-flow="3.32"/>
+        </Estimates>
+        <Interim>
+          <HalfYear first="2.87" total="2.87"/>
+        </Interim>
+      </Fundamentals>
+      <Fundamentals year="2001">
+        <CoreData>
+          <Indexes banking-result="202.00" insurance-result="115.00" total-premiums="247.00" income="171.00"/>
+          <Ratios interest="63.20" provisions="26.50" trading-income="10.30" banking-before-tax="37.80" insurance-before-tax="48.60" REV="19.00" ROA="0.70" equity="3.70" BIS="10.57" TIER1="7.03"/>
+          <Premiums tech-result="5.50" share-equity="42.60"/>
+          <Shares volume="1923100.00" income="2.38" dividend="0.97" dividend-rendement="3.39" intrinsic-value="10.80" payout-ratio="43.90"/>
+          <Price earnings="12.03" book-value="2.65" year-end="28.64"/>
+          <Employees number="112000.00" results="51.30"/>
+        </CoreData>
+        <Assets tangible-intangible="2032.00" other="49775.00" prepayment="25677.00" total="705119.00">
+          <Banking cash="9264.00" due-from-banks="54083.00" due-from-customers="254214.00" debentures="61358.00" equity="19502.00" other-investments="10658.00" fixed="2628.00" total="402443.00"/>
+          <Insurance investments="133185.00" no-risk="82743.00" total="215928.00"/>
+        </Assets>
+        <Liabilities total="705119.00">
+          <Equity share="21514.00" preferent="2542.00" minority="1461.00" group="25517.00" subordinate-loans="600.00" total="26117.00"/>
+          <Banking due-to-banks="107810.00" savings="69562.00" other="132397.00" debt-certificates="74408.00" total="384177.00"/>
+          <Technical life="131218.00" no-risk="82768.00" total="213986.00"/>
+          <Insurance total="213986.00" provisions="4587.00"/>
+          <LongDebt accruals="12903.00" other="63349.00"/>
+        </Liabilities>
+        <ProfitLoss tax="1165.00" minority="324.00" net-income="4577.00">
+          <Operational other="779.00" depreciation="392.00"/>
+          <Results current="5741.00" extraordinary="325.00" before-tax="5741.00"/>
+          <Interest various="530.00" income="24318.00" expenses="18246.00" total="6072.00"/>
+          <Banking net-commission="2765.00" net-trading="1080.00" gross-income="10447.00" administrative-expenses="5064.00" operating-income="4991.00" provisions="750.00" other-income="-2071.00" insurance="2792.00" current="2170.00"/>
+          <Premiums total="50460.00"/>
+          <Technical total="2792.00"/>
+          <Insurance expenses="0.00"/>
+        </ProfitLoss>
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" profits="2.21" dividend="0.97"/>
+          <Estimate source="JCF" currency="EUR" profits="2.20" dividend="0.97" cash-flow="3.27"/>
+        </Estimates>
+        <Interim>
+          <HalfYear first="1.41" total="1.41"/>
+        </Interim>
+      </Fundamentals>
+      <Fundamentals year="2002">
+        <CoreData>
+          <Indexes banking-result="136.00" insurance-result="131.00" total-premiums="256.00" income="169.00"/>
+          <Ratios interest="71.90" provisions="24.00" trading-income="4.20" banking-before-tax="25.90" insurance-before-tax="55.90" REV="22.10" ROA="0.70" equity="3.50" BIS="10.98" TIER1="7.31"/>
+          <Premiums tech-result="6.10" share-equity="34.90"/>
+          <Shares volume="1928000.00" income="2.33" dividend="0.97" dividend-rendement="6.01" intrinsic-value="9.16" payout-ratio="44.00"/>
+          <Price earnings="6.93" book-value="1.76" year-end="16.14"/>
+          <Employees number="113060.00" results="50.20"/>
+        </CoreData>
+        <Assets tangible-intangible="1415.00" other="51186.00" prepayment="21754.00" total="716370.00">
+          <Banking cash="11421.00" due-from-banks="45682.00" due-from-customers="284448.00" debentures="77819.00" equity="12278.00" other-investments="11144.00" fixed="2883.00" total="434254.00"/>
+          <Insurance investments="132059.00" no-risk="64281.00" total="196340.00"/>
+        </Assets>
+        <Liabilities total="716370.00">
+          <Equity share="18254.00" preferent="2146.00" minority="1959.00" group="22359.00" subordinate-loans="2412.00" total="24771.00"/>
+          <Banking due-to-banks="96267.00" savings="115156.00" other="129175.00" debt-certificates="75493.00" total="416091.00"/>
+          <Technical life="131555.00" no-risk="64276.00" total="195831.00"/>
+          <Insurance total="195831.00" provisions="3489.00"/>
+          <LongDebt accruals="10791.00" other="65397.00"/>
+        </Liabilities>
+        <ProfitLoss tax="1089.00" minority="332.00" net-income="4500.00">
+          <Operational other="1036.00" depreciation="361.00"/>
+          <Results current="5674.00" extraordinary="247.00" before-tax="5674.00"/>
+          <Interest various="201.00" income="24088.00" expenses="16442.00" total="7646.00"/>
+          <Banking net-commission="2615.00" net-trading="454.00" gross-income="10916.00" administrative-expenses="4787.00" operating-income="5768.00" provisions="1435.00" other-income="-2865.00" insurance="3170.00" current="1468.00"/>
+          <Premiums total="52284.00"/>
+          <Technical total="3170.00"/>
+          <Insurance expenses="0.00"/>
+        </ProfitLoss>
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" profits="2.21" dividend="0.97"/>
+          <Estimate source="JCF" currency="EUR" profits="2.20" dividend="0.97" cash-flow="2.54"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="2003">
+        <CoreData>
+          <Indexes banking-result="220.00" insurance-result="144.00" total-premiums="223.00" income="151.00"/>
+          <Ratios interest="73.20" provisions="21.80" trading-income="5.00" banking-before-tax="40.30" insurance-before-tax="59.30" REV="17.50" ROA="0.60" equity="3.60" BIS="11.34" TIER1="7.59"/>
+          <Premiums tech-result="7.70" share-equity="46.90"/>
+          <Shares volume="2014400.00" income="2.01" dividend="0.97" dividend-rendement="5.25" intrinsic-value="10.08" payout-ratio="48.30"/>
+          <Price earnings="9.20" book-value="1.83" year-end="18.49"/>
+          <Employees number="115200.00" results="51.00"/>
+        </CoreData>
+        <Assets tangible-intangible="1311.00" other="53473.00" prepayment="20463.00" total="778771.00">
+          <Banking cash="11738.00" due-from-banks="61060.00" due-from-customers="292556.00" debentures="115037.00" equity="10688.00" other-investments="9151.00" fixed="3167.00" total="491659.00"/>
+          <Insurance investments="129575.00" no-risk="70552.00" total="200127.00"/>
+        </Assets>
+        <Liabilities total="778771.00">
+          <Equity share="21331.00" preferent="1783.00" minority="1730.00" group="24844.00" subordinate-loans="3252.00" total="28096.00"/>
+          <Banking due-to-banks="102115.00" savings="168168.00" other="137284.00" debt-certificates="72372.00" total="479939.00"/>
+          <Technical life="127483.00" no-risk="70552.00" total="198035.00"/>
+          <Insurance total="198035.00" provisions="2740.00"/>
+          <LongDebt accruals="8838.00" other="61123.00"/>
+        </Liabilities>
+        <ProfitLoss tax="1490.00" minority="344.00" net-income="4043.00">
+          <Operational other="20.00" depreciation="340.00"/>
+          <Results current="5877.00" before-tax="5877.00"/>
+          <Interest various="154.00" income="23802.00" expenses="15687.00" total="8115.00"/>
+          <Banking net-commission="2464.00" net-trading="562.00" gross-income="11295.00" administrative-expenses="4694.00" operating-income="6261.00" provisions="1125.00" other-income="-2765.00" insurance="3486.00" current="2371.00"/>
+          <Premiums total="45519.00"/>
+          <Technical total="3486.00"/>
+          <Insurance expenses="0.00"/>
+        </ProfitLoss>
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" profits="2.01" dividend="0.97"/>
+          <Estimate source="JCF" currency="EUR" profits="2.00" dividend="0.97" cash-flow="2.32"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="2004">
+        <CoreData>
+          <Indexes banking-result="317.00" insurance-result="165.00" total-premiums="213.00" income="224.00"/>
+          <Ratios interest="73.60" provisions="21.50" trading-income="5.00" banking-before-tax="42.60" insurance-before-tax="50.00" REV="22.00" ROA="0.70" equity="3.90" BIS="11.47" TIER1="7.71"/>
+          <Premiums tech-result="9.20" share-equity="59.30"/>
+          <Shares volume="2125300.00" income="2.81" dividend="1.07" dividend-rendement="4.81" intrinsic-value="11.73" payout-ratio="38.10"/>
+          <Price earnings="7.92" book-value="1.90" year-end="22.26"/>
+          <Employees number="113000.00" results="70.90"/>
+        </CoreData>
+        <Assets tangible-intangible="1252.00" other="58910.00" prepayment="21148.00" total="866201.00">
+          <Banking cash="8807.00" due-from-banks="57300.00" due-from-customers="317466.00" debentures="162350.00" equity="10456.00" other-investments="9479.00" fixed="3304.00" total="560355.00"/>
+          <Insurance investments="138067.00" no-risk="77662.00" total="215729.00"/>
+        </Assets>
+        <Liabilities total="866201.00">
+          <Equity share="25866.00" preferent="1283.00" minority="2212.00" group="29361.00" subordinate-loans="4109.00" total="33470.00"/>
+          <Banking due-to-banks="112797.00" savings="221121.00" other="144040.00" debt-certificates="70746.00" total="548704.00"/>
+          <Technical life="132451.00" no-risk="77656.00" total="210107.00"/>
+          <Insurance total="210107.00" provisions="3002.00"/>
+          <LongDebt accruals="8745.00" other="62173.00"/>
+        </Liabilities>
+        <ProfitLoss tax="1769.00" minority="272.00" net-income="5968.00">
+          <Operational other="590.00" depreciation="308.00"/>
+          <Results current="8009.00" before-tax="8009.00"/>
+          <Interest various="47.00" income="25580.00" expenses="16772.00" total="8808.00"/>
+          <Banking net-commission="2581.00" net-trading="596.00" gross-income="12032.00" administrative-expenses="4981.00" operating-income="6743.00" provisions="465.00" other-income="-2864.00" insurance="4005.00" current="3414.00"/>
+          <Premiums total="43617.00"/>
+          <Technical total="4005.00"/>
+          <Insurance expenses="0.00"/>
+        </ProfitLoss>
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" profits="2.81" dividend="1.07"/>
+          <Estimate source="JCF" currency="EUR" profits="2.70" dividend="1.07" cash-flow="3.14"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1993">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" dividend="0.32"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1994">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" dividend="0.34"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1995">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" dividend="0.38"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1996">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" profits="0.96" dividend="0.45"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1997">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" profits="1.32" dividend="0.52"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="2005">
+        <Estimates>
+          <Estimate source="JCF" currency="EUR" profits="2.96" dividend="1.16" cash-flow="2.85"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="2006">
+        <Estimates>
+          <Estimate source="JCF" currency="EUR" profits="2.84" dividend="1.21" cash-flow="3.04"/>
+        </Estimates>
+      </Fundamentals>
+      <Issue type="trust" exchange="AEX" id="147300">
+        <Details original-currency="EUR"/>
+        <Name language="nl" short="ING High Yield Obli." long="ING High Yield Obli."/>
+        <Ticker type="TBMALFA" id="INHOB"/>
+        <GroupedBy collection="Customer.Bits4Finance.Test"/>
+        <Dividend type="J" currency="EUR" payment-date="2005/07/01" ex-dividend-date="2005/06/20" brut-value="1.59"/>
+        <Dividend type="J" currency="EUR" payment-date="2005/07/01" ex-dividend-date="2005/06/20" net-value="0.12"/>
+        <Dividend type="J" currency="EUR" payment-date="2004/07/08" ex-dividend-date="2004/06/25" brut-value="2.24"/>
+        <Dividend type="J" currency="EUR" payment-date="2003/06/26" ex-dividend-date="2003/06/13" brut-value="1.22"/>
+        <Quote date="2005/12/27" currency="EUR">
+          <Last value="27.74" time="09:30:00" indication="" volume="366" cumulative-volume="366" relative-difference="-0.0011" absolute-difference="-0.03" turnover="10152.84"/>
+          <Open value="27.74" time="09:30:00" indication=""/>
+          <High value="27.74" time="09:30:00" indication=""/>
+          <Low value="27.74" time="09:30:00" indication=""/>
+          <Previous value="27.77" date="2005/12/23" time="09:30:00" volume="576"/>
+          <Bid value="27.70" date="2005/12/27" time="09:30:00" volume="10000"/>
+          <Ask value="27.70" date="2005/12/27" time="13:22:53" volume="262"/>
+        </Quote>
+      </Issue>
+    </Organisation>
+  </Sector>
+  <Sector id="Insects. " type="PUB">
+    <Name language="nl" short="Onbekend" long="Onbekend"/>
+    <Organisation id="332" country="nl" primary-currency="EUR" price-factor="1">
+      <Name language="nl" short="Robeco NV" long="Robeco NV"/>
+      <PrimaryIssue ticker-type="TBMALFA" exchange="AEX" ticker="ROBA"/>
+      <Information>
+        <Contact>
+          <MainAddress address="120 Coolsingel" postal-code="3011 AG" city="Rotterdam" country="Netherlands"/>
+          <PostalAddress address="PO Box 973" postal-code="3000 AZ" city="Rotterdam" country="Netherlands"/>
+          <Telephone number="+31 (0)10 224 1224            "/>
+          <Fax number="+31 (0)10 411 5288            "/>
+          <EMail address="robecocom@robeco.nl"/>
+          <Web address="www.robeco.com                                    "/>
+        </Contact>
+        <Description language="nl" type="Commentary/memento">Zie rubriek "Genoteerde Sicav en Beleggingsfondsen"</Description>
+        <Description language="nl" type="mem activité/memento">belegging en administratie van fondsen. Door haar opvattingen is de maatschappij in feite een gemeenschappelijk beleggingsfonds. Robeco is vrijgesteld van vennootschapsbelasting wat de dividenden betreft, dit overeenkomstig de wet op de investeringsmaatschappijen.</Description>
+        <Persons>
+          <Person last-name="Moret Ernst &amp; Young Accountants" function="Auditor"/>
+          <Person last-name="Leenaars RA" first-name="J." title="prof. dr." function="CFO"/>
+          <Person last-name="Duijn" first-name="J." title="prof. dr." function="CEO"/>
+          <Person last-name="Duijn" first-name="J." title="prof. dr." function="Member of the Management Board"/>
+          <Person last-name="Glazener" first-name="M." title="drs." function="Member of the Management Board"/>
+          <Person last-name="Klerk" first-name="J." title="drs." function="Corporate Communications Manager"/>
+          <Person last-name="Duijn" first-name="J." title="prof. dr." function="President (Management Board)"/>
+          <Person last-name="Hoek" first-name="Paul" title="prof. mr." function="Member of Board of Directors"/>
+          <Person last-name="Kremers" first-name="J." title="dr." function="Member of Board of Directors"/>
+          <Person last-name="Roef" first-name="Petrus" title="drs." function="Member of Board of Directors"/>
+          <Person last-name="Hoek" first-name="P." title="mr." function="Chairman (Board of Directors)"/>
+        </Persons>
+      </Information>
+      <Fundamentals year="2003">
+        <CoreData>
+          <Shares volume="482508.00" dividend="0.36" dividend-rendement="1.72"/>
+          <Price year-end="20.92"/>
+        </CoreData>
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" dividend="0.36"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="2004">
+        <CoreData>
+          <Shares volume="482508.00" dividend="0.40" dividend-rendement="1.85"/>
+          <Price year-end="21.62"/>
+        </CoreData>
+        <Estimates>
+          <Estimate source="CORE" currency="EUR" dividend="0.40"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1999">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1992">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1993">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1994">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1995">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1996">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1997">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR"/>
+        </Estimates>
+      </Fundamentals>
+      <Fundamentals year="1998">
+        <Estimates>
+          <Estimate source="CORE" currency="EUR"/>
+        </Estimates>
+      </Fundamentals>
+      <Issue type="trust" exchange="NAV" id="60162851">
+        <Details original-currency="EUR" underlying-id="61009337"/>
+        <Name language="nl" short="Robeco Absolute Ret." long="Robeco Absolute Return"/>
+        <Ticker type="TBMALFA" id="B9793"/>
+        <GroupedBy collection="Customer.Bits4Finance.Test"/>
+        <Quote date="2005/11/30" currency="EUR">
+          <Last value="1155.65" time="00:00:00" indication="" volume="" cumulative-volume="0" relative-difference="0.0035" absolute-difference="4.08"/>
+          <Open value="1155.65" time="00:00:00" indication=""/>
+          <High value="1155.65" time="00:00:00" indication=""/>
+          <Low value="1155.65" time="00:00:00" indication=""/>
+          <Close value="1155.65" time="00:00:00" indication=""/>
+          <Previous value="1151.57" date="2005/10/31" time="00:00:00" volume="0"/>
+        </Quote>
+      </Issue>
+    </Organisation>
+    <Organisation id="0" country="xx">
+      <Name language="nl" short="Algemeen" long="Algemeen (niet-geclassificeerd)"/>
+      <Issue type="trust" exchange="AEX" id="39933">
+        <Details original-currency="EUR"/>
+        <Name language="nl" short="Friesland Aandelen" long="Friesland Aandelen"/>
+        <Ticker type="TBMALFA" id="FLBAF"/>
+        <GroupedBy collection="Customer.Bits4Finance.Test"/>
+        <Dividend type="J" currency="EUR" payment-date="2005/06/15" ex-dividend-date="2005/06/01" brut-value="0.20"/>
+        <Dividend type="J" currency="EUR" payment-date="2004/06/02" ex-dividend-date="2004/05/17" brut-value="0.20"/>
+        <Dividend type="J" currency="EUR" payment-date="2003/05/27" ex-dividend-date="2003/05/19" brut-value="0.24"/>
+        <Dividend type="J" currency="EUR" payment-date="1999/04/30" ex-dividend-date="1999/04/30" brut-value="0.16"/>
+        <Dividend type="J" currency="NLG" payment-date="1998/05/31" ex-dividend-date="1998/05/31" brut-value="0.40"/>
+        <Dividend type="J" currency="NLG" payment-date="1997/05/31" ex-dividend-date="1997/05/31" brut-value="0.52"/>
+        <Dividend type="J" currency="NLG" payment-date="1996/05/31" ex-dividend-date="1996/05/31" brut-value="0.36"/>
+        <Dividend type="J" currency="NLG" payment-date="1995/05/31" ex-dividend-date="1995/05/31" brut-value="0.25"/>
+        <Dividend type="J" currency="NLG" payment-date="1994/04/30" ex-dividend-date="1994/04/30" brut-value="0.40"/>
+        <Quote date="2005/12/27" currency="EUR">
+          <Last value="23.95" time="10:30:02" indication="" volume="719" cumulative-volume="719" relative-difference="-0.0004" absolute-difference="-0.01" turnover="17220.05"/>
+          <Open value="23.95" time="10:30:02" indication=""/>
+          <High value="23.95" time="10:30:02" indication=""/>
+          <Low value="23.95" time="10:30:02" indication=""/>
+          <Previous value="23.96" date="2005/12/23" time="16:30:02" volume="1349"/>
+          <Bid value="24.48" date="2005/12/27" time="16:09:01" volume="16"/>
+          <Ask value="24.48" date="2005/12/27" time="16:09:01" volume="10000"/>
+          <BlockTrade value="23.60" date="2005/11/30" time="18:06:36" volume="8000"/>
+        </Quote>
+      </Issue>
+      <Issue type="trust" exchange="AEX" id="17110">
+        <Details original-currency="EUR"/>
+        <Name language="nl" short="Delta Lloyd Donau" long="Delta Lloyd Donau"/>
+        <Ticker type="TBMALFA" id="DLDAU"/>
+        <GroupedBy collection="Customer.Bits4Finance.Test"/>
+        <Quote date="2005/12/27" currency="EUR">
+          <Last value="24.39" time="16:17:34" indication="" volume="65" cumulative-volume="11063" relative-difference="0.0125" absolute-difference="0.30" turnover="269349.18"/>
+          <Open value="24.27" time="09:30:04" indication=""/>
+          <High value="24.48" time="10:20:05" indication=""/>
+          <Low value="24.27" time="09:30:04" indication=""/>
+          <Previous value="24.09" date="2005/12/23" time="16:26:38" volume="11818"/>
+          <Bid value="24.37" date="2005/12/27" time="16:22:31" volume="60"/>
+          <Ask value="24.45" date="2005/12/27" time="16:14:48" volume="478"/>
+        </Quote>
+      </Issue>
+      <Issue type="trust" exchange="NAV" id="60148835">
+        <Details original-currency="USD"/>
+        <Name language="nl" short="Pan Fid.Am.Grwth k." long="Fidelity Amer.Growth k"/>
+        <Ticker type="TBMALFA" id="B8988"/>
+        <GroupedBy collection="Customer.Bits4Finance.Test"/>
+        <Quote date="2005/12/21" currency="USD">
+          <Last value="25.76" time="00:00:00" indication="" volume="" cumulative-volume="0" relative-difference="-0.0066" absolute-difference="-0.17"/>
+          <Open value="25.76" time="00:00:00" indication=""/>
+          <High value="25.76" time="00:00:00" indication=""/>
+          <Low value="25.76" time="00:00:00" indication=""/>
+          <Close value="25.76" time="00:00:00" indication=""/>
+          <Previous value="25.93" date="2005/12/14" time="00:00:00" volume="0"/>
+        </Quote>
+      </Issue>
+      <Issue type="trust" exchange="NAV" id="60168852">
+        <Details original-currency="EUR" underlying-id="61008683"/>
+        <Name language="nl" short="AA Garantie Klik 80%" long="AA Garantie klik fonds 80%"/>
+        <Ticker type="TBMALFA" id="B8661"/>
+        <GroupedBy collection="Customer.Bits4Finance.Test"/>
+        <Quote date="2005/12/27" currency="EUR">
+          <Last value="55.55" time="00:00:00" indication="" volume="" cumulative-volume="0" relative-difference="0.0007" absolute-difference="0.04"/>
+          <Open value="55.55" time="00:00:00" indication=""/>
+          <High value="55.55" time="00:00:00" indication=""/>
+          <Low value="55.55" time="00:00:00" indication=""/>
+          <Close value="55.55" time="00:00:00" indication=""/>
+          <Previous value="55.51" date="2005/12/23" time="00:00:00" volume="0"/>
+        </Quote>
+      </Issue>
+      <Issue type="trust" exchange="NAV" id="60187125">
+        <Details original-currency="EUR" underlying-id="61006998"/>
+        <Name language="nl" short="Aegon Wereld-Index" long="Aegon Wereld-Index"/>
+        <Ticker type="TBMALFA" id="B11531"/>
+        <GroupedBy collection="Customer.Bits4Finance.Test"/>
+        <Quote date="2005/12/23" currency="EUR">
+          <Last value="9.03" time="00:00:00" indication="" volume="" cumulative-volume="0" relative-difference="0.0033" absolute-difference="0.03"/>
+          <Open value="9.03" time="00:00:00" indication=""/>
+          <High value="9.03" time="00:00:00" indication=""/>
+          <Low value="9.03" time="00:00:00" indication=""/>
+          <Close value="9.03" time="00:00:00" indication=""/>
+          <Previous value="9.00" date="2005/12/22" time="00:00:00" volume="0"/>
+        </Quote>
+      </Issue>
+      <Issue type="trust" exchange="NAV" id="60188022">
+        <Details original-currency="EUR" underlying-id="61009746"/>
+        <Name language="nl" short="Allianz Internat.Fds" long="Allianz Internationaal Fonds"/>
+        <Ticker type="TBMALFA" id="B12070"/>
+        <GroupedBy collection="Customer.Bits4Finance.Test"/>
+        <Quote date="2005/12/26" currency="EUR">
+          <Last value="9.58" time="00:00:00" indication="" volume="" cumulative-volume="0" relative-difference="0.0014" absolute-difference="0.01"/>
+          <Open value="9.58" time="00:00:00" indication=""/>
+          <High value="9.58" time="00:00:00" indication=""/>
+          <Low value="9.58" time="00:00:00" indication=""/>
+          <Close value="9.58" time="00:00:00" indication=""/>
+          <Previous value="9.57" date="2005/12/22" time="00:00:00" volume="0"/>
+        </Quote>
+      </Issue>
+      <Issue type="trust" exchange="NAV" id="60189630">
+        <Name language="nl" short="Fort.ASR Aandelenfds" long="Fortis ASR Aandelenfonds"/>
+        <Ticker type="TBMALFA" id="B13326"/>
+        <GroupedBy collection="Customer.Bits4Finance.Test"/>
+        <Quote date="2005/12/22" currency="EUR">
+          <Last value="52.69" time="00:00:00" indication="" volume="" cumulative-volume="0" relative-difference="-0.0002" absolute-difference="-0.01"/>
+          <Open value="52.69" time="00:00:00" indication=""/>
+          <High value="52.69" time="00:00:00" indication=""/>
+          <Low value="52.69" time="00:00:00" indication=""/>
+          <Close value="52.69" time="00:00:00" indication=""/>
+          <Previous value="52.70" date="2005/12/21" time="00:00:00" volume="0"/>
+        </Quote>
+      </Issue>
+    </Organisation>
+  </Sector>
+</TBMData>
+

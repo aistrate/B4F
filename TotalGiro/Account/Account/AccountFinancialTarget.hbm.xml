@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+  <class name="B4F.TotalGiro.Accounts.AccountFinancialTarget, B4F.TotalGiro.Accounts" 
+         table="AccountFinancialTargets"
+		   proxy ="B4F.TotalGiro.Accounts.IAccountFinancialTarget, B4F.TotalGiro.Interfaces" dynamic-update="true">
+    <id name="Key" unsaved-value="0">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one name="ParentAccount" column="ParentAccountID" class="B4F.TotalGiro.Accounts.CustomerAccount, B4F.TotalGiro.Accounts" cascade="none"/>
+    <component name="TargetAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+      <property name="Quantity" column="TargetAmountSize" />
+      <many-to-one name="Underlying" column="TargetAmountID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none"/>
+    </component>
+    <component name="DepositPerYear" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+      <property name="Quantity" column="DepositPerYearSize" />
+      <many-to-one name="Underlying" column="DepositPerYearID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none"/>
+    </component>
+    <many-to-one name="CreatedBy" column="CreatedBy" class="B4F.TotalGiro.Stichting.Login.Login, B4F.TotalGiro.Stichting" />
+    <property name="targetEndDate" column="TargetEndDate" access="field" type="Date" />
+    <property name="creationDate" column="CreationDate" access="field" type="DateTime"/>  
+  </class>
+</hibernate-mapping>

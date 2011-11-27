@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPosition, B4F.TotalGiro.Accounts"
+		   dynamic-update="true"
+		   table="TGPositions"
+		   proxy ="B4F.TotalGiro.Accounts.Portfolios.FundPositions.IFundPosition, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="TGPositionID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<timestamp name="lastUpdated" column="LastUpdated" access="field"/>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.Account, B4F.TotalGiro.Accounts" cascade="save-update" />
+		<component name="Size" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="PositionSize" />
+			<many-to-one name="Underlying" column="PositionSizeID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<component name="TotalOpenSize" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="TotalOpenPositionSize" />
+			<many-to-one name="Underlying" column="TotalOpenPositionSizeID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<property name="openDate" column="OpenDate" type="Date" access="field"/>
+		<many-to-one name="LastMutation" column="ValuationMutationID" class="B4F.TotalGiro.Valuations.ValuationMutation, B4F.TotalGiro.Valuations" cascade="save-update" />
+		<many-to-one name="LastValuation" column="LastValuationID" class="B4F.TotalGiro.Valuations.Valuation, B4F.TotalGiro.Valuations" cascade="none" insert="false" update="false" />
+		<property name="creationDate" column="CreationDate" access="field" insert="false" update="false" type="DateTime" />
+		<bag name="positionTransactions" access="field" generic="true" lazy="true" cascade="save-update"
+			 where="TGPositionID in (SELECT P.TGPositionID FROM TGPositions P WHERE P.AccountID in (SELECT A.AccountID From Accounts A WHERE A.AccountTypeID in (SELECT T.AccountTypeID From AccountTypes T WHERE T.IsCustomerBase = 1)))"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Accounts.Portfolios.FundPositions.IFundPositionTx, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPositionTxCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+			<key column="TGPositionID" foreign-key="TGPositionID" />
+			<one-to-many class="B4F.TotalGiro.Accounts.Portfolios.FundPositions.FundPositionTx, B4F.TotalGiro.Accounts" />
+		</bag>
+		<property name="lastBondCouponCalcDate" column="LastBondCouponCalcDate" access="field" type="Date" />
+		<bag name="bondCouponPayments" access="field" generic="true" lazy="true" cascade="save-update"
+			collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.GeneralLedger.Journal.Bookings.IBondCouponPayment, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Accounts.Portfolios.FundPositions.BondCouponPaymentCollection, B4F.TotalGiro.Accounts]], B4F.TotalGiro.Interfaces">
+			<key column="TGPositionID" foreign-key="TGPositionID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPayment, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+		<bag name="bondCouponCalculations" access="field" inverse="true" cascade="all" lazy="true" generic="true">
+			<key column="TGPositionID" />
+			<one-to-many class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.BondCouponPaymentDailyCalculation, B4F.TotalGiro.GeneralLedger" />
+		</bag>
+	</class>
+
+	<query name="B4F.TotalGiro.Accounts.Portfolios.FundPositions.GetFundPositions" >
+		<![CDATA[
+		from FundPosition P
+		left join fetch P.Size.Underlying I
+		where 1=1
+		and P.Account.Key = :accountId
+		and I.topParentInstrument.Key in (:parentInstrumentIds)
+		and ((1 = :positionsViewAll) or (1 = :positionsViewZero and P.Size.Quantity = 0) or (1 = :positionsViewNotZero and P.Size.Quantity != 0))
+		]]>
+	</query>
+
+</hibernate-mapping>

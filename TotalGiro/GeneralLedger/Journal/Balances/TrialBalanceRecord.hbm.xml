@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.GeneralLedger.Journal.Balances.TrialBalanceRecord, B4F.TotalGiro.GeneralLedger" >
+		<id name="Key" column="id" >
+			<generator class="assigned"/>
+		</id>
+		<property name="TransactionDate" column="TransactionDate" type="Date" />
+		<property name="LineNumber" column="LineNumber" />
+		<many-to-one name="Account" column="GLAccountID" cascade="none" class="B4F.TotalGiro.GeneralLedger.Static.GLAccount, B4F.TotalGiro.GeneralLedger" />
+		<component name="Debit" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Debit" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="DebitInstrumentID" cascade="none" />
+		</component>
+		<component name="Credit" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Credit" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="CreditInstrumentID" cascade="none" />
+		</component>	
+	</class>
+</hibernate-mapping>

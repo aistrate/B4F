@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="nosetter.camelcase">
+	<class name="B4F.TotalGiro.Stichting.Remisier.RemisierEmployee, B4F.TotalGiro.Stichting" table="tblEGMedewerker"
+		proxy="B4F.TotalGiro.Stichting.Remisier.IRemisierEmployee, B4F.TotalGiro.Interfaces"
+		lazy="true">
+		<id name="Key" column="id" unsaved-value="0" access="property">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Remisier" column="BedrijfId" class="B4F.TotalGiro.Stichting.Remisier.Remisier, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="deleted" column="Deleted" access="field"  />
+    <property name="IsActive" type="Boolean" access="nosetter.camelcase" formula="(1 - ISNULL(Deleted, 1))" />
+    <one-to-one name="Login" property-ref="RemisierEmployee"
+                class="B4F.TotalGiro.Stichting.Login.RemisierEmployeeLogin, B4F.TotalGiro.Stichting" access="property" cascade="none" />
+    <component name="Employee" class="B4F.TotalGiro.StaticData.Person, B4F.TotalGiro.Interfaces">
+			<property name="Title" column="Titel" />
+			<!--<property name="Gender" column="Geslacht" type="B4F.TotalGiro.StaticData.Gender, B4F.TotalGiro.Interfaces" />-->
+			<property name="genderChar" column="Geslacht" access="field" />
+			<property name="Initials" column="Voorletters" />
+			<property name="MiddleName" column="Tussenvoegsels" />
+			<property name="LastName" column="Naam" />
+			<component name="Telephone" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="Telefoon"/>
+			</component>
+			<component name="TelephoneAH" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="TelefoonAvond"/>
+			</component>
+			<component name="Mobile" class="B4F.TotalGiro.StaticData.TelephoneNumber, B4F.TotalGiro.Interfaces">
+				<property name="Number" column="Mobiel"/>
+			</component>
+			<property name="Email" column="Email" />
+		</component>
+		<property name="IsDefault" column="IsDefault" access="property" />
+		<property name="roleDescription" column="Type" access="field" />
+	</class>
+
+	<query name="B4F.TotalGiro.Stichting.Remisier.AccountsAttachedToRemisierEmployee" >
+		<![CDATA[
+		select count(A.Key)
+		from CustomerAccount A
+		inner join A.RemisierEmployee E
+		where A.Status = 1
+		and E.Key = :remisierEmployeeId
+	]]>
+	</query>
+
+</hibernate-mapping>

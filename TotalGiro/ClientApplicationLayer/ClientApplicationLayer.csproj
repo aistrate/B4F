@@ -1,0 +1,189 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2809F04C-FC76-4769-AEF5-F6E1B8FEA2B9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B4F.TotalGiro.ClientApplicationLayer</RootNamespace>
+    <AssemblyName>B4F.TotalGiro.ClientApplicationLayer</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\3rdParty\NHibernate2_1_2\Framework20\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Logins\ClientLoginsAdapter.cs" />
+    <Compile Include="Logins\LoginsAdapter.cs" />
+    <Compile Include="Logins\RemisierLoginsAdapter.cs" />
+    <Compile Include="Charts\ChartsAdapter.cs" />
+    <Compile Include="Common\CommonAdapter.cs" />
+    <Compile Include="Clients\ClientPortfoliosAdapter.cs" />
+    <Compile Include="Planning\FinancialDataView.cs" />
+    <Compile Include="Planning\Annuity.cs" />
+    <Compile Include="Planning\FinancialPlannerAdapter.cs" />
+    <Compile Include="Planning\InvestmentScenario.cs" />
+    <Compile Include="Portfolio\PortfolioComponentView.cs" />
+    <Compile Include="Portfolio\PortfolioPositionsAdapter.cs" />
+    <Compile Include="Portfolio\PositionTxsCashAdapter.cs" />
+    <Compile Include="Portfolio\PositionTxsSecuritiesAdapter.cs" />
+    <Compile Include="Portfolio\TestAdapter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\DocViewerAdapter.cs" />
+    <Compile Include="Reports\FinancialReportsAdapter.cs" />
+    <Compile Include="Reports\NotasAdapter.cs" />
+    <Compile Include="SecurityLayer\ContactNotFoundException.cs" />
+    <Compile Include="SecurityLayer\Filters\ComplianceEmployeeFilter.cs" />
+    <Compile Include="SecurityLayer\Filters\CustomerFilter.cs" />
+    <Compile Include="SecurityLayer\Filters\AssetManagerEmployeeFilter.cs" />
+    <Compile Include="SecurityLayer\Filters\InternalEmployeeFilter.cs" />
+    <Compile Include="SecurityLayer\Filters\ObjectChecker.cs" />
+    <Compile Include="SecurityLayer\Filters\RemisierEmployeeFilter.cs" />
+    <Compile Include="SecurityLayer\SecurityLayerException.cs" />
+    <Compile Include="SecurityLayer\Filters\SecurityFilter.cs" />
+    <Compile Include="SecurityLayer\Filters\StichtingEmployeeFilter.cs" />
+    <Compile Include="Authenticate\ResetPasswordAdapter.cs" />
+    <Compile Include="SecurityLayer\SecurityLayerAdapter.cs" />
+    <Compile Include="Authenticate\ChangePasswordAdapter.cs" />
+    <Compile Include="Settings\SettingsAdapter.cs" />
+    <Compile Include="UC\AccountFinderAdapter.cs" />
+    <Compile Include="UC\AccountFinderCriteria.cs" />
+    <Compile Include="UC\PortfolioNavigationBarAdapter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DALInterfaces\DALInterfaces.csproj">
+      <Project>{4DDBFD34-5BC8-436D-A5C8-42538BBD8B7D}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataMigration\DataMigration.csproj">
+      <Project>{69BAF4B6-0C61-4A6B-A554-047136929691}</Project>
+      <Name>DataMigration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{E34CB1A4-A5E2-4F76-8DEF-A08C1015C05E}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Jobs\JobManager\JobManager.csproj">
+      <Project>{D7F96095-5CD2-4719-A7B9-9E517A38E3DE}</Project>
+      <Name>JobManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Account\Accounts.csproj">
+      <Project>{70C20F7D-646F-4023-BD90-9812FF522284}</Project>
+      <Name>Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ApplicationLayer\ApplicationLayer.csproj">
+      <Project>{485EB326-583E-4A45-8ECA-B95B50411DD0}</Project>
+      <Name>ApplicationLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BackOffice\BackOffice.csproj">
+      <Project>{4A1B9DC0-5014-4492-81DF-EE43B7E70F28}</Project>
+      <Name>BackOffice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Communicator\Communicator.csproj">
+      <Project>{ACCBB2CE-D954-498A-83E1-3C984D59EFD4}</Project>
+      <Name>Communicator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRM\CRM.csproj">
+      <Project>{5EBA3D32-40DB-4496-BDD2-B1EA4DA07D45}</Project>
+      <Name>CRM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{B8880639-F591-41D0-A811-D832A36A8064}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fees\Fees.csproj">
+      <Project>{2114094E-08F6-4074-8AA0-E19D4FFC7924}</Project>
+      <Name>Fees</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Instrument\Instruments.csproj">
+      <Project>{B6D55091-F990-42AB-A294-72E6560ED5DD}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notas\Notas.csproj">
+      <Project>{B680B731-224C-4AB2-ADC0-59B0576279E8}</Project>
+      <Name>Notas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderRouteMapper\OrderRouteMapper.csproj">
+      <Project>{6C8D0947-6F93-4868-9824-30D534A855AF}</Project>
+      <Name>OrderRouteMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orders\Orders.csproj">
+      <Project>{A8682060-DBB0-4965-A8EF-5F8908D34789}</Project>
+      <Name>Orders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortfolioComparer\PortfolioComparer.csproj">
+      <Project>{029555AF-2A64-4885-8823-681E51C451AB}</Project>
+      <Name>PortfolioComparer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{F8A037ED-0E64-495B-8636-4397EB843EE7}</Project>
+      <Name>Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{920CD10C-E485-47AF-A47D-23DC299F762B}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StaticData\StaticData.csproj">
+      <Project>{ED2055BB-79F9-464C-B937-232D29FD4CB1}</Project>
+      <Name>StaticData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stichting\Stichting.csproj">
+      <Project>{05EA6D28-853D-455E-A323-0AB5F3FC3507}</Project>
+      <Name>Stichting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Valuations\Valuations.csproj">
+      <Project>{38DBACFE-BACC-49C3-870F-CFAA9C6721AD}</Project>
+      <Name>Valuations</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Logins\PasswordEmail.htm" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

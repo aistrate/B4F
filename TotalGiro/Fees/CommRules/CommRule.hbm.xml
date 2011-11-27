@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Fees.CommRules.CommRule, B4F.TotalGiro.Fees" table="CommRules" >
+		<id name="Key" column="CommRuleID" unsaved-value="0" >
+			<generator class="identity" />
+		</id>
+		<property name="CommRuleName" column="CommRuleName" not-null="true" />
+		<many-to-one name="CommCalculation" column="CalcID" class="B4F.TotalGiro.Fees.CommCalculations.CommCalc, B4F.TotalGiro.Fees" cascade="none" not-null="true" />
+		<many-to-one name="AdditionalCalculation" column="ChargeCalcID" class="B4F.TotalGiro.Fees.CommCalculations.CommCalc, B4F.TotalGiro.Fees" cascade="none" />
+		<property name="CommRuleType" column="CommRuleType" type="B4F.TotalGiro.Fees.CommRules.CommRuleTypes, B4F.TotalGiro.Interfaces" />
+		<many-to-one name="AssetManager" class="B4F.TotalGiro.Stichting.AssetManager, B4F.TotalGiro.Stichting" column="ManagementCompanyID" cascade="none" not-null="true" />
+		<property name="StartDate" column="RuleStartDate" type="Date" not-null="true" />
+		<property name="endDate" column="RuleEndDate" type="Date" access="field" />
+		<property name="ActionType" column="OrderActionTypeID" type="B4F.TotalGiro.Orders.OrderActionTypes, B4F.TotalGiro.Interfaces" />
+		<property name="ApplyToAllAccounts" column="ApplyToAllAccounts" />
+		<property name="BuySell" column="BuySell" type="B4F.TotalGiro.Fees.CommRules.CommRuleBuySell, B4F.TotalGiro.Interfaces" />
+    <property name="OpenClose" column="OpenClose" type="B4F.TotalGiro.Fees.CommRules.CommRuleOpenClose, B4F.TotalGiro.Interfaces" />
+		<property name="OriginalOrderType" column="OriginalOrderType" type="B4F.TotalGiro.Fees.CommRules.BaseOrderTypes, B4F.TotalGiro.Interfaces" />
+		<many-to-one name="ModelPortfolio" column="ModelID" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none" />
+		<property name="HasEmployerRelation" column="HasEmployerRelation"/>
+		<many-to-one name="Exchange" column="ExchangeID" class="B4F.TotalGiro.Instruments.Exchange, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="RuleSecCategory" column="SecCategoryID" class="B4F.TotalGiro.Instruments.SecCategory, B4F.TotalGiro.Instruments" cascade="none" />
+		<many-to-one name="Instrument" column="InstrumentID" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" cascade="none" />
+	</class>
+
+	<query name="B4F.TotalGiro.Fees.CommRules.AccountCommissionRules" >
+		<![CDATA[
+        from CommRule R 
+        where R.Account.Key = :accountID
+    ]]>
+	</query>
+	
+	<query name="B4F.TotalGiro.Fees.CommRules.GetCommissionRules" >
+		<![CDATA[
+        from CommRule R 
+        where 1=1
+		and R.AssetManager.Key = :companyId
+		and R.CommRuleName like :comruleName
+		and R.CommRuleType = :commRuleTypeId
+		and R.Account.Key = :accountId
+		and R.ModelPortfolio.Key = :modelId
+		and R.RuleSecCategory.key = :secCategoryId
+        and R.Instrument.Key = :instrumentId
+        and R.BuySell = :buySell
+        and R.Exchange.Key = :exchangeId
+        and R.CommCalculation.key = :commCalcId
+        and R.AdditionalCalculation.key = :additionalCalcId
+		and R.StartDate <= :startDate and (R.endDate >= :startDate or R.endDate is null)
+        and R.endDate <= :endDate
+		and R.ActionType = :orderActionTypeId
+		and R.ApplyToAllAccounts = :applytoAllAccounts
+    ]]>
+	</query>
+
+	<query name="B4F.TotalGiro.Fees.CommRules.ModelCommissionRules" >
+		<![CDATA[
+        from CommRule R 
+        where R.ModelPortfolio.Key = :modelID
+    ]]>
+	</query>
+
+</hibernate-mapping>

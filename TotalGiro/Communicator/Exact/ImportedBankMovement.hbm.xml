@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Communicator.Exact.ImportedBankMovement, B4F.TotalGiro.Communicator" 
+         table="ImportedBankMovement" lazy="true"
+		   proxy="B4F.TotalGiro.Communicator.Exact.IImportedBankMovement, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="ID" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="BankJournal" column="JournalID" class="B4F.TotalGiro.GeneralLedger.Static.Journal, B4F.TotalGiro.GeneralLedger" cascade="none" />
+		<property name="BankStatementDate" column="BankStatementDate" type="Date" />
+		<property name="CloseBalanceProcessDate" column="CloseBalanceProcessDate" type="Date" />
+		<property name="CloseBalanceProcessTime" column="CloseBalanceProcessTime" />
+		<component name="MovementAmount" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces" >
+			<property name="Quantity" column="MovementAmount" />
+			<many-to-one name="Underlying" column="MovementAmountID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<property name="Description" column="BankDescription" />
+	</class>
+</hibernate-mapping>

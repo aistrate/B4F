@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Accounts.ModelHistory.ModelHistory, B4F.TotalGiro.Accounts" table="AccountsModelHistory" proxy="B4F.TotalGiro.Accounts.ModelHistory.IModelHistory, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="AccountsModelHistoryID" unsaved-value="0">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeCustomer, B4F.TotalGiro.Accounts" cascade="none" />
+    <many-to-one name="Lifecycle" column="LifecycleID" class="B4F.TotalGiro.Instruments.Lifecycle, B4F.TotalGiro.Instruments" cascade="none" />
+    <many-to-one name="ModelPortfolio" column="ModelID" class="B4F.TotalGiro.Instruments.PortfolioModel, B4F.TotalGiro.Instruments" cascade="none" />
+		<property name="IsExecOnlyCustomer" column="IsExecOnlyCustomer" />
+		<property name="EmployerRelationship" column="HasEmployerRelation" type="B4F.TotalGiro.Accounts.AccountEmployerRelationship, B4F.TotalGiro.Interfaces" />
+		<many-to-one name="Employee" column="EmployeeID" class="B4F.TotalGiro.Stichting.Login.InternalEmployeeLogin, B4F.TotalGiro.Stichting" cascade="none" />
+		<property name="ChangeDate" column="ChangeDate" type="Date" />
+		<property name="endDate" column="EndDate" access="field" insert="false" update="false" type="Date" />
+	</class>
+
+	<query name="B4F.TotalGiro.Accounts.ModelHistory.GetHistoricalModels" >
+		<![CDATA[
+		from ModelHistory M
+		where 1=1
+		and M.Account.Key = :accountId 
+		and M.ChangeDate <= :date
+        order by M.ChangeDate desc
+		]]>
+	</query>
+
+</hibernate-mapping>

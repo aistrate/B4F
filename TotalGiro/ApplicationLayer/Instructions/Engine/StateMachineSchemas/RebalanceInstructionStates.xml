@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fsm name="RebalanceInstructionStates">
+  <states>
+    <state id="1">
+      <event id="1" condition="1" >
+        <transition result="HitClose" next="2" action="1" />
+        <transition result="Hit" next="2" />
+        <transition result="None" next="3" action="2" />
+      </event>
+      <event id="2" condition="5" >
+        <transition result="OK" next="7" action="5" />
+      </event>
+    </state>
+    <state id="2">
+      <event id="1" condition="2" >
+        <transition result="None" next="3" action="2" />
+      </event>
+      <event id="2" condition="5" >
+        <transition result="OK" next="7" action="5" />
+      </event>
+    </state>
+    <state id="3">
+      <event id="1" condition="3" >
+        <transition result="Hit" next="4" />
+        <transition result="None" next="5" action="3" />
+		<transition result="NoCash" next="7" action="4" />
+	  </event>
+      <event id="2" condition="5" >
+        <transition result="OK" next="7" action="5" />
+      </event>
+    </state>
+    <state id="4">
+      <event id="1" condition="3" >
+        <transition result="None" next="5" action="3" />
+        <transition result="NoCash" next="7" action="4" />
+      </event>
+      <event id="2" condition="5" >
+        <transition result="OK" next="7" action="5" />
+      </event>
+    </state>
+    <state id="5">
+      <event id="1" condition="4" >
+        <transition result="Hit" next="6" />
+        <transition result="None" next="7" action="4" />
+      </event>
+      <event id="2" condition="5" >
+        <transition result="OK" next="7" action="5" />
+      </event>
+    </state>
+    <state id="6">
+      <event id="1" condition="4" >
+        <transition result="None" next="7" action="4" />
+      </event>
+      <event id="2" condition="5" >
+        <transition result="OK" next="7" action="5" />
+      </event>
+    </state>
+  </states>
+</fsm>

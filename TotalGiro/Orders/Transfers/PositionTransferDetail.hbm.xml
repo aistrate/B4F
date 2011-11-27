@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" >
+	<class	name="B4F.TotalGiro.Orders.Transfers.PositionTransferDetail, B4F.TotalGiro.Orders"
+			table="PositionTransferDetails"
+			proxy="B4F.TotalGiro.Orders.Transfers.IPositionTransferDetail, B4F.TotalGiro.Interfaces"
+			dynamic-update="true">
+		<id name="Key" column="id" unsaved-value="0" access="property">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="ParentTransfer" column="PositionTransferID" class="B4F.TotalGiro.Orders.Transfers.PositionTransfer, B4F.TotalGiro.Orders"  cascade="all"/>
+		<component name="PositionSize" class="B4F.TotalGiro.Instruments.InstrumentSize, B4F.TotalGiro.Interfaces" >
+			<property column="PositionSize" name="Quantity"  />
+			<many-to-one column="PositionSizeID" name="Underlying" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments"  cascade="none"/>
+		</component>
+		<component name="ActualPrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="ActualPrice" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="ActualPriceID" cascade="none" />
+			<many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="ActualPriceInstrumentID" cascade="none" />
+		</component>
+		<component name="TransferPrice" class="B4F.TotalGiro.Instruments.Price, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="Price" />
+			<many-to-one name="Underlying" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" column="PriceID" cascade="none" />
+			<many-to-one name="Instrument" class="B4F.TotalGiro.Instruments.Instrument, B4F.TotalGiro.Instruments" column="PriceInstrumentID" cascade="none" />
+		</component>
+		<property name ="TxDirection" column="TxDirectionID" type="B4F.TotalGiro.Orders.Transfers.TransferDirection, B4F.TotalGiro.Interfaces" />
+		<property name ="ExchangeRate" column="ExchangeRate" />
+		<component name="ValueVV" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="ValueVVSize"   />
+			<many-to-one name="Underlying" column="ValueVVID"  class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<many-to-one name="XRateCurrency" column="ValueVVXrateID"  class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+			<property name="XRate" column="ValueVVXRate" />
+		</component>
+		<component name="ValueinEuro" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="ValueSize"   />
+			<many-to-one name="Underlying" column="ValueID"  class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments"  cascade="none" />
+		</component>
+		<property name="creationDate" column="CreationDate" type="Date" access="field" insert="false"/>
+		<bag name="transactions" access="field" generic="true" lazy="true" cascade="all" inverse="true"
+		collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.Orders.Transactions.ITransactionNTM, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.Orders.Transfers.TransactionNTMCollection, B4F.TotalGiro.Orders]], B4F.TotalGiro.Interfaces">
+			<key column="TransferDetailID" foreign-key="ID" />
+			<one-to-many class="B4F.TotalGiro.Orders.Transactions.TransactionNTM, B4F.TotalGiro.Orders" />
+		</bag>
+	</class>
+</hibernate-mapping>

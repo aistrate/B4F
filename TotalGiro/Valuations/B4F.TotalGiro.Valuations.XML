@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>B4F.TotalGiro.Valuations</name>
+    </assembly>
+    <members>
+        <member name="P:B4F.TotalGiro.Valuations.ValuationCollection.IsReadOnly">
+            <exclude/>
+        </member>
+    </members>
+</doc>

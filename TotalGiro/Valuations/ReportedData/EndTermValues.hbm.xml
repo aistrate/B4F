@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Valuations.ReportedData.EndTermValue, B4F.TotalGiro.Valuations" 
+		   table="EndTermValues" 
+		   proxy ="B4F.TotalGiro.Valuations.ReportedData.IEndTermValue, B4F.TotalGiro.Interfaces" 
+		   >
+		<id name="Key" column="EndTermValuesID">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.AccountTypeInternal, B4F.TotalGiro.Accounts" cascade="none"  />
+		<many-to-one name="ReportingPeriod" column="PeriodicReportingID" class="B4F.TotalGiro.Valuations.ReportedData.PeriodicReporting, B4F.TotalGiro.Valuations" cascade="all"  />
+		<many-to-one name="DividWepRecord" column="DividWepRecordID"
+					class="B4F.TotalGiro.Communicator.BelastingDienst.DividWepRecord, B4F.TotalGiro.Communicator"  
+					/>		
+		<component name="CashValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="CashFundValueSize" />
+			<many-to-one name="Underlying" column="CashFundValueSizeID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="ClosingValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="EndTermValueSize" />
+			<many-to-one name="Underlying" column="EndTermValueSizeID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="CultureFundValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="CultureFundValue" />
+			<many-to-one name="Underlying" column="CultureFundValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>		
+		<component name="ExternalDividend" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="ExternalDividendValue" />
+			<many-to-one name="Underlying" column="ExternalDividendValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="ExternalDividendTax" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="ExternalDividendTaxValue" />
+			<many-to-one name="Underlying" column="ExternalDividendTaxValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="FundValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="FundValue" />
+			<many-to-one name="Underlying" column="FundValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>		
+		<component name="GreenFundValue" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="GreenFundValue" />
+			<many-to-one name="Underlying" column="GreenFundValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="InternalDividend" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="InternalDividendValue" />
+			<many-to-one name="Underlying" column="InternalDividendValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+		<component name="InternalDividendTax" class="B4F.TotalGiro.Instruments.Money, B4F.TotalGiro.Interfaces">
+			<property name="Quantity" column="InternalDividendTaxValue" />
+			<many-to-one name="Underlying" column="InternalDividendTaxValueID" class="B4F.TotalGiro.Instruments.Currency, B4F.TotalGiro.Instruments" cascade="none" />
+		</component>
+	</class>
+
+<query name="B4F.TotalGiro.Valuations.ReportedData.GetEndValue" >
+  <![CDATA[
+    from EndTermValue A 
+    left join fetch A.ReportingPeriod R
+    where R.EndTermDate = :endTermDate
+    and A.Account = :account
+	]]>
+</query>
+</hibernate-mapping>

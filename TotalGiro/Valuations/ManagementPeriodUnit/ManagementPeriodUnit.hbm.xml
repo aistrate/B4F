@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnit, B4F.TotalGiro.Valuations" table="AccountManagementPeriodsPeriodUnits" proxy ="B4F.TotalGiro.ManagementPeriodUnits.IManagementPeriodUnit, B4F.TotalGiro.Interfaces" >
+		<id name="Key" column="ManagementPeriodsPeriodUnitID" unsaved-value="0">
+			<generator class="assigned"/>
+		</id>
+		<many-to-one name="ManagementPeriod" column="ManagementPeriodID" class="B4F.TotalGiro.Accounts.ManagementPeriods.ManagementPeriod, B4F.TotalGiro.Accounts" cascade="none" insert="false" update="false" />
+		<many-to-one name="UnitParent" column="ManagementPeriodUnitID" class="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnitParent, B4F.TotalGiro.Valuations" cascade="none" insert="false" update="false" fetch="join" />
+		<many-to-one name="ManagementFee" column="GeneralOperationsBookingID" class="B4F.TotalGiro.GeneralLedger.Journal.Bookings.ManagementFee, B4F.TotalGiro.GeneralLedger" cascade="none" />
+		<many-to-one name="KickBackExport" column="KickBackExportID" class="B4F.TotalGiro.ManagementPeriodUnits.ReportData.KickBackExport, B4F.TotalGiro.Valuations" cascade="save-update" />
+		<property name="IsStornoed" column="IsStornoed" />
+		<property name="FeesCalculated" column="FeesCalculated" type="B4F.TotalGiro.ManagementPeriodUnits.FeesCalculatedStates, B4F.TotalGiro.Interfaces" />
+		<property name="RulesFound" column="RulesFound" />
+		<property name="DocumentsSentByPost" column="DocumentsSentByPost" />
+		<property name="Success" column="Success" />
+		<property name="Message" column="Message" />
+		<many-to-one name="NewManagementPeriodUnit" column="NewManagementPeriodsPeriodUnitID" class="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnit, B4F.TotalGiro.Valuations" cascade="none" insert="false" update="false" />
+		<bag name="feeItems" access="field" generic="true" lazy="true" cascade="save-update" inverse="true"
+			 order-by="FeeTypeID"
+			 collection-type="B4F.TotalGiro.Collections.Persistence.DomainCollectionFactory`2[
+									[B4F.TotalGiro.ManagementPeriodUnits.IManagementPeriodUnitFee, B4F.TotalGiro.Interfaces],
+									[B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnitFeeCollection, B4F.TotalGiro.Valuations]], B4F.TotalGiro.Interfaces">
+			<key column="ManagementPeriodsPeriodUnitID" />
+			<one-to-many class="B4F.TotalGiro.ManagementPeriodUnits.ManagementPeriodUnitFee, B4F.TotalGiro.Valuations" />
+		</bag>
+		<bag name="averageHoldingFeeItems" table="AverageHoldingsFees" access="field" cascade="none" lazy="true" generic="true" >
+			<key column="ManagementPeriodsPeriodUnitID" />
+			<one-to-many class="B4F.TotalGiro.Valuations.AverageHoldings.AverageHoldingFee, B4F.TotalGiro.Valuations" />
+		</bag>
+
+	</class>
+</hibernate-mapping>

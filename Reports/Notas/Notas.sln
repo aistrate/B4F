@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Notas", "Notas.rptproj", "{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://b4f-tfs:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Notas.rptproj
+		SccLocalPath1 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		PreProduction|Any CPU = PreProduction|Any CPU
+		Production|Any CPU = Production|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.Debug|Any CPU.ActiveCfg = Debug
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.Debug|Any CPU.Build.0 = Debug
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.Debug|Any CPU.Deploy.0 = Debug
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.PreProduction|Any CPU.ActiveCfg = PreProduction
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.PreProduction|Any CPU.Build.0 = PreProduction
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.PreProduction|Any CPU.Deploy.0 = PreProduction
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.Production|Any CPU.ActiveCfg = Production
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.Production|Any CPU.Build.0 = Production
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.Production|Any CPU.Deploy.0 = Production
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.Release|Any CPU.ActiveCfg = PreProduction
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.Release|Any CPU.Build.0 = PreProduction
+		{01F0ECBF-5892-4EF2-9C7F-CB9B163602E3}.Release|Any CPU.Deploy.0 = PreProduction
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

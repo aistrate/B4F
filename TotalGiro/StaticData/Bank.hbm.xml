@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="B4F.TotalGiro.StaticData.Bank, B4F.TotalGiro.StaticData" table="Banks" mutable="false"
+		proxy="B4F.TotalGiro.StaticData.IBank, B4F.TotalGiro.Interfaces">
+    <cache usage="read-only" />
+		<id name="Key" column="BankID" unsaved-value="0" >
+			<generator class="identity"/>
+		</id>
+		<property name="Name" column="BankName" />
+		<component name="Address" class="B4F.TotalGiro.StaticData.Address, B4F.TotalGiro.Interfaces">
+			<property name="Street" column="Street"/>
+			<property name="HouseNumber" column="HouseNumber"/>
+			<property name="HouseNumberSuffix" column="HouseNumberSuffix"/>
+			<property name="PostalCode" column="PostalCode"/>
+			<property name="City" column="City"/>
+			<many-to-one name="Country" column="CountryID" class="B4F.TotalGiro.StaticData.Country, B4F.TotalGiro.StaticData" cascade="none" />
+		</component>
+		<property name="UseElfProef" column="UseElfProef" />
+	</class>
+</hibernate-mapping>

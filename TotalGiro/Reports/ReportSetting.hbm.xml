@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false" default-access="property">
+	<class name="B4F.TotalGiro.Reports.ReportSetting, B4F.TotalGiro.Reports" table="ReportSettings"
+		   proxy="B4F.TotalGiro.Reports.IReportSetting, B4F.TotalGiro.Interfaces">
+		<id name="Key" column="ReportId" unsaved-value="0">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Account" column="AccountID" class="B4F.TotalGiro.Accounts.Account, B4F.TotalGiro.Accounts" cascade="none" />
+		<property name="IsEoy" column="IsEoy" />
+		<property name="IsQuarter" column="IsQuarter" />
+		<property name="IsDeposit" column="IsDeposit" />
+		<property name="EmployeeID" column="EmployeeID" />
+		<property name="CreationDate" column="CreationDate" type="DateTime" />
+	</class>
+</hibernate-mapping>
+
